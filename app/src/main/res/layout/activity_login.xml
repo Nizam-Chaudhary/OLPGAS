@@ -71,6 +71,7 @@
                     android:padding="10dp">
 
                     <EditText
+                        android:id="@+id/edTxt_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
@@ -99,6 +100,7 @@
                     android:padding="10dp">
 
                     <EditText
+                        android:id="@+id/edTxt_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
