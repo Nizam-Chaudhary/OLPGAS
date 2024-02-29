@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/black_background"
     android:orientation="vertical"
-    tools:context=".login">
+    tools:context=".LoginActivity">
 
 
     <androidx.cardview.widget.CardView
@@ -121,6 +121,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/btn_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -132,6 +133,7 @@
                 android:textSize="18sp" />
 
             <Button
+                android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -140,6 +142,7 @@
                 android:textColor="@color/black" />
 
             <Button
+                android:id="@+id/btn_login_google"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
