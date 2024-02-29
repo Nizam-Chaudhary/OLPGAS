@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "442036339298",
+    "project_id": "olpgb-54425",
+    "storage_bucket": "olpgb-54425.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442036339298:android:f9fbc03756495a6b79473b",
+        "android_client_info": {
+          "package_name": "com.example.olpgb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "442036339298-6rv8vouppjslhk0p1g3h2brm7dksmlfl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.olpgb",
+            "certificate_hash": "9fb97f4657fb0a4e16df88758bd2b502043bb598"
+          }
+        },
+        {
+          "client_id": "442036339298-9n0evmihshlhv61364op36bgvdobd5i3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByVL3cIwaUj_p8RlHhbLXyy-nnxR2UpEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "442036339298-9n0evmihshlhv61364op36bgvdobd5i3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
