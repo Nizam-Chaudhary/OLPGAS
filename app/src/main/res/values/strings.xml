@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">OLPGB</string>
+    <string name="app_name">PG</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="SignUpWithAccount">Don\'t have account? Sign Up</string>
+    <string name="SignInGoogle">Sign in with Google</string>
+    <string name="email">Email</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="SignInWithAccount">Already have account? Sign In</string>
+    <string name="SignUpWithGoogle">Sign Up with Google</string>
 </resources>
