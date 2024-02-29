@@ -55,9 +55,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     // ViewModel
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    ksp("androidx.lifecycle:lifecycle-common:2.7.0")
 
     // Splash Screen
     implementation("androidx.core:core-splashscreen:1.0.1")
