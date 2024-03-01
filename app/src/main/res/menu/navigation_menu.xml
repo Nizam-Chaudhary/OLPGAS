@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_user_Account"
+        android:icon="@drawable/ic_user"
+        android:title="My Account"/>
+    <item
+        android:icon="@drawable/ic_logout"
+        android:id="@+id/user_signout"
+        android:title="Sign Out"/>
+</menu>

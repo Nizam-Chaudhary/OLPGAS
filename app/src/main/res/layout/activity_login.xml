@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/login_signIn"
-    android:background="@drawable/black_background"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -13,7 +13,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_height="92dp"
             android:src="@drawable/temp_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backgroundColor"
+            android:background="@color/primary"
             android:orientation="vertical"
             android:paddingTop="50dp">
 
@@ -52,7 +52,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:text="@string/login"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 android:textSize="35sp"
                 android:textStyle="bold" />
 
@@ -60,13 +60,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@color/white"
+                android:background="@color/backgroundColor"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/backgroundColor"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -74,7 +74,7 @@
                         android:id="@+id/edTxt_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@color/backgroundColor"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:paddingVertical="6dp"
@@ -89,13 +89,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@color/white"
+                android:background="@color/backgroundColor"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/backgroundColor"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -103,7 +103,7 @@
                         android:id="@+id/edTxt_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@color/backgroundColor"
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:paddingVertical="6dp"
@@ -119,10 +119,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/nonePrimary"
                 android:paddingVertical="15dp"
                 android:text="@string/login"
-                android:textColor="@color/white"
+                android:textColor="@color/primary"
                 android:textSize="19sp" />
 
             <Button
@@ -132,7 +132,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:backgroundTint="@android:color/transparent"
                 android:text="@string/SignUpWithAccount"
-                android:textColor="@color/black" />
+                android:textColor="@color/textColor" />
 
             <Button
                 android:id="@+id/btn_login_google"
@@ -141,11 +141,11 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="100dp"
                 android:layout_marginBottom="80dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/backgroundColor"
                 android:drawableLeft="@drawable/ic_google"
                 android:paddingVertical="15dp"
                 android:text="@string/SignInGoogle"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

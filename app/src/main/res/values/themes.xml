@@ -1,12 +1,18 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.OLPGB" parent="Theme.Material3.DayNight.NoActionBar">
-         <item name="colorPrimary">#0E0E0E</item>
+        <item name="colorPrimary">#0E0E0E</item>
     </style>
 
     <style name="login_signIn" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="NoStatusBarTheme" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.OLPGB" parent="Base.Theme.OLPGB" />

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import com.example.olpgb.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
@@ -31,6 +32,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        // Display System bar without resizing activity
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         auth = Firebase.auth
 
         binding.btnLogin.setOnClickListener {
@@ -39,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
 
             var allValid = true
 
-            if(!isValidEmail(email)) {
+            if (!isValidEmail(email)) {
                 binding.edTxtEmail.error = "Invalid email"
                 allValid = false
             }

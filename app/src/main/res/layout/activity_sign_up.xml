@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/black_background"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -21,7 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#FDEDEDED"
+            android:background="@color/primary"
             android:orientation="vertical"
             android:paddingTop="50dp">
 
@@ -31,7 +31,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
                 android:text="@string/SignUp"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -39,13 +39,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@color/white"
+                android:background="@color/backgroundColor"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/backgroundColor"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -53,12 +53,12 @@
                         android:id="@+id/edTxt_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@color/backgroundColor"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:paddingVertical="6dp"
                         android:paddingStart="5dp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textColorHint="@color/editTextHintColor" />
 
                 </LinearLayout>
@@ -68,13 +68,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@color/white"
+                android:background="@color/backgroundColor"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/backgroundColor"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -82,12 +82,12 @@
                         android:id="@+id/edTxt_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@color/backgroundColor"
                         android:hint="@string/password"
                         android:inputType="textPassword"
                         android:paddingVertical="6dp"
                         android:paddingStart="5dp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textColorHint="@color/editTextHintColor" />
 
                 </LinearLayout>
@@ -98,13 +98,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:background="@color/white"
+                android:background="@color/backgroundColor"
                 app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:background="@color/backgroundColor"
                     android:orientation="vertical"
                     android:padding="10dp">
 
@@ -112,12 +112,12 @@
                         android:id="@+id/edTxt_confirm_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
+                        android:background="@color/backgroundColor"
                         android:hint="@string/confirm_password"
                         android:inputType="textPassword"
                         android:paddingVertical="6dp"
                         android:paddingStart="5dp"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColor"
                         android:textColorHint="@color/editTextHintColor" />
 
                 </LinearLayout>
@@ -129,10 +129,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp"
-                android:backgroundTint="@color/black"
+                android:backgroundTint="@color/nonePrimary"
                 android:paddingVertical="15dp"
                 android:text="@string/SignUp"
-                android:textColor="@color/white"
+                android:textColor="@color/primary"
                 android:textSize="18sp" />
 
             <Button
@@ -142,7 +142,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:backgroundTint="@android:color/transparent"
                 android:text="@string/SignInWithAccount"
-                android:textColor="@color/black" />
+                android:textColor="@color/textColor" />
 
             <Button
                 android:id="@+id/btn_login_google"
@@ -151,11 +151,11 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="100dp"
                 android:layout_marginBottom="80dp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/backgroundColor"
                 android:drawableLeft="@drawable/ic_google"
                 android:paddingVertical="15dp"
                 android:text="@string/SignUpWithGoogle"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
