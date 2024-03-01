@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
+    private lateinit var signUpRequest: BeginSignInRequest
     private var showOneTapUI = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,10 +69,21 @@ class LoginActivity : AppCompatActivity() {
                     // Your server's client ID, not your Android client ID.
                     .setServerClientId(getString(R.string.web_client_id))
                     // Only show accounts previously used to sign in.
-                    .setFilterByAuthorizedAccounts(false)
+                    .setFilterByAuthorizedAccounts(true)
                     .build())
             // Automatically sign in when exactly one credential is retrieved.
             .setAutoSelectEnabled(true)
+            .build()
+
+        signUpRequest = BeginSignInRequest.builder()
+            .setGoogleIdTokenRequestOptions(
+                BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                    .setSupported(true)
+                    // Your server's client ID, not your Android client ID.
+                    .setServerClientId(getString(R.string.web_client_id))
+                    // Show all accounts on the device.
+                    .setFilterByAuthorizedAccounts(false)
+                    .build())
             .build()
 
         binding.btnLoginGoogle.setOnClickListener {
@@ -89,6 +101,21 @@ class LoginActivity : AppCompatActivity() {
                     // No saved credentials found. Launch the One Tap sign-up flow, or
                     // do nothing and continue presenting the signed-out UI.
                     Log.d(TAG, e.localizedMessage)
+
+                    oneTapClient.beginSignIn(signUpRequest)
+                        .addOnSuccessListener(this) { result ->
+                            try {
+                                startIntentSenderForResult(
+                                    result.pendingIntent.intentSender, REQ_ONE_TAP,
+                                    null, 0, 0, 0)
+                            } catch (e: IntentSender.SendIntentException) {
+                                Log.e(TAG, "Couldn't start One Tap UI: ${e.localizedMessage}")
+                            }
+                        }
+                        .addOnFailureListener(this) { ex ->
+                            // No Google Accounts found. Just continue presenting the signed-out UI.
+                            Log.d(TAG, ex.localizedMessage)
+                        }
                 }
         }
     }
@@ -153,6 +180,6 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "LoginActivity"
-        private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
+        private const val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
     }
 }
