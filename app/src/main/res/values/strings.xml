@@ -9,4 +9,5 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="SignInWithAccount">Already have account? Sign In</string>
     <string name="SignUpWithGoogle">Sign Up with Google</string>
+    <string name="web_client_id">442036339298-9n0evmihshlhv61364op36bgvdobd5i3.apps.googleusercontent.com</string>
 </resources>
