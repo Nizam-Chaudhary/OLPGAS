@@ -51,21 +51,38 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
         holder.roomContactBtn.text = data[position][2]
 
         holder.roomImage.setOnClickListener {
-
             val intent = Intent(context, RoomDetails::class.java)
-            intent.putExtra("transitionName", ViewCompat.getTransitionName(holder.roomImage))
-            val option = ViewCompat.getTransitionName(holder.roomImage)?.let { it1 ->
-                ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    context as Activity,
-                    holder.roomImage,
-                    it1
-                )
-            }
-            if (option != null) {
-                context.startActivity(intent,option.toBundle())
-            }
-        }
 
+
+
+
+//            intent.putExtra("transitionName", ViewCompat.getTransitionName(holder.roomImage))
+//            intent.putExtra("imageResourceId", getImageResourceId(position))
+//
+//            val option = ViewCompat.getTransitionName(holder.roomImage)?.let { it1 ->
+//                ActivityOptionsCompat.makeSceneTransitionAnimation(
+//                    context as Activity,
+//                    holder.roomImage,
+//                    "room_image_transition"
+//                )
+//            }
+//
+//            if (option != null) {
+//                context.startActivity(intent, option.toBundle())
+//            }
+
+
+            context.startActivity(intent)
+
+        }
+    }
+
+    private fun getImageResourceId(position: Int): Int {
+        return when (position) {
+            0 -> R.drawable.room1
+            1 -> R.drawable.room2
+            else -> R.drawable.room3
+        }
 
     }
 

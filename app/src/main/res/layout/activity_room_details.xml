@@ -10,5 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:src="@drawable/room1"
+        android:scaleType="centerCrop"
         android:transitionName="room_image_transition"/>
 </LinearLayout>
