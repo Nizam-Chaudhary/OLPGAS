@@ -1,6 +1,8 @@
 package com.example.olpgb
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val context: Context) :
@@ -45,6 +49,23 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
         holder.roomDeposit.text = data[position][4]
         holder.dateOfPost.text = data[position][5]
         holder.roomContactBtn.text = data[position][2]
+
+        holder.roomImage.setOnClickListener {
+
+            val intent = Intent(context, RoomDetails::class.java)
+            intent.putExtra("transitionName", ViewCompat.getTransitionName(holder.roomImage))
+            val option = ViewCompat.getTransitionName(holder.roomImage)?.let { it1 ->
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    context as Activity,
+                    holder.roomImage,
+                    it1
+                )
+            }
+            if (option != null) {
+                context.startActivity(intent,option.toBundle())
+            }
+        }
+
 
     }
 

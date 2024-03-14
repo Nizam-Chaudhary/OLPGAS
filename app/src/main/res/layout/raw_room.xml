@@ -28,7 +28,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/temp_logo" />
+                    android:src="@drawable/temp_logo"
+                    android:transitionName="room_image_transition"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -111,7 +112,7 @@
 
                     <TextView
                         android:id="@+id/tv2"
-                        android:layout_width="50dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="30dp"

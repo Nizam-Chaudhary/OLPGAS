@@ -13,6 +13,8 @@
     <style name="NoStatusBarTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
+
     </style>
 
     <style name="UserProfileStatusBarTheme" parent="Theme.Material3.DayNight.NoActionBar">
