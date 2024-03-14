@@ -8,9 +8,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.olpgb.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,17 +18,13 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         setUpBar()
 
-        auth = Firebase.auth
-
         binding.btnSignOut.setOnClickListener {
-            auth.signOut()
             startActivity(Intent(this@MainActivity, LoginActivity::class.java))
         }
     }
@@ -59,12 +52,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        binding.tvUserEmail.text = auth.currentUser?.email ?: "Unable to fetch"
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
