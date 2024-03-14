@@ -15,7 +15,7 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="UserProfileStatusBarTheme" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="UserProfileStatusBarTheme" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/white</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>

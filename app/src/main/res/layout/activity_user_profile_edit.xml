@@ -164,6 +164,7 @@
                 <EditText
                     android:id="@+id/uPhoneNumberEdit"
                     android:layout_width="match_parent"
+                    android:inputType="number"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textColor"
                     android:textSize="18sp" />
