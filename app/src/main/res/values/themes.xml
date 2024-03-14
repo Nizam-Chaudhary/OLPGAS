@@ -15,5 +15,13 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="UserProfileStatusBarTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/textColor</item>
+    </style>
     <style name="Theme.OLPGB" parent="Base.Theme.OLPGB" />
 </resources>
