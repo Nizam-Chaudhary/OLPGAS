@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/backgroundColor"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UserAccount">
+
+    <TextView
+        android:id="@+id/uEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/textColor"
+        android:layout_marginVertical="10dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/uPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/textColor"
+        android:layout_marginVertical="10dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/uName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/textColor"
+        android:layout_marginVertical="10dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/uAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/textColor"
+        android:layout_marginVertical="10dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/uGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/textColor"
+        android:layout_marginVertical="10dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/uPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/textColor"
+        android:layout_marginVertical="10dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/uAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textColor="@color/textColor"
+        android:layout_marginVertical="10dp"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/uProfileEditBtn"
+        android:layout_width="wrap_content"
+        android:text="Edit"
+        android:textColor="@color/textColor"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+
+</LinearLayout>

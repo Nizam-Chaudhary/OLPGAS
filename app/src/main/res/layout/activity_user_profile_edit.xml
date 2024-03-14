@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UserAccount">
+
+    <EditText
+        android:id="@+id/uEmailEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:text="adsfl"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/uPasswordEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:text="adsfl"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/uNameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:text="adsfl"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/uAgeEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:text="adsfl"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/uGenderEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:text="adsfl"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/uPhoneNumberEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:text="adsfl"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/uAddressEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:text="adsfl"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/uProfileSaveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColor"
+        android:text="Save"
+        android:layout_gravity="center" />
+
+
+</LinearLayout>
