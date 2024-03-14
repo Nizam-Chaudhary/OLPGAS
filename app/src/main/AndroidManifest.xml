@@ -18,10 +18,10 @@
             android:name=".UserProfileEdit"
             android:theme="@style/UserProfileStatusBarTheme"
             android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".UserAccount"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
 
         <activity

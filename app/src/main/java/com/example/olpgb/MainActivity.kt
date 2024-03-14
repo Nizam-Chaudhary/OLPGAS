@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgb.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
@@ -24,9 +25,41 @@ class MainActivity : AppCompatActivity() {
 
         setUpBar()
 
-        binding.btnSignOut.setOnClickListener {
-            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-        }
+//        binding.btnSignOut.setOnClickListener {
+//            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+//        }
+
+
+        val roomData: Array<Array<String>> = arrayOf(
+            arrayOf(
+                "Sun View Apartment",
+                "Station Road, Anand Nagar, Surat, Gujarat",
+                "+91 9876543210",
+                "7000/-",
+                "15000/-",
+                "2024-03-15"
+            ), arrayOf(
+                "Green Meadows",
+                "Ring Road, Rajkot, Gujarat",
+                "+91 8765432190",
+                "4500/-",
+                "10000/-",
+                "2024-03-14"
+            ), arrayOf(
+                "Royal Heights",
+                "Bypass Road, Vadodara, Gujarat",
+                "+91 7896543211",
+                "6000/-",
+                "12000/-",
+                "2024-03-11"
+            )
+        )
+
+
+        binding.rv.layoutManager = LinearLayoutManager(this)
+        val RoomRecyclerAdapter = RoomRecyclerAdapter(roomData, this)
+        binding.rv.adapter = RoomRecyclerAdapter
+
     }
 
     private fun setUpBar() {
