@@ -7,7 +7,7 @@
     android:background="@drawable/background"
     android:paddingTop="30dp"
     android:orientation="vertical"
-    tools:context=".UserAccount">
+    tools:context=".profile.ui.UserAccount">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.olpgb
+package com.example.olpgb.profile.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -28,7 +28,7 @@ class UserAccount : AppCompatActivity() {
 
         //Edit profile btn
         binding.uEdit.setOnClickListener {
-            startActivity(Intent(this@UserAccount,UserProfileEdit::class.java))
+            startActivity(Intent(this@UserAccount, UserProfileEdit::class.java))
         }
 
     }

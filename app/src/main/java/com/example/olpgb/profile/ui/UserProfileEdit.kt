@@ -1,4 +1,4 @@
-package com.example.olpgb
+package com.example.olpgb.profile.ui
 
 import android.os.Bundle
 import android.widget.ArrayAdapter

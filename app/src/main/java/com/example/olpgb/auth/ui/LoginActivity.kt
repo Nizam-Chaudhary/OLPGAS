@@ -1,4 +1,4 @@
-package com.example.olpgb.auth.presentation
+package com.example.olpgb.auth.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,10 +6,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.olpgb.MainActivity
 import com.example.olpgb.auth.data.model.UserState
 import com.example.olpgb.auth.viewmodel.SupabaseAuthViewModel
 import com.example.olpgb.databinding.ActivityLoginBinding
+import com.example.olpgb.roomdetails.ui.MainActivity
 
 class LoginActivity : AppCompatActivity() {
 
