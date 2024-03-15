@@ -7,6 +7,6 @@
         android:title="My Account"/>
     <item
         android:icon="@drawable/ic_logout"
-        android:id="@+id/user_signout"
+        android:id="@+id/nav_user_signout"
         android:title="Sign Out"/>
 </menu>
