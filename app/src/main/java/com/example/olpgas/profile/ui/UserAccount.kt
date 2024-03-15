@@ -1,9 +1,9 @@
-package com.example.olpgb.profile.ui
+package com.example.olpgas.profile.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.olpgb.databinding.ActivityUserAccountBinding
+import com.example.olpgas.databinding.ActivityUserAccountBinding
 
 class UserAccount : AppCompatActivity() {
 

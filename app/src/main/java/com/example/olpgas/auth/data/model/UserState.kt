@@ -1,4 +1,4 @@
-package com.example.olpgb.auth.data.model
+package com.example.olpgas.auth.data.model
 
 sealed class UserState {
     data object Loading: UserState()

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.olpgb"
+    namespace = "com.example.olpgas"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.olpgb"
+        applicationId = "com.example.olpgas"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

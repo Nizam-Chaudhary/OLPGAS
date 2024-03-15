@@ -1,4 +1,4 @@
-package com.example.olpgb.roomdetails.ui
+package com.example.olpgas.roomdetails.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,12 +8,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.olpgb.R
-import com.example.olpgb.auth.ui.LoginActivity
-import com.example.olpgb.auth.viewmodel.SupabaseAuthViewModel
-import com.example.olpgb.databinding.ActivityMainBinding
-import com.example.olpgb.profile.ui.UserAccount
-import com.example.olpgb.roomdetails.adapter.RoomRecyclerAdapter
+import com.example.olpgas.R
+import com.example.olpgas.auth.ui.LoginActivity
+import com.example.olpgas.auth.viewmodel.SupabaseAuthViewModel
+import com.example.olpgas.databinding.ActivityMainBinding
+import com.example.olpgas.profile.ui.UserAccount
+import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.olpgb.auth.data.network
+package com.example.olpgas.auth.data.network
 
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth

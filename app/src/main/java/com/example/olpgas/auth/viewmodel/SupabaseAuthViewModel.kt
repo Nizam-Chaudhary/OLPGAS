@@ -1,19 +1,25 @@
-package com.example.olpgb.auth.viewmodel
+package com.example.olpgas.auth.viewmodel
 
 import android.content.Context
+import android.util.Log
+import android.widget.Toast
+import androidx.credentials.CredentialManager
+import androidx.credentials.GetCredentialRequest
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.olpgb.auth.data.model.UserState
-import com.example.olpgb.auth.data.network.SupabaseClient.client
-import com.example.olpgb.auth.utils.SharedPreferenceHelper
+import com.example.olpgas.auth.data.model.UserState
+import com.example.olpgas.auth.data.network.SupabaseClient.client
+import com.example.olpgas.auth.utils.SharedPreferenceHelper
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.gotrue.providers.builtin.Email
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.security.MessageDigest
+import java.util.UUID
 
 class SupabaseAuthViewModel : ViewModel() {
 

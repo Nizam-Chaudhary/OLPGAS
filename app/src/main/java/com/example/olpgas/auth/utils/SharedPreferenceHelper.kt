@@ -1,4 +1,4 @@
-package com.example.olpgb.auth.utils
+package com.example.olpgas.auth.utils
 
 import android.content.Context
 

@@ -1,9 +1,9 @@
-package com.example.olpgb.roomdetails.ui
+package com.example.olpgas.roomdetails.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.olpgb.R
-import com.example.olpgb.databinding.ActivityRoomDetailsBinding
+import com.example.olpgas.R
+import com.example.olpgas.databinding.ActivityRoomDetailsBinding
 
 
 class RoomDetails : AppCompatActivity() {

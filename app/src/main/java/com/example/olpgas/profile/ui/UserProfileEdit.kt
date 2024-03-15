@@ -1,10 +1,10 @@
-package com.example.olpgb.profile.ui
+package com.example.olpgas.profile.ui
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
-import com.example.olpgb.databinding.ActivityUserProfileEditBinding
+import com.example.olpgas.databinding.ActivityUserProfileEditBinding
 
 class UserProfileEdit : AppCompatActivity() {
 
