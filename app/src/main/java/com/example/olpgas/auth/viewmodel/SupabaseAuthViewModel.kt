@@ -14,10 +14,12 @@ import com.example.olpgas.auth.utils.SharedPreferenceHelper
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
+import io.github.jan.supabase.exceptions.RestException
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.gotrue.providers.Google
 import io.github.jan.supabase.gotrue.providers.builtin.Email
 import io.github.jan.supabase.gotrue.providers.builtin.IDToken
+import io.github.jan.supabase.postgrest.postgrest
 import kotlinx.coroutines.launch
 import java.security.MessageDigest
 import java.util.UUID
@@ -44,6 +46,8 @@ class SupabaseAuthViewModel : ViewModel() {
                 }
                 saveToken(context)
                 _userState.value = UserState.Success("Signed up successfully")
+                client.postgrest.from("User_Master")
+                    .insert(mapOf("email" to userEmail))
             } catch(e: Exception) {
                 _userState.value = UserState.Error("Error : ${e.message}")
             }
@@ -127,7 +131,7 @@ class SupabaseAuthViewModel : ViewModel() {
         val bytes = rawNonce.toByteArray()
         val md = MessageDigest.getInstance("SHA-256")
         val digest = md.digest(bytes)
-        val hashedNonce = digest.fold(""){str, it -> str+"%02x".format(it)}
+        val hashedNonce = digest.fold("") { str, it -> str + "%02x".format(it) }
 
         val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
             .setFilterByAuthorizedAccounts(false)
@@ -162,10 +166,26 @@ class SupabaseAuthViewModel : ViewModel() {
                 }
 
                 _userState.value = UserState.Success("Signed in successfully")
-            }catch (e: androidx.credentials.exceptions.GetCredentialException) {
+
+                val currentUser = client.auth.currentUserOrNull()
+
+                if (currentUser != null) {
+                    val userName = currentUser.userMetadata?.get("name").toString()
+                    val email = currentUser.email
+
+                    client.postgrest.from("User_Master")
+                        .insert(mapOf("email" to email, "user_name" to userName))
+                }
+            } catch (e: androidx.credentials.exceptions.GetCredentialException) {
                 _userState.value = UserState.Error("Error: ${e.message}")
-                Log.d("Google Sign In",e.message.toString())
-            }catch (e: GoogleIdTokenParsingException) {
+                Log.d("Google Sign In", e.message.toString())
+            } catch (e: GoogleIdTokenParsingException) {
+                _userState.value = UserState.Error("Error: ${e.message}")
+                Log.d("Google Sign In", e.message.toString())
+            } catch (e: RestException) {
+                _userState.value = UserState.Error("Error: ${e.message}")
+                Log.d("Google Sign In", e.message.toString())
+            } catch (e: Exception) {
                 _userState.value = UserState.Error("Error: ${e.message}")
                 Log.d("Google Sign In", e.message.toString())
             }
