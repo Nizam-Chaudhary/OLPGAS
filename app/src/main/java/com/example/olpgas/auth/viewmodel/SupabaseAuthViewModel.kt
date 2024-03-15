@@ -2,7 +2,6 @@ package com.example.olpgas.auth.viewmodel
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.lifecycle.LiveData
@@ -16,7 +15,9 @@ import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import io.github.jan.supabase.gotrue.auth
+import io.github.jan.supabase.gotrue.providers.Google
 import io.github.jan.supabase.gotrue.providers.builtin.Email
+import io.github.jan.supabase.gotrue.providers.builtin.IDToken
 import kotlinx.coroutines.launch
 import java.security.MessageDigest
 import java.util.UUID
@@ -50,9 +51,9 @@ class SupabaseAuthViewModel : ViewModel() {
         }
     }
 
-    private fun saveToken(context: Context) {
+    private fun saveToken(context: Context, googleIdToken: String? = null) {
         viewModelScope.launch {
-            val accessToken = client.auth.currentAccessTokenOrNull()
+            val accessToken = client.auth.currentAccessTokenOrNull() ?: googleIdToken
             val sharedPref = SharedPreferenceHelper(context)
             sharedPref.saveStringData("accessToken",accessToken)
         }
@@ -115,6 +116,58 @@ class SupabaseAuthViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _userState.value = UserState.Error("Error : ${e.message}")
+            }
+        }
+    }
+
+    fun googleSignIn(context: Context) {
+        val credentialManager = CredentialManager.create(context)
+
+        val rawNonce = UUID.randomUUID().toString()
+        val bytes = rawNonce.toByteArray()
+        val md = MessageDigest.getInstance("SHA-256")
+        val digest = md.digest(bytes)
+        val hashedNonce = digest.fold(""){str, it -> str+"%02x".format(it)}
+
+        val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
+            .setFilterByAuthorizedAccounts(false)
+            .setServerClientId("716332734156-4fc1dnst6tgqg0m9q8j4lthl86bd94f0.apps.googleusercontent.com")
+            .setNonce(hashedNonce)
+            .build()
+
+        val request: GetCredentialRequest = GetCredentialRequest.Builder()
+            .addCredentialOption(googleIdOption)
+            .build()
+
+        viewModelScope.launch {
+            try {
+                val result = credentialManager.getCredential(
+                    context,
+                    request
+                )
+
+                val credential = result.credential
+
+                val googleIdTokenCredential = GoogleIdTokenCredential
+                    .createFrom(credential.data)
+
+                val googleIdToken = googleIdTokenCredential.idToken
+
+                saveToken(context, googleIdToken)
+
+                client.auth.signInWith(IDToken) {
+                    idToken = googleIdToken
+                    provider = Google
+                    nonce = rawNonce
+                }
+
+                _userState.value = UserState.Success("Signed in successfully")
+            }catch (e: androidx.credentials.exceptions.GetCredentialException) {
+                _userState.value = UserState.Error("Error: ${e.message}")
+                Log.d("Google Sign In",e.message.toString())
+            }catch (e: GoogleIdTokenParsingException) {
+                _userState.value = UserState.Error("Error: ${e.message}")
+                Log.d("Google Sign In", e.message.toString())
             }
         }
     }

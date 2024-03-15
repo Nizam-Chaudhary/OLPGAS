@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         setUpBar()
 
         authViewModel.isUserLoggedIn(this)
-
-        authViewModel.isUserLoggedIn(this)
         authViewModel.isLoggedIn.observe(this) {loggedIn ->
             if(!loggedIn) {
                 val intent = Intent(this, LoginActivity::class.java)
