@@ -1,10 +1,9 @@
-package com.example.olpgb
+package com.example.olpgb.roomdetails.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.olpgb.R
 import com.example.olpgb.databinding.ActivityRoomDetailsBinding
-import android.view.View
 
 
 class RoomDetails : AppCompatActivity() {

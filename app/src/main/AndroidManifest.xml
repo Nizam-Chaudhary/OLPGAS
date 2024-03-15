@@ -15,20 +15,20 @@
         android:theme="@style/Base.Theme.OLPGB"
         tools:targetApi="31">
         <activity
-            android:name=".RoomDetails"
+            android:name=".roomdetails.ui.RoomDetails"
             android:exported="false"
             android:theme="@style/NoStatusBarTheme"/>
         <activity
-            android:name=".UserProfileEdit"
+            android:name=".profile.ui.UserProfileEdit"
             android:exported="false"
             android:theme="@style/UserProfileStatusBarTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".UserAccount"
+            android:name=".profile.ui.UserAccount"
             android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
         <activity
-            android:name=".MainActivity"
+            android:name=".roomdetails.ui.MainActivity"
             android:exported="true"
             android:theme="@style/NoStatusBarTheme" >
             <intent-filter>
@@ -38,11 +38,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".auth.presentation.LoginActivity"
+            android:name=".auth.ui.LoginActivity"
             android:exported="true"
             android:theme="@style/NoStatusBarTheme"/>
         <activity
-            android:name=".auth.presentation.SignUpActivity"
+            android:name=".auth.ui.SignUpActivity"
             android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
     </application>

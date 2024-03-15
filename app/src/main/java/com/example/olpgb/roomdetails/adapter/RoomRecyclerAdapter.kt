@@ -1,6 +1,5 @@
-package com.example.olpgb
+package com.example.olpgb.roomdetails.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,9 +9,9 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.olpgb.R
+import com.example.olpgb.roomdetails.ui.RoomDetails
 
 class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val context: Context) :
     RecyclerView.Adapter<RoomRecyclerAdapter.ViewHolder>() {
