@@ -6,6 +6,9 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.olpgb.auth.presentation.LoginActivity
+import com.example.olpgb.auth.viewmodel.SupabaseAuthViewModel
 import com.example.olpgb.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
@@ -18,14 +21,31 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private val authViewModel: SupabaseAuthViewModel by lazy {
+        ViewModelProvider(this)[SupabaseAuthViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         setUpBar()
 
+        authViewModel.isUserLoggedIn(this)
+
+        authViewModel.isUserLoggedIn(this)
+        authViewModel.isLoggedIn.observe(this) {loggedIn ->
+            if(!loggedIn) {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
         binding.btnSignOut.setOnClickListener {
+            authViewModel.logout(this)
             startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+            finish()
         }
     }
 

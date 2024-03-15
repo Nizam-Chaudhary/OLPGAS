@@ -7,7 +7,7 @@
     android:theme="@style/login_signIn"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".LoginActivity">
+    tools:context=".auth.presentation.LoginActivity">
 
 
     <androidx.cardview.widget.CardView
