@@ -16,17 +16,18 @@ class UserAccount : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.uEmail.text = "Hello"
-        binding.uPassword.text = "Hello"
-        binding.uName.text = "Hello"
-        binding.uAge.text = "Hello"
-        binding.uGender.text = "Hello"
-        binding.uPhoneNumber.text = "Hello"
-        binding.uAddress.text = "Hello"
+        binding.uEmail.text = "VP.patel.personal@gmail.com"
+        binding.uName.text = "VP"
+        binding.uAge.text = "19"
+        binding.uGender.text = "male"
+        binding.uPhoneNumber.text = "1234567890"
+        binding.uAddressStreet.text = "12" //Street Name or Number
+        binding.uAddressCity.text="Valsad"
+        binding.uAddressState.text="Gujarat"
 
 
         //Edit profile btn
-        binding.uProfileEditBtn.setOnClickListener {
+        binding.uEdit.setOnClickListener {
             startActivity(Intent(this@UserAccount,UserProfileEdit::class.java))
         }
 

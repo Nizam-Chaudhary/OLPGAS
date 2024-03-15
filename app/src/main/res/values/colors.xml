@@ -6,7 +6,8 @@
     <color name="textColor">#FF000000</color>
     <color name="primary">#FFFFFFFF</color>
     <color name="nonePrimary">#FF000000</color>
-    <color name="backgroundColor">#FDEDEDED</color>
+    <color name="backgroundColor">#f7f7f9</color>
+    <color name="RoomRawBackgroundColor">#ffffff</color>
     <color name="StatusBarBackgroundColor">#FDEDEDED</color>
     <color name="editTextHintColor">#5C000000</color>
 </resources>
