@@ -6,11 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.olpgb.auth.presentation.LoginActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgb.auth.presentation.LoginActivity
 import com.example.olpgb.auth.viewmodel.SupabaseAuthViewModel
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgb.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 
@@ -44,12 +43,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.btnSignOut.setOnClickListener {
-            authViewModel.logout(this)
-            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-            finish()
-        }
-//
         val roomData: Array<Array<String>> = arrayOf(
             arrayOf(
                 "Sun View Apartment",
@@ -101,6 +94,11 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.nav_user_Account -> {
                     startActivity(Intent(this@MainActivity, UserAccount::class.java))
+                }
+                R.id.nav_user_signout -> {
+                    authViewModel.logout(this)
+                    startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                    finish()
                 }
             }
             true
