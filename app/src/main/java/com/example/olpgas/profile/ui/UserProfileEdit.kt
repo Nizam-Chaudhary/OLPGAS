@@ -29,7 +29,7 @@ class UserProfileEdit : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
+        setUserProfileData(this)
 
         setUpSpinner()
 
@@ -75,13 +75,34 @@ class UserProfileEdit : AppCompatActivity() {
 
 
         //set age from here
-        binding.ageSpinner.setSelection(ageSpinnerAdapter.getPosition(age.toString()))
+        binding.ageSpinner.setSelection(0)
     }
 
 
     override fun onStop() {
         super.onStop()
         finish()
+    }
+
+    private fun setUserProfileData(lifecycleOwner: LifecycleOwner) {
+        userViewModel.getUserProfileData()
+
+        userViewModel.userProfileData.observe(lifecycleOwner) {user->
+            binding.uNameEdit.setText(user.userName)
+            binding.uEmailEdit.setText(user.email)
+            binding.uPhoneNumberEdit.setText(user.phoneNumber)
+            binding.uAddressStreetEdit.setText(user.streetNumber)
+            binding.uAddressCityEdit.setText(user.city)
+            binding.uAddressStateEdit.setText(user.state)
+
+            if(user.gender.equals("Male")) {
+                binding.radioMale.isChecked = true
+            } else {
+                binding.radioFemale.isChecked = true
+            }
+
+            binding.ageSpinner.setSelection(user.age-15)
+        }
     }
 
 }
