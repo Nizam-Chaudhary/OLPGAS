@@ -3,10 +3,12 @@ package com.example.olpgas.profile.ui
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.databinding.ActivityUserProfileEditBinding
+import com.example.olpgas.profile.data.model.ProfileSaveStatus
 import com.example.olpgas.profile.data.model.User
 import com.example.olpgas.profile.viewmodel.UserProfileViewModel
 
@@ -29,6 +31,17 @@ class UserProfileEdit : AppCompatActivity() {
         setUserProfileData(this)
 
         setUpSpinner()
+
+        userViewModel.profileSaveStatus.observe(this) { profileSaveStatus ->
+            when(profileSaveStatus) {
+                ProfileSaveStatus.Success -> {
+                    finish()
+                }
+                is ProfileSaveStatus.Error -> {
+                    Toast.makeText(this, "Error: ${profileSaveStatus.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
         binding.uSave.setOnClickListener {
 

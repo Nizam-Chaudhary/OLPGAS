@@ -27,7 +27,7 @@ class UserProfileViewModel: ViewModel() {
                     .upsert(user)
                 _profileSaveStatus.value = ProfileSaveStatus.Success
             }catch (e: Exception) {
-                _profileSaveStatus.value = ProfileSaveStatus.Error
+                _profileSaveStatus.value = ProfileSaveStatus.Error(e.message.toString())
                 Log.d("User Profile", e.message.toString())
             }
         }
