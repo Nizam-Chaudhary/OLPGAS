@@ -1,12 +1,9 @@
 package com.example.olpgas.profile.ui
 
-import android.content.Context
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.databinding.ActivityUserProfileEditBinding
@@ -95,7 +92,7 @@ class UserProfileEdit : AppCompatActivity() {
             binding.uAddressCityEdit.setText(user.city)
             binding.uAddressStateEdit.setText(user.state)
 
-            if(user.gender.equals("Male")) {
+            if(user.gender == "Male") {
                 binding.radioMale.isChecked = true
             } else {
                 binding.radioFemale.isChecked = true
