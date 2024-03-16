@@ -1,64 +1,69 @@
 package com.example.olpgas.profile.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.databinding.ActivityUserProfileEditBinding
+import com.example.olpgas.profile.data.model.User
+import com.example.olpgas.profile.viewmodel.UserProfileViewModel
 
 class UserProfileEdit : AppCompatActivity() {
 
     private var ageArray = arrayOf<String>()
-    private var email: String = ""
-    private var name: String = ""
-    private var age: Int = 15
-    private var gender: String = ""
-    private var phoneNumber: String = ""
-    private var addressStreet: String = ""
-    private var addressCity: String = ""
-    private var addressState: String = ""
 
     private val binding: ActivityUserProfileEditBinding by lazy {
         ActivityUserProfileEditBinding.inflate(layoutInflater)
+    }
+
+    private val userViewModel: UserProfileViewModel by lazy {
+        ViewModelProvider(this)[UserProfileViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        fillOldData()
-        setUpSpinner()
 
+
+        setUpSpinner()
 
         binding.uSave.setOnClickListener {
 
             val selectedGender: Int = binding.genderRadioGroup.checkedRadioButtonId
             val radioButton: RadioButton = findViewById(selectedGender)
 
-            gender = radioButton.text.toString()
-            finish()
-        }
+            val gender = radioButton.text.toString()
 
-    }
+            val name = binding.uNameEdit.text.toString()
+            val age = binding.ageSpinner.selectedItem.toString().toInt()
+            val phoneNumber = binding.uPhoneNumberEdit.text.toString()
+            val streetNumber = binding.uAddressStreetEdit.text.toString()
+            val city = binding.uAddressCityEdit.text.toString()
+            val state = binding.uAddressStateEdit.text.toString()
 
-    private fun fillOldData() {
-        binding.uEmailEdit.setText(email)
-        binding.uNameEdit.setText(name)
-        binding.uPhoneNumberEdit.setText(phoneNumber)
-        binding.uAddressStreetEdit.setText(addressStreet)
-        binding.uAddressCityEdit.setText(addressCity)
-        binding.uAddressStateEdit.setText(addressState)
+            val user = User(
+                userName = name,
+                age = age,
+                gender = gender,
+                phoneNumber = phoneNumber,
+                streetNumber = streetNumber,
+                city = city,
+                state = state
+            )
 
-        if (gender == "") {
-            binding.radioMale.isChecked = true
-        } else {
-            binding.radioFemale.isChecked = true
+            userViewModel.saveUserProfile(user)
         }
 
     }
 
     private fun setUpSpinner() {
-        val numberArray = IntArray(46) { index -> index + 15 }
+        val numberArray = IntArray(61) { index -> index + 15 }
         numberArray.map { it.toString() }.toTypedArray()
         ageArray = Array(numberArray.size) { index -> numberArray[index].toString() }
 
