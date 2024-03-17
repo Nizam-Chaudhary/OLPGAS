@@ -34,6 +34,7 @@ class SupabaseAuthViewModel : ViewModel() {
 
     fun signUp(
         context: Context,
+        userName: String,
         userEmail: String,
         userPassword: String,
     ) {
@@ -46,8 +47,8 @@ class SupabaseAuthViewModel : ViewModel() {
                 }
                 saveToken(context)
                 _userState.value = UserState.Success("Signed up successfully")
-                client.postgrest.from("User_Master")
-                    .insert(mapOf("email" to userEmail))
+                client.postgrest.from("UserMaster")
+                    .upsert(mapOf("email" to userEmail, "userName" to userName))
             } catch(e: Exception) {
                 _userState.value = UserState.Error("Error : ${e.message}")
             }

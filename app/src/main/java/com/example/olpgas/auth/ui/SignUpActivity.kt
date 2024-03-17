@@ -47,34 +47,36 @@ class SignUpActivity : AppCompatActivity() {
             }
 
             binding.btnSignup.setOnClickListener {
-                val email = binding.edTxtEmail.text.toString()
-                val password = binding.edTxtPassword.text.toString()
-                val reTypedPassword = binding.edTxtConfirmPassword.text.toString()
+                val userName = binding.txtFieldUserName.editText?.text.toString()
+                val email = binding.txtFieldEMail.editText?.text.toString()
+                val password = binding.txtFieldPassword.editText?.text.toString()
+                val reTypedPassword = binding.txtFieldConfirmPassword.editText?.text.toString()
 
                 var allValid = true
 
+                if(userName.isEmpty()) {
+                    binding.txtFieldUserName.error = "Name cannot be empty"
+                }
+
                 if(!isEmailValid(email)) {
-                    binding.edTxtEmail.error = "Invalid Email"
+                    binding.txtFieldEMail.error = "Invalid Email"
                     allValid = false
                 }
 
                 if(!isPasswordValid(password)) {
-                    binding.edTxtPassword.error = "must have 8 characters"
+                    binding.txtFieldPassword.error = "must have 8 characters"
                     allValid = false
                 }
 
                 if(password != reTypedPassword) {
-                    binding.edTxtConfirmPassword.error = "password does not match"
+                    binding.txtFieldConfirmPassword.error = "password does not match"
                     allValid = false
                 }
 
                 if(allValid) {
-                    authViewModel.signUp(this, email, password)
+                    authViewModel.signUp(this, userName, email, password)
                 }
             }
-
-            binding.btnLoginGoogle.setOnClickListener {
-        }
     }
 
     private fun isEmailValid(email: String) : Boolean {

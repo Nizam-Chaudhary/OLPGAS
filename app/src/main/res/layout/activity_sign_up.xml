@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/primary"
@@ -26,139 +26,128 @@
             android:paddingTop="50dp">
 
             <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
                 android:text="@string/SignUp"
                 android:textColor="@color/textColor"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.02" />
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtFieldUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@color/backgroundColor"
-                app:cardCornerRadius="10dp">
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="32dp"
+                android:hint="Full Name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/backgroundColor"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_height="wrap_content" />
 
-                    <EditText
-                        android:id="@+id/edTxt_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/backgroundColor"
-                        android:hint="@string/email"
-                        android:inputType="textEmailAddress"
-                        android:paddingVertical="6dp"
-                        android:paddingStart="5dp"
-                        android:textColor="@color/textColor"
-                        android:textColorHint="@color/editTextHintColor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtFieldEMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@color/backgroundColor"
-                app:cardCornerRadius="10dp">
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:hint="Email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFieldUserName">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/backgroundColor"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:inputType="textEmailAddress" />
 
-                    <EditText
-                        android:id="@+id/edTxt_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/backgroundColor"
-                        android:hint="@string/password"
-                        android:inputType="textPassword"
-                        android:paddingVertical="6dp"
-                        android:paddingStart="5dp"
-                        android:textColor="@color/textColor"
-                        android:textColorHint="@color/editTextHintColor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtFieldPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:background="@color/backgroundColor"
-                app:cardCornerRadius="10dp">
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:hint="Password"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFieldEMail">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/backgroundColor"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:inputType="textPassword" />
 
-                    <EditText
-                        android:id="@+id/edTxt_confirm_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/backgroundColor"
-                        android:hint="@string/confirm_password"
-                        android:inputType="textPassword"
-                        android:paddingVertical="6dp"
-                        android:paddingStart="5dp"
-                        android:textColor="@color/textColor"
-                        android:textColorHint="@color/editTextHintColor" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtFieldConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="16dp"
+                android:hint="Confirm Password"
+                app:endIconMode="password_toggle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFieldPassword">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btn_signup"
+                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="32dp"
                 android:backgroundTint="@color/nonePrimary"
-                android:paddingVertical="15dp"
-                android:text="@string/SignUp"
+                android:text="Sign Up"
                 android:textColor="@color/primary"
-                android:textSize="18sp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFieldConfirmPassword" />
 
             <Button
                 android:id="@+id/btn_login"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="64dp"
                 android:backgroundTint="@android:color/transparent"
                 android:text="@string/SignInWithAccount"
-                android:textColor="@color/textColor" />
-
-            <Button
-                android:id="@+id/btn_login_google"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="80dp"
-                android:backgroundTint="@color/backgroundColor"
-                android:drawableLeft="@drawable/ic_google"
-                android:paddingVertical="15dp"
-                android:text="@string/SignUpWithGoogle"
                 android:textColor="@color/textColor"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
