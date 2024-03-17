@@ -175,7 +175,7 @@ class SupabaseAuthViewModel : ViewModel() {
                     val email = currentUser.email
 
                     client.postgrest.from("UserMaster")
-                        .upsert(mapOf("email" to email, "userName" to userName))
+                        .upsert(mapOf("email" to email, "userName" to userName.substring(1..userName.length-2)))
                 }
             } catch (e: androidx.credentials.exceptions.GetCredentialException) {
                 _userState.value = UserState.Error("Error: ${e.message}")
