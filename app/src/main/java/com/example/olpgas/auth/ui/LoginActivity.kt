@@ -46,18 +46,18 @@ class LoginActivity : AppCompatActivity() {
             WindowCompat.setDecorFitsSystemWindows(window, false)
 
             binding.btnLogin.setOnClickListener {
-                val email = binding.edTxtEmail.text.toString()
-                val password = binding.edTxtPassword.text.toString()
+                val email = binding.txtFieldEmail.editText?.text.toString()
+                val password = binding.txtFieldPassword.editText?.text.toString()
 
                 var allValid = true
 
                 if (!isEmailValid(email)) {
-                    binding.edTxtEmail.error = "Invalid email"
+                    binding.txtFieldEmail.error = "Invalid email"
                     allValid = false
                 }
 
                 if(password.isEmpty()) {
-                   binding.edTxtPassword.error = "Password cannot be empty"
+                   binding.txtFieldPassword.error = "Password cannot be empty"
                 }
 
                 if(allValid) {
