@@ -47,7 +47,7 @@ class SupabaseAuthViewModel : ViewModel() {
                 }
                 saveToken(context)
                 _userState.value = UserState.Success("Signed up successfully")
-                client.postgrest.from("UserMaster")
+                client.postgrest.from("Users")
                     .upsert(mapOf("email" to userEmail, "userName" to userName))
             } catch(e: Exception) {
                 _userState.value = UserState.Error("Error : ${e.message}")
@@ -174,7 +174,7 @@ class SupabaseAuthViewModel : ViewModel() {
                     val userName = currentUser.userMetadata?.get("name").toString()
                     val email = currentUser.email
 
-                    client.postgrest.from("UserMaster")
+                    client.postgrest.from("Users")
                         .upsert(mapOf("email" to email, "userName" to userName.substring(1..userName.length-2)))
                 }
             } catch (e: androidx.credentials.exceptions.GetCredentialException) {

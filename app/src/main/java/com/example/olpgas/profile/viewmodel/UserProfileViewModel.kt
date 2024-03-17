@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.data.network.SupabaseClient.client
 import com.example.olpgas.profile.data.model.ProfileSaveStatus
 import com.example.olpgas.profile.data.model.User
-import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.postgrest
 import kotlinx.coroutines.launch
 
@@ -23,7 +22,7 @@ class UserProfileViewModel: ViewModel() {
     fun saveUserProfile(user: User) {
         viewModelScope.launch {
             try {
-                client.postgrest.from("UserMaster")
+                client.postgrest.from("Users")
                     .upsert(user)
                 _profileSaveStatus.value = ProfileSaveStatus.Success
             }catch (e: Exception) {
@@ -36,7 +35,7 @@ class UserProfileViewModel: ViewModel() {
     fun getUserProfileData() {
         viewModelScope.launch {
             try {
-                _userProfileData.value = client.postgrest.from("UserMaster")
+                _userProfileData.value = client.postgrest.from("Users")
                     .select().decodeSingle<User>()
             }catch (e: Exception) {
                 Log.d("User Profile", e.message.toString())
