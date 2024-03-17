@@ -111,7 +111,8 @@ class UserProfileEdit : AppCompatActivity() {
                 binding.radioFemale.isChecked = true
             }
 
-            binding.ageSpinner.setSelection(user.age-15)
+            val age = user.age ?: 15
+            binding.ageSpinner.setSelection(age-15)
         }
     }
 

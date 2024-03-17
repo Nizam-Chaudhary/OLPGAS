@@ -23,8 +23,6 @@ class UserAccount : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        setUserProfileData(this)
-
         binding.uEdit.setOnClickListener {
             startActivity(Intent(this@UserAccount, UserProfileEdit::class.java))
         }
@@ -42,7 +40,17 @@ class UserAccount : AppCompatActivity() {
             binding.uAddressCity.text = user.city
             binding.uAddressState.text = user.state
             binding.uGender.text = user.gender
-            binding.uAge.text = user.age.toString()
+            if(user.age == null) {
+                binding.uAge.text = ""
+            } else {
+                binding.uAge.text = user.age.toString()
+            }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setUserProfileData(this)
     }
 }
