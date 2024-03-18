@@ -105,10 +105,10 @@ class UserProfileEdit : AppCompatActivity() {
             binding.uAddressCityEdit.setText(user.city)
             binding.uAddressStateEdit.setText(user.state)
 
-            if(user.gender == "Male") {
-                binding.radioMale.isChecked = true
-            } else {
+            if(user.gender == "Female") {
                 binding.radioFemale.isChecked = true
+            } else {
+                binding.radioMale.isChecked = true
             }
 
             val age = user.age ?: 15
