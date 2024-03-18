@@ -9,5 +9,5 @@
     <color name="backgroundColor">#121212</color>
     <color name="RoomRawBackgroundColor">#292929</color>
     <color name="StatusBarBackgroundColor">#0F0F0F</color>
-    <color name="editTextHintColor">#98949f</color>
+    <color name="secondaryTextColor">#98949f</color>
 </resources>

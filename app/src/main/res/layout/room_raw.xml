@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
-                        android:textColor="@color/editTextHintColor"
+                        android:textColor="@color/secondaryTextColor"
                         android:layout_marginTop="10dp"
                         android:textAlignment="viewEnd"
                         android:textSize="16sp" />
@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:text="Price"
-                        android:textColor="@color/editTextHintColor"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="15sp" />
 
                     <TextView
@@ -118,7 +118,7 @@
                         android:layout_marginLeft="30dp"
                         android:layout_toEndOf="@id/tv1"
                         android:text="Deposit"
-                        android:textColor="@color/editTextHintColor"
+                        android:textColor="@color/secondaryTextColor"
                         android:textSize="15sp" />
 
                     <TextView
