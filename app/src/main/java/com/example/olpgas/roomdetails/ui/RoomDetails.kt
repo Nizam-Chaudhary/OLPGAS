@@ -16,11 +16,5 @@ class RoomDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room_details)
 
-//        val transitionName = intent.getStringExtra("transitionName")
-//        val imageResourceId = intent.getIntExtra("imageResourceId", 0)
-//
-//        binding.im.setImageResource(imageResourceId)
-//
-//        binding.im.transitionName = transitionName
     }
 }

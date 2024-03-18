@@ -75,4 +75,7 @@ dependencies {
     implementation("androidx.credentials:credentials-play-services-auth:1.2.1")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
 
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
 }

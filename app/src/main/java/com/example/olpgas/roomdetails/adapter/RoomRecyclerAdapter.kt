@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.olpgas.R
 import com.example.olpgas.roomdetails.ui.RoomDetails
@@ -23,12 +22,11 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
         val roomDeposit: TextView = view.findViewById(R.id.roomDeposit)
         val dateOfPost: TextView = view.findViewById(R.id.dateOfPost)
         val roomContactBtn: Button = view.findViewById(R.id.roomContactBtn)
-        val roomImage: ImageView = view.findViewById(R.id.roomImage)
+        val roomImage: ImageView = view.findViewById(R.id.room_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.raw_room, parent, false)
-        Toast.makeText(context, "he", Toast.LENGTH_SHORT)
         return ViewHolder(view)
     }
 
@@ -51,25 +49,6 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
 
         holder.roomImage.setOnClickListener {
             val intent = Intent(context, RoomDetails::class.java)
-
-
-
-
-//            intent.putExtra("transitionName", ViewCompat.getTransitionName(holder.roomImage))
-//            intent.putExtra("imageResourceId", getImageResourceId(position))
-//
-//            val option = ViewCompat.getTransitionName(holder.roomImage)?.let { it1 ->
-//                ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                    context as Activity,
-//                    holder.roomImage,
-//                    "room_image_transition"
-//                )
-//            }
-//
-//            if (option != null) {
-//                context.startActivity(intent, option.toBundle())
-//            }
-
 
             context.startActivity(intent)
 

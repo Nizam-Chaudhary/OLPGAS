@@ -3,106 +3,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".profile.ui.UserProfileEdit">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primary"
         android:orientation="vertical"
-        android:paddingHorizontal="12dp">
+        android:paddingHorizontal="12dp"
+        android:paddingTop="50dp">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/uNameEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/backgroundColor"
-            app:cardCornerRadius="10dp">
+            android:hint="Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/backgroundColor"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:textColor="@color/textColor" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textColor="@color/editTextHintColor" />
-
-                <EditText
-                    android:id="@+id/uEmailEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/textColor"
-                    android:textSize="18sp"
-                    android:enabled="false"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/uEmailEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/backgroundColor"
-            app:cardCornerRadius="10dp">
+            android:layout_marginTop="16dp"
+            android:hint="Email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uNameEdit">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/backgroundColor"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:textColor="@color/textColor" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textColor="@color/editTextHintColor" />
-
-                <EditText
-                    android:id="@+id/uNameEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/textColor"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/backgroundColor"
-            app:cardCornerRadius="10dp">
 
             <LinearLayout
+                android:id="@+id/EditLayout"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/backgroundColor"
                 android:gravity="center"
+                android:weightSum="5"
                 android:orientation="horizontal"
                 android:padding="7dp"
-                android:weightSum="5">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/uEmailEdit"
+                tools:layout_editor_absoluteY="50dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Age"
-                    android:textColor="@color/editTextHintColor" />
+                    android:textColor="@color/textColor" />
 
                 <Spinner
                     android:id="@+id/ageSpinner"
-                    android:layout_width="80dp"
                     style="@style/mySpinnerItemStyle"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:dropDownWidth="50dp" />
 
@@ -113,7 +84,7 @@
                     android:paddingEnd="5dp"
                     android:text="Gender"
                     android:textAlignment="viewEnd"
-                    android:textColor="@color/editTextHintColor" />
+                    android:textColor="@color/textColor" />
 
                 <RadioGroup
                     android:id="@+id/genderRadioGroup"
@@ -139,160 +110,94 @@
                 </RadioGroup>
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/uPhoneNumberEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/backgroundColor"
-            app:cardCornerRadius="10dp">
+            android:layout_marginTop="16dp"
+            android:hint="PhoneNumber"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EditLayout">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/backgroundColor"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:textColor="@color/textColor" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone Number"
-                    android:textColor="@color/editTextHintColor" />
-
-                <EditText
-                    android:id="@+id/uPhoneNumberEdit"
-                    android:layout_width="match_parent"
-                    android:inputType="number"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/textColor"
-                    android:textSize="18sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
-            android:text="Address"
-            android:textColor="@color/textColor"
-            android:textSize="18sp" />
-
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/uAddressStreetEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/backgroundColor"
-            app:cardCornerRadius="10dp">
+            android:layout_marginTop="16dp"
+            android:hint="Street No/Name"
 
-            <LinearLayout
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uPhoneNumberEdit">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/backgroundColor"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:textColor="@color/textColor" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Street No/Name"
-                    android:textColor="@color/editTextHintColor" />
-
-
-                <EditText
-                    android:id="@+id/uAddressStreetEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/textColor"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/uAddressCityEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/backgroundColor"
-            app:cardCornerRadius="10dp">
+            android:layout_marginTop="16dp"
+            android:hint="City"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uAddressStreetEdit">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/backgroundColor"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:textColor="@color/textColor" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="City"
-                    android:textColor="@color/editTextHintColor" />
-
-                <EditText
-                    android:id="@+id/uAddressCityEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/textColor"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/uAddressStateEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/backgroundColor"
-            app:cardCornerRadius="10dp">
+            android:layout_marginTop="16dp"
+            android:hint="State"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uAddressCityEdit">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/backgroundColor"
-                android:orientation="vertical"
-                android:padding="10dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="State"
-                    android:textColor="@color/editTextHintColor" />
-
-                <EditText
-                    android:id="@+id/uAddressStateEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/textColor"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
+                android:textColor="@color/textColor" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/uSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
             android:backgroundTint="@color/nonePrimary"
             android:paddingVertical="10dp"
             android:text="Save Profile"
             android:textColor="@color/primary"
             android:textSize="19sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uAddressStateEdit"
+            tools:layout_editor_absoluteY="50dp" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </ScrollView>
 

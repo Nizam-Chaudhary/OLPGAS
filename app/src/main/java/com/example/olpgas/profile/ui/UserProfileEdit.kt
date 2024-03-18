@@ -50,12 +50,12 @@ class UserProfileEdit : AppCompatActivity() {
 
             val gender = radioButton.text.toString()
 
-            val name = binding.uNameEdit.text.toString()
+            val name = binding.uNameEdit.editText?.text.toString()
             val age = binding.ageSpinner.selectedItem.toString().toInt()
-            val phoneNumber = binding.uPhoneNumberEdit.text.toString()
-            val streetNumber = binding.uAddressStreetEdit.text.toString()
-            val city = binding.uAddressCityEdit.text.toString()
-            val state = binding.uAddressStateEdit.text.toString()
+            val phoneNumber = binding.uPhoneNumberEdit.editText?.text.toString()
+            val streetNumber = binding.uAddressStreetEdit.editText?.text.toString()
+            val city = binding.uAddressCityEdit.editText?.text.toString()
+            val state = binding.uAddressStateEdit.editText?.text.toString()
 
             val user = User(
                 userName = name,
@@ -98,12 +98,12 @@ class UserProfileEdit : AppCompatActivity() {
         userViewModel.getUserProfileData()
 
         userViewModel.userProfileData.observe(lifecycleOwner) {user->
-            binding.uNameEdit.setText(user.userName)
-            binding.uEmailEdit.setText(user.email)
-            binding.uPhoneNumberEdit.setText(user.phoneNumber)
-            binding.uAddressStreetEdit.setText(user.streetNumber)
-            binding.uAddressCityEdit.setText(user.city)
-            binding.uAddressStateEdit.setText(user.state)
+            binding.uNameEdit.editText?.setText(user.userName)
+            binding.uEmailEdit.editText?.setText(user.email)
+            binding.uPhoneNumberEdit.editText?.setText(user.phoneNumber)
+            binding.uAddressStreetEdit.editText?.setText(user.streetNumber)
+            binding.uAddressCityEdit.editText?.setText(user.city)
+            binding.uAddressStateEdit.editText?.setText(user.state)
 
             if(user.gender == "Female") {
                 binding.radioFemale.isChecked = true
