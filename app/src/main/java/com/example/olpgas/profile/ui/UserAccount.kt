@@ -7,9 +7,9 @@ import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.databinding.ActivityUserAccountBinding
+import com.example.olpgas.profile.data.model.User
 import com.example.olpgas.profile.viewmodel.UserProfileViewModel
 
 
@@ -30,17 +30,36 @@ class UserAccount : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.uProfile.setOnClickListener {
+            if(binding.uProfile.text == "Save Profile") {
+                val user = User(
+                    userName = binding.uName.editText?.text.toString(),
+                    email = binding.uEmail.editText?.text.toString(),
+                    age = binding.ageSpinner.selectedItem.toString().toInt(),
+                    gender = if(binding.radioMale.isChecked) "Male" else "Female",
+                    phoneNumber = binding.uPhoneNumber.editText?.text.toString(),
+                    streetNumber = binding.uAddressStreet.editText?.text.toString(),
+                    city = binding.uAddressCity.editText?.text.toString(),
+                    state = binding.uAddressState.editText?.text.toString()
+                )
+                userViewModel.saveUserProfile(user)
+            }
+            setUserProfileData()
             if (binding.EditLayout.visibility == View.VISIBLE) offEditProfileLayout() else onEditProfileLayout()
         }
 
-
+        setUserProfileData()
     }
 
 
-    private fun setUserProfileData(lifecycleOwner: LifecycleOwner) {
+    private fun setUserProfileData() {
         userViewModel.getUserProfileData()
 
-        userViewModel.userProfileData.observe(lifecycleOwner) {user->
+        userViewModel.userProfileData.observe(this) {user->
+            if(user.age == null) {
+                binding.ageSpinner.setSelection(0)
+            } else {
+                binding.ageSpinner.setSelection(user.age - 15)
+            }
             binding.uName.editText?.setText(user.userName)
             binding.uEmail.editText?.setText(user.email)
             binding.uPhoneNumber.editText?.setText(user.phoneNumber)
@@ -48,11 +67,12 @@ class UserAccount : AppCompatActivity() {
             binding.uAddressCity.editText?.setText(user.city)
             binding.uAddressState.editText?.setText(user.state)
             binding.uGender.editText?.setText(user.gender)
-            if(user.age == null) {
-                binding.uAge.editText?.setText("")
+            if(user.gender == "Female") {
+                binding.radioFemale.isChecked = true
             } else {
-                binding.uAge.editText?.setText(user.age.toString())
+                binding.radioMale.isChecked = true
             }
+            binding.uAge.editText?.setText(user.age.toString())
         }
     }
 
@@ -122,11 +142,5 @@ class UserAccount : AppCompatActivity() {
 
         //set age from here
         binding.ageSpinner.setSelection(0)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        setUserProfileData(this)
     }
 }

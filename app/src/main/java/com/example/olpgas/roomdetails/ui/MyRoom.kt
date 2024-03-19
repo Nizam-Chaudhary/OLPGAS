@@ -62,7 +62,7 @@ class MyRoom : AppCompatActivity() {
 
                 // Populate cities based on the selected state
                 val citiesArrayId = resources.getIdentifier(
-                    selectedState.toLowerCase().replace(" ", "_") + "_cities",
+                    selectedState.lowercase().replace(" ", "_") + "_cities",
                     "array",
                     packageName
                 )
