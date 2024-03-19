@@ -14,6 +14,7 @@ import com.example.olpgas.auth.viewmodel.SupabaseAuthViewModel
 import com.example.olpgas.databinding.ActivityMainBinding
 import com.example.olpgas.profile.ui.UserAccount
 import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
+import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MainActivity : AppCompatActivity() {
@@ -27,14 +28,16 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this)[SupabaseAuthViewModel::class.java]
     }
 
+    private val roomViewModel: RoomsViewModel by lazy {
+        ViewModelProvider(this)[RoomsViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         setToggleButtonForNavigationDrawer()
         navMenuItemClick()
-
-        setRvAdapter()
 
         authViewModel.isUserLoggedIn(this)
         authViewModel.isLoggedIn.observe(this) {loggedIn ->
@@ -44,6 +47,10 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        fetchRoomsDataAndSetAdapter()
+
+        fetchRoomsData()
     }
 
     private fun setToggleButtonForNavigationDrawer() {
@@ -90,35 +97,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setRvAdapter() {
-        val roomData: Array<Array<String>> = arrayOf(
-            arrayOf(
-                "Sun View Apartment",
-                "Station Road, Anand Nagar, Surat, Gujarat",
-                "+91 9876543210",
-                "7000/-",
-                "15000/-",
-                "2024-03-15"
-            ), arrayOf(
-                "Green Meadows",
-                "Ring Road, Rajkot, Gujarat",
-                "+91 8765432190",
-                "4500/-",
-                "10000/-",
-                "2024-03-14"
-            ), arrayOf(
-                "Royal Heights",
-                "Bypass Road, Vadodara, Gujarat",
-                "+91 7896543211",
-                "6000/-",
-                "12000/-",
-                "2024-03-11"
-            )
-        )
+    private fun fetchRoomsData() {
 
+    }
 
+    private fun fetchRoomsDataAndSetAdapter() {
         binding.rvRooms.layoutManager = LinearLayoutManager(this)
-        val roomRecyclerAdapter = RoomRecyclerAdapter(roomData, this)
-        binding.rvRooms.adapter = roomRecyclerAdapter
+        val adapter = RoomRecyclerAdapter(emptyList(), this)
+        binding.rvRooms.adapter = adapter
+
+        roomViewModel.fetchAllRooms()
+        roomViewModel.allRoomsDetails.observe(this) {
+            adapter.roomsData = it
+            adapter.notifyDataSetChanged()
+        }
     }
 }
