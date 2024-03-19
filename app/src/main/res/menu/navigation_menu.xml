@@ -3,7 +3,12 @@
 
     <item
         android:id="@+id/nav_rooms"
-        android:icon="@drawable/ic_user"
+        android:icon="@drawable/ic_home"
+        android:title="Rooms"/>
+
+    <item
+        android:id="@+id/nav_MyRooms"
+        android:icon="@drawable/ic_home2"
         android:title="Rooms"/>
 
 

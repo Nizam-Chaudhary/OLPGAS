@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_rooms -> {
                 selectedFragment = RoomsFragment()
             }
+            R.id.nav_MyRooms -> {
+                selectedFragment = MyRoomFragment()
+            }
 
             R.id.nav_setting -> {
                 selectedFragment = SettingFragment()
