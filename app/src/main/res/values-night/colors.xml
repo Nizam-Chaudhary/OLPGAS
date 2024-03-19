@@ -10,4 +10,7 @@
     <color name="RoomRawBackgroundColor">#292929</color>
     <color name="StatusBarBackgroundColor">#0F0F0F</color>
     <color name="secondaryTextColor">#98949f</color>
+    <color name="Green">#4CAF50</color>
+    <color name="Blue">#2196F3</color>
+    <color name="Orange">#FF5722</color>
 </resources>
