@@ -36,6 +36,4 @@
         <item name="android:textColor">@color/textColor</item>
     </style>
     <style name="Theme.OLPGB" parent="Base.Theme.OLPGB" />
-
-
 </resources>

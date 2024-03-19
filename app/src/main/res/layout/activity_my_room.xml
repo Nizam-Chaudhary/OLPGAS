@@ -74,6 +74,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myRoom_AddressStreet" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_down"
+            app:layout_constraintBottom_toBottomOf="@id/myRoom_AddressState"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/myRoom_AddressState" />
 
         <Spinner
             android:id="@+id/myRoom_AddressCity"
@@ -89,6 +97,15 @@
             app:layout_constraintTop_toBottomOf="@id/myRoom_AddressState" />
 
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_down"
+            app:layout_constraintBottom_toBottomOf="@id/myRoom_AddressCity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/myRoom_AddressCity" />
+
         <Spinner
             android:id="@+id/myRoom_type"
             android:layout_width="0dp"
@@ -102,6 +119,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myRoom_AddressCity" />
 
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_down"
+            app:layout_constraintBottom_toBottomOf="@id/myRoom_type"
+            app:layout_constraintEnd_toEndOf="@id/myRoom_type"
+            app:layout_constraintTop_toTopOf="@id/myRoom_type" />
+
         <Spinner
             android:id="@+id/myRoom_SuitableFor"
             android:layout_width="0dp"
@@ -114,6 +141,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/myRoom_type"
             app:layout_constraintTop_toBottomOf="@id/myRoom_AddressCity" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_down"
+            app:layout_constraintBottom_toBottomOf="@id/myRoom_SuitableFor"
+            app:layout_constraintEnd_toEndOf="@id/myRoom_SuitableFor"
+            app:layout_constraintTop_toTopOf="@id/myRoom_SuitableFor" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/myRoom_sharable"
