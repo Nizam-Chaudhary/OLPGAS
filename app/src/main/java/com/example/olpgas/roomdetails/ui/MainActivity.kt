@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.olpgas.MyRoom
 import com.example.olpgas.R
 import com.example.olpgas.auth.ui.LoginActivity
 import com.example.olpgas.auth.viewmodel.SupabaseAuthViewModel
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.profile -> startActivity(Intent(this@MainActivity,UserAccount::class.java))
-                R.id.my_rooms ->  {}
+                R.id.my_rooms -> startActivity(Intent(this@MainActivity,MyRoom::class.java))
                 R.id.setting -> {}
                 R.id.signOut -> {
                     authViewModel.logout(this)
