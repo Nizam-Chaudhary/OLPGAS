@@ -22,6 +22,14 @@ class MyRoom : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        setUpSpinner()
+    }
+
+
+
+
+    private fun setUpSpinner() {
+
         val stateAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.indian_states,
@@ -63,8 +71,17 @@ class MyRoom : AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Do nothing
+
             }
         }
+
+
+
+        val roomTypeAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,resources.getStringArray(R.array.room_type))
+        binding.myRoomType.adapter=roomTypeAdapter
+
+        val roomSuitableAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,resources.getStringArray(R.array.room_suitableFor))
+        binding.myRoomSuitableFor.adapter=roomSuitableAdapter
+
     }
 }

@@ -74,6 +74,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myRoom_AddressStreet" />
 
+
         <Spinner
             android:id="@+id/myRoom_AddressCity"
             android:layout_width="match_parent"
@@ -96,7 +97,7 @@
             android:layout_marginTop="19dp"
             android:background="@drawable/border"
             android:paddingHorizontal="10dp"
-            android:paddingVertical="18dp"
+            android:paddingVertical="6dp"
             app:layout_constraintEnd_toStartOf="@+id/myRoom_SuitableFor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myRoom_AddressCity" />
@@ -109,7 +110,7 @@
             android:layout_marginTop="19dp"
             android:background="@drawable/border"
             android:paddingHorizontal="10dp"
-            android:paddingVertical="18dp"
+            android:paddingVertical="6dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/myRoom_type"
             app:layout_constraintTop_toBottomOf="@id/myRoom_AddressCity" />
