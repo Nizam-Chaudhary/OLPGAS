@@ -23,7 +23,7 @@
             android:name=".profile.ui.UserAccount"
             android:exported="false"
             android:theme="@style/NoStatusBarTheme"
-            android:windowSoftInputMode="adjustResize"/>
+            />
         <activity
             android:name=".roomdetails.ui.MainActivity"
             android:exported="true"
