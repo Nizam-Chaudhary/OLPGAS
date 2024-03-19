@@ -25,26 +25,21 @@ class UserAccount : AppCompatActivity() {
         ViewModelProvider(this)[UserProfileViewModel::class.java]
     }
 
+    private var allFieldValid = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         binding.uProfile.setOnClickListener {
             if(binding.uProfile.text == "Save Profile") {
-                val user = User(
-                    userName = binding.uName.editText?.text.toString(),
-                    email = binding.uEmail.editText?.text.toString(),
-                    age = binding.ageSpinner.selectedItem.toString().toInt(),
-                    gender = if(binding.radioMale.isChecked) "Male" else "Female",
-                    phoneNumber = binding.uPhoneNumber.editText?.text.toString(),
-                    streetNumber = binding.uAddressStreet.editText?.text.toString(),
-                    city = binding.uAddressCity.editText?.text.toString(),
-                    state = binding.uAddressState.editText?.text.toString()
-                )
-                userViewModel.saveUserProfile(user)
+                val user = performValidationsAndExtractValue()
+                if(allFieldValid) {
+                    userViewModel.saveUserProfile(user)
+                    setUserProfileData()
+                }
             }
-            setUserProfileData()
-            if (binding.EditLayout.visibility == View.VISIBLE) offEditProfileLayout() else onEditProfileLayout()
+            if (binding.EditLayout.visibility == View.VISIBLE && allFieldValid) offEditProfileLayout() else onEditProfileLayout()
         }
 
         setUserProfileData()
@@ -83,7 +78,10 @@ class UserAccount : AppCompatActivity() {
         binding.uAge.visibility = View.GONE
         binding.uGender.visibility = View.GONE
 
-        setUpSpinner()
+        if(allFieldValid) {
+            setUpSpinner()
+            setUserProfileData()
+        }
 
         val constraintLayout = binding.uPhoneNumber.parent as ConstraintLayout
         val layoutParams =
@@ -126,6 +124,8 @@ class UserAccount : AppCompatActivity() {
         binding.uAddressStreet.editText?.isEnabled = false
         binding.uAddressCity.editText?.isEnabled = false
         binding.uAddressState.editText?.isEnabled = false
+
+        setUserProfileData()
     }
 
     private fun setUpSpinner() {
@@ -143,4 +143,66 @@ class UserAccount : AppCompatActivity() {
         //set age from here
         binding.ageSpinner.setSelection(0)
     }
+
+    private fun performValidationsAndExtractValue() : User {
+        val userName = binding.uName.editText?.text.toString()
+        val email = binding.uEmail.editText?.text.toString()
+        val age = binding.ageSpinner.selectedItem.toString().toInt()
+        val gender = if(binding.radioMale.isChecked) "Male" else "Female"
+        val phoneNumber = binding.uPhoneNumber.editText?.text.toString()
+        val streetNumber = binding.uAddressStreet.editText?.text.toString()
+        val city = binding.uAddressCity.editText?.text.toString()
+        val state = binding.uAddressState.editText?.text.toString()
+
+        val user = User(
+            userName, email, age, gender, phoneNumber, streetNumber, city, state
+        )
+
+        if(userName.isEmpty()) {
+            binding.uName.error = "User name cannot be empty"
+            allFieldValid = false
+            return user
+        } else {
+            binding.uName.error = null
+            allFieldValid = true
+        }
+
+        if(phoneNumber.length != 10) {
+            binding.uPhoneNumber.error = "Invalid Phone Number"
+            allFieldValid = false
+            return user
+        } else {
+            binding.uPhoneNumber.error = null
+            allFieldValid = true
+        }
+
+        if(streetNumber.isEmpty()) {
+            binding.uAddressStreet.error = "Street number cannot be empty"
+            allFieldValid = false
+            return user
+        } else {
+            binding.uAddressStreet.error = null
+            allFieldValid = true
+        }
+
+        if(city.isEmpty()) {
+            binding.uAddressCity.error = "City number cannot be empty"
+            allFieldValid = false
+            return user
+        } else {
+            binding.uAddressCity.error = null
+            allFieldValid = true
+        }
+
+        if(state.isEmpty()) {
+            binding.uAddressState.error = "Statr number cannot be empty"
+            allFieldValid = false
+            return user
+        } else {
+            binding.uAddressState.error = null
+            allFieldValid = true
+        }
+
+        return user
+     }
 }
