@@ -2,6 +2,7 @@ package com.example.olpgas.roomdetails.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +11,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.olpgas.R
+import com.example.olpgas.auth.data.network.SupabaseClient
+import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
 import com.example.olpgas.roomdetails.ui.RoomDetails
+import io.github.jan.supabase.storage.storage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val context: Context) :
+class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val context: Context) :
     RecyclerView.Adapter<RoomRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -20,7 +28,6 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
         val roomLocationTV: TextView = view.findViewById(R.id.roomLocationTV)
         val roomPrice: TextView = view.findViewById(R.id.roomPrice)
         val roomDeposit: TextView = view.findViewById(R.id.roomDeposit)
-        val dateOfPost: TextView = view.findViewById(R.id.dateOfPost)
         val roomContactBtn: Button = view.findViewById(R.id.roomContactBtn)
         val roomImage: ImageView = view.findViewById(R.id.room_image)
     }
@@ -31,20 +38,20 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val currentRoom = roomsData[position]
 
-        if (position == 0) {
-            holder.roomImage.setImageResource(R.drawable.room1)
-        } else if (position == 1) {
-            holder.roomImage.setImageResource(R.drawable.room2)
-        } else {
-            holder.roomImage.setImageResource(R.drawable.room3)
+        CoroutineScope(Dispatchers.IO).launch {
+            val imageByteArray= getDisplayImage(currentRoom.ownerId)
+            val bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
+
+            withContext(Dispatchers.Main) {
+                holder.roomImage.setImageBitmap(bitmap)
+            }
         }
-
-        holder.roomNameTV.text = data[position][0]
-        holder.roomLocationTV.text = data[position][1]
-        holder.roomPrice.text = data[position][3]
-        holder.roomDeposit.text = data[position][4]
-        holder.dateOfPost.text = data[position][5]
+        holder.roomNameTV.text = currentRoom.roomName
+        holder.roomLocationTV.text = currentRoom.city
+        holder.roomPrice.text = currentRoom.rentAmount.toString()
+        holder.roomDeposit.text = currentRoom.deposit.toString()
 //        holder.roomContactBtn.text = data[position][2]
 
         holder.roomImage.setOnClickListener {
@@ -55,5 +62,10 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
         }
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = roomsData.size
+
+    private suspend fun getDisplayImage(userId: String) : ByteArray {
+        val bucket = SupabaseClient.client.storage.from("RoomPics")
+        return bucket.downloadPublic("$userId/main.jpg")
+    }
 }
