@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/myRoom_Name"
@@ -28,12 +27,12 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/myRoom_AddressStreet"
+            android:id="@+id/myRoom_landMark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="16dp"
-            android:hint="Street No/Name"
+            android:hint="Land Mark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myRoom_Name">
@@ -45,72 +44,78 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/myRoom_AddressCity"
+            android:id="@+id/myRoom_AddressStreet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="16dp"
-            android:hint="City"
+            android:hint="Street No/Name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_AddressStreet">
+            app:layout_constraintTop_toBottomOf="@id/myRoom_landMark">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+
+        <Spinner
             android:id="@+id/myRoom_AddressState"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="16dp"
-            android:hint="State"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/border"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="18dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_AddressStreet" />
+
+        <Spinner
+            android:id="@+id/myRoom_AddressCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/border"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_AddressCity">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@id/myRoom_AddressState" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
+        <Spinner
             android:id="@+id/myRoom_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="16dp"
-            android:hint="Room Type"
-            app:layout_constraintEnd_toStartOf="@+id/myRoom_sharable"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/border"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="18dp"
+            app:layout_constraintEnd_toStartOf="@+id/myRoom_SuitableFor"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_AddressState">
+            app:layout_constraintTop_toBottomOf="@id/myRoom_AddressCity" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <Spinner
+            android:id="@+id/myRoom_SuitableFor"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/border"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/myRoom_type"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_AddressCity" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/myRoom_sharable"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="16dp"
-            android:hint="Sharable"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/myRoom_type"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_AddressState">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/myRoom_SuitableFor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -133,15 +138,93 @@
             android:layout_marginTop="16dp"
             android:hint="Area"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/myRoom_SuitableFor"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_sharable">
+            app:layout_constraintStart_toEndOf="@id/myRoom_sharable"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_SuitableFor">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_Area" />
+
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingHorizontal="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_Area">
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AC" />
+
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Washing Machine" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wi-Fi" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fan" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Geyser" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroup" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/myRoom_about"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="16dp"
+            android:hint="About"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroup">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</ScrollView>

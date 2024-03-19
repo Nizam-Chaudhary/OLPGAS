@@ -15,7 +15,9 @@
         android:theme="@style/Base.Theme.OLPGB"
         tools:targetApi="31">
         <activity
-            android:name=".MyRoom"
+            android:name=".roomdetails.ui.MyRoom"
+            android:theme="@style/NoStatusBarTheme"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
 
         <activity

@@ -13,4 +13,5 @@
     <color name="Green">#4CAF50</color>
     <color name="Blue">#2196F3</color>
     <color name="Orange">#FF5722</color>
+    <color name="outline">#9E9C9C</color>
 </resources>
