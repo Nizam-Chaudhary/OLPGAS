@@ -2,18 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_rooms"
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_user"
+        android:title="Profile"/>
+
+    <item
+        android:id="@+id/my_rooms"
         android:icon="@drawable/ic_home"
-        android:title="Rooms"/>
+        android:title="My Rooms"/>
 
     <item
-        android:id="@+id/nav_MyRooms"
-        android:icon="@drawable/ic_home2"
-        android:title="Rooms"/>
-
-
-    <item
+        android:id="@+id/setting"
         android:icon="@drawable/ic_settings"
-        android:id="@+id/nav_setting"
         android:title="Setting"/>
+
+    <item
+        android:id="@+id/signOut"
+        android:title="Sign Out"
+        android:icon="@drawable/ic_logout" />
+
+    <item
+        android:id="@+id/exit"
+        android:title="Exit"
+        android:icon="@drawable/ic_exit" />
 </menu>
