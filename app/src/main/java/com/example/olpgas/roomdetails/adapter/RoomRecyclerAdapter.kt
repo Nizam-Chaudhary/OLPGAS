@@ -45,7 +45,7 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
         holder.roomPrice.text = data[position][3]
         holder.roomDeposit.text = data[position][4]
         holder.dateOfPost.text = data[position][5]
-        holder.roomContactBtn.text = data[position][2]
+//        holder.roomContactBtn.text = data[position][2]
 
         holder.roomImage.setOnClickListener {
             val intent = Intent(context, RoomDetails::class.java)
@@ -53,15 +53,6 @@ class RoomRecyclerAdapter(private val data: Array<Array<String>>, private val co
             context.startActivity(intent)
 
         }
-    }
-
-    private fun getImageResourceId(position: Int): Int {
-        return when (position) {
-            0 -> R.drawable.room1
-            1 -> R.drawable.room2
-            else -> R.drawable.room3
-        }
-
     }
 
     override fun getItemCount() = data.size

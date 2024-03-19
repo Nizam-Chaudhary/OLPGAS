@@ -4,7 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,6 +21,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/room_details_imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/room_details_imageView" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:src="@drawable/ic_left_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/room_details_imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/room_details_imageView" />
 
         <TextView
             android:id="@+id/room_details_name"
@@ -32,7 +56,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/room_details_imageView" />
 
-
         <TextView
             android:id="@+id/room_details_location"
             android:layout_width="match_parent"
@@ -40,7 +63,9 @@
             android:layout_marginTop="5dp"
             android:drawableLeft="@drawable/ic_location"
             android:paddingVertical="5dp"
-            android:paddingLeft="5dp"
+            android:drawablePadding="5dp"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
             android:text="Bypass Road, Vadodara, Gujarat"
             android:textColor="@color/secondaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +117,7 @@
                 android:layout_column="1"
                 android:paddingHorizontal="10dp"
                 android:text="Private Banglo"
-                android:textStyle="bold" />
+                android:textColor="#03A9F4" />
 
             <TextView
                 android:layout_row="1"
@@ -106,7 +131,7 @@
                 android:layout_column="1"
                 android:paddingHorizontal="10dp"
                 android:text="3 People"
-                android:textStyle="bold" />
+                android:textColor="#03A9F4" />
 
             <TextView
                 android:layout_row="2"
@@ -120,6 +145,7 @@
                 android:layout_column="1"
                 android:paddingHorizontal="10dp"
                 android:text="Students, Working Professionals"
+                android:textColor="#03A9F4"
                 android:textStyle="bold" />
 
             <TextView
@@ -130,10 +156,11 @@
                 android:text="Area" />
 
             <TextView
-                android:layout_row="4"
+                android:layout_row="3"
                 android:layout_column="1"
                 android:paddingHorizontal="10dp"
                 android:text="4500 sq.ft."
+                android:textColor="#03A9F4"
                 android:textStyle="bold" />
 
             <TextView
@@ -146,9 +173,10 @@
                 android:text="Minimum Contact Duration" />
 
             <TextView
-                android:layout_row="3"
+                android:layout_row="4"
                 android:layout_column="1"
                 android:paddingHorizontal="10dp"
+                android:textColor="#03A9F4"
                 android:text="1 Month"
                 android:textStyle="bold" />
 
@@ -166,6 +194,7 @@
         <com.google.android.material.chip.Chip
             android:id="@+id/chip1"
             android:layout_width="0dp"
+            android:textColor="#4CAF50"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:text="AC"
@@ -178,6 +207,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:text="Wi-Fi"
+            android:textColor="#4CAF50"
             app:layout_constraintStart_toEndOf="@id/chip1"
             app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
 
@@ -187,6 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
             android:text="Fridge"
+            android:textColor="#4CAF50"
             app:layout_constraintStart_toEndOf="@id/chip2"
             app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
 
@@ -195,6 +226,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
+            android:textColor="#4CAF50"
             android:text="Geyser"
             app:layout_constraintStart_toEndOf="@id/chip3"
             app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
@@ -203,12 +235,50 @@
             android:id="@+id/chip5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="#4CAF50"
             android:layout_marginHorizontal="5dp"
             android:text="2 Fan"
             app:layout_constraintStart_toEndOf="@id/chip4"
             app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chip3"/>
+
+            <TextView
+                android:id="@+id/room_details_aboutTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/materialDivider3"
+                android:textColor="@color/textColor"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="About Room"
+              />
+
+            <TextView
+                android:id="@+id/room_details_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/room_details_aboutTV"
+                android:textSize="14sp"
+                android:textColor="@color/secondaryTextColor"
+                android:padding="5dp"
+                android:text="A decent furnished pg/paying guest in law garden is available for students and working professionals. You will get sharing room. There are 4+ people who will share this room with you. It is set in a spacious 2200 sq.Ft. Carpet area with 3 bathrooms 3 balconies. You will get furnished room. 1 curta...
+
+More >>"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -218,6 +288,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/backgroundColor"
             android:paddingVertical="10dp"
             android:paddingHorizontal="20dp">
 
@@ -241,7 +312,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv1"
                     android:text="20000/-"
-                    android:textColor="@color/textColor"
+                    android:textColor="#2196F3"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -264,7 +335,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_toEndOf="@id/roomPrice"
                     android:text="30000/-"
-                    android:textColor="@color/textColor"
+                    android:textColor="#2196F3"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
