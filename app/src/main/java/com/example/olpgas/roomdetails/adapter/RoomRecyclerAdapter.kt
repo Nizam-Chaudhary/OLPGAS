@@ -19,6 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Locale
 
 class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val context: Context) :
     RecyclerView.Adapter<RoomRecyclerAdapter.ViewHolder>() {
@@ -48,10 +49,13 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
                 holder.roomImage.setImageBitmap(bitmap)
             }
         }
+
+        val roomPrice = String.format(Locale.UK, "%,d", currentRoom.rentAmount) + "/-"
+        val deposit = String.format(Locale.UK, "%,d", currentRoom.deposit) + "/-"
         holder.roomNameTV.text = currentRoom.roomName
         holder.roomLocationTV.text = currentRoom.city
-        holder.roomPrice.text = currentRoom.rentAmount.toString()
-        holder.roomDeposit.text = currentRoom.deposit.toString()
+        holder.roomPrice.text = roomPrice
+        holder.roomDeposit.text = deposit
 //        holder.roomContactBtn.text = data[position][2]
 
         holder.roomImage.setOnClickListener {
