@@ -44,7 +44,7 @@
 
     <style name="chip_Style" parent="Widget.Material3.Chip.Filter">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@drawable/chip_text</item>
+        <item name="android:textColor">@color/chip_textcolor</item>
         <item name="chipMinTouchTargetSize">0dp</item>
     </style>
 

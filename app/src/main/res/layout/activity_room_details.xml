@@ -220,7 +220,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Wi-Fi"
-                    style="@style/chip_Style" />
+                    style="@style/chip_Style"
+                    />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip3"
@@ -269,7 +270,7 @@
                 android:id="@+id/materialDivider4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/amenities_chipgroup" />
@@ -279,6 +280,7 @@
                 android:id="@+id/roomTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Details"
                 style="@style/detailed_room_textView"
                 app:layout_constraintEnd_toEndOf="parent"
