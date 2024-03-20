@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/roomNameTV" />
 
         <TextView
-            android:id="@+id/room_price_tv"
+            android:id="@+id/rent_amount_tv"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv1"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv1"
             android:layout_marginTop="4dp"
-            android:layout_toEndOf="@id/room_price_tv"
+            android:layout_toEndOf="@id/rent_amount_tv"
             android:text="30000/-"
             android:textColor="@color/textColor"
             android:textSize="18sp"

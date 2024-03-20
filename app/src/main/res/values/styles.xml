@@ -10,4 +10,8 @@
 
     </style>
 
+    <style name="curved">
+        <item name="cornerSize">8%</item>
+    </style>
+
 </resources>

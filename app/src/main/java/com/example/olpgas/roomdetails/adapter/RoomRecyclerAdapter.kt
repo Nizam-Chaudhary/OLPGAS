@@ -30,9 +30,9 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val roomNameTV: TextView = view.findViewById(R.id.roomNameTV)
         val roomLocationTV: TextView = view.findViewById(R.id.roomLocationTV)
-        val roomPrice: TextView = view.findViewById(R.id.roomPrice)
-        val roomDeposit: TextView = view.findViewById(R.id.roomDeposit)
-        val roomContactBtn: Button = view.findViewById(R.id.roomContactBtn)
+        val roomPrice: TextView = view.findViewById(R.id.rent_amount_tv)
+        val roomDeposit: TextView = view.findViewById(R.id.room_deposit_tv)
+        val roomContactBtn: Button = view.findViewById(R.id.room_contact_button)
         val roomImage: ImageView = view.findViewById(R.id.room_image)
     }
 
@@ -66,7 +66,8 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
 
         holder.roomImage.setOnClickListener {
             val intent = Intent(context, RoomDetails::class.java)
-
+            intent.putExtra("roomId",currentRoom.id)
+            intent.putExtra("ownerId",currentRoom.ownerId)
             context.startActivity(intent)
 
         }
