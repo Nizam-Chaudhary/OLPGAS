@@ -2,7 +2,6 @@ package com.example.olpgas.roomdetails.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +10,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.olpgas.R
 import com.example.olpgas.auth.data.network.SupabaseClient
 import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
 import com.example.olpgas.roomdetails.ui.RoomDetails
+import com.example.olpgas.roomdetails.ui.getCircularProgressDrawable
 import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,13 +46,14 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
 
         CoroutineScope(Dispatchers.IO).launch {
             val imageByteArray= getDisplayImage(currentRoom.ownerId)
-            if(imageByteArray != null) {
-                val bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
-                withContext(Dispatchers.Main) {
-                    holder.roomImage.setImageBitmap(bitmap)
-                }
+            withContext(Dispatchers.Main) {
+                Glide.with(context)
+                    .load(imageByteArray)
+                    .placeholder(getCircularProgressDrawable(context))
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .centerCrop()
+                    .into(holder.roomImage)
             }
-
         }
 
         val roomPrice = String.format(Locale.UK, "%,d", currentRoom.rentAmount) + "/-"
