@@ -65,12 +65,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
             android:background="@drawable/border"
             android:paddingHorizontal="10dp"
             android:paddingVertical="18dp"
             android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.526"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/myRoom_AddressStreet" />
 
@@ -185,6 +186,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/materialDivider2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
@@ -193,54 +195,83 @@
             app:layout_constraintTop_toBottomOf="@id/myRoom_Area" />
 
 
+        <TextView
+            android:id="@+id/textView3"
+            style="@style/detailed_room_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Amenities"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
+
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
+            android:paddingStart="15dp"
             android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_Area">
+            app:layout_constraintTop_toBottomOf="@id/textView3">
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="AC" />
 
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Washing Machine" />
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Wi-Fi" />
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fan" />
 
             <com.google.android.material.chip.Chip
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Geyser" />
 
+            <com.google.android.material.chip.Chip
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Furnished" />
 
+
+            <com.google.android.material.chip.Chip
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Washing Machine" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Parking(Covered)" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/materialDivider3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chipGroup" />
@@ -255,7 +286,7 @@
             android:hint="About"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chipGroup">
+            app:layout_constraintTop_toBottomOf="@id/materialDivider3">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -268,19 +299,22 @@
             android:id="@+id/myRoom_images"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:scaleType="centerCrop"
             android:src="@drawable/room1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_about" />
+            app:layout_constraintTop_toBottomOf="@id/myRoom_addImage" />
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:id="@+id/myRoom_addImage"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="@id/myRoom_images"
+            android:backgroundTint="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:src="@drawable/ic_add_image"
-            app:layout_constraintBottom_toBottomOf="@id/myRoom_images"/>
+            app:layout_constraintTop_toBottomOf="@id/myRoom_about" />
 
         <Button
             android:id="@+id/myRoom_submit"

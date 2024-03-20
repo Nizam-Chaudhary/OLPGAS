@@ -41,13 +41,13 @@ class RoomDetails : AppCompatActivity() {
         roomsViewModel.getFullRoomDetails(roomId)
 
         roomsViewModel.fullRoomDetails.observe(this) {roomDetails ->
-            binding.roomDetailsName.text = roomDetails.roomName
-            binding.roomDetailsLocation.text = "${roomDetails.streetNumber}, ${roomDetails.landMark}, ${roomDetails.city}, ${roomDetails.state}"
+            binding.detailedRoomName.text = roomDetails.roomName
+            binding.detailedRoomLocation.text = "${roomDetails.streetNumber}, ${roomDetails.landMark}, ${roomDetails.city}, ${roomDetails.state}"
 //            binding.roomTypeTv.text = roomDetails.roomType
             binding.shareableTv.text = roomDetails.shareable.toString()
             //binding.sutableForTv.text = ""
             binding.roomAreaTv.text = roomDetails.roomArea.toString()
-            binding.roomDetailsAbout.text = roomDetails.description
+            binding.detailedRoomAbout.text = roomDetails.description
             binding.roomPrice.text = String.format(Locale.UK, "%,d", roomDetails.rentAmount) + "/-"
             binding.roomDepositTv.text = String.format(Locale.UK, "%,d", roomDetails.deposit) + "/-"
         }
@@ -65,7 +65,7 @@ class RoomDetails : AppCompatActivity() {
                     this@RoomDetails
                 )
                 withContext(Dispatchers.Main) {
-                    binding.displayImageViewpager.adapter = adapter
+                    binding.detailedRoomImageViewpager.adapter = adapter
                 }
             }catch (e: Exception) {
                 Log.d("Room","Error: ${e.message}")

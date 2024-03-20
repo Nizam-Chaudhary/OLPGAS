@@ -1,21 +1,35 @@
 package com.example.olpgas.roomdetails.ui
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityMyRoomBinding
 
 
 class MyRoom : AppCompatActivity() {
 
+    private val PERMISSION_REQUEST_MEDIA_IMAGES = 3
+    private val GALLERY_REQUEST_CODE = 1
+    private val PERMISSION_REQUEST_EXTERNAL_STORAGE = 2
+    private var hasPermission = false
 
     private val binding: ActivityMyRoomBinding by lazy {
         ActivityMyRoomBinding.inflate(layoutInflater)
     }
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +37,86 @@ class MyRoom : AppCompatActivity() {
 
 
         setUpSpinner()
+
+        binding.myRoomAddImage.setOnClickListener {
+            getImages()
+        }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun getImages() {
+        if (!hasPermission) {
+            getImagesPermission()
+        } else {
+            picImages()
+        }
+    }
+
+    private fun picImages() {
+        val intentGallery = Intent(Intent.ACTION_PICK)
+        intentGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intentGallery, GALLERY_REQUEST_CODE)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun getImagesPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    PERMISSION_REQUEST_EXTERNAL_STORAGE
+                )
+            }
+        }
+        if (ContextCompat.checkSelfPermission(
+                this, Manifest.permission.READ_MEDIA_IMAGES
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                PERMISSION_REQUEST_MEDIA_IMAGES
+            )
+        }
     }
 
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 2 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            hasPermission = true
+            picImages()
+        }
+        if (requestCode == 3 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            hasPermission = true
+            picImages()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+
+            if (requestCode == GALLERY_REQUEST_CODE) {
+                if (data != null && data.data != null) {
+                    binding.myRoomImages.setImageURI(data.data)
+                } else {
+                    // Handle the case where the selected content is not an image
+                    Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
 
 
     private fun setUpSpinner() {
@@ -84,4 +175,6 @@ class MyRoom : AppCompatActivity() {
         binding.myRoomSuitableFor.adapter=roomSuitableAdapter
 
     }
+
+
 }
