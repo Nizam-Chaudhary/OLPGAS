@@ -295,17 +295,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-        <ImageView
-            android:id="@+id/myRoom_images"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/room1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_addImage" />
-
         <ImageButton
             android:id="@+id/myRoom_addImage"
             android:layout_width="match_parent"
@@ -316,6 +305,25 @@
             android:src="@drawable/ic_add_image"
             app:layout_constraintTop_toBottomOf="@id/myRoom_about" />
 
+        <ImageView
+            android:id="@+id/myRoom_images"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_addImage" />
+
+        <ImageView
+            android:id="@+id/myRoom_images2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_images" />
         <Button
             android:id="@+id/myRoom_submit"
             android:layout_width="match_parent"
@@ -324,7 +332,7 @@
             android:text="Submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/myRoom_images" />
+            app:layout_constraintTop_toBottomOf="@id/myRoom_images2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

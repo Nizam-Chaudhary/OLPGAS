@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -20,13 +21,14 @@ import com.example.olpgas.databinding.ActivityMyRoomBinding
 
 class MyRoom : AppCompatActivity() {
 
-    private val PERMISSION_REQUEST_MEDIA_IMAGES = 3
     private val GALLERY_REQUEST_CODE = 1
     private val PERMISSION_REQUEST_EXTERNAL_STORAGE = 2
+    private val PERMISSION_REQUEST_MEDIA_IMAGES = 3
     private var hasPermission = false
 
     private val binding: ActivityMyRoomBinding by lazy {
         ActivityMyRoomBinding.inflate(layoutInflater)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -55,6 +57,7 @@ class MyRoom : AppCompatActivity() {
 
     private fun picImages() {
         val intentGallery = Intent(Intent.ACTION_PICK)
+        intentGallery.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intentGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intentGallery, GALLERY_REQUEST_CODE)
     }
@@ -72,6 +75,8 @@ class MyRoom : AppCompatActivity() {
                     arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                     PERMISSION_REQUEST_EXTERNAL_STORAGE
                 )
+            } else {
+                picImages()
             }
         }
         if (ContextCompat.checkSelfPermission(
@@ -83,6 +88,8 @@ class MyRoom : AppCompatActivity() {
                 arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
                 PERMISSION_REQUEST_MEDIA_IMAGES
             )
+        } else {
+            picImages()
         }
     }
 
@@ -108,10 +115,26 @@ class MyRoom : AppCompatActivity() {
         if (resultCode == RESULT_OK) {
 
             if (requestCode == GALLERY_REQUEST_CODE) {
-                if (data != null && data.data != null) {
-                    binding.myRoomImages.setImageURI(data.data)
+                if (data != null) {
+                    if (data.clipData != null) {
+                        val clipData = data.clipData
+                        val imageUris = mutableListOf<Uri>()
+                        if (clipData != null) {
+                            for (i in 0 until clipData.itemCount) {
+                                val imageUri = clipData.getItemAt(i).uri
+                                imageUris.add(imageUri)
+                                Toast.makeText(this, i.toString(), Toast.LENGTH_SHORT).show()
+                            }
+                            binding.myRoomImages.setImageURI(imageUris[0])
+                            binding.myRoomImages2.setImageURI(imageUris[1])
+                        }
+
+                    } else {
+                        val imageUri = data.data
+                        binding.myRoomImages.setImageURI(imageUri)
+                    }
                 } else {
-                    // Handle the case where the selected content is not an image
+
                     Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show()
                 }
             }
