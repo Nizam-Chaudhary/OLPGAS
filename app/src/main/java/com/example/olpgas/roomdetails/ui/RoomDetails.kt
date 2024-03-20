@@ -47,8 +47,8 @@ class RoomDetails : AppCompatActivity() {
             binding.shareableTv.text = roomDetails.shareable.toString()
             //binding.sutableForTv.text = ""
             binding.roomAreaTv.text = roomDetails.roomArea.toString()
-            binding.roomDescription.text = roomDetails.description
-            binding.rentAmountTv.text = String.format(Locale.UK, "%,d", roomDetails.rentAmount) + "/-"
+            binding.roomDetailsAbout.text = roomDetails.description
+            binding.roomPrice.text = String.format(Locale.UK, "%,d", roomDetails.rentAmount) + "/-"
             binding.roomDepositTv.text = String.format(Locale.UK, "%,d", roomDetails.deposit) + "/-"
         }
     }

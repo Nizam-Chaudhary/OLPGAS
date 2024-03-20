@@ -352,7 +352,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv1"
                     android:layout_marginLeft="10dp"
-                    android:layout_toEndOf="@id/rent_amount_tv"
+                    android:layout_toEndOf="@id/roomPrice"
                     android:text="30000/-"
                     android:textColor="#2196F3"
                     android:textSize="18sp"

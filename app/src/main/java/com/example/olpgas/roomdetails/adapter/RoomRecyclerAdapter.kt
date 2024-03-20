@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
@@ -12,8 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.olpgas.R
 import com.example.olpgas.auth.data.network.SupabaseClient
+import com.example.olpgas.databinding.RecyclerViewRoomsListBinding
 import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
 import com.example.olpgas.roomdetails.ui.RoomDetails
 import com.example.olpgas.roomdetails.ui.getCircularProgressDrawable
@@ -27,18 +26,21 @@ import java.util.Locale
 class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val context: Context) :
     RecyclerView.Adapter<RoomRecyclerAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val roomNameTV: TextView = view.findViewById(R.id.roomNameTV)
-        val roomLocationTV: TextView = view.findViewById(R.id.roomLocationTV)
-        val roomPrice: TextView = view.findViewById(R.id.rent_amount_tv)
-        val roomDeposit: TextView = view.findViewById(R.id.room_deposit_tv)
-        val roomContactBtn: Button = view.findViewById(R.id.room_contact_button)
-        val roomImage: ImageView = view.findViewById(R.id.room_image)
+    class ViewHolder(view: RecyclerViewRoomsListBinding) : RecyclerView.ViewHolder(view.root) {
+        val roomNameTV: TextView = view.roomNameTv
+        val roomLocationTV: TextView = view.roomLocationTv
+        val roomPrice: TextView = view.rentAmountTv
+        val roomDeposit: TextView = view.roomDepositTv
+        val roomContactBtn: Button = view.roomContactButton
+        val roomImage: ImageView = view.roomImage
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.recycler_view_rooms_list, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(RecyclerViewRoomsListBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        ))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
