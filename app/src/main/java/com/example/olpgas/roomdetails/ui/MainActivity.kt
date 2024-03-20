@@ -4,6 +4,7 @@ package com.example.olpgas.roomdetails.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -51,6 +52,8 @@ class MainActivity : AppCompatActivity() {
         fetchRoomsDataAndSetAdapter()
 
         fetchRoomsData()
+
+        setUserName()
     }
 
     private fun setToggleButtonForNavigationDrawer() {
@@ -110,6 +113,13 @@ class MainActivity : AppCompatActivity() {
         roomViewModel.allRoomsDetails.observe(this) {
             adapter.roomsData = it
             adapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun setUserName() {
+        roomViewModel.getUserName()
+        roomViewModel.userName.observe(this) {
+            binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userNameHeader).text = it
         }
     }
 }
