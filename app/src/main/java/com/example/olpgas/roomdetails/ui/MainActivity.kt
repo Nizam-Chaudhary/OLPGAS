@@ -78,9 +78,19 @@ class MainActivity : AppCompatActivity() {
                 R.id.my_rooms -> startActivity(Intent(this@MainActivity, MyRoom::class.java))
                 R.id.setting -> {}
                 R.id.signOut -> {
-                    authViewModel.logout(this)
-                    startActivity(Intent(this@MainActivity, LoginActivity::class.java))
-                    finish()
+                    val dialog = MaterialAlertDialogBuilder(this@MainActivity)
+                        .setTitle("Sign Out!")
+                        .setCancelable(false)
+                        .setMessage("Are you sure you want to sign out?")
+                        .setPositiveButton("Yes") { _, _ ->
+                            authViewModel.logout(this)
+                            startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+                            finish()
+                        }
+                        .setNegativeButton("Cancel") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                    dialog.show()
                 }
                 R.id.exit -> {
                     val dialog = MaterialAlertDialogBuilder(this@MainActivity)
