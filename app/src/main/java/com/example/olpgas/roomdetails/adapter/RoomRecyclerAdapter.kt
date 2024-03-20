@@ -3,6 +3,7 @@ package com.example.olpgas.roomdetails.adapter
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,11 +44,13 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
 
         CoroutineScope(Dispatchers.IO).launch {
             val imageByteArray= getDisplayImage(currentRoom.ownerId)
-            val bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
-
-            withContext(Dispatchers.Main) {
-                holder.roomImage.setImageBitmap(bitmap)
+            if(imageByteArray != null) {
+                val bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
+                withContext(Dispatchers.Main) {
+                    holder.roomImage.setImageBitmap(bitmap)
+                }
             }
+
         }
 
         val roomPrice = String.format(Locale.UK, "%,d", currentRoom.rentAmount) + "/-"
@@ -68,8 +71,14 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
 
     override fun getItemCount() = roomsData.size
 
-    private suspend fun getDisplayImage(userId: String) : ByteArray {
-        val bucket = SupabaseClient.client.storage.from("RoomPics")
-        return bucket.downloadPublic("$userId/main.jpg")
+    private suspend fun getDisplayImage(userId: String) : ByteArray? {
+        try {
+            val bucket = SupabaseClient.client.storage.from("RoomPics")
+            val files = bucket.list(userId)
+            return bucket.downloadPublic("$userId/${files[0].name}")
+        }catch (e: Exception) {
+            Log.d("Room", "Error: ${e.message}")
+        }
+        return null
     }
 }
