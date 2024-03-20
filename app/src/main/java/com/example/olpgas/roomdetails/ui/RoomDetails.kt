@@ -43,7 +43,7 @@ class RoomDetails : AppCompatActivity() {
         roomsViewModel.fullRoomDetails.observe(this) {roomDetails ->
             binding.roomDetailsName.text = roomDetails.roomName
             binding.roomDetailsLocation.text = "${roomDetails.streetNumber}, ${roomDetails.landMark}, ${roomDetails.city}, ${roomDetails.state}"
-            binding.roomTypeTv.text = roomDetails.roomType
+//            binding.roomTypeTv.text = roomDetails.roomType
             binding.shareableTv.text = roomDetails.shareable.toString()
             //binding.sutableForTv.text = ""
             binding.roomAreaTv.text = roomDetails.roomArea.toString()

@@ -5,294 +5,406 @@
     android:layout_height="match_parent">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="40dp">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/display_image_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:src="@drawable/room1"
-            android:layout_marginTop="24dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-            android:id="@+id/room_details_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingStart="5dp"
-            android:text="ABC banglo"
-            android:textColor="@color/textColor"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/room_details_location"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/display_image_viewpager" />
-
-        <TextView
-            android:id="@+id/room_details_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:drawableLeft="@drawable/ic_location"
-            android:paddingVertical="5dp"
-            android:drawablePadding="5dp"
-            android:paddingStart="5dp"
-            android:textStyle="bold"
-            android:text="Bypass Road, Vadodara, Gujarat"
-            android:textColor="@color/secondaryTextColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/room_details_name" />
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/materialDivider"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/room_details_location" />
-
-
-        <TextView
-            android:id="@+id/roomTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="10dp"
-            android:text="Room Details"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialDivider" />
-
-        <GridLayout
-            android:id="@+id/gl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginTop="20dp"
-            android:columnCount="2"
-            app:flow_horizontalGap="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/roomTextView">
-
-            <TextView
-                android:layout_row="0"
-                android:layout_column="0"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="7dp"
-                android:text="Room Type" />
-
-            <TextView
-                android:id="@+id/room_type_tv"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:paddingHorizontal="10dp"
-                android:text="Private Banglo"
-                android:textColor="@color/Orange" />
-
-            <TextView
-                android:layout_row="1"
-                android:layout_column="0"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="7dp"
-                android:text="Sharable" />
-
-            <TextView
-                android:id="@+id/shareable_tv"
-                android:layout_row="1"
-                android:layout_column="1"
-                android:paddingHorizontal="10dp"
-                android:text="3 People"
-                android:textColor="@color/Orange" />
-
-            <TextView
-                android:layout_row="2"
-                android:layout_column="0"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="7dp"
-                android:text="Suitable for" />
-
-            <TextView
-                android:id="@+id/sutable_for_tv"
-                android:layout_row="2"
-                android:layout_column="1"
-                android:paddingHorizontal="10dp"
-                android:text="Students, Working Professionals"
-                android:textColor="@color/Orange"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_row="3"
-                android:layout_column="0"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="7dp"
-                android:text="Area" />
-
-            <TextView
-                android:id="@+id/room_area_tv"
-                android:layout_row="3"
-                android:layout_column="1"
-                android:paddingHorizontal="10dp"
-                android:text="4500 sq.ft."
-                android:textColor="@color/Orange"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_row="4"
-                android:layout_column="0"
-                android:inputType="textMultiLine"
-                android:paddingHorizontal="20dp"
-                android:paddingVertical="7dp"
-                android:text="Minimum Contact Duration" />
-
-            <TextView
-                android:id="@+id/min_contract_duration"
-                android:layout_row="4"
-                android:layout_column="1"
-                android:paddingHorizontal="10dp"
-                android:textColor="@color/Orange"
-                android:text="1 Month"
-                android:textStyle="bold" />
-
-        </GridLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/materialDivider2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gl" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip1"
-            android:layout_width="0dp"
-            android:textColor="#4CAF50"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:text="AC"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:text="Wi-Fi"
-            android:textColor="#4CAF50"
-            app:layout_constraintStart_toEndOf="@id/chip1"
-            app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:text="Fridge"
-            android:textColor="#4CAF50"
-            app:layout_constraintStart_toEndOf="@id/chip2"
-            app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:textColor="#4CAF50"
-            android:text="Geyser"
-            app:layout_constraintStart_toEndOf="@id/chip3"
-            app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="#4CAF50"
-            android:layout_marginHorizontal="5dp"
-            android:text="2 Fan"
-            app:layout_constraintStart_toEndOf="@id/chip4"
-            app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="Furnished"
-                android:textColor="#4CAF50"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chip1" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="Washing Machine"
-                android:textColor="#4CAF50"
-                app:layout_constraintStart_toEndOf="@id/chip6"
-                app:layout_constraintTop_toBottomOf="@id/chip2" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:text="Parking(Covered)"
-                android:textColor="#4CAF50"
-                app:layout_constraintStart_toEndOf="@id/chip7"
-                app:layout_constraintTop_toBottomOf="@id/chip4" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/materialDivider3"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/display_image_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="240dp"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/room1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/chip6" />
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/room_details_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingStart="12dp"
+                android:text="ABC banglo"
+                android:textColor="@color/textColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@id/room_details_location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/display_image_viewpager" />
+
+            <TextView
+                android:id="@+id/room_details_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/ic_location"
+                android:drawablePadding="5dp"
+                android:paddingVertical="5dp"
+                android:paddingStart="10dp"
+                android:text="Bypass Road, Vadodara, Gujarat"
+                android:textColor="@color/secondaryTextColor"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/materialDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/room_details_name" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/room_details_location" />
+
+            <TextView
+                android:id="@+id/detailed_roomType_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="12dp"
+                android:text="Room Type"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/materialDivider" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/detailed_roomType_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailed_roomType_TV">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomType_singleRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Single"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomType_DoubleRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Double"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomType_DormRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dorm"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomType_Apartment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apartment"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomType_StudioApartment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Studio Apartment"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomType_independentHouse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Independent House"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:id="@+id/detailed_roomSuitableFor_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="12dp"
+                android:text="Room Type"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailed_roomType_group" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/details_roomSuitableFor_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailed_roomSuitableFor_TV">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomSuitable_student"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Student"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomSuitable_professionals"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Professionals"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomSuitable_Couples"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Couples"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomSuitable_ShortTermStay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Short-term Stay"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/details_roomSuitable_Solo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Solo"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <TextView
+                android:id="@+id/amenities_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:paddingStart="12dp"
+                android:text="Amenities"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/details_roomSuitableFor_group" />
+
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/amenities_chipgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/amenities_tv">
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AC"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wi-Fi"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fridge"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Geyser"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 Fan"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Furnished"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Washing Machine"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parking(Covered)"
+                    style="@style/chip_Style"
+                    app:chipMinTouchTargetSize="0dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/amenities_chipgroup" />
+
+
+            <TextView
+                android:id="@+id/roomTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingStart="12dp"
+                android:text="Details"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialDivider4" />
+
+            <GridLayout
+                android:id="@+id/gl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginTop="20dp"
+                android:columnCount="2"
+                app:flow_horizontalGap="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/roomTextView">
+
+                <TextView
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="7dp"
+                    android:text="Sharable" />
+
+                <TextView
+                    android:id="@+id/shareable_tv"
+                    android:layout_row="1"
+                    android:layout_column="1"
+                    android:paddingHorizontal="10dp"
+                    android:text="3 People"
+                    android:textColor="@color/Orange" />
+
+                <TextView
+                    android:layout_row="3"
+                    android:layout_column="0"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="7dp"
+                    android:text="Area" />
+
+                <TextView
+                    android:id="@+id/room_area_tv"
+                    android:layout_row="3"
+                    android:layout_column="1"
+                    android:paddingHorizontal="10dp"
+                    android:text="4500 sq.ft."
+                    android:textColor="@color/Orange"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_row="4"
+                    android:layout_column="0"
+                    android:inputType="textMultiLine"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="7dp"
+                    android:text="Minimum Contact Duration" />
+
+                <TextView
+                    android:id="@+id/min_contract_duration"
+                    android:layout_row="4"
+                    android:layout_column="1"
+                    android:paddingHorizontal="10dp"
+                    android:text="1 Month"
+                    android:textColor="@color/Orange"
+                    android:textStyle="bold" />
+
+            </GridLayout>
 
             <TextView
                 android:id="@+id/room_details_aboutTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingStart="12dp"
+                android:text="About Room"
+                android:textColor="@color/textColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/materialDivider3"
-                android:textColor="@color/textColor"
-                android:textStyle="bold"
-                android:padding="5dp"
-                android:text="About Room"
-              />
+                app:layout_constraintTop_toBottomOf="@id/gl" />
 
             <TextView
                 android:id="@+id/room_details_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:paddingStart="12dp"
+                android:paddingBottom="50dp"
+                android:textColor="@color/secondaryTextColor"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/room_details_aboutTV"
-                android:textSize="14sp"
-                android:textColor="@color/secondaryTextColor"
-                android:paddingStart="12dp"
-                android:paddingBottom="40dp"
-                />
+                app:layout_constraintTop_toBottomOf="@id/room_details_aboutTV" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
