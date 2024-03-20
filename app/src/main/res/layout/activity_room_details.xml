@@ -94,48 +94,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Single"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomType_DoubleRoom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Double"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomType_DormRoom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dorm"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomType_Apartment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Apartment"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomType_StudioApartment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Studio Apartment"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomType_independentHouse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Independent House"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
             </com.google.android.material.chip.ChipGroup>
 
             <TextView
@@ -166,40 +160,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Student"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomSuitable_professionals"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Professionals"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomSuitable_Couples"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Couples"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomSuitable_ShortTermStay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Short-term Stay"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/details_roomSuitable_Solo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Solo"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
             </com.google.android.material.chip.ChipGroup>
 
 
@@ -233,64 +222,56 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="AC"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Wi-Fi"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fridge"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Geyser"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2 Fan"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Furnished"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Washing Machine"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Parking(Covered)"
-                    style="@style/chip_Style"
-                    app:chipMinTouchTargetSize="0dp" />
+                    style="@style/chip_Style" />
             </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.divider.MaterialDivider
@@ -379,6 +360,15 @@
 
             </GridLayout>
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gl" />
+
             <TextView
                 android:id="@+id/room_details_aboutTV"
                 android:layout_width="match_parent"
@@ -391,7 +381,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gl" />
+                app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
 
             <TextView
                 android:id="@+id/room_details_about"
