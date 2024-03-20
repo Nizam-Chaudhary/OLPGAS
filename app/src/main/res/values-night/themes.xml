@@ -48,4 +48,12 @@
         <item name="chipMinTouchTargetSize">0dp</item>
     </style>
 
+    <style name="detailed_room_textView" >
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
 </resources>
