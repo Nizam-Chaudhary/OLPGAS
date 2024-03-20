@@ -282,7 +282,7 @@
               />
 
             <TextView
-                android:id="@+id/room_description"
+                android:id="@+id/room_details_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -326,7 +326,7 @@
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/rent_amount_tv"
+                    android:id="@+id/roomPrice"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv1"

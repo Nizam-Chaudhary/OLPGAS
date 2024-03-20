@@ -37,7 +37,7 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.room_raw, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.recycler_view_rooms_list, parent, false)
         return ViewHolder(view)
     }
 
