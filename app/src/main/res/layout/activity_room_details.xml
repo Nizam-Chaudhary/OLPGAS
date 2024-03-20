@@ -15,7 +15,7 @@
             android:paddingBottom="40dp">
 
         <ImageView
-            android:id="@+id/room_details_imageView"
+            android:id="@+id/detailed_room_image"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:scaleType="centerCrop"
@@ -30,9 +30,9 @@
                 android:background="@android:color/transparent"
                 android:padding="5dp"
                 android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="@id/room_details_imageView"
+                app:layout_constraintBottom_toBottomOf="@id/detailed_room_image"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/room_details_imageView" />
+                app:layout_constraintTop_toTopOf="@id/detailed_room_image" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -40,12 +40,12 @@
                 android:background="@android:color/transparent"
                 android:padding="5dp"
                 android:src="@drawable/ic_left_arrow"
-                app:layout_constraintBottom_toBottomOf="@id/room_details_imageView"
+                app:layout_constraintBottom_toBottomOf="@id/detailed_room_image"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/room_details_imageView" />
+                app:layout_constraintTop_toTopOf="@id/detailed_room_image" />
 
         <TextView
-            android:id="@+id/room_details_name"
+            android:id="@+id/detailed_room_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -53,13 +53,13 @@
             android:text="ABC banglo"
             android:textColor="@color/textColor"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/room_details_location"
+            app:layout_constraintBottom_toTopOf="@id/detailed_room_location"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/room_details_imageView" />
+            app:layout_constraintTop_toBottomOf="@id/detailed_room_image" />
 
         <TextView
-            android:id="@+id/room_details_location"
+            android:id="@+id/detailed_room_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -72,7 +72,7 @@
             android:textColor="@color/secondaryTextColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/room_details_name" />
+            app:layout_constraintTop_toBottomOf="@+id/detailed_room_name" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/materialDivider"
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/room_details_location" />
+            app:layout_constraintTop_toBottomOf="@+id/detailed_room_location" />
 
 
         <TextView
@@ -341,7 +341,7 @@ More " />
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/roomPrice"
+                    android:id="@+id/roomPriceT"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv1"
@@ -362,12 +362,12 @@ More " />
                     android:textSize="15sp" />
 
                 <TextView
-                    android:id="@+id/roomDeposit"
+                    android:id="@+id/roomDepositT"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv1"
                     android:layout_marginLeft="10dp"
-                    android:layout_toEndOf="@id/roomPrice"
+                    android:layout_toEndOf="@id/roomPriceT"
                     android:text="30000/-"
                     android:textColor="#2196F3"
                     android:textSize="18sp"

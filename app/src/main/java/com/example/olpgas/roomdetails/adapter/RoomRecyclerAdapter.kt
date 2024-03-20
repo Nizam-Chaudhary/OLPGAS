@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -28,16 +27,16 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
     RecyclerView.Adapter<RoomRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val roomNameTV: TextView = view.findViewById(R.id.roomNameTV)
-        val roomLocationTV: TextView = view.findViewById(R.id.roomLocationTV)
-        val roomPrice: TextView = view.findViewById(R.id.roomPrice)
-        val roomDeposit: TextView = view.findViewById(R.id.roomDeposit)
-        val roomContactBtn: Button = view.findViewById(R.id.roomContactBtn)
+        val roomNameTV: TextView = view.findViewById(R.id.room_name_tv)
+        val roomLocationTV: TextView = view.findViewById(R.id.room_location_tv)
+        val roomPrice: TextView = view.findViewById(R.id.room_price_tv)
+        val roomDeposit: TextView = view.findViewById(R.id.room_deposit_tv)
+//        val roomContactBtn: Button = view.findViewById(R.id.roomContactBtn)
         val roomImage: ImageView = view.findViewById(R.id.room_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.room_raw, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.recycler_view_rooms_list, parent, false)
         return ViewHolder(view)
     }
 
