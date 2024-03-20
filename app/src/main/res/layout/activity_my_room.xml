@@ -264,5 +264,33 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <ImageView
+            android:id="@+id/myRoom_images"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/room1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_about" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/myRoom_images"
+            android:src="@drawable/ic_add_image"
+            app:layout_constraintBottom_toBottomOf="@id/myRoom_images"/>
+
+        <Button
+            android:id="@+id/myRoom_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/myRoom_images" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
