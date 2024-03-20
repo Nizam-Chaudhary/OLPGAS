@@ -15,7 +15,7 @@
             android:paddingBottom="40dp">
 
             <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/display_image_viewpager"
+                android:id="@+id/detailed_room_image_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:layout_marginHorizontal="12dp"
@@ -27,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/room_details_name"
+                android:id="@+id/detailed_room_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -35,13 +35,13 @@
                 android:text="ABC banglo"
                 android:textColor="@color/textColor"
                 android:textSize="25sp"
-                app:layout_constraintBottom_toTopOf="@id/room_details_location"
+                app:layout_constraintBottom_toTopOf="@id/detailed_room_location"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/display_image_viewpager" />
+                app:layout_constraintTop_toBottomOf="@id/detailed_room_image_viewpager" />
 
             <TextView
-                android:id="@+id/room_details_location"
+                android:id="@+id/detailed_room_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -55,7 +55,7 @@
                 app:layout_constraintBottom_toTopOf="@id/materialDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/room_details_name" />
+                app:layout_constraintTop_toBottomOf="@+id/detailed_room_name" />
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/materialDivider"
@@ -64,7 +64,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/room_details_location" />
+                app:layout_constraintTop_toBottomOf="@+id/detailed_room_location" />
 
             <TextView
                 android:id="@+id/detailed_roomType_TV"
@@ -198,7 +198,7 @@
 
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/amenities_chipgroup"
+                android:id="@+id/detailed_room_amenities_chipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -273,7 +273,7 @@
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/amenities_chipgroup" />
+                app:layout_constraintTop_toBottomOf="@id/detailed_room_amenities_chipGroup" />
 
 
             <TextView
@@ -370,7 +370,7 @@
                 app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
 
             <TextView
-                android:id="@+id/room_details_about"
+                android:id="@+id/detailed_room_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
