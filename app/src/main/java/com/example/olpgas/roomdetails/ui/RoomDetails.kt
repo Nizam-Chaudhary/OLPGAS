@@ -8,6 +8,7 @@ import com.example.olpgas.auth.data.network.SupabaseClient
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
 import com.example.olpgas.roomdetails.adapter.RoomsImageRecyclerPagerAdapter
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
+import com.google.android.material.chip.Chip
 import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,9 +33,10 @@ class RoomDetails : AppCompatActivity() {
 
         val roomId = intent.getIntExtra("roomId",1)
         val ownerId = intent.getStringExtra("ownerId") ?: ""
+        val roomName = intent.getStringExtra("roomName") ?: ""
 
         setData(roomId)
-        setImagesAdapter(ownerId)
+        setImagesAdapter(ownerId, roomName)
     }
 
     private fun setData(roomId: Int) {
@@ -43,24 +45,43 @@ class RoomDetails : AppCompatActivity() {
         roomsViewModel.fullRoomDetails.observe(this) {roomDetails ->
             binding.detailedRoomName.text = roomDetails.roomName
             binding.detailedRoomLocation.text = "${roomDetails.streetNumber}, ${roomDetails.landMark}, ${roomDetails.city}, ${roomDetails.state}"
-//            binding.roomTypeTv.text = roomDetails.roomType
+            binding.roomTypeTv.text = roomDetails.roomType
             binding.shareableTv.text = roomDetails.shareable.toString()
-            //binding.sutableForTv.text = ""
-            binding.roomAreaTv.text = roomDetails.roomArea.toString()
+            binding.roomAreaTv.text = roomDetails.roomArea.toString() + " Sq. Ft."
             binding.detailedRoomAbout.text = roomDetails.description
             binding.roomPrice.text = String.format(Locale.UK, "%,d", roomDetails.rentAmount) + "/-"
             binding.roomDepositTv.text = String.format(Locale.UK, "%,d", roomDetails.deposit) + "/-"
+            for(i in roomDetails.suitableFor.indices) {
+                val chip = Chip(this)
+                val suitableFor = roomDetails.suitableFor[i].toString()
+                chip.text = suitableFor.substring(1..<suitableFor.length-1)
+                chip.isChecked = true
+                chip.isEnabled = true
+                binding.detailsRoomSuitableForGroup.addView(chip)
+
+            }
+            for(i in roomDetails.features.indices) {
+                val chip = Chip(this)
+                val feature = roomDetails.features[i].toString()
+                chip.text = feature.substring(1..<feature.length-1)
+                chip.isChecked = true
+                chip.isEnabled = true
+                binding.detailedRoomAmenitiesChipGroup.addView(chip)
+
+            }
+
         }
     }
 
-    private fun setImagesAdapter(ownerId: String) {
+    private fun setImagesAdapter(ownerId: String,roomName: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val bucket = SupabaseClient.client.storage.from("RoomPics")
-                val files = bucket.list(ownerId)
+                val files = bucket.list("$ownerId/$roomName")
 
                 val adapter = RoomsImageRecyclerPagerAdapter(
                     ownerId,
+                    roomName,
                     files,
                     this@RoomDetails
                 )

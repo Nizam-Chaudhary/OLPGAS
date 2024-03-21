@@ -57,6 +57,8 @@ class RoomsViewModel : ViewModel() {
                             eq("id",roomId)
                         }
                     }.decodeSingle<FullRoomDetails>()
+
+                Log.d("Room", _fullRoomDetails.value.toString())
             }catch (e: Exception) {
                 Log.d("Room", "Error: ${e.message}")
             }

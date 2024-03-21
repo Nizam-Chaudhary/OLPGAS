@@ -19,6 +19,7 @@ import kotlinx.coroutines.withContext
 
 class RoomsImageRecyclerPagerAdapter(
     private val ownerId: String,
+    private val roomName: String,
     private val files: List<BucketItem>,
     val context: Context
 ) : RecyclerView.Adapter<RoomsImageRecyclerPagerAdapter.ImageViewHolder>() {
@@ -35,7 +36,7 @@ class RoomsImageRecyclerPagerAdapter(
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            val path = "${ownerId}/${files[position].name}"
+            val path = "${ownerId}/$roomName/${files[position].name}"
             val imageByteArray = SupabaseClient.client.storage.from("RoomPics").downloadPublic(path)
 
             withContext(Dispatchers.Main) {

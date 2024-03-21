@@ -47,7 +47,7 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
         val currentRoom = roomsData[position]
 
         CoroutineScope(Dispatchers.IO).launch {
-            val imageByteArray= getDisplayImage(currentRoom.ownerId)
+            val imageByteArray= getDisplayImage(currentRoom.ownerId,currentRoom.roomName)
             withContext(Dispatchers.Main) {
                 Glide.with(context)
                     .load(imageByteArray)
@@ -70,6 +70,7 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
             val intent = Intent(context, RoomDetails::class.java)
             intent.putExtra("roomId",currentRoom.id)
             intent.putExtra("ownerId",currentRoom.ownerId)
+            intent.putExtra("roomName",currentRoom.roomName)
             context.startActivity(intent)
 
         }
@@ -77,11 +78,11 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
 
     override fun getItemCount() = roomsData.size
 
-    private suspend fun getDisplayImage(userId: String) : ByteArray? {
+    private suspend fun getDisplayImage(userId: String,roomName: String) : ByteArray? {
         try {
             val bucket = SupabaseClient.client.storage.from("RoomPics")
-            val files = bucket.list(userId)
-            return bucket.downloadPublic("$userId/${files[0].name}")
+            val files = bucket.list("$userId/$roomName")
+            return bucket.downloadPublic("$userId/$roomName/${files[0].name}")
         }catch (e: Exception) {
             Log.d("Room", "Error: ${e.message}")
         }

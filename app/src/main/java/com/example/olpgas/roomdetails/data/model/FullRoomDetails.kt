@@ -1,6 +1,7 @@
 package com.example.olpgas.roomdetails.data.model
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonArray
 
 @Serializable
 data class FullRoomDetails(
@@ -15,12 +16,9 @@ data class FullRoomDetails(
     val roomArea: Int,
     val shareable: Int,
     val roomType: String,
-    val hasAc: Boolean,
-    val hasWashingMachine: Boolean,
-    val hasWifi: Boolean,
-    val hasFan: Boolean,
+    val features: JsonArray,
+    val suitableFor: JsonArray,
     val deposit: Int,
     val rentAmount: Int,
-    val description: String,
-    val additionalFacilities: String
+    val description: String
 )
