@@ -15,7 +15,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRooms"
             android:layout_width="match_parent"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="12dp"
             android:layout_height="wrap_content"
             android:paddingBottom="24dp"
             app:layout_constraintEnd_toEndOf="parent"
