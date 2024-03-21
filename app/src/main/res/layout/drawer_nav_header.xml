@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:orientation="vertical">
 
     <TextView
@@ -35,15 +34,17 @@
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="TextContrastCheck" />
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toEndOf="@+id/userNameHeader"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/temp_logo"
-        app:layout_constraintVertical_bias="0.5"/>
+        app:layout_constraintVertical_bias="0.5"
+        style="@style/profile_shape"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
