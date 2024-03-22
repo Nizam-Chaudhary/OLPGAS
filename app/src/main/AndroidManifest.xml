@@ -19,11 +19,13 @@
         android:theme="@style/Base.Theme.OLPGB"
         tools:targetApi="31">
         <activity
-            android:name=".roomdetails.ui.MyRoom"
-            android:theme="@style/NoStatusBarTheme"
-            android:windowSoftInputMode="adjustPan"
+            android:name=".manage_room.AddRoomActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".manage_room.MyRoomActivity"
+            android:exported="false"
+            android:theme="@style/NoStatusBarTheme"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".roomdetails.ui.RoomDetails"
             android:exported="false"
@@ -33,7 +35,7 @@
             android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
         <activity
-            android:name=".roomdetails.ui.MainActivity"
+            android:name=".roomdetails.ui.ViewRoomActivity"
             android:exported="true"
             android:theme="@style/statusBarTheme">
             <intent-filter>

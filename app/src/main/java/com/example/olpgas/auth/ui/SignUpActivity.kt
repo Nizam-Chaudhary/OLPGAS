@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.auth.data.model.UserState
 import com.example.olpgas.auth.viewmodel.SupabaseAuthViewModel
 import com.example.olpgas.databinding.ActivitySignUpBinding
-import com.example.olpgas.roomdetails.ui.MainActivity
+import com.example.olpgas.roomdetails.ui.ViewRoomActivity
 
 class SignUpActivity : AppCompatActivity() {
     private val binding: ActivitySignUpBinding by lazy {
@@ -31,7 +31,7 @@ class SignUpActivity : AppCompatActivity() {
                 when(state) {
                     UserState.Loading -> binding.btnSignup.text = "Signing Up..."
                     is UserState.Success -> {
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, ViewRoomActivity::class.java)
                         startActivity(intent)
                         finish()
                     }

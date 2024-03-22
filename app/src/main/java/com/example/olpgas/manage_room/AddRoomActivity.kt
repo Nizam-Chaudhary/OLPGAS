@@ -1,7 +1,6 @@
-package com.example.olpgas.roomdetails.ui
+package com.example.olpgas.manage_room
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -11,39 +10,42 @@ import android.provider.MediaStore
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.olpgas.R
-import com.example.olpgas.databinding.ActivityMyRoomBinding
+import com.example.olpgas.databinding.ActivityAddRoomBinding
 
-
-class MyRoom : AppCompatActivity() {
+class AddRoomActivity : AppCompatActivity() {
+    private val binding: ActivityAddRoomBinding by lazy {
+        ActivityAddRoomBinding.inflate(layoutInflater)
+    }
 
     private val GALLERY_REQUEST_CODE = 1
     private val PERMISSION_REQUEST_EXTERNAL_STORAGE = 2
     private val PERMISSION_REQUEST_MEDIA_IMAGES = 3
     private var hasPermission = false
 
-    private val binding: ActivityMyRoomBinding by lazy {
-        ActivityMyRoomBinding.inflate(layoutInflater)
-
-    }
-
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(binding.root)
-
+        ViewCompat.setOnApplyWindowInsetsListener(binding.scrollView) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         setUpSpinner()
 
         binding.myRoomAddImage.setOnClickListener {
             getImages()
         }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -199,6 +201,4 @@ class MyRoom : AppCompatActivity() {
         binding.myRoomSuitableFor.adapter=roomSuitableAdapter
 
     }
-
-
 }

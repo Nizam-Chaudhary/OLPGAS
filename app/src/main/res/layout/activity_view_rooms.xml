@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/primary"
     android:id="@+id/drawerLayout"
-    tools:context=".roomdetails.ui.MainActivity">
+    tools:context=".roomdetails.ui.ViewRoomActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
