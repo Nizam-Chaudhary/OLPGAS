@@ -212,7 +212,7 @@
             </GridLayout>
 
             <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/materialDivider2"
+                android:id="@+id/material_divider1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -228,7 +228,7 @@
                 style="@style/detailed_room_textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
+                app:layout_constraintTop_toBottomOf="@id/material_divider1" />
 
             <TextView
                 android:id="@+id/detailed_room_about"

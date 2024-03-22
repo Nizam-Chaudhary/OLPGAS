@@ -43,7 +43,7 @@ class AddRoomActivity : AppCompatActivity() {
 
         setUpSpinner()
 
-        binding.myRoomAddImage.setOnClickListener {
+        binding.btnAddMainImage.setOnClickListener {
             getImages()
         }
     }
@@ -128,13 +128,13 @@ class AddRoomActivity : AppCompatActivity() {
                                 imageUris.add(imageUri)
                                 Toast.makeText(this, i.toString(), Toast.LENGTH_SHORT).show()
                             }
-                            binding.myRoomImages.setImageURI(imageUris[0])
-                            binding.myRoomImages2.setImageURI(imageUris[1])
+                            //binding.myRoomImages.setImageURI(imageUris[0])
+                            //binding.myRoomImages2.setImageURI(imageUris[1])
                         }
 
                     } else {
                         val imageUri = data.data
-                        binding.myRoomImages.setImageURI(imageUri)
+                        //binding.myRoomImages.setImageURI(imageUri)
                     }
                 } else {
 
@@ -153,7 +153,7 @@ class AddRoomActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.myRoomAddressState.adapter = stateAdapter
+        binding.spinnerState.adapter = stateAdapter
 
         // Create array adapter for city spinner (initially empty)
         val cityAdapter = ArrayAdapter<String>(
@@ -161,10 +161,10 @@ class AddRoomActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item
         )
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.myRoomAddressCity.adapter = cityAdapter
+        binding.spinnerCity.adapter = cityAdapter
 
         // Set up on item selected listener for state spinner
-        binding.myRoomAddressState.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spinnerState.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: android.view.View?,
@@ -195,10 +195,6 @@ class AddRoomActivity : AppCompatActivity() {
 
 
         val roomTypeAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,resources.getStringArray(R.array.room_type))
-        binding.myRoomType.adapter=roomTypeAdapter
-
-        val roomSuitableAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,resources.getStringArray(R.array.room_suitableFor))
-        binding.myRoomSuitableFor.adapter=roomSuitableAdapter
-
+        binding.spinnerRoomType.adapter=roomTypeAdapter
     }
 }
