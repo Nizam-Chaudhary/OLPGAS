@@ -8,7 +8,6 @@
     android:background="@drawable/background"
     android:paddingTop="30dp"
     android:orientation="vertical"
-
     tools:context=".profile.ui.UserAccount">
 
 
@@ -53,14 +52,27 @@
             android:paddingTop="50dp">
 
 
+            <ImageView
+                android:id="@+id/icon_email"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_email"
+                app:layout_constraintBottom_toBottomOf="@+id/uEmail"
+                app:layout_constraintEnd_toStartOf="@id/uEmail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/uEmail" />
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/uEmail"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:hint="Email"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintStart_toEndOf="@+id/icon_email"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -76,6 +88,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Name"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/uEmail">
@@ -92,6 +106,7 @@
                 android:id="@+id/uGender"
                 android:layout_width="50pt"
                 android:layout_height="60dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:hint="Gender"
                 app:layout_constraintEnd_toStartOf="@id/uAge"
@@ -111,6 +126,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
                 android:hint="Age"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/uGender"
                 app:layout_constraintTop_toBottomOf="@id/uName">
@@ -187,15 +203,28 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/icon_phonenumber"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintBottom_toBottomOf="@+id/uPhoneNumber"
+                app:layout_constraintEnd_toStartOf="@id/uPhoneNumber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/uPhoneNumber" />
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/uPhoneNumber"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="PhoneNumber"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="120dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon_phonenumber"
                 app:layout_constraintTop_toBottomOf="@id/uGender">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -205,15 +234,28 @@
                     android:textColor="@color/textColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <ImageView
+                android:id="@+id/icon_address"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_addresss"
+                app:layout_constraintBottom_toBottomOf="@+id/uAddressStreet"
+                app:layout_constraintEnd_toStartOf="@id/uAddressStreet"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/uAddressStreet" />
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/uAddressStreet"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Street No/Name"
-
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon_address"
                 app:layout_constraintTop_toBottomOf="@id/uPhoneNumber">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -229,6 +271,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="City"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/uAddressStreet">
@@ -246,6 +290,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="State"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/uAddressCity">
