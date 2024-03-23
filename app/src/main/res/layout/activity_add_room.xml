@@ -10,17 +10,32 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp">
+
+
+        <ImageView
+            android:id="@+id/icon_house"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_email"
+            app:layout_constraintBottom_toBottomOf="@+id/input_room_name"
+            app:layout_constraintEnd_toStartOf="@id/input_room_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/input_room_name" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_room_name"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="32dp"
             android:hint="Room Name"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_house"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -30,12 +45,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_room_number"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:hint="Room Number"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_room_name">
 
@@ -48,8 +63,9 @@
             android:id="@+id/input_landmark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:hint="Land Mark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,15 +77,28 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
+        <ImageView
+            android:id="@+id/icon_loc"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_location2"
+            app:layout_constraintBottom_toBottomOf="@+id/input_street_number"
+            app:layout_constraintEnd_toStartOf="@id/input_street_number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/input_street_number" />
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_street_number"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:hint="Street No/Name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_loc"
             app:layout_constraintTop_toBottomOf="@id/input_landmark">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -82,8 +111,9 @@
             android:id="@+id/spinner_state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:background="@drawable/border"
             android:paddingHorizontal="10dp"
             android:paddingVertical="18dp"
@@ -99,15 +129,16 @@
             android:layout_marginEnd="20dp"
             android:src="@drawable/ic_down"
             app:layout_constraintBottom_toBottomOf="@id/spinner_state"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/spinner_state"
             app:layout_constraintTop_toTopOf="@id/spinner_state" />
 
         <Spinner
             android:id="@+id/spinner_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
             android:background="@drawable/border"
             android:paddingHorizontal="10dp"
             android:paddingVertical="18dp"
@@ -122,19 +153,19 @@
             android:layout_marginEnd="20dp"
             android:src="@drawable/ic_down"
             app:layout_constraintBottom_toBottomOf="@id/spinner_city"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/spinner_city"
             app:layout_constraintTop_toTopOf="@id/spinner_city" />
 
         <Spinner
             android:id="@+id/spinner_room_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="19dp"
             android:background="@drawable/border"
             android:paddingHorizontal="10dp"
             android:paddingVertical="6dp"
-            app:layout_constraintEnd_toStartOf="@+id/input_shareable_by"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spinner_city" />
 
@@ -148,33 +179,61 @@
             app:layout_constraintEnd_toEndOf="@id/spinner_room_type"
             app:layout_constraintTop_toTopOf="@id/spinner_room_type" />
 
+
+        <ImageView
+            android:id="@+id/icon_people"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_people"
+            app:layout_constraintBottom_toBottomOf="@+id/input_shareable_by"
+            app:layout_constraintEnd_toStartOf="@id/input_shareable_by"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/input_shareable_by" />
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_shareable_by"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="16dp"
-            android:hint="Shareable By how many"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="32dp"
+            android:hint="Shareable By How Many"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/spinner_room_type"
-            app:layout_constraintTop_toBottomOf="@id/spinner_city">
+            app:layout_constraintStart_toEndOf="@id/icon_people"
+            app:layout_constraintTop_toBottomOf="@id/spinner_room_type">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <ImageView
+            android:id="@+id/icon_ruppe"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_ruppe"
+            app:layout_constraintBottom_toBottomOf="@+id/input_rent_amount"
+            app:layout_constraintEnd_toStartOf="@id/input_rent_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/input_rent_amount" />
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_rent_amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="16dp"
             android:hint="Rent Amount"
-            app:layout_constraintEnd_toStartOf="@+id/input_deposit_amount"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/icon_ruppe"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinner_room_type">
+            app:layout_constraintTop_toBottomOf="@id/input_shareable_by">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -185,13 +244,14 @@
             android:id="@+id/input_deposit_amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginTop="16dp"
             android:hint="Deposit Amount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/input_rent_amount"
-            app:layout_constraintTop_toBottomOf="@id/spinner_room_type">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_rent_amount">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -202,14 +262,15 @@
             android:id="@+id/input_room_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="16dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="32dp"
             android:hint="Room Area in Sq. Ft."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_rent_amount">
+            app:layout_constraintTop_toBottomOf="@id/input_deposit_amount">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
