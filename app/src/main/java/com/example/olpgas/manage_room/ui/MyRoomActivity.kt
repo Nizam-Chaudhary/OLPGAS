@@ -1,4 +1,4 @@
-package com.example.olpgas.manage_room
+package com.example.olpgas.manage_room.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent

@@ -198,6 +198,24 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_room_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="16dp"
+            android:hint="Room Area in Sq. Ft."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_rent_amount">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/material_divider1"
             android:layout_width="match_parent"
@@ -205,7 +223,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_rent_amount"
+            app:layout_constraintTop_toBottomOf="@id/input_room_area"
             tools:layout_editor_absoluteY="616dp" />
 
 
@@ -231,13 +249,47 @@
             app:layout_constraintTop_toBottomOf="@id/tv_amenities">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_add_amenities"
-                style="@style/Widget.Material3.Chip.Assist"
+                android:id="@+id/chip_AC"
+                style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add"
-                app:chipIcon="@drawable/ic_add"
-                app:ensureMinTouchTargetSize="true"/>
+                android:text="AC" />
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_washing_machine"
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Washing Machine" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_wifi"
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wi-Fi" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fan"
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fan" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_geyser"
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Geyser" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_furnished"
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Furnished" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.divider.MaterialDivider
@@ -273,13 +325,32 @@
             app:layout_constraintTop_toBottomOf="@id/tv_suitable">
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip_add_suitable_for"
-                style="@style/Widget.Material3.Chip.Assist"
+                android:id="@+id/chip_students"
+                style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add"
-                app:chipIcon="@drawable/ic_add"
-                app:ensureMinTouchTargetSize="true"/>
+                android:text="Students" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_professionals"
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Professionals" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_couples"
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Couples" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_solo"
+                style="@style/chip_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Solo" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.divider.MaterialDivider
@@ -309,18 +380,24 @@
                 android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btn_add_main_image"
+        <LinearLayout
+            android:id="@+id/linear_layout_add_images"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Click to add image"
-            android:drawableEnd="@drawable/ic_add"
+            android:orientation="vertical"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_about"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/input_about">
+            <Button
+                android:id="@+id/btn_add_main_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Click to add image"
+                android:drawableEnd="@drawable/ic_add"
+                />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_submit"
@@ -331,7 +408,7 @@
             android:text="Submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_add_main_image" />
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_add_images" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

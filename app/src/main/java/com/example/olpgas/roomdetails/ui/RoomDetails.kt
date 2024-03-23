@@ -58,23 +58,19 @@ class RoomDetails : AppCompatActivity() {
             binding.detailedRoomAbout.text = roomDetails.description
             binding.roomPrice.text = String.format(Locale.UK, "%,d", roomDetails.rentAmount) + "/-"
             binding.roomDepositTv.text = String.format(Locale.UK, "%,d", roomDetails.deposit) + "/-"
-            for(i in roomDetails.suitableFor.indices) {
+            for(amenity in roomDetails.features) {
                 val chip = Chip(this)
-                val suitableFor = roomDetails.suitableFor[i].toString()
-                chip.text = suitableFor.substring(1..<suitableFor.length-1)
-                chip.isChecked = true
-                chip.isEnabled = true
-                binding.detailsRoomSuitableForGroup.addView(chip)
-
-            }
-            for(i in roomDetails.features.indices) {
-                val chip = Chip(this)
-                val feature = roomDetails.features[i].toString()
-                chip.text = feature.substring(1..<feature.length-1)
+                chip.text = amenity
                 chip.isChecked = true
                 chip.isEnabled = true
                 binding.detailedRoomAmenitiesChipGroup.addView(chip)
-
+            }
+            for(suitableFor in roomDetails.suitableFor) {
+                val chip = Chip(this)
+                chip.text = suitableFor
+                chip.isChecked = true
+                chip.isEnabled = true
+                binding.detailsRoomSuitableForGroup.addView(chip)
             }
 
         }

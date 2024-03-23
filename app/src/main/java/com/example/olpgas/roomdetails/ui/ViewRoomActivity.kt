@@ -15,7 +15,7 @@ import com.example.olpgas.R
 import com.example.olpgas.auth.ui.LoginActivity
 import com.example.olpgas.auth.viewmodel.SupabaseAuthViewModel
 import com.example.olpgas.databinding.ActivityViewRoomsBinding
-import com.example.olpgas.manage_room.MyRoomActivity
+import com.example.olpgas.manage_room.ui.MyRoomActivity
 import com.example.olpgas.profile.ui.UserAccount
 import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
