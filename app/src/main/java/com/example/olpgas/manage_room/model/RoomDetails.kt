@@ -1,5 +1,8 @@
 package com.example.olpgas.manage_room.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class RoomDetails(
     val id: Int? = null,
     val roomArea: Int,

@@ -16,15 +16,21 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityAddRoomBinding
 import com.example.olpgas.manage_room.model.RoomDetails
 import com.example.olpgas.manage_room.model.RoomMaster
+import com.example.olpgas.manage_room.viewmodel.ManageRoomViewModel
 import java.io.ByteArrayOutputStream
 
 class AddRoomActivity : AppCompatActivity() {
     private val binding: ActivityAddRoomBinding by lazy {
         ActivityAddRoomBinding.inflate(layoutInflater)
+    }
+
+    private val manageRoomViewModel by lazy {
+        ViewModelProvider(this)[ManageRoomViewModel::class.java]
     }
 
     val images = mutableListOf<ByteArray>()
@@ -314,10 +320,12 @@ class AddRoomActivity : AppCompatActivity() {
                     roomName = roomName,
                     roomNumber = roomNumber,
                     streetNumber = street,
-                    landmark = landmark,
+                    landMark = landmark,
                     city = city,
                     state = state
                 )
+
+                manageRoomViewModel.uploadRoomDetails(roomDetails, roomMaster, images)
             }
         }
     }
