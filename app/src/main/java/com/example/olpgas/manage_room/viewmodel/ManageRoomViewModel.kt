@@ -1,11 +1,14 @@
 package com.example.olpgas.manage_room.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.data.network.SupabaseClient.client
 import com.example.olpgas.manage_room.model.RoomDetails
 import com.example.olpgas.manage_room.model.RoomMaster
+import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
@@ -14,6 +17,8 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
 class ManageRoomViewModel : ViewModel() {
+    private val _myRoomDetails = MutableLiveData<List<AllRoomsDetails>>()
+    val myRoomDetails: LiveData<List<AllRoomsDetails>> = _myRoomDetails
 
     fun uploadRoomDetails(roomDetails: RoomDetails, roomMaster: RoomMaster, images: List<ByteArray>) {
         viewModelScope.launch {
@@ -42,6 +47,24 @@ class ManageRoomViewModel : ViewModel() {
             }catch (e: Exception) {
                 e.printStackTrace()
                 Log.d("ManageRoom", "${e.message}")
+            }
+        }
+    }
+
+    fun fetchMyRooms() {
+        viewModelScope.launch {
+            try{
+                val ownerId = client.auth.currentUserOrNull()?.id ?: ""
+                val allRoomsDetails = client.postgrest.from("AllRooms")
+                    .select(){
+                        filter {
+                            eq("ownerId", ownerId)
+                        }
+                    }.decodeList<AllRoomsDetails>()
+
+                _myRoomDetails.value = allRoomsDetails
+            } catch(e: Exception) {
+                Log.e("Room","Error: ${e.message}")
             }
         }
     }
