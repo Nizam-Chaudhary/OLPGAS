@@ -62,6 +62,8 @@ class ViewRoomActivity : AppCompatActivity() {
         fetchRoomsData()
 
         setUserName()
+
+        refreshLayout()
     }
 
     private fun setToggleButtonForNavigationDrawer() {
@@ -131,6 +133,7 @@ class ViewRoomActivity : AppCompatActivity() {
         roomViewModel.allRoomsDetails.observe(this) {
             adapter.roomsData = it
             adapter.notifyDataSetChanged()
+            binding.refreshLayout.isRefreshing = false
         }
     }
 
@@ -138,6 +141,12 @@ class ViewRoomActivity : AppCompatActivity() {
         roomViewModel.getUserName()
         roomViewModel.userName.observe(this) {
             binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userNameHeader).text = it
+        }
+    }
+
+    private fun refreshLayout() {
+        binding.refreshLayout.setOnRefreshListener {
+            fetchRoomsDataAndSetAdapter()
         }
     }
 }
