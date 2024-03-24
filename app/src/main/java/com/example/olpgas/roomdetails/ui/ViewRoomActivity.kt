@@ -21,6 +21,7 @@ import com.example.olpgas.manage_room.ui.MyRoomActivity
 import com.example.olpgas.profile.ui.UserAccount
 import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
 import com.example.olpgas.roomdetails.data.model.Filter
+import com.example.olpgas.roomdetails.utils.FilterSharedPreferencesHelper
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
@@ -40,7 +41,9 @@ class ViewRoomActivity : AppCompatActivity() {
         ViewModelProvider(this)[RoomsViewModel::class.java]
     }
 
-    private lateinit var filterView: View
+    private val filterSharedPreferencesHelper: FilterSharedPreferencesHelper by lazy {
+        FilterSharedPreferencesHelper(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +75,8 @@ class ViewRoomActivity : AppCompatActivity() {
 
     }
 
+    //TODO Provide autocomplete to city in filters.
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.appbar_menu, menu)
         return super.onCreateOptionsMenu(menu)
@@ -91,27 +96,45 @@ class ViewRoomActivity : AppCompatActivity() {
         when(item.itemId) {
             R.id.filter -> {
                 val view = View.inflate(this, R.layout.filter_raw, null)
+                val inputCity = view.findViewById<TextInputLayout>(R.id.input_city).editText
+                val inputMinRent = view.findViewById<TextInputLayout>(R.id.input_min_rent_amount).editText
+                val inputMaxRent = view.findViewById<TextInputLayout>(R.id.input_max_rent_amount).editText
+
+                val filter = filterSharedPreferencesHelper.getFilter()
+                if(filter.city != null) {
+                    inputCity?.setText(filter.city)
+                }
+
+                if(filter.minRentAmount != null) {
+                    inputMinRent?.setText(filter.minRentAmount)
+                }
+
+                if(filter.maxRentAmount != null) {
+                    inputMaxRent?.setText(filter.maxRentAmount)
+                }
+
                 MaterialAlertDialogBuilder(this)
                     .setView(view)
                     .setTitle("Apply Filters")
                     .setPositiveButton("Apply") {_, _ ->
 
-                        val city = if( view.findViewById<TextInputLayout>(R.id.input_city).editText?.text.toString() != "") {
+                        val city = if( inputCity?.text.toString() != "") {
                             view.findViewById<TextInputLayout>(R.id.input_city).editText?.text.toString()
                         } else {
                             null
                         }
-                        val minRentAmount = if( view.findViewById<TextInputLayout>(R.id.input_min_rent_amount).editText?.text.toString() != "") {
+                        val minRentAmount = if( inputMinRent?.text.toString() != "") {
                             view.findViewById<TextInputLayout>(R.id.input_min_rent_amount).editText?.text.toString().toInt()
                         } else {
                             null
                         }
-                        val maxRentAmount = if( view.findViewById<TextInputLayout>(R.id.input_max_rent_amount).editText?.text.toString() != "") {
+                        val maxRentAmount = if( inputMaxRent?.text.toString() != "") {
                             view.findViewById<TextInputLayout>(R.id.input_max_rent_amount).editText?.text.toString().toInt()
                         } else {
                             null
                         }
                         val filter = Filter(city, minRentAmount, maxRentAmount)
+                        filterSharedPreferencesHelper.saveFilter(filter)
                         fetchRoomsDataAndSetAdapter(filter)
                     }
                     .setNegativeButton("Cancel") {_, _ ->
