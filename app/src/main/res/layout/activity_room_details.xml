@@ -22,7 +22,6 @@
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="12dp"
-                android:src="@drawable/room1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
