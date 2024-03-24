@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
@@ -16,7 +17,7 @@
         <ImageView
             android:id="@+id/room_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +31,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:text="Room Name"
+            android:textStyle="bold"
             android:textColor="@color/textColor"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/room_image" />
 
@@ -40,15 +42,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/room_name_tv"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginHorizontal="16dp"
             android:drawablePadding="5dp"
             android:text="Room Location"
             android:textColor="@color/textColor"
+
             android:textSize="16sp"
             app:drawableLeftCompat="@drawable/ic_location"
-            app:layout_constraintStart_toEndOf="@+id/room_name_tv"
-            app:layout_constraintTop_toBottomOf="@+id/room_image" />
+            app:layout_constraintBottom_toBottomOf="@+id/room_name_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/room_name_tv" />
 
         <TextView
             android:id="@+id/tv1"
@@ -56,71 +59,54 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
             android:text="Rent"
+            android:layout_marginTop="12dp"
             android:textColor="@color/secondaryTextColor"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/room_name_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/room_location_tv" />
 
         <TextView
             android:id="@+id/rent_amount_tv"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv1"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
             android:text="10000/-"
             android:textColor="@color/textColor"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv1"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv1"
+            app:layout_constraintStart_toStartOf="@+id/room_deposit_tv" />
 
         <TextView
             android:id="@+id/tv2"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/tv1"
             android:text="Deposit"
             android:textColor="@color/secondaryTextColor"
-            android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/tv1"
-            app:layout_constraintTop_toTopOf="@+id/tv1" />
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv1"
+            />
 
         <TextView
             android:id="@+id/room_deposit_tv"
-            android:layout_width="90dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv1"
-            android:layout_marginTop="4dp"
             android:layout_toEndOf="@id/rent_amount_tv"
             android:text="30000/-"
+            android:layout_marginStart="12dp"
             android:textColor="@color/textColor"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv2"
-            app:layout_constraintTop_toBottomOf="@+id/tv2"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/room_contact_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="#4CAF50"
-            android:text="Contact"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/room_location_tv"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv2"
+            app:layout_constraintStart_toEndOf="@+id/tv2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

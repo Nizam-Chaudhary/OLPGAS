@@ -5,7 +5,6 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +30,6 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
         val roomLocationTV: TextView = view.roomLocationTv
         val roomPrice: TextView = view.rentAmountTv
         val roomDeposit: TextView = view.roomDepositTv
-        val roomContactBtn: Button = view.roomContactButton
         val roomImage: ImageView = view.roomImage
     }
 
