@@ -20,8 +20,10 @@ import com.example.olpgas.databinding.ActivityViewRoomsBinding
 import com.example.olpgas.manage_room.ui.MyRoomActivity
 import com.example.olpgas.profile.ui.UserAccount
 import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
+import com.example.olpgas.roomdetails.data.model.Filter
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputLayout
 
 class ViewRoomActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
@@ -63,8 +65,6 @@ class ViewRoomActivity : AppCompatActivity() {
 
         fetchRoomsDataAndSetAdapter()
 
-        fetchRoomsData()
-
         setUserName()
 
         refreshLayout()
@@ -90,12 +90,29 @@ class ViewRoomActivity : AppCompatActivity() {
         }
         when(item.itemId) {
             R.id.filter -> {
-                filterView = View.inflate(this, R.layout.filter_raw, null)
+                val view = View.inflate(this, R.layout.filter_raw, null)
                 MaterialAlertDialogBuilder(this)
-                    .setView(filterView)
+                    .setView(view)
                     .setTitle("Apply Filters")
                     .setPositiveButton("Apply") {_, _ ->
 
+                        val city = if( view.findViewById<TextInputLayout>(R.id.input_city).editText?.text.toString() != "") {
+                            view.findViewById<TextInputLayout>(R.id.input_city).editText?.text.toString()
+                        } else {
+                            null
+                        }
+                        val minRentAmount = if( view.findViewById<TextInputLayout>(R.id.input_min_rent_amount).editText?.text.toString() != "") {
+                            view.findViewById<TextInputLayout>(R.id.input_min_rent_amount).editText?.text.toString().toInt()
+                        } else {
+                            null
+                        }
+                        val maxRentAmount = if( view.findViewById<TextInputLayout>(R.id.input_max_rent_amount).editText?.text.toString() != "") {
+                            view.findViewById<TextInputLayout>(R.id.input_max_rent_amount).editText?.text.toString().toInt()
+                        } else {
+                            null
+                        }
+                        val filter = Filter(city, minRentAmount, maxRentAmount)
+                        fetchRoomsDataAndSetAdapter(filter)
                     }
                     .setNegativeButton("Cancel") {_, _ ->
 
@@ -146,16 +163,12 @@ class ViewRoomActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchRoomsData() {
-
-    }
-
-    private fun fetchRoomsDataAndSetAdapter() {
+    private fun fetchRoomsDataAndSetAdapter(filter: Filter? = null) {
         binding.rvRooms.layoutManager = LinearLayoutManager(this)
         val adapter = RoomRecyclerAdapter(emptyList(), this)
         binding.rvRooms.adapter = adapter
 
-        roomViewModel.fetchAllRooms()
+        roomViewModel.fetchAllRooms(filter)
         roomViewModel.allRoomsDetails.observe(this) {
             adapter.roomsData = it
             adapter.notifyDataSetChanged()

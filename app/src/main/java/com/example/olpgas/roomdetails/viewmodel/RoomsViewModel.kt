@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.data.network.SupabaseClient.client
 import com.example.olpgas.profile.data.model.UserName
 import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
+import com.example.olpgas.roomdetails.data.model.Filter
 import com.example.olpgas.roomdetails.data.model.FullRoomDetails
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
@@ -24,11 +25,25 @@ class RoomsViewModel : ViewModel() {
     private val _fullRoomDetails = MutableLiveData<FullRoomDetails>()
     val fullRoomDetails: LiveData<FullRoomDetails> = _fullRoomDetails
 
-    fun fetchAllRooms() {
+    fun fetchAllRooms(filter: Filter? = null) {
         viewModelScope.launch {
             try{
                 val allRoomsDetails = client.postgrest.from("AllRooms")
-                    .select().decodeList<AllRoomsDetails>()
+                    .select(){
+                        filter{
+                            if (filter != null) {
+                                if(filter.city != null) {
+                                    eq("city", filter.city)
+                                }
+                                if(filter.minRentAmount != null) {
+                                    gte("rentAmount", filter.minRentAmount)
+                                }
+                                if(filter.maxRentAmount != null) {
+                                    gte("rentAmount", filter.maxRentAmount)
+                                }
+                            }
+                        }
+                    }.decodeList<AllRoomsDetails>()
 
                 _allRoomsDetails.value = allRoomsDetails
             } catch(e: Exception) {
@@ -36,7 +51,6 @@ class RoomsViewModel : ViewModel() {
             }
         }
     }
-
     fun getUserName() {
         viewModelScope.launch {
             try {
