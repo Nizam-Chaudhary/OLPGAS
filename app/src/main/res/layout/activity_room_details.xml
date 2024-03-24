@@ -241,8 +241,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/room_details_aboutTV" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

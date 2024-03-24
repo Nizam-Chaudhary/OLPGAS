@@ -3,7 +3,9 @@ package com.example.olpgas.roomdetails.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +38,8 @@ class ViewRoomActivity : AppCompatActivity() {
         ViewModelProvider(this)[RoomsViewModel::class.java]
     }
 
+    private lateinit var filterView: View
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -64,6 +68,13 @@ class ViewRoomActivity : AppCompatActivity() {
         setUserName()
 
         refreshLayout()
+
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.appbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun setToggleButtonForNavigationDrawer() {
@@ -76,6 +87,21 @@ class ViewRoomActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item)) {
             return true
+        }
+        when(item.itemId) {
+            R.id.filter -> {
+                filterView = View.inflate(this, R.layout.filter_raw, null)
+                MaterialAlertDialogBuilder(this)
+                    .setView(filterView)
+                    .setTitle("Apply Filters")
+                    .setPositiveButton("Apply") {_, _ ->
+
+                    }
+                    .setNegativeButton("Cancel") {_, _ ->
+
+                    }
+                    .show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }

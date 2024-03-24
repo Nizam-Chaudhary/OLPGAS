@@ -137,38 +137,38 @@ class AddRoomActivity : AppCompatActivity() {
 
     private fun setUpSpinner() {
 
-        val stateAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.indian_states,
-            android.R.layout.simple_spinner_item
-        )
-        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerState.adapter = stateAdapter
+                    val stateAdapter = ArrayAdapter.createFromResource(
+                        this,
+                        R.array.indian_states,
+                        android.R.layout.simple_spinner_item
+                    )
+                    stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerState.adapter = stateAdapter
 
-        // Create array adapter for city spinner (initially empty)
-        val cityAdapter = ArrayAdapter<String>(
-            this,
-            android.R.layout.simple_spinner_item
-        )
-        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerCity.adapter = cityAdapter
+                    // Create array adapter for city spinner (initially empty)
+                    val cityAdapter = ArrayAdapter<String>(
+                        this,
+                        android.R.layout.simple_spinner_item
+                    )
+                    cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    binding.spinnerCity.adapter = cityAdapter
 
-        // Set up on item selected listener for state spinner
-        binding.spinnerState.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: android.view.View?,
-                position: Int,
-                id: Long
-            ) {
-                // Clear previous city selection
-                cityAdapter.clear()
+                    // Set up on item selected listener for state spinner
+                    binding.spinnerState.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            parent: AdapterView<*>?,
+                            view: android.view.View?,
+                            position: Int,
+                            id: Long
+                        ) {
+                            // Clear previous city selection
+                            cityAdapter.clear()
 
-                // Get selected state
-                val selectedState = parent?.getItemAtPosition(position).toString()
+                            // Get selected state
+                            val selectedState = parent?.getItemAtPosition(position).toString()
 
-                // Populate cities based on the selected state
-                val citiesArrayId = resources.getIdentifier(
+                            // Populate cities based on the selected state
+                            val citiesArrayId = resources.getIdentifier(
                     selectedState.lowercase().replace(" ", "_") + "_cities",
                     "array",
                     packageName
