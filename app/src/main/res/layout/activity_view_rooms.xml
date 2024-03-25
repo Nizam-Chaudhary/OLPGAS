@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:itemTextColor="@color/Blue"
+        app:itemTextColor="?attr/colorPrimary"
         app:headerLayout="@layout/drawer_nav_header"
         app:menu="@menu/navigation_menu"
         tools:ignore="VisualLintBounds" />

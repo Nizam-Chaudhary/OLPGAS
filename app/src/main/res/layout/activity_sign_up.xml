@@ -143,7 +143,7 @@
                 android:layout_marginBottom="64dp"
                 android:backgroundTint="@android:color/transparent"
                 android:text="@string/SignInWithAccount"
-                android:textColor="@color/textColor"
+                android:textColor="?attr/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
