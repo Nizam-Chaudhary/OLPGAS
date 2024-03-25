@@ -30,6 +30,7 @@
                 android:id="@+id/iv_profile_pic"
                 android:layout_width="100dp"
                 android:layout_height="92dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/temp_logo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
