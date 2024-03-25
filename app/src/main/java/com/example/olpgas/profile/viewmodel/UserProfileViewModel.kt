@@ -8,7 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.data.network.SupabaseClient.client
 import com.example.olpgas.profile.data.model.ProfileSaveStatus
 import com.example.olpgas.profile.data.model.User
+import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.launch
 
 class UserProfileViewModel: ViewModel() {
@@ -18,6 +20,9 @@ class UserProfileViewModel: ViewModel() {
 
     private val _userProfileData = MutableLiveData<User>()
     val userProfileData: LiveData<User> = _userProfileData
+
+    private val _userProfileImageByteArray = MutableLiveData<ByteArray>()
+    val userProfileImageByteArray: LiveData<ByteArray> = _userProfileImageByteArray
 
     fun saveUserProfile(user: User) {
         viewModelScope.launch {
@@ -32,11 +37,27 @@ class UserProfileViewModel: ViewModel() {
         }
     }
 
+    fun saveUserProfilePicture(imageByteArray: ByteArray) {
+        viewModelScope.launch {
+            try {
+                val ownerId = client.auth.currentUserOrNull()?.id
+                client.storage.from("ProfilePics")
+                    .upload("$ownerId/profile.jpg", imageByteArray, upsert = true)
+            } catch (e: Exception) {
+                Log.d("User Profile", "Error: ${e.message}")
+            }
+        }
+    }
+
     fun getUserProfileData() {
         viewModelScope.launch {
             try {
                 _userProfileData.value = client.postgrest.from("Users")
                     .select().decodeSingle<User>()
+
+                val ownerId = client.auth.currentUserOrNull()?.id
+                _userProfileImageByteArray.value = client.storage.from("ProfilePics")
+                    .downloadAuthenticated("$ownerId/profile.jpg")
             }catch (e: Exception) {
                 Log.d("User Profile", e.message.toString())
             }

@@ -10,8 +10,10 @@ import com.example.olpgas.profile.data.model.UserName
 import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
 import com.example.olpgas.roomdetails.data.model.Filter
 import com.example.olpgas.roomdetails.data.model.FullRoomDetails
+import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
+import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.launch
 
 class RoomsViewModel : ViewModel() {
@@ -24,6 +26,9 @@ class RoomsViewModel : ViewModel() {
 
     private val _fullRoomDetails = MutableLiveData<FullRoomDetails>()
     val fullRoomDetails: LiveData<FullRoomDetails> = _fullRoomDetails
+
+    private val _userProfileImageByteArray = MutableLiveData<ByteArray>()
+    val userProfileImageByteArray: LiveData<ByteArray> = _userProfileImageByteArray
 
     fun fetchAllRooms(filter: Filter? = null) {
         viewModelScope.launch {
@@ -57,6 +62,18 @@ class RoomsViewModel : ViewModel() {
                 _userName.value = client.postgrest.from("Users")
                     .select(Columns.list("userName")).decodeSingle<UserName>().userName
             } catch(e: Exception) {
+                Log.e("Room","Error: ${e.message}")
+            }
+        }
+    }
+
+    fun getUserProfileByteArray() {
+        viewModelScope.launch {
+            try {
+                val ownerId = client.auth.currentUserOrNull()?.id
+                _userProfileImageByteArray.value = client.storage.from("ProfilePics")
+                    .downloadAuthenticated("$ownerId/profile.jpg")
+            } catch (e: Exception) {
                 Log.e("Room","Error: ${e.message}")
             }
         }

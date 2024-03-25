@@ -35,6 +35,7 @@
         tools:ignore="TextContrastCheck" />
 
     <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_profile_pic"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="centerCrop"
@@ -45,6 +46,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/temp_logo"
         app:layout_constraintVertical_bias="0.5"
-        style="@style/profile_shape"/>
+        app:radi/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

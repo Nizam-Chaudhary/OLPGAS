@@ -1,18 +1,29 @@
 package com.example.olpgas.profile.ui
 
 
+import android.Manifest
 import android.R
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.databinding.ActivityUserAccountBinding
 import com.example.olpgas.profile.data.model.User
 import com.example.olpgas.profile.viewmodel.UserProfileViewModel
+import java.io.ByteArrayOutputStream
 
 
 class UserAccount : AppCompatActivity() {
@@ -27,6 +38,7 @@ class UserAccount : AppCompatActivity() {
         ViewModelProvider(this)[UserProfileViewModel::class.java]
     }
 
+    private var profileImageByteArray: ByteArray? = null
     private var allFieldValid = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +55,9 @@ class UserAccount : AppCompatActivity() {
                 val user = performValidationsAndExtractValue()
                 if(allFieldValid) {
                     userViewModel.saveUserProfile(user)
+                    if(profileImageByteArray != null) {
+                        userViewModel.saveUserProfilePicture(profileImageByteArray!!)
+                    }
                     setUserProfileData()
                 }
             }
@@ -76,6 +91,10 @@ class UserAccount : AppCompatActivity() {
             }
             binding.uAge.editText?.setText(user.age.toString())
         }
+        userViewModel.userProfileImageByteArray.observe(this) {
+            val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+            binding.ivProfilePic.setImageBitmap(bitmap)
+        }
     }
 
 
@@ -105,6 +124,113 @@ class UserAccount : AppCompatActivity() {
         binding.uAddressStreet.editText?.isEnabled = true
         binding.uAddressCity.editText?.isEnabled = true
         binding.uAddressState.editText?.isEnabled = true
+
+        binding.ivProfilePic.setOnClickListener {
+            getImagesPermission()
+        }
+    }
+
+    companion object {
+        private const val DEFAULT_BUFFER_SIZE = 4096 // Adjust as needed
+        private const val GALLERY_REQUEST_CODE = 1
+        private const val PERMISSION_REQUEST_EXTERNAL_STORAGE = 2
+        private const val PERMISSION_REQUEST_MEDIA_IMAGES = 3
+    }
+
+    private fun getImagesPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                    PERMISSION_REQUEST_EXTERNAL_STORAGE
+                )
+            } else {
+                picImages()
+            }
+        } else {
+            if (ContextCompat.checkSelfPermission(
+                    this, Manifest.permission.READ_MEDIA_IMAGES
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                    PERMISSION_REQUEST_MEDIA_IMAGES
+                )
+            } else {
+                picImages()
+            }
+        }
+    }
+
+    private fun picImages() {
+        val intentGallery = Intent(Intent.ACTION_PICK)
+        intentGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intentGallery, GALLERY_REQUEST_CODE)
+    }
+
+    private fun getByteArrayFromImageUri(imageUri: Uri): ByteArray? {
+        val inputStream = contentResolver.openInputStream(imageUri) ?: return null
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        try {
+            val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+            var bytesRead: Int
+
+            while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                byteArrayOutputStream.write(buffer, 0, bytesRead)
+            }
+
+            return byteArrayOutputStream.toByteArray()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return null
+        } finally {
+            try {
+                inputStream.close()
+                byteArrayOutputStream.close()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_REQUEST_MEDIA_IMAGES && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            picImages()
+        }
+        if (requestCode == PERMISSION_REQUEST_EXTERNAL_STORAGE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            picImages()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
+            val selectedImageUri = data?.data ?: return // Handle cancelled selection
+            try {
+                val imageByteArray = getByteArrayFromImageUri(selectedImageUri)
+
+                if(imageByteArray != null) {
+                    profileImageByteArray = imageByteArray
+                    val bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
+                    binding.ivProfilePic.setImageBitmap(bitmap)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Handle exceptions (e.g., file not found, decoding error)
+                Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun offEditProfileLayout() {

@@ -2,11 +2,13 @@ package com.example.olpgas.roomdetails.ui
 
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -73,6 +75,7 @@ class ViewRoomActivity : AppCompatActivity() {
         fetchRoomsDataAndSetAdapter()
 
         setUserName()
+        setProfilePicture()
 
         refreshLayout()
 
@@ -213,6 +216,14 @@ class ViewRoomActivity : AppCompatActivity() {
         roomViewModel.getUserName()
         roomViewModel.userName.observe(this) {
             binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userNameHeader).text = it
+        }
+    }
+
+    private fun setProfilePicture() {
+        roomViewModel.getUserProfileByteArray()
+        roomViewModel.userProfileImageByteArray.observe(this) {
+            val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+            binding.navView.getHeaderView(0).findViewById<ImageView>(R.id.iv_profile_pic).setImageBitmap(bitmap)
         }
     }
 
