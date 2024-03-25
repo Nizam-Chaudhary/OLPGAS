@@ -112,6 +112,7 @@
                     android:id="@+id/uGender"
                     android:layout_width="50pt"
                     android:layout_height="60dp"
+
                     android:layout_marginTop="16dp"
                     android:hint="Gender"
                     app:layout_constraintEnd_toStartOf="@id/uAge"
@@ -164,18 +165,22 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:textAlignment="viewEnd"
+                        android:paddingEnd="5dp"
+                        android:textSize="17sp"
                         android:text="Age"
                         android:textColor="@color/textColor" />
 
                     <Spinner
                         android:id="@+id/ageSpinner"
                         style="@style/mySpinnerItemStyle"
-                        android:layout_width="80dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:dropDownWidth="50dp" />
 
                     <TextView
                         android:layout_width="0dp"
+                        android:textSize="17sp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingEnd="5dp"
@@ -315,7 +320,6 @@
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="30dp"
-                    android:backgroundTint="@color/nonePrimary"
                     android:paddingVertical="10dp"
                     android:text="Edit Profile"
                     android:textColor="@color/primary"
