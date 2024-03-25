@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OLPGAS</string>
+    <string name="app_name">FindMyPG</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="SignUpWithAccount">Don\'t have account? Sign Up</string>
