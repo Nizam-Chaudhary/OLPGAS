@@ -8,14 +8,16 @@ class FilterSharedPreferencesHelper(
 ) {
 
     fun saveFilter(filter: Filter) {
-        if(filter.city != null) {
-            saveCityFilter(filter.city)
-        }
+        saveCityFilter(filter.city)
         if(filter.minRentAmount != null) {
             saveMinRentFilter(filter.minRentAmount)
+        } else {
+            saveMinRentFilter(0)
         }
         if(filter.maxRentAmount != null) {
             saveMaxRentFilter(filter.maxRentAmount)
+        } else {
+            saveMaxRentFilter(0)
         }
     }
 
@@ -31,7 +33,7 @@ class FilterSharedPreferencesHelper(
         sharedPreferences.edit().clear().apply()
     }
 
-    private fun saveCityFilter(city: String) {
+    private fun saveCityFilter(city: String?) {
         val sharedPreferences = context.getSharedPreferences(MY_FILTER_PREF_KEY, Context.MODE_PRIVATE)
         sharedPreferences.edit().putString(MY_FILTER_CITY_KEY, city).apply()
     }

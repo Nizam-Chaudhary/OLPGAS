@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -106,14 +107,16 @@ class ViewRoomActivity : AppCompatActivity() {
                 }
 
                 if(filter.minRentAmount != null) {
-                    inputMinRent?.setText(filter.minRentAmount)
+                    inputMinRent?.setText(filter.minRentAmount.toString())
                 }
 
                 if(filter.maxRentAmount != null) {
-                    inputMaxRent?.setText(filter.maxRentAmount)
+                    inputMaxRent?.setText(filter.maxRentAmount.toString())
                 }
 
-                MaterialAlertDialogBuilder(this)
+                val btnClearAllFilter = view.findViewById<Button>(R.id.btn_clear_filters)
+
+                val dialog = MaterialAlertDialogBuilder(this)
                     .setView(view)
                     .setTitle("Apply Filters")
                     .setPositiveButton("Apply") {_, _ ->
@@ -141,6 +144,12 @@ class ViewRoomActivity : AppCompatActivity() {
 
                     }
                     .show()
+
+                btnClearAllFilter.setOnClickListener {
+                    filterSharedPreferencesHelper.clearFilter()
+                    fetchRoomsDataAndSetAdapter()
+                    dialog.dismiss()
+                }
             }
         }
         return super.onOptionsItemSelected(item)
