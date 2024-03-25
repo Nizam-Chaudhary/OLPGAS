@@ -26,6 +26,7 @@ import com.example.olpgas.roomdetails.utils.FilterSharedPreferencesHelper
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.runBlocking
 
 class ViewRoomActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
@@ -56,16 +57,18 @@ class ViewRoomActivity : AppCompatActivity() {
         }
 
         setToggleButtonForNavigationDrawer()
-        navMenuItemClick()
-
-        authViewModel.isUserLoggedIn(this)
-        authViewModel.isLoggedIn.observe(this) {loggedIn ->
-            if(!loggedIn) {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
+        runBlocking {
+            authViewModel.isUserLoggedIn(this@ViewRoomActivity)
+            authViewModel.isLoggedIn.observe(this@ViewRoomActivity) {loggedIn ->
+                if(!loggedIn) {
+                    val intent = Intent(this@ViewRoomActivity, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
+
+        navMenuItemClick()
 
         fetchRoomsDataAndSetAdapter()
 
@@ -75,8 +78,6 @@ class ViewRoomActivity : AppCompatActivity() {
 
 
     }
-
-    //TODO Provide autocomplete to city in filters.
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.appbar_menu, menu)
