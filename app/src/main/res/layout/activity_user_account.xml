@@ -6,13 +6,14 @@
     android:id="@+id/main"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background"
-    android:paddingTop="30dp"
-    android:orientation="vertical"
     tools:context=".profile.ui.UserAccount">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView1"
@@ -20,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:cardCornerRadius="30dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/cardView2"
@@ -30,6 +32,7 @@
                 android:layout_width="100dp"
                 android:layout_height="92dp"
                 android:src="@drawable/temp_logo"
+                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -40,7 +43,6 @@
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
             app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
