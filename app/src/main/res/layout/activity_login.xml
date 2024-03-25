@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,6 +32,7 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
@@ -93,7 +95,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -105,11 +107,11 @@
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="32dp"
                 android:backgroundTint="@color/nonePrimary"
+                android:paddingVertical="16dp"
                 android:text="Sign In"
+                android:textColor="@color/primary"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:paddingVertical="16dp"
-                android:textColor="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtFieldPassword" />
@@ -136,9 +138,9 @@
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="80dp"
-                android:paddingVertical="16dp"
                 android:backgroundTint="@color/backgroundColor"
                 android:drawableLeft="@drawable/ic_google"
+                android:paddingVertical="16dp"
                 android:text="@string/SignInGoogle"
                 android:textColor="@color/textColor"
                 android:textSize="18sp"
