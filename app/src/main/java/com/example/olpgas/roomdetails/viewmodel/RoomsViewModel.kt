@@ -95,4 +95,23 @@ class RoomsViewModel : ViewModel() {
             }
         }
     }
+
+    fun removeRoomDetails(roomMasterId: Int, roomDetailsId: Int) {
+        viewModelScope.launch {
+            try {
+                client.postgrest.from("RoomMaster").delete {
+                    filter {
+                        eq("id", roomMasterId)
+                    }
+                }
+                client.postgrest.from("RoomDetails").delete {
+                    filter {
+                        eq("id", roomDetailsId)
+                    }
+                }
+            }catch (e: Exception) {
+                Log.e("Room","Error: ${e.message}")
+            }
+        }
+    }
 }

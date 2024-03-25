@@ -41,7 +41,7 @@ class MyRoomActivity : AppCompatActivity() {
 
     private fun setMyRoomDataAdapter(){
         binding.rvMyRooms.layoutManager = LinearLayoutManager(this)
-        val adapter = RoomRecyclerAdapter(emptyList(), this)
+        val adapter = RoomRecyclerAdapter(emptyList(), this, true)
         binding.rvMyRooms.adapter = adapter
 
         manageRoomViewModel.fetchMyRooms()

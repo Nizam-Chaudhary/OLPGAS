@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,11 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -30,8 +34,8 @@
                 android:id="@+id/detailed_room_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="15dp"
                 android:text="ABC Bungalow"
                 android:textColor="@color/textColor"
                 android:textSize="32sp"
@@ -49,9 +53,9 @@
                 android:drawablePadding="5dp"
                 android:paddingVertical="5dp"
                 android:paddingStart="10dp"
-                android:textSize="16sp"
                 android:text="Bypass Road, Vadodara, Gujarat"
                 android:textColor="@color/secondaryTextColor"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/materialDivider"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,9 +73,9 @@
 
             <TextView
                 android:id="@+id/detailed_roomSuitableFor_TV"
+                style="@style/detailed_room_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/detailed_room_textView"
                 android:text="Suitable For"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -82,19 +86,18 @@
                 android:id="@+id/details_roomSuitableFor_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
                 android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailed_roomSuitableFor_TV">
-            </com.google.android.material.chip.ChipGroup>
+                app:layout_constraintTop_toBottomOf="@id/detailed_roomSuitableFor_TV"></com.google.android.material.chip.ChipGroup>
 
 
             <TextView
                 android:id="@+id/amenities_tv"
+                style="@style/detailed_room_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/detailed_room_textView"
                 android:text="Amenities"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -110,8 +113,7 @@
                 android:paddingStart="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/amenities_tv">
-            </com.google.android.material.chip.ChipGroup>
+                app:layout_constraintTop_toBottomOf="@id/amenities_tv"></com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/materialDivider4"
@@ -125,12 +127,12 @@
 
             <TextView
                 android:id="@+id/roomTextView"
+                style="@style/detailed_room_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Details"
                 android:textSize="18sp"
-                style="@style/detailed_room_textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialDivider4" />
@@ -151,9 +153,9 @@
                     android:id="@+id/tv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Price"
                     android:paddingHorizontal="20dp"
-                    android:paddingVertical="7dp" />
+                    android:paddingVertical="7dp"
+                    android:text="Price" />
 
                 <TextView
                     android:id="@+id/roomPrice"
@@ -180,7 +182,7 @@
                     android:paddingHorizontal="10dp"
                     android:text="30000/-"
                     android:textColor="@color/Orange"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:paddingHorizontal="20dp"
@@ -191,8 +193,8 @@
                     android:id="@+id/shareable_tv"
                     android:paddingHorizontal="10dp"
                     android:text="3 People"
-                    android:textStyle="bold"
-                    android:textColor="@color/Orange" />
+                    android:textColor="@color/Orange"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:paddingHorizontal="20dp"
@@ -244,11 +246,11 @@
 
             <TextView
                 android:id="@+id/room_details_aboutTV"
+                style="@style/detailed_room_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="About Room"
                 android:textSize="18sp"
-                style="@style/detailed_room_textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/material_divider1" />
@@ -257,9 +259,9 @@
                 android:id="@+id/detailed_room_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="20dp"
                 android:paddingBottom="50dp"
                 android:textColor="@color/secondaryTextColor"
                 android:textSize="16sp"
@@ -267,6 +269,68 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/room_details_aboutTV" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_expand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_expand_more"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_edit_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:src="@drawable/ic_edit"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@id/fab_expand"
+        app:layout_constraintEnd_toEndOf="@id/fab_expand"
+        android:visibility="gone"
+        />
+
+    <!--<TextView
+        android:id="@+id/tv_edit_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Details"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginRight="12dp"
+        app:layout_constraintEnd_toStartOf="@id/fab_edit_room"
+        app:layout_constraintTop_toTopOf="@id/fab_edit_room"
+        app:layout_constraintBottom_toBottomOf="@id/fab_edit_room"
+        />-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_delete_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:src="@drawable/ic_remove"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@id/fab_edit_room"
+        app:layout_constraintEnd_toEndOf="@id/fab_edit_room"
+        android:visibility="gone"
+        />
+
+    <!--<TextView
+        android:id="@+id/tv_delete_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove Room"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginRight="12dp"
+        app:layout_constraintEnd_toStartOf="@id/fab_delete_room"
+        app:layout_constraintTop_toTopOf="@id/fab_delete_room"
+        app:layout_constraintBottom_toBottomOf="@id/fab_delete_room"
+        />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

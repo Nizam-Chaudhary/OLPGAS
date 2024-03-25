@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
-class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val context: Context) :
+class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val context: Context,private val manageRoom: Boolean = false) :
     RecyclerView.Adapter<RoomRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(view: RecyclerViewRoomsListBinding) : RecyclerView.ViewHolder(view.root) {
@@ -67,8 +67,10 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
             intent.putExtra("roomId",currentRoom.id)
             intent.putExtra("ownerId",currentRoom.ownerId)
             intent.putExtra("roomName",currentRoom.roomName)
+            if(manageRoom) {
+                intent.putExtra("manageRoom", true)
+            }
             context.startActivity(intent)
-
         }
     }
 

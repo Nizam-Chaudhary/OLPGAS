@@ -19,5 +19,6 @@ data class FullRoomDetails(
     val suitableFor: List<String>,
     val deposit: Int,
     val rentAmount: Int,
-    val description: String
+    val description: String,
+    val roomFeatureId: Int
 )
