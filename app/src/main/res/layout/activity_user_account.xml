@@ -26,6 +26,7 @@
             android:layout_marginBottom="35dp">
 
             <ImageView
+                android:id="@+id/iv_profile_pic"
                 android:layout_width="100dp"
                 android:layout_height="92dp"
                 android:src="@drawable/temp_logo"
