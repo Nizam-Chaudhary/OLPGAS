@@ -21,6 +21,7 @@ import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityAddRoomBinding
 import com.example.olpgas.manage_room.model.RoomDetails
 import com.example.olpgas.manage_room.model.RoomMaster
+import com.example.olpgas.manage_room.model.WorkState
 import com.example.olpgas.manage_room.viewmodel.ManageRoomViewModel
 import java.io.ByteArrayOutputStream
 
@@ -33,7 +34,7 @@ class AddRoomActivity : AppCompatActivity() {
         ViewModelProvider(this)[ManageRoomViewModel::class.java]
     }
 
-    val images = mutableListOf<ByteArray>()
+    private val images = mutableListOf<ByteArray>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +52,14 @@ class AddRoomActivity : AppCompatActivity() {
             getImages()
         }
 
-        addRoom()
+
+        val id = if(intent.getIntExtra("id", 0) == 0) null else intent.getIntExtra("id", 0)
+        val featureId = if(intent.getIntExtra("featureId", 0) == 0) null else intent.getIntExtra("featureId", 0)
+        val oldRoomName = intent.getStringExtra("oldRoomName")
+        addRoom(id, featureId, oldRoomName)
+        if(id != null) {
+            fetchAndSetData(id)
+        }
     }
 
     private fun getImages() {
@@ -137,42 +145,41 @@ class AddRoomActivity : AppCompatActivity() {
 
     private fun setUpSpinner() {
 
-                    val stateAdapter = ArrayAdapter.createFromResource(
-                        this,
-                        R.array.indian_states,
-                        android.R.layout.simple_spinner_item
-                    )
-                    stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    binding.spinnerState.adapter = stateAdapter
+        val stateAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.indian_states,
+            android.R.layout.simple_spinner_item
+        )
+        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerState.adapter = stateAdapter
 
-                    // Create array adapter for city spinner (initially empty)
-                    val cityAdapter = ArrayAdapter<String>(
-                        this,
-                        android.R.layout.simple_spinner_item
-                    )
-                    cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    binding.spinnerCity.adapter = cityAdapter
+        // Create array adapter for city spinner (initially empty)
+        val cityAdapter = ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_spinner_item
+        )
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinnerCity.adapter = cityAdapter
 
-                    // Set up on item selected listener for state spinner
-                    binding.spinnerState.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(
-                            parent: AdapterView<*>?,
-                            view: android.view.View?,
-                            position: Int,
-                            id: Long
-                        ) {
-                            // Clear previous city selection
-                            cityAdapter.clear()
+        // Set up on item selected listener for state spinner
+        binding.spinnerState.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: android.view.View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    // Clear previous city selection
+                    cityAdapter.clear()
 
-                            // Get selected state
-                            val selectedState = parent?.getItemAtPosition(position).toString()
+                    // Get selected state
+                    val selectedState = parent?.getItemAtPosition(position).toString()
 
-                            // Populate cities based on the selected state
-                            val citiesArrayId = resources.getIdentifier(
-                    selectedState.lowercase().replace(" ", "_") + "_cities",
-                    "array",
-                    packageName
-                )
+                    // Populate cities based on the selected state
+                    val citiesArrayId = resources.getIdentifier(
+            selectedState.lowercase().replace(" ", "_") + "_cities",
+            "array",
+            packageName)
                 val citiesArray = resources.getStringArray(citiesArrayId)
                 cityAdapter.addAll(citiesArray.toList())
             }
@@ -181,9 +188,6 @@ class AddRoomActivity : AppCompatActivity() {
 
             }
         }
-
-
-
         val roomTypeAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,resources.getStringArray(R.array.room_type))
         binding.spinnerRoomType.adapter=roomTypeAdapter
     }
@@ -221,7 +225,7 @@ class AddRoomActivity : AppCompatActivity() {
         private var allFieldValid = true
     }
 
-    private fun addRoom() {
+    private fun addRoom(id: Int? = null, featureID: Int? = null, oldRoomName: String? = null) {
         binding.btnSubmit.setOnClickListener {
             val roomName = binding.inputRoomName.editText?.text.toString()
             val roomNumber = binding.inputRoomNumber.editText?.text.toString()
@@ -242,70 +246,106 @@ class AddRoomActivity : AppCompatActivity() {
             if(roomName.isEmpty()) {
                 allFieldValid = false
                 binding.inputRoomName.error = " Please enter Room Name"
+            } else {
+                allFieldValid = true
+                binding.inputRoomName.error = null
             }
 
             if(roomName.isEmpty()) {
                 allFieldValid = false
                 binding.inputRoomNumber.error = " Please enter Room Number"
+            } else {
+                allFieldValid = true
+                binding.inputRoomNumber.error = null
             }
 
             if(roomArea.isEmpty()) {
                 allFieldValid = false
                 binding.inputRoomArea.error = " Please enter Room Area"
+            } else {
+                allFieldValid = true
+                binding.inputRoomArea.error = null
             }
 
             if(landmark.isEmpty()) {
                 allFieldValid = false
                 binding.inputLandmark.error = " Please enter Landmark"
+            } else {
+                allFieldValid = true
+                binding.inputLandmark.error = null
             }
 
             if(street.isEmpty()) {
                 allFieldValid = false
                 binding.inputStreetNumber.error = " Please enter Street"
+            } else {
+                allFieldValid = true
+                binding.inputStreetNumber.error = null
             }
 
             if(city == "Select Your District") {
                 allFieldValid = false
                 Toast.makeText(this, "Please select district", Toast.LENGTH_SHORT).show()
+            } else {
+                allFieldValid = true
             }
 
             if(shareableBy.isEmpty()) {
                 allFieldValid = false
                 binding.inputShareableBy.error = " Please enter shareable by"
+            } else {
+                allFieldValid = true
+                binding.inputShareableBy.error = null
             }
 
             if(rentAmount.isEmpty()) {
                 allFieldValid = false
                 binding.inputRentAmount.error = " Please enter Rent"
+            } else {
+                allFieldValid = true
+                binding.inputRentAmount.error = null
             }
 
             if(deposit.isEmpty()) {
                 allFieldValid = false
                 binding.inputDepositAmount.error = " Please enter Deposit"
+            } else {
+                allFieldValid = true
+                binding.inputDepositAmount.error = null
             }
 
             if(amenities.isEmpty()) {
                 allFieldValid = false
                 Toast.makeText(this, "Please select Amenities", Toast.LENGTH_SHORT).show()
+            } else {
+                allFieldValid = true
             }
 
             if(suitableFor.isEmpty()) {
                 allFieldValid = false
                 Toast.makeText(this, "Please select suitable for", Toast.LENGTH_SHORT).show()
+            } else {
+                allFieldValid = true
             }
 
             if(about.isEmpty()) {
                 allFieldValid = false
                 binding.inputAbout.error = " Please enter Description"
+            } else {
+                allFieldValid = true
+                binding.inputAbout.error = null
             }
 
-            if(images.isEmpty()) {
+            if(images.isEmpty() && id == null && featureID == null) {
                 allFieldValid = false
                 Toast.makeText(this, "Please select images", Toast.LENGTH_SHORT).show()
+            } else {
+                allFieldValid = true
             }
 
             if(allFieldValid) {
                 val roomDetails = RoomDetails(
+                    id = featureID,
                     roomArea = roomArea.toInt(),
                     shareable = shareableBy.toInt(),
                     roomType = roomType,
@@ -317,15 +357,37 @@ class AddRoomActivity : AppCompatActivity() {
                 )
 
                 val roomMaster = RoomMaster(
+                    id = id,
                     roomName = roomName,
                     roomNumber = roomNumber,
                     streetNumber = street,
                     landMark = landmark,
                     city = city,
-                    state = state
+                    state = state,
+                    roomFeatureId = featureID
                 )
 
-                manageRoomViewModel.uploadRoomDetails(roomDetails, roomMaster, images)
+                if(allFieldValid && id != null && featureID != null && oldRoomName != null) {
+                    manageRoomViewModel.updateRoomDetails(roomDetails, roomMaster, oldRoomName)
+                } else if(allFieldValid){
+                    manageRoomViewModel.uploadRoomDetails(roomDetails, roomMaster, images)
+                }
+
+                manageRoomViewModel.addRoomStatus.observe(this) {
+                    when(it) {
+                        WorkState.Loading -> {
+                            binding.btnSubmit.text = "Uploading Room Details"
+                        }
+                        is WorkState.Success -> {
+                            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                        is WorkState.Error -> {
+                            binding.btnSubmit.text = "Submit"
+                            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
             }
         }
     }
@@ -380,5 +442,83 @@ class AddRoomActivity : AppCompatActivity() {
         }
 
         return suitableFor
+    }
+
+    private fun fetchAndSetData(id: Int) {
+        manageRoomViewModel.fetchFullRoomDetails(id)
+        manageRoomViewModel.fullRoomDetails.observe(this) {
+
+            val stateAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.indian_states,
+                android.R.layout.simple_spinner_item
+            )
+            val citiesArrayId = resources.getIdentifier(
+                it.state.lowercase().replace(" ", "_") + "_cities",
+                "array",
+                packageName)
+            val citiesArray = resources.getStringArray(citiesArrayId)
+            val cityAdapter = ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_spinner_item
+            )
+            cityAdapter.addAll(citiesArray.toList())
+            binding.spinnerCity.adapter = cityAdapter
+
+            val roomTypeAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,resources.getStringArray(R.array.room_type))
+
+            binding.inputRoomName.editText?.setText(it.roomName)
+            binding.inputRoomNumber.editText?.setText(it.roomNumber)
+            binding.inputLandmark.editText?.setText(it.landMark)
+            binding.inputStreetNumber.editText?.setText(it.streetNumber)
+            binding.spinnerState.setSelection(stateAdapter.getPosition(it.state))
+            binding.spinnerCity.setSelection(cityAdapter.getPosition(it.city))
+            binding.spinnerRoomType.setSelection(roomTypeAdapter.getPosition(it.roomType))
+            binding.inputShareableBy.editText?.setText(it.shareable.toString())
+            binding.inputRentAmount.editText?.setText(it.rentAmount.toString())
+            binding.inputDepositAmount.editText?.setText(it.deposit.toString())
+            binding.inputRoomArea.editText?.setText(it.roomArea.toString())
+            binding.inputAbout.editText?.setText(it.description)
+
+            if(it.features.contains("AC")) {
+                binding.chipAC.isChecked = true
+            }
+
+            if(it.features.contains("Washing Machine")) {
+                binding.chipWashingMachine.isChecked = true
+            }
+
+            if(it.features.contains("Wi-Fi")) {
+                binding.chipWifi.isChecked = true
+            }
+
+            if(it.features.contains("Fans")) {
+                binding.chipFan.isChecked = true
+            }
+
+            if(it.features.contains("Geyser")) {
+                binding.chipGeyser.isChecked = true
+            }
+
+            if(it.features.contains("Furnished")) {
+                binding.chipFurnished.isChecked = true
+            }
+
+            if(it.suitableFor.contains("Students")) {
+                binding.chipStudents.isChecked = true
+            }
+
+            if(it.suitableFor.contains("Professionals")) {
+                binding.chipProfessionals.isChecked = true
+            }
+
+            if(it.suitableFor.contains("Couples")) {
+                binding.chipCouples.isChecked = true
+            }
+
+            if(it.suitableFor.contains("Solo")) {
+                binding.chipSolo.isChecked = true
+            }
+        }
     }
 }

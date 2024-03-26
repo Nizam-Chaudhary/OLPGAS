@@ -96,7 +96,7 @@ class RoomsViewModel : ViewModel() {
         }
     }
 
-    fun removeRoomDetails(roomMasterId: Int, roomDetailsId: Int) {
+    fun removeRoomDetails(roomMasterId: Int, roomDetailsId: Int, ownerId: String, roomName: String) {
         viewModelScope.launch {
             try {
                 client.postgrest.from("RoomMaster").delete {
@@ -108,6 +108,11 @@ class RoomsViewModel : ViewModel() {
                     filter {
                         eq("id", roomDetailsId)
                     }
+                }
+                val bucket = client.storage.from("RoomPics")
+                val files = bucket.list("$ownerId/$roomName")
+                for(file in files) {
+                    bucket.delete("$ownerId/$roomName/${file.name}")
                 }
             }catch (e: Exception) {
                 Log.e("Room","Error: ${e.message}")

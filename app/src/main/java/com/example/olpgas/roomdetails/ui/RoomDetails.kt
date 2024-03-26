@@ -1,6 +1,7 @@
 package com.example.olpgas.roomdetails.ui
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.R
 import com.example.olpgas.auth.data.network.SupabaseClient
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
+import com.example.olpgas.manage_room.ui.AddRoomActivity
 import com.example.olpgas.roomdetails.adapter.RoomsImageRecyclerPagerAdapter
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
 import com.google.android.material.chip.Chip
@@ -35,6 +37,9 @@ class RoomDetails : AppCompatActivity() {
     }
     private var manageRoom = false
 
+    private var roomId = 0
+    private var featureID = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -45,7 +50,7 @@ class RoomDetails : AppCompatActivity() {
         }
 
         manageRoom = intent.getBooleanExtra("manageRoom", false)
-        val roomId = intent.getIntExtra("roomId",1)
+        roomId = intent.getIntExtra("roomId",1)
         val ownerId = intent.getStringExtra("ownerId") ?: ""
         val roomName = intent.getStringExtra("roomName") ?: ""
 
@@ -57,21 +62,15 @@ class RoomDetails : AppCompatActivity() {
         }
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(manageRoom) {
-            menuInflater.inflate(R.menu.manage_room_menu, menu)
-        }
-        return super.onCreateOptionsMenu(menu)
-    }
-*/
     private fun setData(roomId: Int) {
         roomsViewModel.getFullRoomDetails(roomId)
 
         roomsViewModel.fullRoomDetails.observe(this) {roomDetails ->
+            featureID = roomDetails.roomFeatureId
             binding.detailedRoomName.text = roomDetails.roomName
             binding.detailedRoomLocation.text = "${roomDetails.streetNumber}, ${roomDetails.landMark}, ${roomDetails.city}, ${roomDetails.state}"
             binding.roomTypeTv.text = roomDetails.roomType
-            binding.shareableTv.text = roomDetails.shareable.toString()
+            binding.shareableTv.text = roomDetails.shareable.toString() + " Person"
             binding.roomAreaTv.text = roomDetails.roomArea.toString() + " Sq. Ft."
             binding.detailedRoomAbout.text = roomDetails.description
             binding.roomPrice.text = String.format(Locale.UK, "%,d", roomDetails.rentAmount) + "/-"
@@ -151,7 +150,10 @@ class RoomDetails : AppCompatActivity() {
                 .setTitle("Remove Room")
                 .setMessage("Are you sure you want to remove Room Details")
                 .setPositiveButton("Yes") {_,_ ->
-                    roomsViewModel.removeRoomDetails(roomsViewModel.fullRoomDetails.value!!.id, roomsViewModel.fullRoomDetails.value!!.roomFeatureId)
+                    roomsViewModel.removeRoomDetails(roomsViewModel.fullRoomDetails.value!!.id,
+                        roomsViewModel.fullRoomDetails.value!!.roomFeatureId,
+                        roomsViewModel.fullRoomDetails.value!!.ownerId,
+                        roomsViewModel.fullRoomDetails.value!!.roomName)
                     Toast.makeText(this, "Room Removed Successfully", Toast.LENGTH_SHORT).show()
                     finish()
                 }
@@ -162,7 +164,10 @@ class RoomDetails : AppCompatActivity() {
         }
 
         binding.fabEditRoom.setOnClickListener {
-            Toast.makeText(this, "Edit Room", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@RoomDetails, AddRoomActivity::class.java)
+            intent.putExtra("id", roomId)
+            intent.putExtra("featureId", featureID)
+            startActivity(intent)
         }
     }
 }

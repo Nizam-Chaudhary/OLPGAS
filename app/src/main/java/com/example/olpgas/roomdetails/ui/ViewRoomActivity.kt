@@ -78,8 +78,6 @@ class ViewRoomActivity : AppCompatActivity() {
         setProfilePicture()
 
         refreshLayout()
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
