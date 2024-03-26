@@ -11,10 +11,10 @@
         android:icon="@drawable/ic_home"
         android:title="My Rooms"/>
 
-    <item
+   <!-- <item
         android:id="@+id/setting"
         android:icon="@drawable/ic_settings"
-        android:title="Setting"/>
+        android:title="Setting"/>-->
 
     <item
         android:id="@+id/signOut"

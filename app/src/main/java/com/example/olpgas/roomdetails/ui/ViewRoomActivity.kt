@@ -163,7 +163,6 @@ class ViewRoomActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.profile -> startActivity(Intent(this@ViewRoomActivity,UserAccount::class.java))
                 R.id.my_rooms -> startActivity(Intent(this@ViewRoomActivity, MyRoomActivity::class.java))
-                R.id.setting -> {}
                 R.id.signOut -> {
                     val dialog = MaterialAlertDialogBuilder(this@ViewRoomActivity)
                         .setTitle("Sign Out!")

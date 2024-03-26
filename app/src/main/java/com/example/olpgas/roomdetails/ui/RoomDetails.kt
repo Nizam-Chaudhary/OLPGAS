@@ -127,7 +127,7 @@ class RoomDetails : AppCompatActivity() {
                 animEdit.start()
                 animRemove.duration = 100
                 animRemove.start()
-                binding.fabEditRoom.visibility = View.VISIBLE
+                binding.fabEditRoom.visibility = View.GONE
                 binding.fabDeleteRoom.visibility = View.VISIBLE
                 isFabVisible = true
                 binding.fabExpand.setIconResource(R.drawable.ic_expand_less)
