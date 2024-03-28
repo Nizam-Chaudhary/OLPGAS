@@ -94,13 +94,11 @@
 
                 <TextView
                     android:id="@+id/NameTV"
+                    style="@style/userProfile_HeadingTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:paddingStart="4dp"
                     android:text="Name"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/materialDividerEmail" />
@@ -109,10 +107,8 @@
                     android:id="@+id/uNameTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="10dp"
                     android:text="Vedika Patel"
-                    android:textSize="18sp"
+                    style="@style/userProfile_DataTV"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/NameTV" />
 
@@ -138,13 +134,11 @@
 
                 <TextView
                     android:id="@+id/GenderTV"
+                    style="@style/userProfile_HeadingTV"
                     android:layout_width="50pt"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:paddingStart="4dp"
                     android:text="Gender"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/AgeTv"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="@id/materialDividerName"
@@ -154,10 +148,8 @@
                     android:id="@+id/uGenderTV"
                     android:layout_width="50pt"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="10dp"
                     android:text="Female"
-                    android:textSize="18sp"
+                    style="@style/userProfile_DataTV"
                     app:layout_constraintStart_toStartOf="@id/GenderTV"
                     app:layout_constraintTop_toBottomOf="@id/GenderTV" />
 
@@ -175,13 +167,11 @@
 
                 <TextView
                     android:id="@+id/AgeTv"
+                    style="@style/userProfile_HeadingTV"
                     android:layout_width="50pt"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:paddingStart="4dp"
                     android:text="Age"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@id/materialDividerName"
                     app:layout_constraintStart_toEndOf="@id/GenderTV"
                     app:layout_constraintTop_toBottomOf="@id/materialDividerName" />
@@ -190,15 +180,14 @@
                     android:id="@+id/uAgeTV"
                     android:layout_width="50pt"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="10dp"
+                    style="@style/userProfile_DataTV"
                     android:text="16"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="@id/AgeTv"
                     app:layout_constraintTop_toBottomOf="@id/AgeTv" />
 
 
                 <ImageButton
+                    android:id="@+id/uAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -218,13 +207,11 @@
 
                 <TextView
                     android:id="@+id/PhoneNumberTV"
+                    style="@style/userProfile_HeadingTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:paddingStart="4dp"
                     android:text="Phone Number"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/materialDividerAge" />
@@ -233,15 +220,13 @@
                     android:id="@+id/uPhoneNumberTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="10dp"
+                    style="@style/userProfile_DataTV"
                     android:text="8469156804"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/PhoneNumberTV" />
 
                 <ImageButton
-
+                    android:id="@+id/uPhoneNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
@@ -262,60 +247,52 @@
 
                 <TextView
                     android:id="@+id/StreetTV"
+                    style="@style/userProfile_HeadingTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:paddingStart="4dp"
                     android:text="Street Name/No"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/materialDividerPhoneNumber" />
 
                 <TextView
-                    android:id="@+id/uAddressStreet"
+                    android:id="@+id/uAddressStreetTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="10dp"
+                    style="@style/userProfile_DataTV"
                     android:text="Kosamba Road"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/StreetTV" />
 
                 <ImageButton
-
+                    android:id="@+id/uAddressStreet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/uAddressStreet"
-                    app:layout_constraintEnd_toEndOf="@id/uAddressStreet"
-                    app:layout_constraintTop_toTopOf="@+id/uAddressStreet" />
+                    app:layout_constraintBottom_toBottomOf="@id/uAddressStreetTV"
+                    app:layout_constraintEnd_toEndOf="@id/uAddressStreetTV"
+                    app:layout_constraintTop_toTopOf="@+id/uAddressStreetTV" />
 
 
                 <TextView
                     android:id="@+id/CityTV"
+                    style="@style/userProfile_HeadingTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:paddingStart="4dp"
                     android:text="City"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uAddressStreet" />
+                    app:layout_constraintTop_toBottomOf="@id/uAddressStreetTV" />
 
                 <TextView
                     android:id="@+id/uAddressCityTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="10dp"
+                    style="@style/userProfile_DataTV"
                     android:text="Valsad"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/CityTV" />
 
@@ -334,10 +311,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:paddingStart="4dp"
                     android:text="State"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
+                    style="@style/userProfile_HeadingTV"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/uAddressCityTV" />
@@ -346,10 +321,8 @@
                     android:id="@+id/uAddressStateTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="10dp"
+                    style="@style/userProfile_DataTV"
                     android:text="Gujarat"
-                    android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/StateTV" />
 
