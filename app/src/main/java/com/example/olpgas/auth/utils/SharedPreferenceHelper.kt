@@ -6,19 +6,20 @@ class SharedPreferenceHelper(private val context: Context) {
 
     companion object {
         private const val MY_PREF_KEY = "PREF_KEY"
+        private const val MY_ACCESS_TOKEN = "ACCESS_TOKEN"
     }
 
-    fun saveStringData(key: String, data: String?) {
+    fun saveAccessToken(accessToken: String?) {
         val sharedPreferences = context.getSharedPreferences(MY_PREF_KEY, Context.MODE_PRIVATE)
-        sharedPreferences.edit().putString(key, data).apply()
+        sharedPreferences.edit().putString(MY_ACCESS_TOKEN, accessToken).apply()
     }
 
-    fun getStringData(key: String) : String? {
+    fun getAccessToken() : String? {
         val sharedPreferences = context.getSharedPreferences(MY_PREF_KEY, Context.MODE_PRIVATE)
-        return sharedPreferences.getString(key, null)
+        return sharedPreferences.getString(MY_ACCESS_TOKEN, null)
     }
 
-    fun clearPreferences() {
+    fun clearAccessToken() {
         val sharedPreferences = context.getSharedPreferences(MY_PREF_KEY, Context.MODE_PRIVATE)
         return sharedPreferences.edit().clear().apply()
 

@@ -29,7 +29,7 @@ class SupabaseAuthViewModel : ViewModel() {
     private val _userState = MutableLiveData<UserState>()
     val userState: LiveData<UserState> = _userState
 
-    private val _isLoggedIn = MutableLiveData<Boolean>(true)
+    private val _isLoggedIn = MutableLiveData(true)
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
 
     fun signUp(
@@ -51,23 +51,37 @@ class SupabaseAuthViewModel : ViewModel() {
                     .upsert(mapOf("email" to userEmail, "userName" to userName))
             } catch(e: Exception) {
                 _userState.value = UserState.Error("Error : ${e.message}")
+                Log.e("Authentication", "Error: ${e.message}")
             }
 
         }
     }
 
-    private fun saveToken(context: Context, googleIdToken: String? = null) {
+    private fun saveToken(context: Context) {
         viewModelScope.launch {
-            val accessToken = client.auth.currentAccessTokenOrNull() ?: googleIdToken
-            val sharedPref = SharedPreferenceHelper(context)
-            sharedPref.saveStringData("accessToken",accessToken)
+            try {
+                val accessToken = client.auth.currentSessionOrNull()?.accessToken
+                if (accessToken != null) {
+                    val sharedPreferencesHelper = SharedPreferenceHelper(context)
+                    sharedPreferencesHelper.saveAccessToken(accessToken)
+                    Log.i("Authentication", "Access token saved successfully")
+                } else {
+                    Log.w("Authentication", "No access token found in current session")
+                }
+            } catch (e: Exception) {
+                Log.e("Authentication", "Error saving token: ${e.message}")
+            }
         }
-
     }
 
     private fun getToken(context: Context): String? {
-        val sharedPref = SharedPreferenceHelper(context)
-        return sharedPref.getStringData("accessToken")
+        return try {
+            val sharedPreferencesHelper = SharedPreferenceHelper(context)
+            sharedPreferencesHelper.getAccessToken()
+        } catch (e: Exception) {
+            Log.e("Supabase", "Error getting token from Keystore: ${e.message}")
+            null
+        }
     }
 
     fun login(
@@ -86,20 +100,22 @@ class SupabaseAuthViewModel : ViewModel() {
                 _userState.value = UserState.Success("Logged In Successfully")
             } catch (e: Exception) {
                 _userState.value = UserState.Error("Error : ${e.message}")
+                Log.e("Authentication", "Error: ${e.message}")
             }
 
         }
     }
 
     fun logout(context: Context) {
-        val sharedPref = SharedPreferenceHelper(context)
+        val sharedPreferencesHelper = SharedPreferenceHelper(context)
         viewModelScope.launch {
             try {
                 client.auth.signOut()
-                sharedPref.clearPreferences()
+                sharedPreferencesHelper.clearAccessToken()
                 _userState.value = UserState.Success("Logged Out Successfully")
             } catch (e: Exception) {
                 _userState.value = UserState.Error("Error : ${e.message}")
+                Log.e("Authentication", "Error: ${e.message}")
             }
         }
     }
@@ -110,17 +126,19 @@ class SupabaseAuthViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val token = getToken(context)
-                if(token.isNullOrEmpty()) {
+                if (token.isNullOrEmpty()) {
                     _isLoggedIn.value = false
                 } else {
-                    client.auth.retrieveUser(token)
-                    client.auth.refreshCurrentSession()
-                    saveToken(context)
-                    _userState.value = UserState.Success("Already Logged In")
-                    _isLoggedIn.value = true
+                    val session = client.auth.currentSessionOrNull()
+                    if (session != null) {
+                        _isLoggedIn.value = true
+                    } else {
+                        client.auth.refreshSession(token)
+                        _isLoggedIn.value = true
+                    }
                 }
             } catch (e: Exception) {
-                _userState.value = UserState.Error("Error : ${e.message}")
+                Log.e("Authentication", "Error: ${e.message}")
             }
         }
     }
@@ -158,7 +176,7 @@ class SupabaseAuthViewModel : ViewModel() {
 
                 val googleIdToken = googleIdTokenCredential.idToken
 
-                saveToken(context, googleIdToken)
+                saveToken(context)
 
                 client.auth.signInWith(IDToken) {
                     idToken = googleIdToken
@@ -174,21 +192,21 @@ class SupabaseAuthViewModel : ViewModel() {
                     val userName = currentUser.userMetadata?.get("name").toString()
                     val email = currentUser.email
 
-                    client.postgrest.from("Users")
+                    client.postgrest.from("UserDetails")
                         .upsert(mapOf("email" to email, "userName" to userName.substring(1..userName.length-2)))
                 }
             } catch (e: androidx.credentials.exceptions.GetCredentialException) {
                 _userState.value = UserState.Error("Error: ${e.message}")
-                Log.d("Google Sign In", e.message.toString())
+                Log.e("Google Sign In", e.message.toString())
             } catch (e: GoogleIdTokenParsingException) {
                 _userState.value = UserState.Error("Error: ${e.message}")
-                Log.d("Google Sign In", e.message.toString())
+                Log.e("Google Sign In", e.message.toString())
             } catch (e: RestException) {
                 _userState.value = UserState.Error("Error: ${e.message}")
-                Log.d("Google Sign In", e.message.toString())
+                Log.e("Google Sign In", e.message.toString())
             } catch (e: Exception) {
                 _userState.value = UserState.Error("Error: ${e.message}")
-                Log.d("Google Sign In", e.message.toString())
+                Log.e("Google Sign In", e.message.toString())
             }
         }
     }
