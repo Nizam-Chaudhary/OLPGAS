@@ -32,9 +32,6 @@ class SupabaseAuthViewModel : ViewModel() {
     private val _isLoggedIn = MutableLiveData(true)
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
 
-    private val _isSessionActive = MutableLiveData(false)
-    val isSessionActive: LiveData<Boolean> = _isSessionActive
-
     fun signUp(
         context: Context,
         userName: String,
@@ -135,10 +132,8 @@ class SupabaseAuthViewModel : ViewModel() {
                     val session = client.auth.currentSessionOrNull()
                     if (session != null) {
                         _isLoggedIn.value = true
-                        _isSessionActive.value = true
                     } else {
                         client.auth.refreshSession(token)
-                        _isSessionActive.value = true
                         _isLoggedIn.value = true
                     }
                 }

@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgas.R
+import com.example.olpgas.auth.data.network.SupabaseClient
 import com.example.olpgas.auth.ui.LoginActivity
 import com.example.olpgas.auth.viewmodel.SupabaseAuthViewModel
 import com.example.olpgas.databinding.ActivityViewRoomsBinding
@@ -30,7 +31,12 @@ import com.example.olpgas.roomdetails.utils.FilterSharedPreferencesHelper
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import io.github.jan.supabase.gotrue.auth
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class ViewRoomActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
@@ -94,10 +100,16 @@ class ViewRoomActivity : AppCompatActivity() {
             }
         }
 
-        authViewModel.isSessionActive.observe(this) {
-            if(it) {
-                setUserName()
-                setProfilePicture()
+        CoroutineScope(Dispatchers.IO).launch {
+            while(true) {
+                val user = SupabaseClient.client.auth.currentUserOrNull()
+                if(user != null) {
+                    withContext(Dispatchers.Main) {
+                        setUserName()
+                        setProfilePicture()
+                    }
+                    break
+                }
             }
         }
     }
