@@ -62,10 +62,8 @@ class UserProfileViewModel: ViewModel() {
     fun getUserProfileData() {
         viewModelScope.launch {
             try {
-                _userProfileData.value = client.postgrest.from("Users")
+                _userProfileData.value = client.postgrest.from("UserDetails")
                     .select().decodeSingle<User>()
-
-                getUserProfileByteArray()
             }catch (e: Exception) {
                 Log.d("User Profile", e.message.toString())
             }

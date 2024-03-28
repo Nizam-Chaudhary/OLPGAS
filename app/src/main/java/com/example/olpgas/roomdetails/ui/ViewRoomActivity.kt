@@ -80,9 +80,6 @@ class ViewRoomActivity : AppCompatActivity() {
 
         fetchRoomsDataAndSetAdapter()
 
-        setUserName()
-        setProfilePicture()
-
         refreshLayout()
 
         profileViewModel.userProfilePictureStatus.observe(this) {
@@ -94,6 +91,13 @@ class ViewRoomActivity : AppCompatActivity() {
                     setProfilePicture()
                 }
                 is WorkState.Error -> {}
+            }
+        }
+
+        authViewModel.isSessionActive.observe(this) {
+            if(it) {
+                setUserName()
+                setProfilePicture()
             }
         }
     }
