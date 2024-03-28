@@ -176,13 +176,13 @@ class SupabaseAuthViewModel : ViewModel() {
 
                 val googleIdToken = googleIdTokenCredential.idToken
 
-                saveToken(context)
-
                 client.auth.signInWith(IDToken) {
                     idToken = googleIdToken
                     provider = Google
                     nonce = rawNonce
                 }
+
+                saveToken(context)
 
                 _userState.value = UserState.Success("Signed in successfully")
 
