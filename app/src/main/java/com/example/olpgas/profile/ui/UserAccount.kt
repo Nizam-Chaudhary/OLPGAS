@@ -3,7 +3,11 @@ package com.example.olpgas.profile.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.ImageButton
+import android.widget.RadioButton
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -88,7 +92,9 @@ class UserAccount : AppCompatActivity() {
                             .setTitle("Change Name")
                             .setPositiveButton("Save") {_, _ ->
 
+                                val userName = userNameInput.editText?.text.toString()
 
+                                Toast.makeText(this, userName, Toast.LENGTH_SHORT).show()
 
                             }
                             .setNegativeButton("Cancel") {_, _ ->
@@ -98,27 +104,154 @@ class UserAccount : AppCompatActivity() {
                     }
 
                     binding.uGender.id -> {
+                        val view = View.inflate(this, R.layout.userprofile_gender_raw, null)
 
+                        val genderMale = view.findViewById<RadioButton>(R.id.userProfileRadioMale)
+                        val genderFemale =
+                            view.findViewById<RadioButton>(R.id.userProfileRadioFemale)
+
+
+                        val dialog =
+                            MaterialAlertDialogBuilder(this).setView(view).setTitle("Change Gender")
+                                .setPositiveButton("Save") { _, _ ->
+
+                                    if (genderMale.isChecked) {
+                                        Toast.makeText(this, "male", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Toast.makeText(this, "Female", Toast.LENGTH_SHORT).show()
+                                    }
+
+                                }.setNegativeButton("Cancel") { _, _ ->
+
+                                }.show()
                     }
 
                     binding.uAge.id -> {
 
+                        val view = View.inflate(this, R.layout.userprofile_age_raw, null)
+
+                        val ageSpinner = view.findViewById<Spinner>(R.id.userProfileAgeSpinner)
+
+                        val numberArray = IntArray(61) { index -> index + 15 }
+                        numberArray.map { it.toString() }.toTypedArray()
+                        ageArray =
+                            Array(numberArray.size) { index -> numberArray[index].toString() }
+
+
+                        val ageSpinnerAdapter = ArrayAdapter(
+                            this, android.R.layout.simple_dropdown_item_1line, ageArray
+                        )
+
+                        ageSpinner.adapter = ageSpinnerAdapter
+
+
+                        //set age from here
+                        ageSpinner.setSelection(0)
+
+
+                        val dialog =
+                            MaterialAlertDialogBuilder(this).setView(view).setTitle("Change Age")
+                                .setPositiveButton("Save") { _, _ ->
+
+                                    Toast.makeText(
+                                        this, ageSpinner.selectedItem.toString(), Toast.LENGTH_SHORT
+                                    ).show()
+
+                                }.setNegativeButton("Cancel") { _, _ ->
+
+                                }.show()
                     }
 
                     binding.uPhoneNumber.id -> {
+                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
 
+
+                        val userPhoneNumberInput =
+                            view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
+                        userPhoneNumberInput.hint = "Phone Number"
+
+                        val dialog = MaterialAlertDialogBuilder(this)
+                            .setView(view)
+                            .setTitle("Change Phone Number")
+                            .setPositiveButton("Save") { _, _ ->
+
+                                val userName = userPhoneNumberInput.editText?.text.toString()
+
+
+                            }
+                            .setNegativeButton("Cancel") { _, _ ->
+
+                            }
+                            .show()
                     }
 
                     binding.uAddressStreet.id -> {
+                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
 
+
+                        val userAddressStreetInput =
+                            view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
+                        userAddressStreetInput.hint = "Name"
+
+                        val dialog = MaterialAlertDialogBuilder(this)
+                            .setView(view)
+                            .setTitle("Change Name")
+                            .setPositiveButton("Save") { _, _ ->
+
+                                val userName = userAddressStreetInput.editText?.text.toString()
+
+
+                            }
+                            .setNegativeButton("Cancel") { _, _ ->
+
+                            }
+                            .show()
                     }
 
                     binding.uAddressCity.id -> {
+                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
 
+
+                        val userAddressCityInput =
+                            view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
+                        userAddressCityInput.hint = "Name"
+
+                        val dialog = MaterialAlertDialogBuilder(this)
+                            .setView(view)
+                            .setTitle("Change Name")
+                            .setPositiveButton("Save") { _, _ ->
+
+                                val userName = userAddressCityInput.editText?.text.toString()
+
+
+                            }
+                            .setNegativeButton("Cancel") { _, _ ->
+
+                            }
+                            .show()
                     }
 
                     binding.uAddressState.id -> {
+                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
 
+
+                        val userAddressStateInput =
+                            view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
+                        userAddressStateInput.hint = "Name"
+
+                        val dialog = MaterialAlertDialogBuilder(this)
+                            .setView(view)
+                            .setTitle("Change Name")
+                            .setPositiveButton("Save") { _, _ ->
+
+                                val userName = userAddressStateInput.editText?.text.toString()
+
+
+                            }
+                            .setNegativeButton("Cancel") { _, _ ->
+
+                            }
+                            .show()
                     }
                 }
             }
