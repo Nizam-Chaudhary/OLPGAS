@@ -191,7 +191,7 @@ class UserAccount : AppCompatActivity() {
 
                         val userAddressStreetInput =
                             view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
-                        userAddressStreetInput.hint = "Name"
+                        userAddressStreetInput.hint = "Street"
 
                         val dialog = MaterialAlertDialogBuilder(this)
                             .setView(view)
@@ -214,7 +214,7 @@ class UserAccount : AppCompatActivity() {
 
                         val userAddressCityInput =
                             view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
-                        userAddressCityInput.hint = "Name"
+                        userAddressCityInput.hint = "City"
 
                         val dialog = MaterialAlertDialogBuilder(this)
                             .setView(view)
@@ -237,7 +237,7 @@ class UserAccount : AppCompatActivity() {
 
                         val userAddressStateInput =
                             view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
-                        userAddressStateInput.hint = "Name"
+                        userAddressStateInput.hint = "State"
 
                         val dialog = MaterialAlertDialogBuilder(this)
                             .setView(view)
