@@ -21,6 +21,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.databinding.ActivityUserAccountBinding
+import com.example.olpgas.profile.data.model.ProfileSaveStatus
 import com.example.olpgas.profile.data.model.User
 import com.example.olpgas.profile.viewmodel.UserProfileViewModel
 import java.io.ByteArrayOutputStream
@@ -50,6 +51,7 @@ class UserAccount : AppCompatActivity() {
             insets
         }
 
+        setUserProfileData()
         binding.uProfile.setOnClickListener {
             if(binding.uProfile.text == "Save Profile") {
                 val user = performValidationsAndExtractValue()
@@ -58,13 +60,19 @@ class UserAccount : AppCompatActivity() {
                     if(profileImageByteArray != null) {
                         userViewModel.saveUserProfilePicture(profileImageByteArray!!)
                     }
-                    setUserProfileData()
                 }
             }
             if (binding.EditLayout.visibility == View.VISIBLE && allFieldValid) offEditProfileLayout() else onEditProfileLayout()
         }
 
-        setUserProfileData()
+        userViewModel.profileSaveStatus.observe(this) {
+            when(it) {
+                ProfileSaveStatus.Success -> {
+                    //setUserProfileData()
+                }
+                else -> {}
+            }
+        }
     }
 
 

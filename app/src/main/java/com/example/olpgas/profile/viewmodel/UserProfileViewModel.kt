@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.data.network.SupabaseClient.client
+import com.example.olpgas.manage_room.model.WorkState
 import com.example.olpgas.profile.data.model.ProfileSaveStatus
 import com.example.olpgas.profile.data.model.User
 import io.github.jan.supabase.gotrue.auth
@@ -24,9 +25,13 @@ class UserProfileViewModel: ViewModel() {
     private val _userProfileImageByteArray = MutableLiveData<ByteArray>()
     val userProfileImageByteArray: LiveData<ByteArray> = _userProfileImageByteArray
 
+    private val _userProfilePictureStatus = MutableLiveData<WorkState>()
+    val userProfilePictureStatus: LiveData<WorkState> =_userProfilePictureStatus
+
     fun saveUserProfile(user: User) {
         viewModelScope.launch {
             try {
+                _profileSaveStatus.value = ProfileSaveStatus.Success
                 client.postgrest.from("Users")
                     .upsert(user)
                 _profileSaveStatus.value = ProfileSaveStatus.Success
@@ -40,10 +45,13 @@ class UserProfileViewModel: ViewModel() {
     fun saveUserProfilePicture(imageByteArray: ByteArray) {
         viewModelScope.launch {
             try {
+                _userProfilePictureStatus.value = WorkState.Loading
                 val ownerId = client.auth.currentUserOrNull()?.id
                 client.storage.from("ProfilePics")
                     .upload("$ownerId/profile.jpg", imageByteArray, upsert = true)
+                _userProfilePictureStatus.value = WorkState.Success("Profile image uploaded")
             } catch (e: Exception) {
+                _userProfilePictureStatus.value = WorkState.Error("error uploading image")
                 Log.d("User Profile", "Error: ${e.message}")
             }
         }

@@ -20,8 +20,10 @@ import com.example.olpgas.R
 import com.example.olpgas.auth.ui.LoginActivity
 import com.example.olpgas.auth.viewmodel.SupabaseAuthViewModel
 import com.example.olpgas.databinding.ActivityViewRoomsBinding
+import com.example.olpgas.manage_room.model.WorkState
 import com.example.olpgas.manage_room.ui.MyRoomActivity
 import com.example.olpgas.profile.ui.UserAccount
+import com.example.olpgas.profile.viewmodel.UserProfileViewModel
 import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
 import com.example.olpgas.roomdetails.data.model.Filter
 import com.example.olpgas.roomdetails.utils.FilterSharedPreferencesHelper
@@ -43,6 +45,10 @@ class ViewRoomActivity : AppCompatActivity() {
 
     private val roomViewModel: RoomsViewModel by lazy {
         ViewModelProvider(this)[RoomsViewModel::class.java]
+    }
+
+    private val profileViewModel: UserProfileViewModel by lazy {
+        ViewModelProvider(this)[UserProfileViewModel::class.java]
     }
 
     private val filterSharedPreferencesHelper: FilterSharedPreferencesHelper by lazy {
@@ -78,6 +84,18 @@ class ViewRoomActivity : AppCompatActivity() {
         setProfilePicture()
 
         refreshLayout()
+
+        profileViewModel.userProfilePictureStatus.observe(this) {
+            when(it) {
+                WorkState.Loading -> {
+
+                }
+                is WorkState.Success -> {
+                    setProfilePicture()
+                }
+                is WorkState.Error -> {}
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
