@@ -323,6 +323,9 @@
                     android:layout_height="wrap_content"
                     style="@style/userProfile_DataTV"
                     android:text="Gujarat"
+                    android:layout_marginBottom="50dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/StateTV" />
 
@@ -335,33 +338,6 @@
                     app:layout_constraintBottom_toBottomOf="@id/uAddressStateTV"
                     app:layout_constraintEnd_toEndOf="@id/uAddressStateTV"
                     app:layout_constraintTop_toTopOf="@+id/uAddressStateTV" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/materialDividerAddress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uAddressStateTV"
-                    tools:layout_editor_absoluteY="50dp" />
-
-                <Button
-                    android:id="@+id/uProfile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="30dp"
-                    android:paddingVertical="10dp"
-                    android:text="Edit Profile"
-                    android:textColor="@color/primary"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/materialDividerAddress"
-                    tools:layout_editor_absoluteY="50dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
