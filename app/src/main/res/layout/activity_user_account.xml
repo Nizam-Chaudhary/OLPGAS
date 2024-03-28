@@ -55,264 +55,322 @@
                 android:layout_height="match_parent"
                 android:background="@color/primary"
                 android:orientation="vertical"
-                android:paddingHorizontal="12dp"
+                android:paddingHorizontal="25dp"
                 android:paddingTop="50dp">
 
-
-                <ImageView
-                    android:id="@+id/icon_email"
-                    android:layout_width="32dp"
+                <TextView
+                    android:id="@+id/uEmailTV"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_email"
-                    app:layout_constraintBottom_toBottomOf="@+id/uEmail"
-                    app:layout_constraintEnd_toStartOf="@id/uEmail"
+                    android:drawableLeft="@drawable/ic_email"
+                    android:drawablePadding="10dp"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="15dp"
+                    android:text="vp@gmail.com"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/uEmail" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <!--                <ImageButton-->
+                <!--                    android:id="@+id/uEmail"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:background="@android:color/transparent"-->
+                <!--                    android:src="@drawable/ic_right_arrow"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@id/uEmailTV"-->
+                <!--                    app:layout_constraintEnd_toEndOf="@id/uEmailTV"-->
+                <!--                    app:layout_constraintTop_toTopOf="@+id/uEmailTV" />-->
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/uEmail"
-                    android:layout_width="0dp"
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDividerEmail"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:hint="Email"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/icon_email"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/uEmailTV"
+                    tools:layout_editor_absoluteY="50dp" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textColor="@color/textColor" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <TextView
+                    android:id="@+id/NameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingStart="4dp"
+                    android:text="Name"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/materialDividerEmail" />
+
+                <TextView
+                    android:id="@+id/uNameTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:text="Vedika Patel"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/NameTV" />
+
+                <ImageButton
                     android:id="@+id/uName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/uNameTV"
+                    app:layout_constraintEnd_toEndOf="@id/uNameTV"
+                    app:layout_constraintTop_toTopOf="@+id/uNameTV" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDividerName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:hint="Name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uEmail">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textColor="@color/textColor" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintTop_toBottomOf="@id/uNameTV"
+                    tools:layout_editor_absoluteY="50dp" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/uGender"
+                <TextView
+                    android:id="@+id/GenderTV"
                     android:layout_width="50pt"
-                    android:layout_height="60dp"
-
-                    android:layout_marginTop="16dp"
-                    android:hint="Gender"
-                    app:layout_constraintEnd_toStartOf="@id/uAge"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingStart="4dp"
+                    android:text="Gender"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/AgeTv"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="@+id/uName"
-                    app:layout_constraintTop_toBottomOf="@id/uName">
+                    app:layout_constraintStart_toStartOf="@id/materialDividerName"
+                    app:layout_constraintTop_toBottomOf="@id/materialDividerName" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textColor="@color/textColor" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/uAge"
+                <TextView
+                    android:id="@+id/uGenderTV"
                     android:layout_width="50pt"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="16dp"
-                    android:hint="Age"
-                    app:layout_constraintEnd_toEndOf="@+id/uName"
-                    app:layout_constraintStart_toEndOf="@id/uGender"
-                    app:layout_constraintTop_toBottomOf="@id/uName">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textColor="@color/textColor" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:text="Female"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/GenderTV"
+                    app:layout_constraintTop_toBottomOf="@id/GenderTV" />
 
 
-                <LinearLayout
-                    android:id="@+id/EditLayout"
+                <ImageButton
+                    android:id="@+id/uGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/uGenderTV"
+                    app:layout_constraintEnd_toEndOf="@id/uGenderTV"
+                    app:layout_constraintTop_toTopOf="@+id/uGenderTV" />
+
+
+                <TextView
+                    android:id="@+id/AgeTv"
+                    android:layout_width="50pt"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingStart="4dp"
+                    android:text="Age"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/materialDividerName"
+                    app:layout_constraintStart_toEndOf="@id/GenderTV"
+                    app:layout_constraintTop_toBottomOf="@id/materialDividerName" />
+
+                <TextView
+                    android:id="@+id/uAgeTV"
+                    android:layout_width="50pt"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:text="16"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@id/AgeTv"
+                    app:layout_constraintTop_toBottomOf="@id/AgeTv" />
+
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/uAgeTV"
+                    app:layout_constraintEnd_toEndOf="@id/uAgeTV"
+                    app:layout_constraintTop_toTopOf="@+id/uAgeTV" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDividerAge"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="7dp"
-                    android:visibility="gone"
-                    android:weightSum="5"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uName"
-                    tools:layout_editor_absoluteY="50dp">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textAlignment="viewEnd"
-                        android:paddingEnd="5dp"
-                        android:textSize="17sp"
-                        android:text="Age"
-                        android:textColor="@color/textColor" />
+                    app:layout_constraintTop_toBottomOf="@id/uGenderTV" />
 
-                    <Spinner
-                        android:id="@+id/ageSpinner"
-                        style="@style/mySpinnerItemStyle"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:dropDownWidth="50dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:textSize="17sp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingEnd="5dp"
-                        android:text="Gender"
-                        android:textAlignment="viewEnd"
-                        android:textColor="@color/textColor" />
-
-                    <RadioGroup
-                        android:id="@+id/genderRadioGroup"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/radioMale"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Male"
-                            android:textColor="@color/textColor" />
-
-
-                        <RadioButton
-                            android:id="@+id/radioFemale"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Female"
-                            android:textColor="@color/textColor" />
-                    </RadioGroup>
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/icon_phonenumber"
-                    android:layout_width="32dp"
+                <TextView
+                    android:id="@+id/PhoneNumberTV"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_phone"
-                    app:layout_constraintBottom_toBottomOf="@+id/uPhoneNumber"
-                    app:layout_constraintEnd_toStartOf="@id/uPhoneNumber"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/uPhoneNumber" />
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/uPhoneNumber"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:hint="PhoneNumber"
+                    android:layout_marginTop="18dp"
+                    android:paddingStart="4dp"
+                    android:text="Phone Number"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_phonenumber"
-                    app:layout_constraintTop_toBottomOf="@id/uGender">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/materialDividerAge" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textColor="@color/textColor" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/uPhoneNumberTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:text="8469156804"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/PhoneNumberTV" />
 
-                <ImageView
-                    android:id="@+id/icon_address"
-                    android:layout_width="32dp"
+                <ImageButton
+
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/ic_addresss"
-                    app:layout_constraintBottom_toBottomOf="@+id/uAddressStreet"
-                    app:layout_constraintEnd_toStartOf="@id/uAddressStreet"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/uPhoneNumberTV"
+                    app:layout_constraintEnd_toEndOf="@id/uPhoneNumberTV"
+                    app:layout_constraintTop_toTopOf="@+id/uPhoneNumberTV" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDividerPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/uPhoneNumberTV"
+                    tools:layout_editor_absoluteY="50dp" />
+
+
+                <TextView
+                    android:id="@+id/StreetTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:paddingStart="4dp"
+                    android:text="Street Name/No"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/materialDividerPhoneNumber" />
+
+                <TextView
+                    android:id="@+id/uAddressStreet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:text="Kosamba Road"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/StreetTV" />
+
+                <ImageButton
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/uAddressStreet"
+                    app:layout_constraintEnd_toEndOf="@id/uAddressStreet"
                     app:layout_constraintTop_toTopOf="@+id/uAddressStreet" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/uAddressStreet"
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/CityTV"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:hint="Street No/Name"
+                    android:layout_marginTop="15dp"
+                    android:paddingStart="4dp"
+                    android:text="City"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_address"
-                    app:layout_constraintTop_toBottomOf="@id/uPhoneNumber">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/uAddressStreet" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textColor="@color/textColor" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/uAddressCityTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:text="Valsad"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/CityTV" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <ImageButton
                     android:id="@+id/uAddressCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/uAddressCityTV"
+                    app:layout_constraintEnd_toEndOf="@id/uAddressCityTV"
+                    app:layout_constraintTop_toTopOf="@+id/uAddressCityTV" />
+
+                <TextView
+                    android:id="@+id/StateTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:hint="City"
+                    android:layout_marginTop="15dp"
+                    android:paddingStart="4dp"
+                    android:text="State"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uAddressStreet">
+                    app:layout_constraintTop_toBottomOf="@id/uAddressCityTV" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textColor="@color/textColor" />
-                </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    android:id="@+id/uAddressStateTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="10dp"
+                    android:text="Gujarat"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/StateTV" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <ImageButton
                     android:id="@+id/uAddressState"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/uAddressStateTV"
+                    app:layout_constraintEnd_toEndOf="@id/uAddressStateTV"
+                    app:layout_constraintTop_toTopOf="@+id/uAddressStateTV" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDividerAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    android:hint="State"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uAddressCity">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:enabled="false"
-                        android:textColor="@color/textColor" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintTop_toBottomOf="@id/uAddressStateTV"
+                    tools:layout_editor_absoluteY="50dp" />
 
                 <Button
                     android:id="@+id/uProfile"
@@ -329,7 +387,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uAddressState"
+                    app:layout_constraintTop_toBottomOf="@id/materialDividerAddress"
                     tools:layout_editor_absoluteY="50dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
