@@ -1,30 +1,18 @@
 package com.example.olpgas.profile.ui
 
 
-import android.Manifest
-import android.R
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityUserAccountBinding
-import com.example.olpgas.profile.data.model.ProfileSaveStatus
-import com.example.olpgas.profile.data.model.User
 import com.example.olpgas.profile.viewmodel.UserProfileViewModel
-import java.io.ByteArrayOutputStream
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputLayout
 
 
 class UserAccount : AppCompatActivity() {
@@ -73,6 +61,71 @@ class UserAccount : AppCompatActivity() {
 //                else -> {}
 //            }
 //        }
+
+
+        val imageButtonIds = intArrayOf(
+            binding.uName.id,
+            binding.uGender.id,
+            binding.uAge.id,
+            binding.uPhoneNumber.id,
+            binding.uAddressStreet.id,
+            binding.uAddressCity.id,
+            binding.uAddressState.id
+        )
+
+        for (imageButtonId in imageButtonIds) {
+            findViewById<ImageButton>(imageButtonId).setOnClickListener { view ->
+                when (view.id) {
+                    binding.uName.id -> {
+                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
+
+
+                        val userNameInput = view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
+                        userNameInput.hint = "Name"
+
+                        val dialog = MaterialAlertDialogBuilder(this)
+                            .setView(view)
+                            .setTitle("Change Name")
+                            .setPositiveButton("Save") {_, _ ->
+
+
+
+                            }
+                            .setNegativeButton("Cancel") {_, _ ->
+
+                            }
+                            .show()
+                    }
+
+                    binding.uGender.id -> {
+
+                    }
+
+                    binding.uAge.id -> {
+
+                    }
+
+                    binding.uPhoneNumber.id -> {
+
+                    }
+
+                    binding.uAddressStreet.id -> {
+
+                    }
+
+                    binding.uAddressCity.id -> {
+
+                    }
+
+                    binding.uAddressState.id -> {
+
+                    }
+                }
+            }
+        }
+
+
+
     }
 //
 //

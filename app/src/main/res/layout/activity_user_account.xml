@@ -107,7 +107,7 @@
                     android:id="@+id/uNameTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vedika Patel"
+                    android:text="VP Patel"
                     style="@style/userProfile_DataTV"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/NameTV" />
@@ -148,7 +148,7 @@
                     android:id="@+id/uGenderTV"
                     android:layout_width="50pt"
                     android:layout_height="wrap_content"
-                    android:text="Female"
+                    android:text="male"
                     style="@style/userProfile_DataTV"
                     app:layout_constraintStart_toStartOf="@id/GenderTV"
                     app:layout_constraintTop_toBottomOf="@id/GenderTV" />
