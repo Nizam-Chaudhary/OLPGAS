@@ -9,8 +9,10 @@ import com.example.olpgas.auth.data.network.SupabaseClient.client
 import com.example.olpgas.manage_room.model.WorkState
 import com.example.olpgas.profile.data.model.ProfileSaveStatus
 import com.example.olpgas.profile.data.model.User
+import com.example.olpgas.roomdetails.data.model.OwnerId
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.postgrest
+import io.github.jan.supabase.postgrest.query.Columns
 import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.launch
 
@@ -63,11 +65,22 @@ class UserProfileViewModel: ViewModel() {
                 _userProfileData.value = client.postgrest.from("Users")
                     .select().decodeSingle<User>()
 
-                val ownerId = client.auth.currentUserOrNull()?.id
-                _userProfileImageByteArray.value = client.storage.from("ProfilePics")
-                    .downloadAuthenticated("$ownerId/profile.jpg")
+                getUserProfileByteArray()
             }catch (e: Exception) {
                 Log.d("User Profile", e.message.toString())
+            }
+        }
+    }
+
+    fun getUserProfileByteArray() {
+        viewModelScope.launch {
+            try {
+                val ownerId = client.postgrest.from("UserDetails")
+                    .select(Columns.list("userId")).decodeSingle<OwnerId>().userId
+                _userProfileImageByteArray.value = client.storage.from("ProfilePics")
+                    .downloadAuthenticated("$ownerId/profile.jpg")
+            } catch (e: Exception) {
+                Log.e("UserProfilePicture","Error: ${e.message}")
             }
         }
     }

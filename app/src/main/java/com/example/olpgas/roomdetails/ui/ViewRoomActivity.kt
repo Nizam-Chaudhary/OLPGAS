@@ -156,9 +156,9 @@ class ViewRoomActivity : AppCompatActivity() {
                         } else {
                             null
                         }
-                        val filter = Filter(city, minRentAmount, maxRentAmount)
-                        filterSharedPreferencesHelper.saveFilter(filter)
-                        fetchRoomsDataAndSetAdapter(filter)
+                        val filterData = Filter(city, minRentAmount, maxRentAmount)
+                        filterSharedPreferencesHelper.saveFilter(filterData)
+                        fetchRoomsDataAndSetAdapter(filterData)
                     }
                     .setNegativeButton("Cancel") {_, _ ->
 
@@ -235,8 +235,8 @@ class ViewRoomActivity : AppCompatActivity() {
     }
 
     private fun setProfilePicture() {
-        roomViewModel.getUserProfileByteArray()
-        roomViewModel.userProfileImageByteArray.observe(this) {
+        profileViewModel.getUserProfileByteArray()
+        profileViewModel.userProfileImageByteArray.observe(this) {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             binding.navView.getHeaderView(0).findViewById<ImageView>(R.id.iv_profile_pic).setImageBitmap(bitmap)
         }
