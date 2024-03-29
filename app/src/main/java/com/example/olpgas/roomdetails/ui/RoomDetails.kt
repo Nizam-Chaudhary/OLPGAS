@@ -51,12 +51,6 @@ class RoomDetails : AppCompatActivity() {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
 
         manageRoom = intent.getBooleanExtra("manageRoom", false)
         roomId = intent.getIntExtra("roomId",1)

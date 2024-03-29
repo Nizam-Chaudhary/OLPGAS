@@ -26,7 +26,8 @@
         <item name="colorSecondary">#80CBC4</item>
         <item name="colorSecondaryVariant">#0097A7</item>
         <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor" >?attr/colorPrimary</item>
+        <item name="android:statusBarColor" >@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
     <style name="UserProfileStatusBarTheme" parent="Theme.Material3.DayNight.NoActionBar">
