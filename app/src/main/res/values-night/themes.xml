@@ -29,6 +29,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <item name="android:statusBarColor">@color/black</item> <!-- Set status bar color -->
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
 

@@ -29,6 +29,8 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
         val roomNameTV: TextView = view.roomNameTv
         val roomLocationTV: TextView = view.roomLocationTv
         val roomPrice: TextView = view.rentAmountTv
+        val roomDeposit: TextView = view.depositAmountTv
+        val roomAbout: TextView = view.roomAboutTv
         val roomImage: ImageView = view.roomImage
     }
 
@@ -59,7 +61,9 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
         val deposit = String.format(Locale.UK, "%,d", currentRoom.deposit) + "/-"
         holder.roomNameTV.text = currentRoom.roomName
         holder.roomLocationTV.text = currentRoom.city
+//        holder.roomAbout.text = currentRoom.
         holder.roomPrice.text = roomPrice
+        holder.roomDeposit.text = deposit
 //        holder.roomContactBtn.text = data[position][2]
 
         holder.roomImage.setOnClickListener {
