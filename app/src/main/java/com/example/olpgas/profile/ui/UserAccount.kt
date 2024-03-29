@@ -3,14 +3,13 @@ package com.example.olpgas.profile.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityUserAccountBinding
@@ -74,20 +73,23 @@ class UserAccount : AppCompatActivity() {
 
         for (imageButtonId in imageButtonIds) {
             findViewById<ImageButton>(imageButtonId).setOnClickListener { view ->
+
+                val updateProfileDialogView =
+                    View.inflate(this, R.layout.change_user_profiel_raw, null)
+                val userProfileData =
+                    updateProfileDialogView.findViewById<TextInputLayout>(R.id.changeUserProfileData)
+
                 when (view.id) {
                     binding.uName.id -> {
-                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
 
-
-                        val userNameInput = view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
-                        userNameInput.hint = "Name"
-
-                        val dialog = MaterialAlertDialogBuilder(this)
-                            .setView(view)
+                        userProfileData.hint = "Name"
+                        val dialog = MaterialAlertDialogBuilder(this).setView(
+                            updateProfileDialogView
+                        )
                             .setTitle("Change Name")
                             .setPositiveButton("Save") {_, _ ->
 
-                                val userName = userNameInput.editText?.text.toString()
+                                val userName = userProfileData.editText?.text.toString()
 
                                 Toast.makeText(this, userName, Toast.LENGTH_SHORT).show()
 
@@ -158,19 +160,16 @@ class UserAccount : AppCompatActivity() {
                     }
 
                     binding.uPhoneNumber.id -> {
-                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
 
+                        userProfileData.hint = "Phone Number"
 
-                        val userPhoneNumberInput =
-                            view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
-                        userPhoneNumberInput.hint = "Phone Number"
-
-                        val dialog = MaterialAlertDialogBuilder(this)
-                            .setView(view)
+                        val dialog = MaterialAlertDialogBuilder(this).setView(
+                            updateProfileDialogView
+                        )
                             .setTitle("Change Phone Number")
                             .setPositiveButton("Save") { _, _ ->
 
-                                val userName = userPhoneNumberInput.editText?.text.toString()
+                                val userName = userProfileData.editText?.text.toString()
 
 
                             }
@@ -181,19 +180,16 @@ class UserAccount : AppCompatActivity() {
                     }
 
                     binding.uAddressStreet.id -> {
-                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
 
+                        userProfileData.hint = "Street"
 
-                        val userAddressStreetInput =
-                            view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
-                        userAddressStreetInput.hint = "Street"
-
-                        val dialog = MaterialAlertDialogBuilder(this)
-                            .setView(view)
+                        val dialog = MaterialAlertDialogBuilder(this).setView(
+                            updateProfileDialogView
+                        )
                             .setTitle("Change Name")
                             .setPositiveButton("Save") { _, _ ->
 
-                                val userName = userAddressStreetInput.editText?.text.toString()
+                                val userName = userProfileData.editText?.text.toString()
 
 
                             }
@@ -204,49 +200,11 @@ class UserAccount : AppCompatActivity() {
                     }
 
                     binding.uAddressCity.id -> {
-                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
-
-
-                        val userAddressCityInput =
-                            view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
-                        userAddressCityInput.hint = "City"
-
-                        val dialog = MaterialAlertDialogBuilder(this)
-                            .setView(view)
-                            .setTitle("Change Name")
-                            .setPositiveButton("Save") { _, _ ->
-
-                                val userName = userAddressCityInput.editText?.text.toString()
-
-
-                            }
-                            .setNegativeButton("Cancel") { _, _ ->
-
-                            }
-                            .show()
+                        showStateCityUpdateDialog()
                     }
 
                     binding.uAddressState.id -> {
-                        val view = View.inflate(this, R.layout.change_user_profiel_raw, null)
-
-
-                        val userAddressStateInput =
-                            view.findViewById<TextInputLayout>(R.id.changeUserProfileData)
-                        userAddressStateInput.hint = "State"
-
-                        val dialog = MaterialAlertDialogBuilder(this)
-                            .setView(view)
-                            .setTitle("Change Name")
-                            .setPositiveButton("Save") { _, _ ->
-
-                                val userName = userAddressStateInput.editText?.text.toString()
-
-
-                            }
-                            .setNegativeButton("Cancel") { _, _ ->
-
-                            }
-                            .show()
+                        showStateCityUpdateDialog()
                     }
                 }
             }
@@ -254,6 +212,67 @@ class UserAccount : AppCompatActivity() {
 
 
 
+    }
+
+    private fun showStateCityUpdateDialog() {
+        val updateUserAddressView = View.inflate(this, R.layout.user_profile_statecity, null)
+
+        val updateUserState =
+            updateUserAddressView.findViewById<Spinner>(R.id.update_userProfile_spinner_state)
+
+        val updateUserCity =
+            updateUserAddressView.findViewById<Spinner>(R.id.update_userProfileSpinner_city)
+
+
+        val stateAdapter = ArrayAdapter.createFromResource(
+            this, R.array.indian_states, android.R.layout.simple_spinner_item
+        )
+        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        updateUserState.adapter = stateAdapter
+
+        // Create array adapter for city spinner (initially empty)
+        val cityAdapter = ArrayAdapter<String>(
+            this, android.R.layout.simple_spinner_item
+        )
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        updateUserCity.adapter = cityAdapter
+
+        // Set up on item selected listener for state spinner
+        updateUserState.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?, view: android.view.View?, position: Int, id: Long
+            ) {
+                // Clear previous city selection
+                cityAdapter.clear()
+
+                // Get selected state
+                val selectedState = parent?.getItemAtPosition(position).toString()
+
+                // Populate cities based on the selected state
+                val citiesArrayId = resources.getIdentifier(
+                    selectedState.lowercase().replace(" ", "_") + "_cities", "array", packageName
+                )
+                val citiesArray = resources.getStringArray(citiesArrayId)
+                cityAdapter.addAll(citiesArray.toList())
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+        val dialog = MaterialAlertDialogBuilder(this).setView(updateUserAddressView)
+            .setTitle("Change Room Address").setPositiveButton("Save") { _, _ ->
+
+                val s =
+                    updateUserState.selectedItem.toString() + updateUserCity.selectedItem.toString()
+
+                Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+
+
+            }.setNegativeButton("Cancel") { _, _ ->
+
+            }.show()
     }
 //
 //

@@ -80,7 +80,7 @@
                 app:layout_constraintTop_toBottomOf="@id/RoomNameTV" />
 
             <ImageButton
-
+                android:id="@+id/update_room_name_btn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
@@ -105,7 +105,7 @@
                 app:layout_constraintTop_toBottomOf="@id/update_room_name_tv" />
 
             <TextView
-                android:id="@+id/update_room_address"
+                android:id="@+id/update_room_addressTV"
                 style="@style/userProfile_DataTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -116,21 +116,21 @@
                 app:layout_constraintTop_toBottomOf="@id/RoomAddressTV" />
 
             <ImageButton
-
+                android:id="@+id/update_room_address_btn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="@id/update_room_address"
-                app:layout_constraintEnd_toEndOf="@id/update_room_address"
-                app:layout_constraintTop_toTopOf="@+id/update_room_address" />
+                app:layout_constraintBottom_toBottomOf="@id/update_room_addressTV"
+                app:layout_constraintEnd_toEndOf="@id/update_room_addressTV"
+                app:layout_constraintTop_toTopOf="@+id/update_room_addressTV" />
 
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/materialDivider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/update_room_address" />
+                app:layout_constraintTop_toBottomOf="@id/update_room_addressTV" />
 
             <TextView
                 android:id="@+id/tv_amenities"
@@ -275,7 +275,7 @@
                     android:text="Solo" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/update_SuitableFor"
+                    android:id="@+id/update_addSuitableFor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Add"
@@ -336,7 +336,7 @@
 
 
             <ImageButton
-
+                android:id="@+id/update_roomRent_btn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
@@ -373,7 +373,7 @@
 
 
             <ImageButton
-
+                android:id="@+id/update_roomDeposit_btn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
@@ -410,7 +410,7 @@
 
 
             <ImageButton
-
+                android:id="@+id/update_roomSharableBy_btn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
@@ -448,7 +448,7 @@
 
 
             <ImageButton
-
+                android:id="@+id/update_roomType_btn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
@@ -485,7 +485,7 @@
 
 
             <ImageButton
-
+                android:id="@+id/update_roomArea_btn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
@@ -505,7 +505,7 @@
                 app:layout_constraintTop_toBottomOf="@id/updateRoomAreaTV" />
 
             <TextView
-                android:id="@+id/UpdateRoomAboutTV"
+                android:id="@+id/RoomAboutTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
@@ -520,7 +520,7 @@
                 app:layout_constraintTop_toBottomOf="@id/materialDivider4" />
 
             <TextView
-                android:id="@+id/UpdateRoomAbout"
+                android:id="@+id/UpdateRoomAboutTV"
                 style="@style/userProfile_DataTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -528,17 +528,17 @@
                 android:paddingStart="10dp"
                 android:text="VP Patel"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/UpdateRoomAboutTV" />
+                app:layout_constraintTop_toBottomOf="@id/RoomAboutTV" />
 
             <ImageButton
-
+                android:id="@+id/update_room_about_btn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="@id/UpdateRoomAbout"
-                app:layout_constraintEnd_toEndOf="@id/UpdateRoomAbout"
-                app:layout_constraintTop_toTopOf="@+id/UpdateRoomAbout" />
+                app:layout_constraintBottom_toBottomOf="@id/UpdateRoomAboutTV"
+                app:layout_constraintEnd_toEndOf="@id/UpdateRoomAboutTV"
+                app:layout_constraintTop_toTopOf="@+id/UpdateRoomAboutTV" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

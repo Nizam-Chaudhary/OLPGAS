@@ -277,23 +277,48 @@
 
 
                 <TextView
-                    android:id="@+id/CityTV"
+                    android:id="@+id/StateTV"
                     style="@style/userProfile_HeadingTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="City"
+                    android:text="State"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/uAddressStreetTV" />
+
+                <TextView
+                    android:id="@+id/uAddressStateTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/userProfile_DataTV"
+                    android:text="Valsad"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/StateTV" />
+
+
+                <TextView
+                    android:id="@+id/CityTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="City"
+                    style="@style/userProfile_HeadingTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/uAddressStateTV" />
 
                 <TextView
                     android:id="@+id/uAddressCityTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/userProfile_DataTV"
-                    android:text="Valsad"
+                    android:text="Gujarat"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginBottom="50dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
                     app:layout_constraintTop_toBottomOf="@id/CityTV" />
 
                 <ImageButton
@@ -305,29 +330,6 @@
                     app:layout_constraintBottom_toBottomOf="@id/uAddressCityTV"
                     app:layout_constraintEnd_toEndOf="@id/uAddressCityTV"
                     app:layout_constraintTop_toTopOf="@+id/uAddressCityTV" />
-
-                <TextView
-                    android:id="@+id/StateTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="State"
-                    style="@style/userProfile_HeadingTV"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uAddressCityTV" />
-
-                <TextView
-                    android:id="@+id/uAddressStateTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/userProfile_DataTV"
-                    android:text="Gujarat"
-                    android:layout_marginBottom="50dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/StateTV" />
 
                 <ImageButton
                     android:id="@+id/uAddressState"
