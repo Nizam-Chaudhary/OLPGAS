@@ -1,15 +1,21 @@
 package com.example.olpgas.roomdetails.ui
 
 import android.animation.ObjectAnimator
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.transition.TransitionInflater
+import androidx.transition.TransitionManager
 import com.example.olpgas.R
 import com.example.olpgas.auth.data.remote.SupabaseClient
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
@@ -42,6 +48,7 @@ class RoomDetails : AppCompatActivity() {
     private var featureID = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
@@ -49,6 +56,7 @@ class RoomDetails : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
         manageRoom = intent.getBooleanExtra("manageRoom", false)
         roomId = intent.getIntExtra("roomId",1)
@@ -165,10 +173,15 @@ class RoomDetails : AppCompatActivity() {
         }
 
         binding.fabEditRoom.setOnClickListener {
-            val intent = Intent(this@RoomDetails, UpdateRoom::class.java)
-//            intent.putExtra("id", roomId)
-//            intent.putExtra("featureId", featureID)
-            startActivity(intent)
+
+            val transition = TransitionInflater.from(this)
+                .inflateTransition(R.transition.container_transform)
+
+            TransitionManager.beginDelayedTransition(window.decorView as ViewGroup, transition)
+
+            val intent = Intent(this, UpdateRoom::class.java)
+            val options = ActivityOptions.makeSceneTransitionAnimation(this, binding.fabEditRoom, "shared_element_end_root")
+            startActivity(intent, options.toBundle())
         }
     }
 }

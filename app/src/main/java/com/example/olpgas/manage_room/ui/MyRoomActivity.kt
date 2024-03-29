@@ -1,12 +1,18 @@
 package com.example.olpgas.manage_room.ui
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.ViewGroup
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionInflater
+import androidx.transition.TransitionManager
+import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityMyRoomBinding
 import com.example.olpgas.manage_room.viewmodel.ManageRoomViewModel
 import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
@@ -22,6 +28,7 @@ class MyRoomActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
@@ -31,7 +38,15 @@ class MyRoomActivity : AppCompatActivity() {
         }
 
         binding.fabAddRoom.setOnClickListener {
-            startActivity(Intent(this@MyRoomActivity, AddRoomActivity::class.java))
+
+            val transition = TransitionInflater.from(this)
+                .inflateTransition(R.transition.container_transform)
+
+            TransitionManager.beginDelayedTransition(window.decorView as ViewGroup, transition)
+
+            val intent = Intent(this, AddRoomActivity::class.java)
+            val options = ActivityOptions.makeSceneTransitionAnimation(this, binding.fabAddRoom, "shared_element_end_root")
+            startActivity(intent, options.toBundle())
         }
 
         setMyRoomDataAdapter()

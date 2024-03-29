@@ -23,6 +23,7 @@ import com.example.olpgas.manage_room.model.RoomDetails
 import com.example.olpgas.manage_room.model.RoomMaster
 import com.example.olpgas.manage_room.model.WorkState
 import com.example.olpgas.manage_room.viewmodel.ManageRoomViewModel
+import com.google.android.material.transition.platform.MaterialContainerTransform
 import java.io.ByteArrayOutputStream
 
 class AddRoomActivity : AppCompatActivity() {
@@ -45,6 +46,10 @@ class AddRoomActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        window.sharedElementEnterTransition = buildContainerTransform(true)
+        window.sharedElementReturnTransition = buildContainerTransform(false)
+
 
         setUpSpinner()
 
@@ -521,4 +526,11 @@ class AddRoomActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun buildContainerTransform(entering: Boolean): MaterialContainerTransform {
+        val transform = MaterialContainerTransform(this, entering)
+        transform.addTarget(android.R.id.content)
+        return transform
+    }
+
 }

@@ -7,6 +7,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityUpdateRoomBinding
+import com.google.android.material.transition.platform.MaterialContainerTransform
 
 class UpdateRoom : AppCompatActivity() {
 
@@ -24,5 +25,15 @@ class UpdateRoom : AppCompatActivity() {
 //            insets
 //        }
 
+
+        window.sharedElementEnterTransition = buildContainerTransform(true)
+        window.sharedElementReturnTransition = buildContainerTransform(false)
+
+    }
+
+    private fun buildContainerTransform(entering: Boolean): MaterialContainerTransform {
+        val transform = MaterialContainerTransform(this, entering)
+        transform.addTarget(android.R.id.content)
+        return transform
     }
 }
