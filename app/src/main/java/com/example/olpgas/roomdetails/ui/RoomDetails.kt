@@ -14,6 +14,7 @@ import com.example.olpgas.R
 import com.example.olpgas.auth.data.network.SupabaseClient
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
 import com.example.olpgas.manage_room.ui.AddRoomActivity
+import com.example.olpgas.manage_room.ui.UpdateRoom
 import com.example.olpgas.roomdetails.adapter.RoomsImageRecyclerPagerAdapter
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
 import com.google.android.material.chip.Chip
@@ -127,7 +128,7 @@ class RoomDetails : AppCompatActivity() {
                 animEdit.start()
                 animRemove.duration = 100
                 animRemove.start()
-                binding.fabEditRoom.visibility = View.GONE
+                binding.fabEditRoom.visibility = View.VISIBLE
                 binding.fabDeleteRoom.visibility = View.VISIBLE
                 isFabVisible = true
                 binding.fabExpand.setIconResource(R.drawable.ic_expand_less)
@@ -164,9 +165,9 @@ class RoomDetails : AppCompatActivity() {
         }
 
         binding.fabEditRoom.setOnClickListener {
-            val intent = Intent(this@RoomDetails, AddRoomActivity::class.java)
-            intent.putExtra("id", roomId)
-            intent.putExtra("featureId", featureID)
+            val intent = Intent(this@RoomDetails, UpdateRoom::class.java)
+//            intent.putExtra("id", roomId)
+//            intent.putExtra("featureId", featureID)
             startActivity(intent)
         }
     }

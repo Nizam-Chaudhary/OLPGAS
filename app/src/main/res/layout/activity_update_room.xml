@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/update_room_image_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_add_image"
+                app:layout_constraintBottom_toBottomOf="@id/update_room_image_viewpager"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_delete"
+                app:layout_constraintBottom_toBottomOf="@id/update_room_image_viewpager"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton" />
+
+
+            <TextView
+                android:id="@+id/RoomNameTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="8dp"
+                android:text="Room Name"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_room_image_viewpager" />
+
+            <TextView
+                android:id="@+id/update_room_name_tv"
+                style="@style/userProfile_DataTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:paddingStart="10dp"
+                android:text="VP Patel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/RoomNameTV" />
+
+            <ImageButton
+
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/update_room_name_tv"
+                app:layout_constraintEnd_toEndOf="@id/update_room_name_tv"
+                app:layout_constraintTop_toTopOf="@+id/update_room_name_tv" />
+
+            <TextView
+                android:id="@+id/RoomAddressTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="8dp"
+                android:text="Address"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_room_name_tv" />
+
+            <TextView
+                android:id="@+id/update_room_address"
+                style="@style/userProfile_DataTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:paddingStart="10dp"
+                android:text="VP Patel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/RoomAddressTV" />
+
+            <ImageButton
+
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/update_room_address"
+                app:layout_constraintEnd_toEndOf="@id/update_room_address"
+                app:layout_constraintTop_toTopOf="@+id/update_room_address" />
+
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/update_room_address" />
+
+            <TextView
+                android:id="@+id/tv_amenities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="8dp"
+                android:text="Amenities"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/materialDivider" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/update_chipGroup_Amenities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_amenities">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_AC"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AC" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_washing_machine"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Washing Machine" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_wifi"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wi-Fi" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_fan"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fans" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_geyser"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Geyser" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_furnished"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Furnished" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/update_addAmenities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    app:chipIcon="@drawable/ic_add"
+                    app:chipMinTouchTargetSize="0dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_chipGroup_Amenities" />
+
+
+            <TextView
+                android:id="@+id/tv_suitable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="8dp"
+                android:text="Suitable For"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/materialDivider2" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/update_chipGroup_suitable_for"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingHorizontal="10dp"
+                android:paddingStart="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_suitable">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_students"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Students" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_professionals"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Professionals" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_couples"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Couples" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_solo"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Solo" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/update_SuitableFor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    app:chipIcon="@drawable/ic_add"
+                    app:chipMinTouchTargetSize="0dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/update_chipGroup_suitable_for" />
+
+            <TextView
+                android:id="@+id/UpdateRoomTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="8dp"
+                android:text="Details"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialDivider3" />
+
+            <TextView
+                android:id="@+id/roomRentTv"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="5dp"
+                android:text="Rent"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/UpdateRoomTextView" />
+
+
+            <TextView
+                android:id="@+id/updateRoomRent"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:paddingVertical="5dp"
+                android:text="8000/-"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/roomRentTv"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/roomRentTv" />
+
+
+            <ImageButton
+
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/updateRoomRent"
+                app:layout_constraintEnd_toEndOf="@id/updateRoomRent"
+                app:layout_constraintTop_toTopOf="@+id/updateRoomRent" />
+
+            <TextView
+                android:id="@+id/updateRoomDepositTV"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="5dp"
+                android:text="Deposit"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/roomRentTv" />
+
+
+            <TextView
+                android:id="@+id/updateDepositRent"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:paddingVertical="5dp"
+                android:text="15000/-"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/updateRoomDepositTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/updateRoomDepositTV" />
+
+
+            <ImageButton
+
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/updateDepositRent"
+                app:layout_constraintEnd_toEndOf="@id/updateDepositRent"
+                app:layout_constraintTop_toTopOf="@+id/updateDepositRent" />
+
+            <TextView
+                android:id="@+id/updateRoomSharableByTV"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="5dp"
+                android:text="Sharable By"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/updateDepositRent" />
+
+
+            <TextView
+                android:id="@+id/updateRoomSharableBy"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:paddingVertical="5dp"
+                android:text="2"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/updateRoomSharableByTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/updateRoomSharableByTV" />
+
+
+            <ImageButton
+
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/updateRoomSharableBy"
+                app:layout_constraintEnd_toEndOf="@id/updateRoomSharableBy"
+                app:layout_constraintTop_toTopOf="@+id/updateRoomSharableBy" />
+
+
+            <TextView
+                android:id="@+id/updateRoomTypeTV"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="5dp"
+                android:text="Room Type"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/updateRoomSharableByTV" />
+
+
+            <TextView
+                android:id="@+id/updateRoomType"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:paddingVertical="5dp"
+                android:text="Double Room"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/updateRoomTypeTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/updateRoomTypeTV" />
+
+
+            <ImageButton
+
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/updateRoomType"
+                app:layout_constraintEnd_toEndOf="@id/updateRoomType"
+                app:layout_constraintTop_toTopOf="@+id/updateRoomType" />
+
+            <TextView
+                android:id="@+id/updateRoomAreaTV"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="5dp"
+                android:text="Room Area"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/updateRoomTypeTV" />
+
+
+            <TextView
+                android:id="@+id/updateRoomArea"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:paddingVertical="5dp"
+                android:text="1000 Sq. Ft."
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/updateRoomAreaTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/updateRoomAreaTV" />
+
+
+            <ImageButton
+
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/updateRoomArea"
+                app:layout_constraintEnd_toEndOf="@id/updateRoomArea"
+                app:layout_constraintTop_toTopOf="@+id/updateRoomArea" />
+
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/updateRoomAreaTV" />
+
+            <TextView
+                android:id="@+id/UpdateRoomAboutTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingStart="8dp"
+                android:text="Address"
+                android:textColor="@color/textColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/materialDivider4" />
+
+            <TextView
+                android:id="@+id/UpdateRoomAbout"
+                style="@style/userProfile_DataTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:paddingStart="10dp"
+                android:text="VP Patel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/UpdateRoomAboutTV" />
+
+            <ImageButton
+
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_right_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/UpdateRoomAbout"
+                app:layout_constraintEnd_toEndOf="@id/UpdateRoomAbout"
+                app:layout_constraintTop_toTopOf="@+id/UpdateRoomAbout" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

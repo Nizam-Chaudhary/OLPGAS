@@ -209,20 +209,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="150dp"
-                    android:inputType="textMultiLine"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="7dp"
-                    android:text="Minimum Contact Duration" />
-
-                <TextView
-                    android:id="@+id/min_contract_duration"
-                    android:paddingHorizontal="10dp"
-                    android:text="1 Month"
-                    android:textColor="@color/Orange"
-                    android:textStyle="bold" />
-
-                <TextView
                     android:paddingHorizontal="20dp"
                     android:paddingVertical="7dp"
                     android:text="Area" />
