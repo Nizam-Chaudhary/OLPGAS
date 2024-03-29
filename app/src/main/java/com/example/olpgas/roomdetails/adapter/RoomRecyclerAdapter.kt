@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.olpgas.auth.data.network.SupabaseClient
+import com.example.olpgas.auth.data.remote.SupabaseClient
 import com.example.olpgas.databinding.RecyclerViewRoomsListBinding
 import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
 import com.example.olpgas.roomdetails.ui.RoomDetails

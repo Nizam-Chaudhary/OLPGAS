@@ -1,8 +1,7 @@
-package com.example.olpgas.auth.data.network
+package com.example.olpgas.auth.data.remote
 
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth
-import io.github.jan.supabase.gotrue.SessionSource
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.storage.Storage
 

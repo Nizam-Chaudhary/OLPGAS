@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".OLPGASApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -51,11 +52,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".auth.ui.LoginActivity"
+            android:name=".auth.presentation.login_activity.LoginActivity"
             android:exported="true"
             android:theme="@style/NoStatusBarTheme" />
         <activity
-            android:name=".auth.ui.SignUpActivity"
+            android:name=".auth.presentation.signup_activity.SignUpActivity"
             android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
     </application>

@@ -17,9 +17,11 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgas.R
-import com.example.olpgas.auth.data.network.SupabaseClient
-import com.example.olpgas.auth.ui.LoginActivity
-import com.example.olpgas.auth.viewmodel.SupabaseAuthViewModel
+import com.example.olpgas.auth.data.remote.SupabaseAuth
+import com.example.olpgas.auth.data.remote.SupabaseClient
+import com.example.olpgas.auth.data.repository.AuthRepositoryImpl
+import com.example.olpgas.auth.presentation.login_activity.LoginActivity
+import com.example.olpgas.core.util.Constants
 import com.example.olpgas.databinding.ActivityViewRoomsBinding
 import com.example.olpgas.manage_room.model.WorkState
 import com.example.olpgas.manage_room.ui.MyRoomActivity
@@ -45,10 +47,6 @@ class ViewRoomActivity : AppCompatActivity() {
         ActivityViewRoomsBinding.inflate(layoutInflater)
     }
 
-    private val authViewModel: SupabaseAuthViewModel by lazy {
-        ViewModelProvider(this)[SupabaseAuthViewModel::class.java]
-    }
-
     private val roomViewModel: RoomsViewModel by lazy {
         ViewModelProvider(this)[RoomsViewModel::class.java]
     }
@@ -72,13 +70,10 @@ class ViewRoomActivity : AppCompatActivity() {
 
         setToggleButtonForNavigationDrawer()
         runBlocking {
-            authViewModel.isUserLoggedIn(this@ViewRoomActivity)
-            authViewModel.isLoggedIn.observe(this@ViewRoomActivity) {loggedIn ->
-                if(!loggedIn) {
-                    val intent = Intent(this@ViewRoomActivity, LoginActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                }
+            if(!AuthRepositoryImpl(SupabaseAuth(applicationContext.getSharedPreferences(Constants.AUTH_SHARED_PREF, MODE_PRIVATE))).isUserLoggedIn()) {
+                val intent = Intent(this@ViewRoomActivity, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
 
@@ -203,9 +198,7 @@ class ViewRoomActivity : AppCompatActivity() {
                         .setCancelable(false)
                         .setMessage("Are you sure you want to sign out?")
                         .setPositiveButton("Yes") { _, _ ->
-                            authViewModel.logout(this)
-                            startActivity(Intent(this@ViewRoomActivity, LoginActivity::class.java))
-                            finish()
+
                         }
                         .setNegativeButton("Cancel") { dialog, _ ->
                             dialog.dismiss()

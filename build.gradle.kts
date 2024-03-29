@@ -1,5 +1,4 @@
 buildscript {
-    val agp_version by extra("8.2.0")
     dependencies {
         classpath("com.google.gms:google-services:4.4.1")
     }
@@ -8,4 +7,5 @@ buildscript {
 plugins {
     id("com.android.application") version "8.3.1" apply false
     id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    id("com.google.dagger.hilt.android") version "2.51" apply false
 }

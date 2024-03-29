@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.olpgas.R
-import com.example.olpgas.auth.data.network.SupabaseClient
+import com.example.olpgas.auth.data.remote.SupabaseClient
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
 import com.example.olpgas.manage_room.ui.AddRoomActivity
 import com.example.olpgas.manage_room.ui.UpdateRoom

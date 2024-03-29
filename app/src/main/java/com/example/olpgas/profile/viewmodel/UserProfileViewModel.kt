@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.olpgas.auth.data.network.SupabaseClient.client
+import com.example.olpgas.auth.data.remote.SupabaseClient.client
 import com.example.olpgas.manage_room.model.WorkState
 import com.example.olpgas.profile.data.model.ProfileSaveStatus
 import com.example.olpgas.profile.data.model.User
