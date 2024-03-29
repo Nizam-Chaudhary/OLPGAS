@@ -17,9 +17,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
 import com.example.olpgas.R
-import com.example.olpgas.auth.data.remote.SupabaseClient
+import com.example.olpgas.core.data.remote.SupabaseClient
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
-import com.example.olpgas.manage_room.ui.AddRoomActivity
 import com.example.olpgas.manage_room.ui.UpdateRoom
 import com.example.olpgas.roomdetails.adapter.RoomsImageRecyclerPagerAdapter
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel

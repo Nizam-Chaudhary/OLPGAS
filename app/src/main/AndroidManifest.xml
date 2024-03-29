@@ -38,7 +38,7 @@
             android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
         <activity
-            android:name=".profile.ui.UserAccount"
+            android:name=".user_profile.presentation.UserProfileActivity"
             android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
         <activity

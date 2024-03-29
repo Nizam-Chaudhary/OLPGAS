@@ -2,13 +2,11 @@ package com.example.olpgas.roomdetails.ui
 
 
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -18,19 +16,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgas.R
 import com.example.olpgas.auth.data.remote.SupabaseAuth
-import com.example.olpgas.auth.data.remote.SupabaseClient
 import com.example.olpgas.auth.data.repository.AuthRepositoryImpl
 import com.example.olpgas.auth.presentation.login_activity.LoginActivity
+import com.example.olpgas.core.data.remote.SupabaseClient
 import com.example.olpgas.core.util.Constants
 import com.example.olpgas.databinding.ActivityViewRoomsBinding
-import com.example.olpgas.manage_room.model.WorkState
 import com.example.olpgas.manage_room.ui.MyRoomActivity
-import com.example.olpgas.profile.ui.UserAccount
-import com.example.olpgas.profile.viewmodel.UserProfileViewModel
 import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
 import com.example.olpgas.roomdetails.data.model.Filter
 import com.example.olpgas.roomdetails.utils.FilterSharedPreferencesHelper
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
+import com.example.olpgas.user_profile.presentation.UserProfileActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import io.github.jan.supabase.gotrue.auth
@@ -49,10 +45,6 @@ class ViewRoomActivity : AppCompatActivity() {
 
     private val roomViewModel: RoomsViewModel by lazy {
         ViewModelProvider(this)[RoomsViewModel::class.java]
-    }
-
-    private val profileViewModel: UserProfileViewModel by lazy {
-        ViewModelProvider(this)[UserProfileViewModel::class.java]
     }
 
     private val filterSharedPreferencesHelper: FilterSharedPreferencesHelper by lazy {
@@ -78,7 +70,7 @@ class ViewRoomActivity : AppCompatActivity() {
 
         refreshLayout()
 
-        profileViewModel.userProfilePictureStatus.observe(this) {
+        /*profileViewModeluserProfilePictureStatus.observe(this) {
             when(it) {
                 WorkState.Loading -> {
 
@@ -88,7 +80,7 @@ class ViewRoomActivity : AppCompatActivity() {
                 }
                 is WorkState.Error -> {}
             }
-        }
+        }*/
 
         CoroutineScope(Dispatchers.IO).launch {
             while(true) {
@@ -96,7 +88,7 @@ class ViewRoomActivity : AppCompatActivity() {
                 if(user != null) {
                     withContext(Dispatchers.Main) {
                         setUserName()
-                        setProfilePicture()
+                        //setProfilePicture()
                     }
                     break
                 }
@@ -185,7 +177,7 @@ class ViewRoomActivity : AppCompatActivity() {
         //On Click for menu drawer menu Item
         binding.navView.setNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.profile -> startActivity(Intent(this@ViewRoomActivity,UserAccount::class.java))
+                R.id.profile -> startActivity(Intent(this@ViewRoomActivity, UserProfileActivity::class.java))
                 R.id.my_rooms -> startActivity(Intent(this@ViewRoomActivity, MyRoomActivity::class.java))
                 R.id.signOut -> {
                     val dialog = MaterialAlertDialogBuilder(this@ViewRoomActivity)
@@ -238,13 +230,13 @@ class ViewRoomActivity : AppCompatActivity() {
         }
     }
 
-    private fun setProfilePicture() {
+    /*private fun setProfilePicture() {
         profileViewModel.getUserProfileByteArray()
         profileViewModel.userProfileImageByteArray.observe(this) {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             binding.navView.getHeaderView(0).findViewById<ImageView>(R.id.iv_profile_pic).setImageBitmap(bitmap)
         }
-    }
+    }*/
 
     private fun refreshLayout() {
         binding.refreshLayout.setOnRefreshListener {

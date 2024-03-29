@@ -8,7 +8,7 @@
     android:background="@color/primary"
     android:orientation="vertical"
     android:fillViewport="true"
-    tools:context=".profile.ui.UserAccount">
+    tools:context=".user_profile.presentation.UserProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -59,16 +59,14 @@
                 android:paddingTop="50dp">
 
                 <TextView
-                    android:id="@+id/uEmailTV"
+                    android:id="@+id/tv_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_email"
-                    android:drawablePadding="10dp"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="15dp"
-                    android:text="vp@gmail.com"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
+                    android:drawablePadding="24dp"
+                    android:text="email@gmail.com"
+                    android:textSize="20sp"
+                    android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,7 +86,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uEmailTV"
+                    app:layout_constraintTop_toBottomOf="@id/tv_email"
                     tools:layout_editor_absoluteY="50dp" />
 
 
@@ -104,7 +102,7 @@
                     app:layout_constraintTop_toBottomOf="@id/materialDividerEmail" />
 
                 <TextView
-                    android:id="@+id/uNameTV"
+                    android:id="@+id/tv_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="VP Patel"
@@ -118,9 +116,9 @@
                     android:layout_height="35dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/uNameTV"
-                    app:layout_constraintEnd_toEndOf="@id/uNameTV"
-                    app:layout_constraintTop_toTopOf="@+id/uNameTV" />
+                    app:layout_constraintBottom_toBottomOf="@id/tv_user_name"
+                    app:layout_constraintEnd_toEndOf="@id/tv_user_name"
+                    app:layout_constraintTop_toTopOf="@+id/tv_user_name" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/materialDividerName"
@@ -128,7 +126,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uNameTV"
+                    app:layout_constraintTop_toBottomOf="@id/tv_user_name"
                     tools:layout_editor_absoluteY="50dp" />
 
 
@@ -145,7 +143,7 @@
                     app:layout_constraintTop_toBottomOf="@id/materialDividerName" />
 
                 <TextView
-                    android:id="@+id/uGenderTV"
+                    android:id="@+id/tv_gender"
                     android:layout_width="50pt"
                     android:layout_height="wrap_content"
                     android:text="male"
@@ -160,9 +158,9 @@
                     android:layout_height="35dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/uGenderTV"
-                    app:layout_constraintEnd_toEndOf="@id/uGenderTV"
-                    app:layout_constraintTop_toTopOf="@+id/uGenderTV" />
+                    app:layout_constraintBottom_toBottomOf="@id/tv_gender"
+                    app:layout_constraintEnd_toEndOf="@id/tv_gender"
+                    app:layout_constraintTop_toTopOf="@+id/tv_gender" />
 
 
                 <TextView
@@ -177,7 +175,7 @@
                     app:layout_constraintTop_toBottomOf="@id/materialDividerName" />
 
                 <TextView
-                    android:id="@+id/uAgeTV"
+                    android:id="@+id/tv_age"
                     android:layout_width="50pt"
                     android:layout_height="wrap_content"
                     style="@style/userProfile_DataTV"
@@ -192,9 +190,9 @@
                     android:layout_height="35dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/uAgeTV"
-                    app:layout_constraintEnd_toEndOf="@id/uAgeTV"
-                    app:layout_constraintTop_toTopOf="@+id/uAgeTV" />
+                    app:layout_constraintBottom_toBottomOf="@id/tv_age"
+                    app:layout_constraintEnd_toEndOf="@id/tv_age"
+                    app:layout_constraintTop_toTopOf="@+id/tv_age" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/materialDividerAge"
@@ -203,7 +201,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
 
-                    app:layout_constraintTop_toBottomOf="@id/uGenderTV" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_gender" />
 
                 <TextView
                     android:id="@+id/PhoneNumberTV"
@@ -217,7 +215,7 @@
                     app:layout_constraintTop_toBottomOf="@id/materialDividerAge" />
 
                 <TextView
-                    android:id="@+id/uPhoneNumberTV"
+                    android:id="@+id/tv_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/userProfile_DataTV"
@@ -231,9 +229,9 @@
                     android:layout_height="35dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/uPhoneNumberTV"
-                    app:layout_constraintEnd_toEndOf="@id/uPhoneNumberTV"
-                    app:layout_constraintTop_toTopOf="@+id/uPhoneNumberTV" />
+                    app:layout_constraintBottom_toBottomOf="@id/tv_phone_number"
+                    app:layout_constraintEnd_toEndOf="@id/tv_phone_number"
+                    app:layout_constraintTop_toTopOf="@+id/tv_phone_number" />
 
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/materialDividerPhoneNumber"
@@ -241,7 +239,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/uPhoneNumberTV"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phone_number"
                     tools:layout_editor_absoluteY="50dp" />
 
 
@@ -257,7 +255,7 @@
                     app:layout_constraintTop_toBottomOf="@id/materialDividerPhoneNumber" />
 
                 <TextView
-                    android:id="@+id/uAddressStreetTV"
+                    android:id="@+id/tv_street_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/userProfile_DataTV"
@@ -271,9 +269,9 @@
                     android:layout_height="35dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/uAddressStreetTV"
-                    app:layout_constraintEnd_toEndOf="@id/uAddressStreetTV"
-                    app:layout_constraintTop_toTopOf="@+id/uAddressStreetTV" />
+                    app:layout_constraintBottom_toBottomOf="@id/tv_street_number"
+                    app:layout_constraintEnd_toEndOf="@id/tv_street_number"
+                    app:layout_constraintTop_toTopOf="@+id/tv_street_number" />
 
 
                 <TextView
@@ -288,7 +286,7 @@
                     app:layout_constraintTop_toBottomOf="@id/uAddressStreetTV" />
 
                 <TextView
-                    android:id="@+id/uAddressStateTV"
+                    android:id="@+id/tv_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/userProfile_DataTV"
@@ -309,7 +307,7 @@
                     app:layout_constraintTop_toBottomOf="@id/uAddressStateTV" />
 
                 <TextView
-                    android:id="@+id/uAddressCityTV"
+                    android:id="@+id/tv_city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/userProfile_DataTV"
@@ -337,9 +335,9 @@
                     android:layout_height="35dp"
                     android:background="@android:color/transparent"
                     android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/uAddressStateTV"
-                    app:layout_constraintEnd_toEndOf="@id/uAddressStateTV"
-                    app:layout_constraintTop_toTopOf="@+id/uAddressStateTV" />
+                    app:layout_constraintBottom_toBottomOf="@id/tv_state"
+                    app:layout_constraintEnd_toEndOf="@id/tv_state"
+                    app:layout_constraintTop_toTopOf="@+id/tv_state" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

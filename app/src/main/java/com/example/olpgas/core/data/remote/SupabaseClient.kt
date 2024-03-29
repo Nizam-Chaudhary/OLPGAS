@@ -1,4 +1,4 @@
-package com.example.olpgas.auth.data.remote
+package com.example.olpgas.core.data.remote
 
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.gotrue.Auth

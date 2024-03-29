@@ -5,13 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.olpgas.auth.data.remote.SupabaseClient.client
-import com.example.olpgas.profile.data.model.UserName
+import com.example.olpgas.core.data.remote.SupabaseClient.client
 import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
 import com.example.olpgas.roomdetails.data.model.Filter
 import com.example.olpgas.roomdetails.data.model.FullRoomDetails
 import io.github.jan.supabase.postgrest.postgrest
-import io.github.jan.supabase.postgrest.query.Columns
 import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.launch
 
@@ -55,8 +53,8 @@ class RoomsViewModel : ViewModel() {
     fun getUserName() {
         viewModelScope.launch {
             try {
-                _userName.value = client.postgrest.from("UserDetails")
-                    .select(Columns.list("userName")).decodeSingle<UserName>().userName
+                _userName.value = "Testing"/*client.postgrest.from("UserDetails")
+                    .select(Columns.list("userName")).decodeSingle<UserName>().userName*/
             } catch(e: Exception) {
                 Log.e("GetUserName","Error: ${e.message}")
             }

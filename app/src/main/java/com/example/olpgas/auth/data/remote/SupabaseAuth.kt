@@ -2,6 +2,7 @@ package com.example.olpgas.auth.data.remote
 
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.olpgas.core.data.remote.SupabaseClient
 import com.example.olpgas.core.util.Constants
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.SimpleResource
