@@ -5,5 +5,4 @@ sealed class AuthError {
     data object InValidEmail: AuthError()
     data object InputTooShort: AuthError()
     data object PasswordsNotMatching: AuthError()
-    data object InValidPassword: AuthError()
 }
