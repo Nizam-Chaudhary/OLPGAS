@@ -3,8 +3,10 @@ package com.example.olpgas.auth.presentation.signup_activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.domain.use_case.SignupUseCase
+import com.example.olpgas.core.util.NetworkConnectivityObserver
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.domain.states.TextFieldState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignupViewModel @Inject constructor(
-    private val signupUseCase: SignupUseCase
+    private val signupUseCase: SignupUseCase,
+    private val connectivityObserver: NetworkConnectivityObserver
 ) : ViewModel(){
 
     private val _userNameState:MutableLiveData<TextFieldState> = MutableLiveData(TextFieldState())
@@ -30,6 +33,8 @@ class SignupViewModel @Inject constructor(
 
     private val _signupState = MutableLiveData<SignupState>()
     val signupState: LiveData<SignupState> = _signupState
+
+    val connectionStatus = connectivityObserver.observe().asLiveData()
 
     fun onEvent(event: SignupEvent) {
         when(event) {
@@ -61,7 +66,7 @@ class SignupViewModel @Inject constructor(
 
     private fun signup() {
         viewModelScope.launch {
-            _signupState.value = SignupState.Loading
+            _signupState.value = SignupState.Loading(true)
             _userNameState.value = userNameState.value?.copy(
                 error = null
             )
@@ -116,6 +121,7 @@ class SignupViewModel @Inject constructor(
 
                 }
             }
+            _signupState.value = SignupState.Loading(false)
         }
     }
 }

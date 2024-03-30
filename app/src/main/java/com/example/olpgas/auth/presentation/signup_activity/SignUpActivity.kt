@@ -4,14 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.auth.presentation.util.AuthError
+import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.databinding.ActivitySignUpBinding
 import com.example.olpgas.roomdetails.ui.ViewRoomActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,6 +45,8 @@ class SignUpActivity : AppCompatActivity() {
             onLoginClick()
 
             observeSignupState()
+
+            observeConnection()
     }
 
     private fun setState() {
@@ -110,9 +115,17 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun onSignupClick() {
         binding.btnSignup.setOnClickListener {
-            viewModel.onEvent(SignupEvent.Signup)
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                viewModel.onEvent(SignupEvent.Signup)
 
-            checkValidationError()
+                checkValidationError()
+            } else {
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Connection error")
+                    .setMessage("Please check your network connection")
+                    .setPositiveButton("dismiss") { _, _ -> }
+                    .show()
+            }
         }
     }
 
@@ -149,8 +162,12 @@ class SignUpActivity : AppCompatActivity() {
     private fun observeSignupState() {
         viewModel.signupState.observe(this){
             when(it) {
-                SignupState.Loading -> {
-                    binding.btnSignup.text = "Signing up"
+                is SignupState.Loading -> {
+                    if(it.isLoading) {
+                        binding.btnSignup.text = "Signing up"
+                    } else {
+                        binding.btnSignup.text = "Sign Up"
+                    }
                 }
                 SignupState.Success -> {
                     startActivity(Intent(this, ViewRoomActivity::class.java))
@@ -162,6 +179,12 @@ class SignUpActivity : AppCompatActivity() {
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+    }
+
+    private fun observeConnection() {
+        viewModel.connectionStatus.observe(this) {
+            Log.d("Network Connection", it.toString())
         }
     }
 }

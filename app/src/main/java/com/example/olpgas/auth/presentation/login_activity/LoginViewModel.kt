@@ -3,10 +3,12 @@ package com.example.olpgas.auth.presentation.login_activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.domain.use_case.GoogleSignInUseCase
 import com.example.olpgas.auth.domain.use_case.LoginUseCase
 import com.example.olpgas.auth.domain.use_case.SetUserProfileLocalCacheUseCase
+import com.example.olpgas.core.util.NetworkConnectivityObserver
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.domain.states.TextFieldState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +20,8 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val googleSignInUseCase: GoogleSignInUseCase,
-    private val setUserProfileLocalCacheUseCase: SetUserProfileLocalCacheUseCase
+    private val setUserProfileLocalCacheUseCase: SetUserProfileLocalCacheUseCase,
+    private val connectivityObserver: NetworkConnectivityObserver
 ) : ViewModel() {
 
     private val _emailState:MutableLiveData<TextFieldState> = MutableLiveData(TextFieldState())
@@ -29,6 +32,8 @@ class LoginViewModel @Inject constructor(
 
     private val _loginState = MutableLiveData<LoginState>()
     val loginState: LiveData<LoginState> = _loginState
+
+    val connectionStatus = connectivityObserver.observe().asLiveData()
 
     fun onEvent(event: LoginEvent) {
         when(event) {
@@ -53,7 +58,7 @@ class LoginViewModel @Inject constructor(
 
     private fun login() {
         viewModelScope.launch {
-            _loginState.value = LoginState.Loading
+            _loginState.value = LoginState.Loading(isLoading = true)
             _emailState.value = emailState.value?.copy(
                 error = null
             )
@@ -90,6 +95,7 @@ class LoginViewModel @Inject constructor(
                 }
                 null -> {}
             }
+            _loginState.value = LoginState.Loading(isLoading = false)
         }
     }
 

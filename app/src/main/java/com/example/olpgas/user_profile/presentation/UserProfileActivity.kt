@@ -253,7 +253,7 @@ class UserProfileActivity : AppCompatActivity() {
         }
 
         MaterialAlertDialogBuilder(this)
-            .setTitle("Update Gender")
+            .setTitle("Update Age")
             .setView(view)
             .setPositiveButton("Update") {_,_ ->
 

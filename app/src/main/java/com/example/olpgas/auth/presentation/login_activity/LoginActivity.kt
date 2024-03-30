@@ -13,11 +13,13 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.example.olpgas.auth.presentation.signup_activity.SignUpActivity
 import com.example.olpgas.auth.presentation.util.AuthError
+import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.databinding.ActivityLoginBinding
 import com.example.olpgas.roomdetails.ui.ViewRoomActivity
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.jan.supabase.exceptions.RestException
 import kotlinx.coroutines.CoroutineScope
@@ -52,6 +54,8 @@ class LoginActivity : AppCompatActivity() {
         onGoogleSigninClick()
 
         observeLoginState()
+
+        observeConnection()
     }
 
     private fun setState() {
@@ -63,9 +67,16 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onLoginClick() {
         binding.btnLogin.setOnClickListener {
-            viewModel.onEvent(LoginEvent.Login)
-
-            checkValidationError()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                viewModel.onEvent(LoginEvent.Login)
+                checkValidationError()
+            } else {
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Connection error")
+                    .setMessage("Please check your network connection")
+                    .setPositiveButton("dismiss") { _, _ -> }
+                    .show()
+            }
         }
     }
 
@@ -96,8 +107,12 @@ class LoginActivity : AppCompatActivity() {
                     binding.btnLogin.text = "Sign In"
                     Toast.makeText(this, loginState.message, Toast.LENGTH_SHORT).show()
                 }
-                LoginState.Loading -> {
-                    binding.btnLogin.text = "Signing in..."
+                is LoginState.Loading -> {
+                    if(loginState.isLoading) {
+                        binding.btnLogin.text = "Signing in..."
+                    } else {
+                        binding.btnLogin.text = "Sign In"
+                    }
                 }
                 LoginState.Success -> {
                     binding.btnLogin.text = "Sign In"
@@ -140,16 +155,23 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onGoogleSigninClick() {
         binding.btnLoginGoogle.setOnClickListener {
-            val rawNonce = UUID.randomUUID().toString()
-            CoroutineScope(Dispatchers.Main).launch {
-                val googleIdToken = getGoogleIdToken(this@LoginActivity, rawNonce)
-                if(googleIdToken != null) {
-                    viewModel.onEvent(LoginEvent.GoogleSignIn(
-                        rawNonce, googleIdToken
-                    ))
+            if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                val rawNonce = UUID.randomUUID().toString()
+                CoroutineScope(Dispatchers.Main).launch {
+                    val googleIdToken = getGoogleIdToken(this@LoginActivity, rawNonce)
+                    if(googleIdToken != null) {
+                        viewModel.onEvent(LoginEvent.GoogleSignIn(
+                            rawNonce, googleIdToken
+                        ))
+                    }
                 }
+            } else {
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Connection error")
+                    .setMessage("Please check your network connection")
+                    .setPositiveButton("dismiss") {_,_ ->}
+                    .show()
             }
-
         }
     }
 
@@ -193,17 +215,6 @@ class LoginActivity : AppCompatActivity() {
             Log.e("Google Sign In", e.message.toString())
             return null
         }
-
-        /*Save User Details
-        val currentUser = SupabaseClient.client.auth.currentUserOrNull()
-
-        if (currentUser != null) {
-                val userName = currentUser.userMetadata?.get("name").toString()
-                val email = currentUser.email
-
-                SupabaseClient.client.postgrest.from("UserDetails")
-                    .upsert(mapOf("email" to email, "userName" to userName.substring(1..userName.length-2)))
-        }*/
     }
 
     private fun getNonce(rawNonce: String) : String {
@@ -211,5 +222,11 @@ class LoginActivity : AppCompatActivity() {
         val md = MessageDigest.getInstance("SHA-256")
         val digest = md.digest(bytes)
         return digest.fold("") { str, it -> str + "%02x".format(it) }
+    }
+
+    private fun observeConnection() {
+        viewModel.connectionStatus.observe(this) {
+            Log.d("Network Connection", it.toString())
+        }
     }
 }
