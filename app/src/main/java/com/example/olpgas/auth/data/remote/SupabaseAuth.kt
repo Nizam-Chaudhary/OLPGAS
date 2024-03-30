@@ -6,6 +6,7 @@ import com.example.olpgas.core.data.remote.SupabaseClient
 import com.example.olpgas.core.util.Constants
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.SimpleResource
+import io.github.jan.supabase.exceptions.BadRequestRestException
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.gotrue.providers.Google
 import io.github.jan.supabase.gotrue.providers.builtin.Email
@@ -35,6 +36,9 @@ class SupabaseAuth(
                 .apply()
 
             Resource.Success(Unit)
+        } catch (e: BadRequestRestException) {
+            Log.e(TAG, "Error: ${e.message}")
+            Resource.Error("Invalid Login Credentials")
         } catch (e: Exception) {
             Log.e(TAG, "Error: ${e.message}")
             Resource.Error("Error Logging in")
@@ -59,13 +63,13 @@ class SupabaseAuth(
                 .apply()
 
             Resource.Success(Unit)
+        } catch (e: BadRequestRestException) {
+            Log.e(TAG, "Error: ${e.message}")
+            Resource.Error("Email already registered")
         } catch (e: Exception) {
             Log.e(TAG, "Error: ${e.message}")
-            Resource.Error("Error Signing up")
+            Resource.Error("Error Logging in")
         }
-        //Save UserName and Email in UserDetails Table
-        //SupabaseClient.client.postgrest.from("Users")
-            //.upsert(mapOf("email" to userEmail, "userName" to userName))
     }
 
     suspend fun logout() : SimpleResource {
