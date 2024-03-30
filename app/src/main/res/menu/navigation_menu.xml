@@ -7,6 +7,11 @@
         android:title="Profile"/>
 
     <item
+        android:id="@+id/my_booked_rooms"
+        android:icon="@drawable/ic_home2"
+        android:title="My Rooms"/>
+
+    <item
         android:id="@+id/my_rooms"
         android:icon="@drawable/ic_home"
         android:title="My Rooms"/>

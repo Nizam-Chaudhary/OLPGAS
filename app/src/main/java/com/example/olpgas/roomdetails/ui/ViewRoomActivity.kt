@@ -21,6 +21,7 @@ import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.core.data.remote.SupabaseClient
 import com.example.olpgas.core.util.Constants
 import com.example.olpgas.databinding.ActivityViewRoomsBinding
+import com.example.olpgas.manage_room.ui.BookedRoom
 import com.example.olpgas.manage_room.ui.MyRoomActivity
 import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
 import com.example.olpgas.roomdetails.data.model.Filter
@@ -179,6 +180,7 @@ class ViewRoomActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.profile -> startActivity(Intent(this@ViewRoomActivity, UserProfileActivity::class.java))
                 R.id.my_rooms -> startActivity(Intent(this@ViewRoomActivity, MyRoomActivity::class.java))
+                R.id.my_booked_rooms -> startActivity(Intent(this@ViewRoomActivity, BookedRoom::class.java))
                 R.id.signOut -> {
                     val dialog = MaterialAlertDialogBuilder(this@ViewRoomActivity)
                         .setTitle("Sign Out!")
