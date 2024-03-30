@@ -1,7 +1,9 @@
 package com.example.olpgas.user_profile.domain.util
 
 object Constants {
+
     const val USER_DETAILS_TABLE = "UserDetails"
+    const val COL_USER_ID = "userId"
     const val COL_GENDER = "gender"
     const val COL_AGE = "age"
     const val COL_PHONE_NUMBER = "phoneNumber"

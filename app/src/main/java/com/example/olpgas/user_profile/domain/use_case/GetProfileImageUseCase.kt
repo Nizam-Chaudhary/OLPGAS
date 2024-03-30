@@ -6,6 +6,6 @@ class GetProfileImageUseCase(
     private val repository: UserProfileRepository
 ) {
     suspend operator fun invoke() : ByteArray? {
-        return repository.getProfileImage()
+        return repository.getUserProfileImageFromLocal()
     }
 }

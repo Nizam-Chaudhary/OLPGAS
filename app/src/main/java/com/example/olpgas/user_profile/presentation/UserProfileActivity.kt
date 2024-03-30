@@ -9,6 +9,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +18,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityUserProfileBinding
+import com.example.olpgas.databinding.RawUpdateAgeBinding
+import com.example.olpgas.databinding.RawUpdateGenderBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
 
@@ -40,14 +46,22 @@ class UserProfileActivity : AppCompatActivity() {
         }
 
         setUserProfile()
+
+        onProfileImageClick()
+
+        onGenderUpdateClick()
+
+        onAgeUpdateClick()
     }
 
     private fun setUserProfile() {
         viewModel.onEvent(UserProfileEvent.setUserProfile)
 
         viewModel.userProfilePictureState.observe(this) {
-            val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
-            binding.ivProfilePic.setImageBitmap(bitmap)
+            if(it != null) {
+                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                binding.ivProfilePic.setImageBitmap(bitmap)
+            }
         }
 
         viewModel.userProfileState.observe(this) {
@@ -59,6 +73,12 @@ class UserProfileActivity : AppCompatActivity() {
             binding.tvStreetNumber.text = it.streetNumber
             binding.tvCity.text = it.city
             binding.tvState.text = it.state
+        }
+    }
+
+    private fun onProfileImageClick() {
+        binding.ivProfilePic.setOnClickListener {
+            getImagePermission()
         }
     }
 
@@ -121,17 +141,22 @@ class UserProfileActivity : AppCompatActivity() {
                 val imageByteArray = getByteArrayFromImageUri(selectedImageUri)
 
                 if (imageByteArray != null) {
-
-                    val bitmap =
-                        BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
+                    val bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
                     binding.ivProfilePic.setImageBitmap(bitmap)
+
+                    viewModel.onEvent(UserProfileEvent.updateProfileImage(imageByteArray))
                 }
             } catch (e: Exception) {
-                e.printStackTrace()
-                // Handle exceptions (e.g., file not found, decoding error)
+                Log.e(TAG, "Error: ${e.message}")
                 Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setUserProfile()
     }
 
     private fun getByteArrayFromImageUri(imageUri: Uri): ByteArray? {
@@ -159,10 +184,89 @@ class UserProfileActivity : AppCompatActivity() {
         }
     }
 
+    private fun onGenderUpdateClick() {
+        binding.uGender.setOnClickListener {
+            updateGender()
+        }
+
+        binding.tvGender.setOnClickListener {
+            updateGender()
+        }
+    }
+
+    private fun updateGender() {
+        val view = View.inflate(
+            this,
+            R.layout.raw_update_gender,
+            null
+        )
+
+        val rawGenderBinding = RawUpdateGenderBinding.bind(view)
+
+        val genderSelected = viewModel.userProfileState.value?.gender
+        genderSelected?.let {
+            when(genderSelected) {
+                "Male" -> rawGenderBinding.rdMale.isChecked = true
+                "Female"-> rawGenderBinding.rdFemale.isChecked = true
+                else -> rawGenderBinding.rdOther.isChecked = true
+            }
+        }
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Update Gender")
+            .setView(view)
+            .setPositiveButton("Update") {_,_ ->
+                val checkedRadioButtonId = rawGenderBinding.rdgGender.checkedRadioButtonId
+                val gender = when(checkedRadioButtonId) {
+                    R.id.rd_male -> "Male"
+                    R.id.rd_female -> "Female"
+                    else -> "Other"
+                }
+
+                viewModel.onEvent(UserProfileEvent.updateGender(gender))
+            }
+            .setNegativeButton("Cancel") {_,_ -> }
+            .show()
+    }
+
+    private fun onAgeUpdateClick() {
+        binding.uAge.setOnClickListener {
+            updateAge()
+        }
+        binding.tvAge.setOnClickListener {
+            updateAge()
+        }
+    }
+
+    private fun updateAge() {
+        val view = View.inflate(
+            this,
+            R.layout.raw_update_age,
+            null
+        )
+
+        val rawUpdateAgeBinding = RawUpdateAgeBinding.bind(view)
+
+        val userAge = viewModel.userProfileState.value?.age
+        userAge?.let {
+            rawUpdateAgeBinding.txtFieldAge.editText?.setText(userAge.toString())
+        }
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Update Gender")
+            .setView(view)
+            .setPositiveButton("Update") {_,_ ->
+
+            }
+            .setNegativeButton("Cancel") {_,_ -> }
+            .show()
+    }
+
     companion object {
         private const val DEFAULT_BUFFER_SIZE = 4096 // Adjust as needed
         private const val GALLERY_REQUEST_CODE = 1
         private const val PERMISSION_REQUEST_EXTERNAL_STORAGE = 2
         private const val PERMISSION_REQUEST_MEDIA_IMAGES = 3
+        private const val TAG = "User Profile Activity"
     }
 }

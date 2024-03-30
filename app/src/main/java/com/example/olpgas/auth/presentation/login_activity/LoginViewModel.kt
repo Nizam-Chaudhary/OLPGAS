@@ -6,16 +6,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.domain.use_case.GoogleSignInUseCase
 import com.example.olpgas.auth.domain.use_case.LoginUseCase
+import com.example.olpgas.auth.domain.use_case.SetUserProfileLocalCacheUseCase
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.domain.states.TextFieldState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-    private val googleSignInUseCase: GoogleSignInUseCase
+    private val googleSignInUseCase: GoogleSignInUseCase,
+    private val setUserProfileLocalCacheUseCase: SetUserProfileLocalCacheUseCase
 ) : ViewModel() {
 
     private val _emailState:MutableLiveData<TextFieldState> = MutableLiveData(TextFieldState())
@@ -77,6 +80,9 @@ class LoginViewModel @Inject constructor(
 
             when(loginResult.result) {
                 is Resource.Success -> {
+                    runBlocking {
+                        setUserProfileLocalCacheUseCase()
+                    }
                     _loginState.value = LoginState.Success
                 }
                 is Resource.Error -> {
@@ -94,6 +100,9 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             when(val result = googleSignInUseCase(rawNonce, googleIdToken)) {
                 is Resource.Success -> {
+                    runBlocking {
+                        setUserProfileLocalCacheUseCase()
+                    }
                     _loginState.value = LoginState.Success
                 }
                 is Resource.Error -> {

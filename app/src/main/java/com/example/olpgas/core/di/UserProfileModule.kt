@@ -1,6 +1,11 @@
 package com.example.olpgas.core.di
 
+import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
+import com.example.olpgas.core.util.Constants.USER_PROFILE_PREF
+import com.example.olpgas.user_profile.data.local.ProfileImageLocalStorage
+import com.example.olpgas.user_profile.data.local.UserProfileSharedPreferences
 import com.example.olpgas.user_profile.data.remote.SupabaseUserProfile
 import com.example.olpgas.user_profile.data.repository.UserProfileRepositoryImpl
 import com.example.olpgas.user_profile.domain.repository.UserProfileRepository
@@ -25,14 +30,34 @@ object UserProfileModule {
 
     @Provides
     @Singleton
-    fun provideSupabaseUserProfile(sharedPreferences: SharedPreferences) : SupabaseUserProfile {
-        return SupabaseUserProfile(sharedPreferences)
+    fun provideUserProfileSharedPref(app: Application) : UserProfileSharedPreferences {
+        return UserProfileSharedPreferences(app.getSharedPreferences(USER_PROFILE_PREF, Context.MODE_PRIVATE))
     }
 
     @Provides
     @Singleton
-    fun provideUserProfileRepository(supabaseUserProfile: SupabaseUserProfile) : UserProfileRepository {
-        return UserProfileRepositoryImpl(supabaseUserProfile)
+    fun provideProfileImageLocalStorage(app: Application) : ProfileImageLocalStorage {
+        return ProfileImageLocalStorage(app)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSupabaseUserProfile(
+        sharedPreferences: SharedPreferences,
+        profileImageLocalStorage: ProfileImageLocalStorage,
+        userProfileSharedPref: UserProfileSharedPreferences
+        ) : SupabaseUserProfile {
+        return SupabaseUserProfile(sharedPreferences, userProfileSharedPref,profileImageLocalStorage)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserProfileRepository(
+        supabaseUserProfile: SupabaseUserProfile,
+        profileImageLocalStorage: ProfileImageLocalStorage,
+        userProfileSharedPref: UserProfileSharedPreferences
+    ) : UserProfileRepository {
+        return UserProfileRepositoryImpl(supabaseUserProfile, userProfileSharedPref, profileImageLocalStorage)
     }
 
     @Provides

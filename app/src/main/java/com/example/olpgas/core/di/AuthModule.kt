@@ -1,12 +1,17 @@
 package com.example.olpgas.core.di
 
+import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
 import com.example.olpgas.auth.data.remote.SupabaseAuth
 import com.example.olpgas.auth.data.repository.AuthRepositoryImpl
 import com.example.olpgas.auth.domain.repository.AuthRepository
 import com.example.olpgas.auth.domain.use_case.GoogleSignInUseCase
 import com.example.olpgas.auth.domain.use_case.LoginUseCase
+import com.example.olpgas.auth.domain.use_case.SetUserProfileLocalCacheUseCase
 import com.example.olpgas.auth.domain.use_case.SignupUseCase
+import com.example.olpgas.core.util.Constants
+import com.example.olpgas.user_profile.domain.repository.UserProfileRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,6 +21,15 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AuthModule {
+
+    @Provides
+    @Singleton
+    fun provideAuthSharedPref(app: Application): SharedPreferences {
+        return app.getSharedPreferences(
+            Constants.AUTH_SHARED_PREF,
+            Context.MODE_PRIVATE
+        )
+    }
 
     @Provides
     @Singleton
@@ -45,5 +59,11 @@ object AuthModule {
     @Singleton
     fun provideGoogleSignInUseCase(repository: AuthRepository): GoogleSignInUseCase {
         return GoogleSignInUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetUserProfileLocalCacheUseCase(repository: UserProfileRepository): SetUserProfileLocalCacheUseCase {
+        return SetUserProfileLocalCacheUseCase(repository)
     }
 }

@@ -92,9 +92,9 @@ class UserProfileViewModel @Inject constructor(
 
     private fun uploadProfileImage(imageByteArray: ByteArray) {
         viewModelScope.launch {
-            userProfileUsesCases.uploadProfileImageUseCase
+            userProfileUsesCases.uploadProfileImageUseCase(imageByteArray)
 
-            _userProfilePictureState.value = imageByteArray
+            _userProfilePictureState.value = userProfileUsesCases.getProfileImageUseCase()
         }
     }
 }

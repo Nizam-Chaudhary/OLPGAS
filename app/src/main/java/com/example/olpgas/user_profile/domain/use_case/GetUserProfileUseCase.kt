@@ -6,7 +6,7 @@ import com.example.olpgas.user_profile.domain.repository.UserProfileRepository
 class GetUserProfileUseCase(
     private val repository: UserProfileRepository
 ) {
-    suspend operator fun invoke() : UserProfile? {
-        return repository.getUserProfile()
+    suspend operator fun invoke() : UserProfile {
+        return repository.getUserProfileFromLocal()
     }
 }

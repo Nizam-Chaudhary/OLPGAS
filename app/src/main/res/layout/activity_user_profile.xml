@@ -104,16 +104,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/NameTV" />
 
-                <ImageButton
-                    android:id="@+id/uName"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_user_name"
-                    app:layout_constraintEnd_toEndOf="@id/tv_user_name"
-                    app:layout_constraintTop_toTopOf="@+id/tv_user_name" />
-
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/materialDividerName"
                     android:layout_width="match_parent"
