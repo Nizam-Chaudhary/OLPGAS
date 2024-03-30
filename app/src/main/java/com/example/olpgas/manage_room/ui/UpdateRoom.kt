@@ -49,7 +49,7 @@ class UpdateRoom : AppCompatActivity() {
         for (imageButtonId in imageButtonIds) {
             findViewById<ImageButton>(imageButtonId).setOnClickListener { view ->
 
-                val singleTextFiled = View.inflate(this, R.layout.change_user_profiel_raw, null)
+                val singleTextFiled = View.inflate(this, R.layout.raw_change_user_profile, null)
                 val updateRoomDetails =
                     singleTextFiled.findViewById<TextInputLayout>(R.id.changeUserProfileData)
 
@@ -58,7 +58,7 @@ class UpdateRoom : AppCompatActivity() {
                     binding.updateRoomTypeBtn.id -> {
 
                         val updateRoomTypeView =
-                            View.inflate(this, R.layout.update_room_type_dialog, null)
+                            View.inflate(this, R.layout.raw_update_room_type, null)
 
                         val updateRoomType =
                             updateRoomTypeView.findViewById<Spinner>(R.id.update_spinner_room_type)
@@ -167,7 +167,7 @@ class UpdateRoom : AppCompatActivity() {
 
                     binding.updateRoomAddressBtn.id -> {
                         val updateRoomAddressView =
-                            View.inflate(this, R.layout.update_room_address_dialog, null)
+                            View.inflate(this, R.layout.raw_update_room_address, null)
                         val updateRoomLandMark =
                             updateRoomAddressView.findViewById<TextInputLayout>(R.id.update_input_landmark)
 
