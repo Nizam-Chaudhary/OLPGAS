@@ -19,8 +19,7 @@
     <string name="welcome">Welcome,</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-
-
+    <string name="not_set">not set</string>
     <string-array name="room_type">
         <item>Single Room</item>
         <item>Double Room</item>

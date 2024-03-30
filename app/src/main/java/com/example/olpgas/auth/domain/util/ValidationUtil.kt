@@ -1,48 +1,48 @@
 package com.example.olpgas.auth.domain.util
 
 import android.util.Log
-import com.example.olpgas.auth.presentation.util.AuthError
+import com.example.olpgas.core.util.Error
 
 class ValidationUtil {
     companion object {
-        fun validateEmail(email: String) : AuthError? {
+        fun validateEmail(email: String) : Error? {
             val trimmedEmail = email.trim()
             val emailRegex = "^[\\w!#$%&'*+/=?^`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^`{|}~-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$".toRegex()
             if(trimmedEmail.isEmpty()) {
-                return AuthError.FieldEmpty
+                return Error.FieldEmpty
             }
             if(!emailRegex.matches(trimmedEmail)) {
-                return AuthError.InValidEmail
+                return Error.InValidEmail
             }
             return null
         }
 
-        fun validatePassword(password: String) : AuthError? {
+        fun validatePassword(password: String) : Error? {
             val trimmedPassword = password.trim()
             if(trimmedPassword.isEmpty()) {
-                return AuthError.FieldEmpty
+                return Error.FieldEmpty
             }
 
             if(trimmedPassword.length < 8) {
-                return AuthError.InputTooShort
+                return Error.InputTooShort
             }
             return null
         }
 
-        fun validateUserName(userName: String) : AuthError? {
+        fun validateUserName(userName: String) : Error? {
             val trimmedUserName = userName.trim()
             if(trimmedUserName.isEmpty()) {
-                return AuthError.FieldEmpty
+                return Error.FieldEmpty
             }
             return null
         }
 
-        fun validateConfirmPassword(password: String, confirmPassword: String) : AuthError? {
+        fun validateConfirmPassword(password: String, confirmPassword: String) : Error? {
             val trimmedPassword = password.trim()
             val trimmedConfirmPassword = confirmPassword.trim()
             Log.d("Validation","password = $trimmedPassword, confirm Password = $trimmedConfirmPassword")
             if(trimmedPassword != trimmedConfirmPassword) {
-                return AuthError.PasswordsNotMatching
+                return Error.PasswordsNotMatching
             }
             return null
         }

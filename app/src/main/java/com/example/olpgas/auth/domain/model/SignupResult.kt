@@ -1,12 +1,12 @@
 package com.example.olpgas.auth.domain.model
 
-import com.example.olpgas.auth.presentation.util.AuthError
+import com.example.olpgas.core.util.Error
 import com.example.olpgas.core.util.SimpleResource
 
 data class SignupResult (
-    val userNameError: AuthError? = null,
-    val emailError: AuthError? = null,
-    val passwordError: AuthError? = null,
-    val confirmPasswordError: AuthError? = null,
+    val userNameError: Error? = null,
+    val emailError: Error? = null,
+    val passwordError: Error? = null,
+    val confirmPasswordError: Error? = null,
     val result: SimpleResource? = null
 )

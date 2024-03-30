@@ -1,8 +1,8 @@
 package com.example.olpgas.core.util.domain.states
 
-import com.example.olpgas.auth.presentation.util.AuthError
+import com.example.olpgas.core.util.Error
 
 data class TextFieldState(
     val text: String = "",
-    val error: AuthError? = null
+    val error: Error? = null
 )

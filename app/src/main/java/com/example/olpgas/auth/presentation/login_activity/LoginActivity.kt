@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import com.example.olpgas.auth.presentation.signup_activity.SignUpActivity
-import com.example.olpgas.auth.presentation.util.AuthError
 import com.example.olpgas.core.util.ConnectivityObserver
+import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivityLoginBinding
 import com.example.olpgas.roomdetails.ui.ViewRoomActivity
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
@@ -82,13 +82,13 @@ class LoginActivity : AppCompatActivity() {
 
     private fun checkValidationError() {
         when(viewModel.emailState.value?.error) {
-            AuthError.FieldEmpty -> binding.txtFieldEmail.error = "Email cannot be empty"
-            AuthError.InValidEmail -> binding.txtFieldEmail.error = "Invalid email"
+            Error.FieldEmpty -> binding.txtFieldEmail.error = "Email cannot be empty"
+            Error.InValidEmail -> binding.txtFieldEmail.error = "Invalid email"
             else -> binding.txtFieldEmail.error = null
         }
         when(viewModel.passwordState.value?.error) {
-            AuthError.FieldEmpty -> binding.txtFieldPassword.error = "Password cannot be empty"
-            AuthError.InputTooShort -> binding.txtFieldPassword.error = "Password too short"
+            Error.FieldEmpty -> binding.txtFieldPassword.error = "Password cannot be empty"
+            Error.InputTooShort -> binding.txtFieldPassword.error = "Password too short"
             else -> binding.txtFieldPassword.error = null
         }
     }

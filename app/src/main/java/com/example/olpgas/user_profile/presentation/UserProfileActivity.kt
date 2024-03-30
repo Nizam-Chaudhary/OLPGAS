@@ -19,9 +19,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.olpgas.R
+import com.example.olpgas.core.util.ConnectivityObserver
+import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivityUserProfileBinding
 import com.example.olpgas.databinding.RawUpdateAgeBinding
 import com.example.olpgas.databinding.RawUpdateGenderBinding
+import com.example.olpgas.databinding.RawUpdatePhoneNumberBinding
+import com.example.olpgas.user_profile.domain.util.UserProfileValidationUtil
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
@@ -52,6 +56,10 @@ class UserProfileActivity : AppCompatActivity() {
         onGenderUpdateClick()
 
         onAgeUpdateClick()
+
+        onPhoneNumberUpdateClick()
+
+        observeNetworkConnection()
     }
 
     private fun setUserProfile() {
@@ -67,12 +75,42 @@ class UserProfileActivity : AppCompatActivity() {
         viewModel.userProfileState.observe(this) {
             binding.tvEmail.text = it.email
             binding.tvUserName.text = it.userName
-            binding.tvGender.text = it.gender
-            binding.tvAge.text = it.age.toString()
-            binding.tvPhoneNumber.text = it.phoneNumber
-            binding.tvStreetNumber.text = it.streetNumber
-            binding.tvCity.text = it.city
-            binding.tvState.text = it.state
+
+            if(it.gender == null) {
+                binding.tvGender.text = getString(R.string.not_set)
+            } else {
+                binding.tvGender.text = it.gender
+            }
+
+            if(it.age == 0) {
+                binding.tvAge.text = getString(R.string.not_set)
+            } else {
+                binding.tvAge.text = it.age.toString()
+            }
+
+            if(it.phoneNumber == null) {
+                binding.tvPhoneNumber.text = getString(R.string.not_set)
+            } else {
+                binding.tvPhoneNumber.text = it.phoneNumber
+            }
+
+            if(it.streetNumber == null) {
+                binding.tvStreetNumber.text = getString(R.string.not_set)
+            } else {
+                binding.tvStreetNumber.text = it.streetNumber
+            }
+
+            if(it.city == null) {
+                binding.tvCity.text = getString(R.string.not_set)
+            } else {
+                binding.tvCity.text = it.city
+            }
+
+            if(it.state == null) {
+                binding.tvState.text = getString(R.string.not_set)
+            } else {
+                binding.tvState.text = it.state
+            }
         }
     }
 
@@ -239,27 +277,109 @@ class UserProfileActivity : AppCompatActivity() {
     }
 
     private fun updateAge() {
-        val view = View.inflate(
-            this,
-            R.layout.raw_update_age,
-            null
-        )
+        if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+            val view = View.inflate(
+                this,
+                R.layout.raw_update_age,
+                null
+            )
 
-        val rawUpdateAgeBinding = RawUpdateAgeBinding.bind(view)
+            val rawUpdateAgeBinding = RawUpdateAgeBinding.bind(view)
 
-        val userAge = viewModel.userProfileState.value?.age
-        userAge?.let {
-            rawUpdateAgeBinding.txtFieldAge.editText?.setText(userAge.toString())
-        }
-
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Update Age")
-            .setView(view)
-            .setPositiveButton("Update") {_,_ ->
-
+            val userAge = viewModel.userProfileState.value?.age
+            if(userAge != null && userAge != 0) {
+                rawUpdateAgeBinding.txtFieldAge.editText?.setText(userAge.toString())
             }
-            .setNegativeButton("Cancel") {_,_ -> }
-            .show()
+
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Update Age")
+                .setView(view)
+                .setPositiveButton("Update") {_,_ ->
+                    val age = if(rawUpdateAgeBinding.txtFieldAge.editText?.text.toString() == "") {
+                        0
+                    } else {
+                        rawUpdateAgeBinding.txtFieldAge.editText?.text.toString().toInt()
+                    }
+                    val ageError = UserProfileValidationUtil.validateAge(age)
+                    when(ageError) {
+                        Error.EmptyField -> {
+                            Toast.makeText(this, "Age can't be empty", Toast.LENGTH_SHORT).show()
+                        }
+                        Error.InValidAge -> {
+                            Toast.makeText(this, "Invalid Age", Toast.LENGTH_SHORT).show()
+                        }
+                        null -> {
+                            viewModel.onEvent(UserProfileEvent.updateAge(age))
+                        } else -> {}
+                    }
+
+                }
+                .setNegativeButton("Cancel") {_,_ -> }
+                .show()
+        } else {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Connection error")
+                .setMessage("Please check your network connection")
+                .setPositiveButton("dismiss") { _, _ -> }
+                .show()
+        }
+    }
+
+    private fun onPhoneNumberUpdateClick() {
+        binding.uPhoneNumber.setOnClickListener {
+            updatePhoneNumber()
+        }
+        binding.tvPhoneNumber.setOnClickListener {
+            updatePhoneNumber()
+        }
+    }
+
+    private fun updatePhoneNumber() {
+        if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+            val view = View.inflate(
+                this,
+                R.layout.raw_update_phone_number,
+                null
+            )
+
+            val phoneNumberBinding = RawUpdatePhoneNumberBinding.bind(view)
+
+            val userPhoneNumber = viewModel.userProfileState.value?.phoneNumber
+            if(!userPhoneNumber.isNullOrEmpty()) {
+                phoneNumberBinding.txtFieldAge.editText?.setText(userPhoneNumber)
+            }
+
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Update Phone Number")
+                .setView(view)
+                .setPositiveButton("Update") {_,_ ->
+                    val phoneNumber = phoneNumberBinding.txtFieldAge.editText?.text.toString()
+                    val phoneNumberError = UserProfileValidationUtil.validatePhoneNumber(phoneNumber)
+                    when(phoneNumberError) {
+                        Error.EmptyField -> {
+                            Toast.makeText(this, "Phone Number can't be empty", Toast.LENGTH_SHORT).show()
+                        }
+                        Error.InvalidPhoneNumber -> {
+                            Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT).show()
+                        }
+                        null -> {
+                            viewModel.onEvent(UserProfileEvent.updatePhoneNumber(phoneNumber))
+                        } else -> {}
+                    }
+                }
+                .setNegativeButton("Cancel") {_,_ -> }
+                .show()
+        } else {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Connection error")
+                .setMessage("Please check your network connection")
+                .setPositiveButton("dismiss") { _, _ -> }
+                .show()
+        }
+    }
+
+    private fun observeNetworkConnection() {
+        viewModel.connectionStatus.observe(this) {}
     }
 
     companion object {

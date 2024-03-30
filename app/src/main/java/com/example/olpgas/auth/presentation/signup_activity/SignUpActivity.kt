@@ -10,8 +10,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.example.olpgas.auth.presentation.login_activity.LoginActivity
-import com.example.olpgas.auth.presentation.util.AuthError
 import com.example.olpgas.core.util.ConnectivityObserver
+import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivitySignUpBinding
 import com.example.olpgas.roomdetails.ui.ViewRoomActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -131,23 +131,23 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun checkValidationError() {
         when(viewModel.userNameState.value?.error) {
-            AuthError.FieldEmpty -> binding.txtFieldUserName.error = "User Name cannot be empty"
+            Error.FieldEmpty -> binding.txtFieldUserName.error = "User Name cannot be empty"
             else -> binding.txtFieldUserName.error = null
         }
 
         when(viewModel.emailState.value?.error) {
-            AuthError.FieldEmpty -> binding.txtFieldEmail.error = "Email cannot be empty"
-            AuthError.InValidEmail -> binding.txtFieldEmail.error = "Invalid email"
+            Error.FieldEmpty -> binding.txtFieldEmail.error = "Email cannot be empty"
+            Error.InValidEmail -> binding.txtFieldEmail.error = "Invalid email"
             else -> binding.txtFieldEmail.error = null
         }
         when(viewModel.passwordState.value?.error) {
-            AuthError.FieldEmpty -> binding.txtFieldPassword.error = "Password cannot be empty"
-            AuthError.InputTooShort -> binding.txtFieldPassword.error = "Password too short"
+            Error.FieldEmpty -> binding.txtFieldPassword.error = "Password cannot be empty"
+            Error.InputTooShort -> binding.txtFieldPassword.error = "Password too short"
             else -> binding.txtFieldPassword.error = null
         }
 
         when(viewModel.confirmPasswordState.value?.error) {
-            AuthError.PasswordsNotMatching -> binding.txtFieldConfirmPassword.error = "Password not matching"
+            Error.PasswordsNotMatching -> binding.txtFieldConfirmPassword.error = "Password not matching"
             else -> binding.txtFieldConfirmPassword.error = null
         }
     }

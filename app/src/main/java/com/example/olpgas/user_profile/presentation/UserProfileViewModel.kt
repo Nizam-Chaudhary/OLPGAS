@@ -3,7 +3,9 @@ package com.example.olpgas.user_profile.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.olpgas.core.util.NetworkConnectivityObserver
 import com.example.olpgas.user_profile.data.model.UserProfile
 import com.example.olpgas.user_profile.domain.use_case.UserProfileUsesCases
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserProfileViewModel @Inject constructor(
-    private val userProfileUsesCases: UserProfileUsesCases
+    private val userProfileUsesCases: UserProfileUsesCases,
+    private val networkConnectivityObserver: NetworkConnectivityObserver
 ): ViewModel() {
 
     private val _userProfileState = MutableLiveData(UserProfile())
@@ -20,6 +23,8 @@ class UserProfileViewModel @Inject constructor(
 
     private val _userProfilePictureState = MutableLiveData<ByteArray>()
     val userProfilePictureState: LiveData<ByteArray> = _userProfilePictureState
+
+    val connectionStatus = networkConnectivityObserver.observe().asLiveData()
 
     fun onEvent(event: UserProfileEvent) {
         when(event) {
