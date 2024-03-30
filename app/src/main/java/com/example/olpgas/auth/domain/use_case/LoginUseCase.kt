@@ -21,7 +21,7 @@ class LoginUseCase(
             )
         }
 
-        val result = repository.login(userEmail, userPassword)
+        val result = repository.login(userEmail.trim(), userPassword.trim())
 
         return LoginResult(
             result = result

@@ -24,7 +24,7 @@ class SignupUseCase(
             )
         }
 
-        val result = repository.signUp(email, password)
+        val result = repository.signUp(email.trim(), password.trim())
 
         return SignupResult(
             result = result

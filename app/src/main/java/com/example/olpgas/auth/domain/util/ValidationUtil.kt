@@ -1,5 +1,6 @@
 package com.example.olpgas.auth.domain.util
 
+import android.util.Log
 import com.example.olpgas.auth.presentation.util.AuthError
 
 class ValidationUtil {
@@ -39,6 +40,7 @@ class ValidationUtil {
         fun validateConfirmPassword(password: String, confirmPassword: String) : AuthError? {
             val trimmedPassword = password.trim()
             val trimmedConfirmPassword = confirmPassword.trim()
+            Log.d("Validation","password = $trimmedPassword, confirm Password = $trimmedConfirmPassword")
             if(trimmedPassword != trimmedConfirmPassword) {
                 return AuthError.PasswordsNotMatching
             }
