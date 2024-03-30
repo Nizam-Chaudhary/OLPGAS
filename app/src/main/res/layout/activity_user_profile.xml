@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:background="@drawable/background">
 
         <androidx.cardview.widget.CardView
@@ -22,9 +23,11 @@
             android:layout_gravity="center"
             app:cardCornerRadius="30dp"
             android:layout_marginTop="50dp"
+            android:layout_marginBottom="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/cardView2"
             >
 
             <ImageView
@@ -43,13 +46,12 @@
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="bottom"
             android:layout_marginTop="30dp"
             app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView1">
+            app:layout_constraintStart_toStartOf="parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -279,10 +281,12 @@
 
                 <TextView
                     android:id="@+id/tv_state"
+                    style="@style/userProfile_DataTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/userProfile_DataTV"
                     android:text="Valsad"
+                    android:layout_marginBottom="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/StateTV" />
 
