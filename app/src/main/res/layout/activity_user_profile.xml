@@ -302,26 +302,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/CityTV" />
 
-                <ImageButton
-                    android:id="@+id/uAddressCity"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_city"
-                    app:layout_constraintEnd_toEndOf="@id/tv_city"
-                    app:layout_constraintTop_toTopOf="@+id/tv_city" />
-
-                <ImageButton
-                    android:id="@+id/uAddressState"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_state"
-                    app:layout_constraintEnd_toEndOf="@id/tv_state"
-                    app:layout_constraintTop_toTopOf="@+id/tv_state" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

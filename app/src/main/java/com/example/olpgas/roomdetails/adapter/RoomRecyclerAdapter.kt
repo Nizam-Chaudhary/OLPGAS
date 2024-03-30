@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.olpgas.core.data.remote.SupabaseClient
-import com.example.olpgas.databinding.RecyclerViewRoomsListBinding
+import com.example.olpgas.databinding.RawRecyclerViewRoomsListBinding
 import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
 import com.example.olpgas.roomdetails.ui.RoomDetails
 import com.example.olpgas.roomdetails.ui.getCircularProgressDrawable
@@ -25,7 +25,7 @@ import java.util.Locale
 class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val context: Context,private val manageRoom: Boolean = false) :
     RecyclerView.Adapter<RoomRecyclerAdapter.ViewHolder>() {
 
-    class ViewHolder(view: RecyclerViewRoomsListBinding) : RecyclerView.ViewHolder(view.root) {
+    class ViewHolder(view: RawRecyclerViewRoomsListBinding) : RecyclerView.ViewHolder(view.root) {
         val roomNameTV: TextView = view.roomNameTv
         val roomLocationTV: TextView = view.roomLocationTv
         val roomPrice: TextView = view.rentAmountTv
@@ -35,7 +35,7 @@ class RoomRecyclerAdapter(var roomsData: List<AllRoomsDetails>, private val cont
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(RecyclerViewRoomsListBinding.inflate(
+        return ViewHolder(RawRecyclerViewRoomsListBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false

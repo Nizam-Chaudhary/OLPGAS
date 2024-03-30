@@ -22,6 +22,7 @@ import com.example.olpgas.R
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivityUserProfileBinding
+import com.example.olpgas.databinding.RawUpdateAddressBinding
 import com.example.olpgas.databinding.RawUpdateAgeBinding
 import com.example.olpgas.databinding.RawUpdateGenderBinding
 import com.example.olpgas.databinding.RawUpdatePhoneNumberBinding
@@ -58,6 +59,8 @@ class UserProfileActivity : AppCompatActivity() {
         onAgeUpdateClick()
 
         onPhoneNumberUpdateClick()
+
+        onAddressUpdateClick()
 
         observeNetworkConnection()
     }
@@ -346,14 +349,14 @@ class UserProfileActivity : AppCompatActivity() {
 
             val userPhoneNumber = viewModel.userProfileState.value?.phoneNumber
             if(!userPhoneNumber.isNullOrEmpty()) {
-                phoneNumberBinding.txtFieldAge.editText?.setText(userPhoneNumber)
+                phoneNumberBinding.txtFiledPhoneNumber.editText?.setText(userPhoneNumber)
             }
 
             MaterialAlertDialogBuilder(this)
                 .setTitle("Update Phone Number")
                 .setView(view)
                 .setPositiveButton("Update") {_,_ ->
-                    val phoneNumber = phoneNumberBinding.txtFieldAge.editText?.text.toString()
+                    val phoneNumber = phoneNumberBinding.txtFiledPhoneNumber.editText?.text.toString()
                     val phoneNumberError = UserProfileValidationUtil.validatePhoneNumber(phoneNumber)
                     when(phoneNumberError) {
                         Error.EmptyField -> {
@@ -365,6 +368,92 @@ class UserProfileActivity : AppCompatActivity() {
                         null -> {
                             viewModel.onEvent(UserProfileEvent.updatePhoneNumber(phoneNumber))
                         } else -> {}
+                    }
+                }
+                .setNegativeButton("Cancel") {_,_ -> }
+                .show()
+        } else {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Connection error")
+                .setMessage("Please check your network connection")
+                .setPositiveButton("dismiss") { _, _ -> }
+                .show()
+        }
+    }
+
+    private fun onAddressUpdateClick() {
+        binding.uAddressStreet.setOnClickListener {
+            updateAddress()
+        }
+        binding.tvStreetNumber.setOnClickListener {
+            updateAddress()
+        }
+    }
+
+    private fun updateAddress() {
+        if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+            val view = View.inflate(
+                this,
+                R.layout.raw_update_address,
+                null
+            )
+
+            val addressBinding = RawUpdateAddressBinding.bind(view)
+
+            val userStreetNumber = viewModel.userProfileState.value?.streetNumber
+            val userCity = viewModel.userProfileState.value?.city
+            val userState = viewModel.userProfileState.value?.state
+
+            if(!userStreetNumber.isNullOrEmpty()) {
+                addressBinding.txtFieldStreetNumber.editText?.setText(userStreetNumber)
+            }
+
+            if(!userCity.isNullOrEmpty()) {
+                addressBinding.txtFieldCity.editText?.setText(userCity)
+            }
+
+            if(!userState.isNullOrEmpty()) {
+                addressBinding.txtFieldState.editText?.setText(userState)
+            }
+
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Update Address")
+                .setView(view)
+                .setPositiveButton("Update") {_,_ ->
+                    val streetNumber = addressBinding.txtFieldStreetNumber.editText?.text.toString()
+                    val city = addressBinding.txtFieldCity.editText?.text.toString()
+                    val state = addressBinding.txtFieldState.editText?.text.toString()
+
+                    val streetNumberError = UserProfileValidationUtil.validateForEmpty(streetNumber)
+                    val cityError = UserProfileValidationUtil.validateForEmpty(city)
+                    val stateError = UserProfileValidationUtil.validateForEmpty(state)
+
+                    var addressValid = true
+
+                    when(streetNumberError) {
+                        Error.EmptyField -> {
+                            Toast.makeText(this, "Street Number can't be empty", Toast.LENGTH_SHORT).show()
+                            addressValid = false
+                        }
+                        else -> {}
+                    }
+                    when(cityError) {
+                        Error.EmptyField -> {
+                            Toast.makeText(this, "City can't be empty", Toast.LENGTH_SHORT).show()
+                            addressValid = false
+                        }
+                        else -> {}
+                    }
+                    when(stateError) {
+                        Error.EmptyField -> {
+                            Toast.makeText(this, "State can't be empty", Toast.LENGTH_SHORT).show()
+                            addressValid = false
+                        }
+                        else -> {}
+                    }
+
+                    if(addressValid) {
+                        viewModel.onEvent(UserProfileEvent.updateAddress(streetNumber, city, state))
                     }
                 }
                 .setNegativeButton("Cancel") {_,_ -> }
