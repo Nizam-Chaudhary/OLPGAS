@@ -3,6 +3,7 @@ package com.example.olpgas.core.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.olpgas.auth.domain.use_case.SetUpUserUseCase
 import com.example.olpgas.core.util.Constants.USER_PROFILE_PREF
 import com.example.olpgas.user_profile.data.local.ProfileImageLocalStorage
 import com.example.olpgas.user_profile.data.local.UserProfileSharedPreferences
@@ -58,6 +59,12 @@ object UserProfileModule {
         userProfileSharedPref: UserProfileSharedPreferences
     ) : UserProfileRepository {
         return UserProfileRepositoryImpl(supabaseUserProfile, userProfileSharedPref, profileImageLocalStorage)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSetUpUserUseCase(repository: UserProfileRepository) : SetUpUserUseCase {
+        return SetUpUserUseCase(repository)
     }
 
     @Provides

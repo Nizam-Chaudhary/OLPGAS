@@ -5,17 +5,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.olpgas.auth.domain.use_case.SetUpUserUseCase
 import com.example.olpgas.auth.domain.use_case.SignupUseCase
 import com.example.olpgas.core.util.NetworkConnectivityObserver
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.domain.states.TextFieldState
+import com.example.olpgas.user_profile.data.model.UserProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
 class SignupViewModel @Inject constructor(
     private val signupUseCase: SignupUseCase,
+    private val setUpUserUseCase: SetUpUserUseCase,
     private val connectivityObserver: NetworkConnectivityObserver
 ) : ViewModel(){
 
@@ -112,6 +116,12 @@ class SignupViewModel @Inject constructor(
 
             when(signupResult.result) {
                 is Resource.Success -> {
+                    runBlocking {
+                        setUpUserUseCase(UserProfile(
+                            userName = userNameState.value?.text,
+                            email = emailState.value?.text
+                        ))
+                    }
                     _signupState.value = SignupState.Success
                 }
                 is Resource.Error -> {

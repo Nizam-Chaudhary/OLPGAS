@@ -8,6 +8,9 @@ import com.example.olpgas.auth.data.repository.AuthRepositoryImpl
 import com.example.olpgas.auth.domain.repository.AuthRepository
 import com.example.olpgas.auth.domain.use_case.GoogleSignInUseCase
 import com.example.olpgas.auth.domain.use_case.LoginUseCase
+import com.example.olpgas.auth.domain.use_case.LoginUseCases
+import com.example.olpgas.auth.domain.use_case.SetUpUserUseCase
+import com.example.olpgas.auth.domain.use_case.SetUpUserWithGoogleUseCase
 import com.example.olpgas.auth.domain.use_case.SetUserProfileLocalCacheUseCase
 import com.example.olpgas.auth.domain.use_case.SignupUseCase
 import com.example.olpgas.core.util.Constants
@@ -43,11 +46,6 @@ object AuthModule {
         return AuthRepositoryImpl(supabaseAuth)
     }
 
-    @Provides
-    @Singleton
-    fun provideLoginUseCase(repository: AuthRepository): LoginUseCase {
-        return LoginUseCase(repository)
-    }
 
     @Provides
     @Singleton
@@ -57,13 +55,13 @@ object AuthModule {
 
     @Provides
     @Singleton
-    fun provideGoogleSignInUseCase(repository: AuthRepository): GoogleSignInUseCase {
-        return GoogleSignInUseCase(repository)
-    }
-
-    @Provides
-    @Singleton
-    fun provideSetUserProfileLocalCacheUseCase(repository: UserProfileRepository): SetUserProfileLocalCacheUseCase {
-        return SetUserProfileLocalCacheUseCase(repository)
+    fun provideLoginUseCases(authRepository: AuthRepository, userProfileRepository: UserProfileRepository) : LoginUseCases {
+        return LoginUseCases(
+            LoginUseCase(authRepository),
+            GoogleSignInUseCase(authRepository),
+            SetUserProfileLocalCacheUseCase(userProfileRepository),
+            SetUpUserUseCase(userProfileRepository),
+            SetUpUserWithGoogleUseCase(userProfileRepository)
+        )
     }
 }

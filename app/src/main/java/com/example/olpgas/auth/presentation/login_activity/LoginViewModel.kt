@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.olpgas.auth.domain.use_case.GoogleSignInUseCase
-import com.example.olpgas.auth.domain.use_case.LoginUseCase
-import com.example.olpgas.auth.domain.use_case.SetUserProfileLocalCacheUseCase
+import com.example.olpgas.auth.domain.use_case.LoginUseCases
 import com.example.olpgas.core.util.NetworkConnectivityObserver
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.domain.states.TextFieldState
@@ -18,10 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase,
-    private val googleSignInUseCase: GoogleSignInUseCase,
-    private val setUserProfileLocalCacheUseCase: SetUserProfileLocalCacheUseCase,
-    private val connectivityObserver: NetworkConnectivityObserver
+    private val loginUseCases: LoginUseCases,
+    connectivityObserver: NetworkConnectivityObserver
 ) : ViewModel() {
 
     private val _emailState:MutableLiveData<TextFieldState> = MutableLiveData(TextFieldState())
@@ -66,7 +62,7 @@ class LoginViewModel @Inject constructor(
                 error = null
             )
 
-            val loginResult = loginUseCase(
+            val loginResult = loginUseCases.loginUseCase(
                 emailState.value!!.text,
                 passwordState.value!!.text
             )
@@ -86,7 +82,7 @@ class LoginViewModel @Inject constructor(
             when(loginResult.result) {
                 is Resource.Success -> {
                     runBlocking {
-                        setUserProfileLocalCacheUseCase()
+                        loginUseCases.setUserProfileLocalCacheUseCase()
                     }
                     _loginState.value = LoginState.Success
                 }
@@ -104,10 +100,11 @@ class LoginViewModel @Inject constructor(
         googleIdToken: String
     ) {
         viewModelScope.launch {
-            when(val result = googleSignInUseCase(rawNonce, googleIdToken)) {
+            when(val result = loginUseCases.googleSignInUseCase(rawNonce, googleIdToken)) {
                 is Resource.Success -> {
                     runBlocking {
-                        setUserProfileLocalCacheUseCase()
+                        loginUseCases.setUserProfileLocalCacheUseCase()
+                        loginUseCases.setUpUserWithGoogleUseCase()
                     }
                     _loginState.value = LoginState.Success
                 }

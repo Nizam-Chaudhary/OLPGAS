@@ -66,4 +66,8 @@ class UserProfileRepositoryImpl(
     override suspend fun upsertUser(userProfile: UserProfile) {
         supabaseUserProfile.upsertUser(userProfile)
     }
+
+    override suspend fun setUpUserWithGoogle() {
+        supabaseUserProfile.setUpUserWithGoogle()
+    }
 }

@@ -34,4 +34,6 @@ interface UserProfileRepository {
     suspend fun upsertUser(
         userProfile: UserProfile
     )
+
+    suspend fun setUpUserWithGoogle()
 }

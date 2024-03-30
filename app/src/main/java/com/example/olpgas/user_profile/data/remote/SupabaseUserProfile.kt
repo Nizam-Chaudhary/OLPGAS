@@ -8,6 +8,7 @@ import com.example.olpgas.user_profile.data.local.ProfileImageLocalStorage
 import com.example.olpgas.user_profile.data.local.UserProfileSharedPreferences
 import com.example.olpgas.user_profile.data.model.UserProfile
 import com.example.olpgas.user_profile.domain.util.Constants
+import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.storage.storage
 
@@ -152,6 +153,28 @@ class SupabaseUserProfile(
                 .upsert(userProfile)
 
             userProfileSharedPreferences.saveUserProfile(userProfile)
+        }catch (e: Exception) {
+            Log.e(TAG, "Error: ${e.message}")
+        }
+    }
+
+    suspend fun setUpUserWithGoogle() {
+        try {
+
+            val currentUser = SupabaseClient.client.auth.currentUserOrNull()
+
+            if (currentUser != null) {
+                val userName = currentUser.userMetadata?.get("name").toString()
+                val email = currentUser.email
+
+
+                upsertUser(
+                    UserProfile(
+                        userName = userName.substring(1..userName.length-2),
+                        email = email
+                    )
+                )
+            }
         }catch (e: Exception) {
             Log.e(TAG, "Error: ${e.message}")
         }
