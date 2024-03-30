@@ -312,6 +312,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Amenities"
+            android:layout_marginStart="16dp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/material_divider1" />
@@ -321,8 +323,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:paddingHorizontal="10dp"
-            android:paddingStart="15dp"
+            android:paddingStart="48dp"
+            android:paddingEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_amenities">
@@ -369,6 +371,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Furnished" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/add_amenities_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                app:chipIcon="@drawable/ic_add"
+                app:chipMinTouchTargetSize="0dp" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.divider.MaterialDivider
@@ -387,6 +399,8 @@
             style="@style/detailed_room_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="18sp"
             android:text="Suitable For"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -397,8 +411,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:paddingHorizontal="10dp"
-            android:paddingStart="15dp"
+            android:paddingStart="48dp"
+            android:paddingEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_suitable">
@@ -430,6 +444,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Solo" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/add_suitable_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="12sp"
+                app:chipIcon="@drawable/ic_add"
+                app:chipMinTouchTargetSize="0dp" />
         </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.divider.MaterialDivider
@@ -446,7 +470,8 @@
             android:id="@+id/input_about"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginTop="16dp"
             android:hint="About"
             app:layout_constraintEnd_toEndOf="parent"
@@ -464,7 +489,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -483,7 +508,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="16dp"
             android:text="Submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
