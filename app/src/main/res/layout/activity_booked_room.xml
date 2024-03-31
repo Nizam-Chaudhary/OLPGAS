@@ -21,7 +21,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="?attr/colorPrimary"
-        android:text="History"
+        android:text="@string/history"
         app:icon="@drawable/ic_history"
         app:iconGravity="textStart"
         app:layout_constraintBottom_toBottomOf="parent"

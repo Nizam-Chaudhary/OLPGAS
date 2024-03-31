@@ -18,7 +18,7 @@
             android:id="@+id/addTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Room Details"
+            android:text="@string/add_room_details"
             android:layout_marginTop="40dp"
             android:textAlignment="center"
             android:textColor="?attr/colorPrimary"
@@ -32,11 +32,12 @@
             android:layout_width="32dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_email"
+            android:src="@drawable/ic_home"
             app:layout_constraintBottom_toBottomOf="@+id/input_room_name"
             app:layout_constraintEnd_toStartOf="@id/input_room_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/input_room_name" />
+            app:layout_constraintTop_toTopOf="@+id/input_room_name"
+            android:contentDescription="@string/icon_for_txtFiled" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -44,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Room Name"
+            android:hint="@string/room_name"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +64,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="48dp"
             android:layout_marginEnd="32dp"
-            android:hint="Room Number"
+            android:hint="@string/room_number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_room_name">
@@ -80,7 +81,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Land Mark"
+            android:hint="@string/land_mark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_room_number">
@@ -100,7 +101,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/input_street_number"
             app:layout_constraintEnd_toStartOf="@id/input_street_number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/input_street_number" />
+            app:layout_constraintTop_toTopOf="@+id/input_street_number"
+            android:contentDescription="@string/icon_for_txtFiled" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -110,7 +112,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Street No/Name"
+            android:hint="@string/street_no_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon_loc"
             app:layout_constraintTop_toBottomOf="@id/input_landmark">
@@ -144,7 +146,8 @@
             android:src="@drawable/ic_down"
             app:layout_constraintBottom_toBottomOf="@id/spinner_state"
             app:layout_constraintEnd_toEndOf="@id/spinner_state"
-            app:layout_constraintTop_toTopOf="@id/spinner_state" />
+            app:layout_constraintTop_toTopOf="@id/spinner_state"
+            android:contentDescription="@string/icon_for_txtFiled" />
 
         <Spinner
             android:id="@+id/spinner_city"
@@ -168,7 +171,8 @@
             android:src="@drawable/ic_down"
             app:layout_constraintBottom_toBottomOf="@id/spinner_city"
             app:layout_constraintEnd_toEndOf="@id/spinner_city"
-            app:layout_constraintTop_toTopOf="@id/spinner_city" />
+            app:layout_constraintTop_toTopOf="@id/spinner_city"
+            android:contentDescription="@string/icon_for_txtFiled" />
 
         <Spinner
             android:id="@+id/spinner_room_type"
@@ -191,7 +195,8 @@
             android:src="@drawable/ic_down"
             app:layout_constraintBottom_toBottomOf="@id/spinner_room_type"
             app:layout_constraintEnd_toEndOf="@id/spinner_room_type"
-            app:layout_constraintTop_toTopOf="@id/spinner_room_type" />
+            app:layout_constraintTop_toTopOf="@id/spinner_room_type"
+            android:contentDescription="@string/icon_for_txtFiled" />
 
 
         <ImageView
@@ -203,7 +208,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/input_shareable_by"
             app:layout_constraintEnd_toStartOf="@id/input_shareable_by"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/input_shareable_by" />
+            app:layout_constraintTop_toTopOf="@+id/input_shareable_by"
+            android:contentDescription="@string/icon_for_txtFiled" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -213,7 +219,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="32dp"
-            android:hint="Shareable By How Many"
+            android:hint="@string/shareable_by_how_many"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon_people"
             app:layout_constraintTop_toBottomOf="@id/spinner_room_type">
@@ -234,7 +240,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/input_rent_amount"
             app:layout_constraintEnd_toStartOf="@id/input_rent_amount"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/input_rent_amount" />
+            app:layout_constraintTop_toTopOf="@+id/input_rent_amount"
+            android:contentDescription="@string/icon_for_txtFiled" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -242,7 +249,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Rent Amount"
+            android:hint="@string/rent_amount"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -263,7 +270,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="16dp"
-            android:hint="Deposit Amount"
+            android:hint="@string/deposit_amount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -311,7 +318,7 @@
             style="@style/detailed_room_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Amenities"
+            android:text="@string/amenities"
             android:layout_marginStart="16dp"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -334,7 +341,7 @@
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AC" />
+                android:text="@string/ac" />
 
 
             <com.google.android.material.chip.Chip
@@ -342,41 +349,41 @@
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Washing Machine" />
+                android:text="@string/washing_machine" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_wifi"
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wi-Fi" />
+                android:text="@string/wi_fi" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_fan"
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fans" />
+                android:text="@string/fans" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_geyser"
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Geyser" />
+                android:text="@string/geyser" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_furnished"
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Furnished" />
+                android:text="@string/furnished" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/add_amenities_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add"
+                android:text="@string/add"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="12sp"
                 app:chipIcon="@drawable/ic_add"
@@ -401,7 +408,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:textSize="18sp"
-            android:text="Suitable For"
+            android:text="@string/suitable_for"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/materialDivider4" />
@@ -422,34 +429,34 @@
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Students" />
+                android:text="@string/students" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_professionals"
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Professionals" />
+                android:text="@string/professionals" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_couples"
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Couples" />
+                android:text="@string/couples" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_solo"
                 style="@style/chip_Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Solo" />
+                android:text="@string/solo" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/add_suitable_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add"
+                android:text="@string/add"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="12sp"
                 app:chipIcon="@drawable/ic_add"
@@ -473,7 +480,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginEnd="32dp"
             android:layout_marginTop="16dp"
-            android:hint="About"
+            android:hint="@string/about"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/material_divider2">
@@ -498,7 +505,7 @@
                 android:id="@+id/btn_add_main_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Click to add image"
+                android:text="@string/click_to_add_image"
                 android:drawableEnd="@drawable/ic_add"
                 />
         </LinearLayout>
@@ -509,7 +516,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginHorizontal="16dp"
-            android:text="Submit"
+            android:text="@string/submit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linear_layout_add_images" />
