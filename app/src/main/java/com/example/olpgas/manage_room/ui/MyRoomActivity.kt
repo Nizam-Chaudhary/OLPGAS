@@ -15,7 +15,7 @@ import androidx.transition.TransitionManager
 import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityMyRoomBinding
 import com.example.olpgas.manage_room.viewmodel.ManageRoomViewModel
-import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
+import com.example.olpgas.browse_rooms.presentation.RoomsRecyclerViewAdapter
 
 
 class MyRoomActivity : AppCompatActivity() {
@@ -49,14 +49,14 @@ class MyRoomActivity : AppCompatActivity() {
             startActivity(intent, options.toBundle())
         }
 
-        setMyRoomDataAdapter()
+        //setMyRoomDataAdapter()
 
         refreshLayout()
     }
 
-    private fun setMyRoomDataAdapter(){
+   /* private fun setMyRoomDataAdapter(){
         binding.rvMyRooms.layoutManager = LinearLayoutManager(this)
-        val adapter = RoomRecyclerAdapter(emptyList(), this, true)
+        val adapter = RoomsRecyclerViewAdapter(emptyList(), this, true)
         binding.rvMyRooms.adapter = adapter
 
         manageRoomViewModel.fetchMyRooms()
@@ -66,11 +66,11 @@ class MyRoomActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
             binding.refreshLayout.isRefreshing = false
         }
-    }
+    }*/
 
     private fun refreshLayout() {
         binding.refreshLayout.setOnRefreshListener {
-            setMyRoomDataAdapter()
+            //setMyRoomDataAdapter()
         }
     }
 }

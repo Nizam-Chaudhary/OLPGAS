@@ -1,4 +1,4 @@
-package com.example.olpgas.roomdetails.ui
+package com.example.olpgas.core.util
 
 import android.content.Context
 import android.graphics.PorterDuff

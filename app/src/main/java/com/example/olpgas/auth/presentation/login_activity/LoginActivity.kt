@@ -16,6 +16,7 @@ import com.example.olpgas.auth.presentation.signup_activity.SignUpActivity
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivityLoginBinding
+import com.example.olpgas.main_activity.presentation.MainActivity
 import com.example.olpgas.roomdetails.ui.ViewRoomActivity
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
@@ -118,7 +119,7 @@ class LoginActivity : AppCompatActivity() {
                 }
                 LoginState.Success -> {
                     binding.btnLogin.text = "Sign In"
-                    startActivity(Intent(this, ViewRoomActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
                 null -> {

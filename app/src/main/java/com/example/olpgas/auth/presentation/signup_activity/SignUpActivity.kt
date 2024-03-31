@@ -14,6 +14,7 @@ import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivitySignUpBinding
+import com.example.olpgas.main_activity.presentation.MainActivity
 import com.example.olpgas.roomdetails.ui.ViewRoomActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
@@ -172,7 +173,7 @@ class SignUpActivity : AppCompatActivity() {
                     }
                 }
                 SignupState.Success -> {
-                    startActivity(Intent(this, ViewRoomActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     binding.btnSignup.text = "Sign Up"
                     finish()
                 }

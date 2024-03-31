@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.olpgas.core.data.remote.SupabaseClient
 import com.example.olpgas.databinding.ImageRawBinding
-import com.example.olpgas.roomdetails.ui.getCircularProgressDrawable
+import com.example.olpgas.core.util.getCircularProgressDrawable
 import io.github.jan.supabase.storage.BucketItem
 import io.github.jan.supabase.storage.storage
 import kotlinx.coroutines.CoroutineScope

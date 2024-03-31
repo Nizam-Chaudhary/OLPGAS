@@ -10,20 +10,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgas.R
-import com.example.olpgas.auth.data.remote.SupabaseAuth
-import com.example.olpgas.auth.data.repository.AuthRepositoryImpl
-import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.core.data.remote.SupabaseClient
-import com.example.olpgas.core.util.Constants
 import com.example.olpgas.databinding.ActivityViewRoomsBinding
 import com.example.olpgas.manage_room.ui.BookedRoom
 import com.example.olpgas.manage_room.ui.MyRoomActivity
-import com.example.olpgas.roomdetails.adapter.RoomRecyclerAdapter
+import com.example.olpgas.browse_rooms.presentation.RoomsRecyclerViewAdapter
 import com.example.olpgas.roomdetails.data.model.Filter
 import com.example.olpgas.roomdetails.utils.FilterSharedPreferencesHelper
 import com.example.olpgas.roomdetails.viewmodel.RoomsViewModel
@@ -34,7 +28,6 @@ import io.github.jan.supabase.gotrue.auth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class ViewRoomActivity : AppCompatActivity() {
@@ -60,21 +53,9 @@ class ViewRoomActivity : AppCompatActivity() {
 
         navMenuItemClick()
 
-        fetchRoomsDataAndSetAdapter()
+        //fetchRoomsDataAndSetAdapter()
 
         refreshLayout()
-
-        /*profileViewModeluserProfilePictureStatus.observe(this) {
-            when(it) {
-                WorkState.Loading -> {
-
-                }
-                is WorkState.Success -> {
-                    setProfilePicture()
-                }
-                is WorkState.Error -> {}
-            }
-        }*/
 
         CoroutineScope(Dispatchers.IO).launch {
             while(true) {
@@ -150,7 +131,7 @@ class ViewRoomActivity : AppCompatActivity() {
                         }
                         val filterData = Filter(city, minRentAmount, maxRentAmount)
                         filterSharedPreferencesHelper.saveFilter(filterData)
-                        fetchRoomsDataAndSetAdapter(filterData)
+                        //fetchRoomsDataAndSetAdapter(filterData)
                     }
                     .setNegativeButton("Cancel") {_, _ ->
 
@@ -159,7 +140,7 @@ class ViewRoomActivity : AppCompatActivity() {
 
                 btnClearAllFilter.setOnClickListener {
                     filterSharedPreferencesHelper.clearFilter()
-                    fetchRoomsDataAndSetAdapter()
+                    //fetchRoomsDataAndSetAdapter()
                     dialog.dismiss()
                 }
             }
@@ -205,9 +186,9 @@ class ViewRoomActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchRoomsDataAndSetAdapter(filter: Filter? = null) {
+    /*private fun fetchRoomsDataAndSetAdapter(filter: Filter? = null) {
         binding.rvRooms.layoutManager = LinearLayoutManager(this)
-        val adapter = RoomRecyclerAdapter(emptyList(), this)
+        val adapter = RoomsRecyclerViewAdapter(emptyList(), this)
         binding.rvRooms.adapter = adapter
 
         roomViewModel.fetchAllRooms(filter)
@@ -216,7 +197,7 @@ class ViewRoomActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
             binding.refreshLayout.isRefreshing = false
         }
-    }
+    }*/
 
     private fun setUserName() {
         roomViewModel.getUserName()
@@ -235,7 +216,7 @@ class ViewRoomActivity : AppCompatActivity() {
 
     private fun refreshLayout() {
         binding.refreshLayout.setOnRefreshListener {
-            fetchRoomsDataAndSetAdapter()
+            //fetchRoomsDataAndSetAdapter()
         }
     }
 }
