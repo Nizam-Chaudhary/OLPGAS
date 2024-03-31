@@ -57,13 +57,6 @@ class ViewRoomActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setToggleButtonForNavigationDrawer()
-        runBlocking {
-            if(!AuthRepositoryImpl(SupabaseAuth(applicationContext.getSharedPreferences(Constants.AUTH_SHARED_PREF, MODE_PRIVATE))).isUserLoggedIn()) {
-                val intent = Intent(this@ViewRoomActivity, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
 
         navMenuItemClick()
 

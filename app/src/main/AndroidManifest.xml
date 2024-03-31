@@ -14,16 +14,26 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/ic_logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_logo"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.OLPGB"
         tools:targetApi="31">
         <activity
+            android:name=".main_activity.presentation.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.Starting">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".manage_room.ui.BookedRoom"
-            android:theme="@style/NoStatusBarTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/NoStatusBarTheme" />
         <activity
             android:name=".manage_room.ui.UpdateRoom"
             android:exported="false"
@@ -48,14 +58,8 @@
             android:theme="@style/NoStatusBarTheme" />
         <activity
             android:name=".roomdetails.ui.ViewRoomActivity"
-            android:exported="true"
-            android:theme="@style/statusBarTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"
+            android:theme="@style/statusBarTheme" />
         <activity
             android:name=".auth.presentation.login_activity.LoginActivity"
             android:exported="true"
