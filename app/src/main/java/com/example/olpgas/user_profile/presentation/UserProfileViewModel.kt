@@ -28,22 +28,22 @@ class UserProfileViewModel @Inject constructor(
 
     fun onEvent(event: UserProfileEvent) {
         when(event) {
-            UserProfileEvent.setUserProfile -> {
+            UserProfileEvent.SetUserProfile -> {
                 viewModelScope.launch {
                     _userProfileState.value = userProfileUsesCases.getUserProfileUseCase()
                     _userProfilePictureState.value = userProfileUsesCases.getProfileImageUseCase()
                 }
             }
-            is UserProfileEvent.updateAge -> updateAge(event.age)
-            is UserProfileEvent.updateGender -> updateGender(event.gender)
-            is UserProfileEvent.updatePhoneNumber -> updatePhoneNumber(event.phoneNumber)
-            is UserProfileEvent.updateAddress ->
+            is UserProfileEvent.UpdateAge -> updateAge(event.age)
+            is UserProfileEvent.UpdateGender -> updateGender(event.gender)
+            is UserProfileEvent.UpdatePhoneNumber -> updatePhoneNumber(event.phoneNumber)
+            is UserProfileEvent.UpdateAddress ->
                 updateAddress(
                     event.streetNumber,
                     event.city,
                     event.state
                 )
-            is UserProfileEvent.updateProfileImage -> uploadProfileImage(event.imageByteArray)
+            is UserProfileEvent.UpdateProfileImage -> uploadProfileImage(event.imageByteArray)
         }
     }
 

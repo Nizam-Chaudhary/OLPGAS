@@ -103,8 +103,8 @@ class LoginViewModel @Inject constructor(
             when(val result = loginUseCases.googleSignInUseCase(rawNonce, googleIdToken)) {
                 is Resource.Success -> {
                     runBlocking {
-                        loginUseCases.setUserProfileLocalCacheUseCase()
                         loginUseCases.setUpUserWithGoogleUseCase()
+                        loginUseCases.setUserProfileLocalCacheUseCase()
                     }
                     _loginState.value = LoginState.Success
                 }

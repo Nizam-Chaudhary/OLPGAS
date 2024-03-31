@@ -66,7 +66,7 @@ class UserProfileActivity : AppCompatActivity() {
     }
 
     private fun setUserProfile() {
-        viewModel.onEvent(UserProfileEvent.setUserProfile)
+        viewModel.onEvent(UserProfileEvent.SetUserProfile)
 
         viewModel.userProfilePictureState.observe(this) {
             if(it != null) {
@@ -185,7 +185,7 @@ class UserProfileActivity : AppCompatActivity() {
                     val bitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
                     binding.ivProfilePic.setImageBitmap(bitmap)
 
-                    viewModel.onEvent(UserProfileEvent.updateProfileImage(imageByteArray))
+                    viewModel.onEvent(UserProfileEvent.UpdateProfileImage(imageByteArray))
                 }
             } catch (e: Exception) {
                 Log.e(TAG, "Error: ${e.message}")
@@ -264,7 +264,7 @@ class UserProfileActivity : AppCompatActivity() {
                     else -> "Other"
                 }
 
-                viewModel.onEvent(UserProfileEvent.updateGender(gender))
+                viewModel.onEvent(UserProfileEvent.UpdateGender(gender))
             }
             .setNegativeButton("Cancel") {_,_ -> }
             .show()
@@ -312,7 +312,7 @@ class UserProfileActivity : AppCompatActivity() {
                             Toast.makeText(this, "Invalid Age", Toast.LENGTH_SHORT).show()
                         }
                         null -> {
-                            viewModel.onEvent(UserProfileEvent.updateAge(age))
+                            viewModel.onEvent(UserProfileEvent.UpdateAge(age))
                         } else -> {}
                     }
 
@@ -366,7 +366,7 @@ class UserProfileActivity : AppCompatActivity() {
                             Toast.makeText(this, "Invalid Phone Number", Toast.LENGTH_SHORT).show()
                         }
                         null -> {
-                            viewModel.onEvent(UserProfileEvent.updatePhoneNumber(phoneNumber))
+                            viewModel.onEvent(UserProfileEvent.UpdatePhoneNumber(phoneNumber))
                         } else -> {}
                     }
                 }
@@ -453,7 +453,7 @@ class UserProfileActivity : AppCompatActivity() {
                     }
 
                     if(addressValid) {
-                        viewModel.onEvent(UserProfileEvent.updateAddress(streetNumber, city, state))
+                        viewModel.onEvent(UserProfileEvent.UpdateAddress(streetNumber, city, state))
                     }
                 }
                 .setNegativeButton("Cancel") {_,_ -> }
