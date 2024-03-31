@@ -6,7 +6,7 @@
     <color name="textColor">#FFFFFFFF</color>
     <color name="primary">#FF000000</color>
     <color name="nonePrimary">#FFFFFFFF</color>
-    <color name="backgroundColor">#121212</color>
+    <color name="backgroundColor">#FF000000</color>
     <color name="RoomRawBackgroundColor">#222121</color>
     <color name="StatusBarBackgroundColor">#0F0F0F</color>
     <color name="secondaryTextColor">#98949f</color>
