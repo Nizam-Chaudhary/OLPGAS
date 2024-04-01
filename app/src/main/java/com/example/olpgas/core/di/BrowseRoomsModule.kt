@@ -1,10 +1,12 @@
 package com.example.olpgas.core.di
 
+import android.app.Application
+import com.example.olpgas.browse_rooms.data.local.database.BrowseRoomDatabase
 import com.example.olpgas.browse_rooms.data.remote.SupabaseListRooms
 import com.example.olpgas.browse_rooms.data.repository.BrowseRoomsRepositoryImpl
 import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
-import com.example.olpgas.browse_rooms.domain.use_case.GetRoomsImageForListingUseCase
-import com.example.olpgas.browse_rooms.domain.use_case.GetRoomsForListingUseCase
+import com.example.olpgas.browse_rooms.domain.use_case.GetAllRoomDetailsFromLocalDBUseCase
+import com.example.olpgas.browse_rooms.domain.use_case.RefreshLocalCacheUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,22 +25,19 @@ object BrowseRoomsModule {
 
     @Provides
     @Singleton
-    fun provideBrowserRoomRepository(supabaseListRooms: SupabaseListRooms) : BrowseRoomsRepository {
-        return BrowseRoomsRepositoryImpl(supabaseListRooms)
+    fun provideBrowserRoomRepository(supabaseListRooms: SupabaseListRooms, application: Application) : BrowseRoomsRepository {
+        return BrowseRoomsRepositoryImpl(supabaseListRooms, BrowseRoomDatabase.Companion(application))
     }
 
     @Provides
     @Singleton
-    fun provideGetRoomsForListingUseCase(repository: BrowseRoomsRepository) : GetRoomsForListingUseCase {
-        return GetRoomsForListingUseCase(repository)
+    fun provideGetAllRoomDetailsFromLocalDBUseCase(repository: BrowseRoomsRepository) : GetAllRoomDetailsFromLocalDBUseCase {
+        return GetAllRoomDetailsFromLocalDBUseCase(repository)
     }
 
     @Provides
     @Singleton
-    fun provideGetRoomImageForListingUseCase(repository: BrowseRoomsRepository) : GetRoomsImageForListingUseCase {
-        return GetRoomsImageForListingUseCase(
-            repository
-        )
+    fun provideRefreshLocalCacheUseCase(repository: BrowseRoomsRepository) : RefreshLocalCacheUseCase {
+        return RefreshLocalCacheUseCase(repository)
     }
-
 }

@@ -1,6 +1,7 @@
 package com.example.olpgas.browse_rooms.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,19 +35,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun setRecyclerViewAdapter() {
-        val adapter = RoomsRecyclerViewAdapter(emptyList(), emptyList(), requireContext())
+        val adapter = RoomsRecyclerViewAdapter(emptyList(), requireContext())
         binding.rvListRooms.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
             this.adapter = adapter
         }
 
         viewModel.onEvent(BrowseRoomsEvent.OnCreate)
-        viewModel.allRoomsImageState.observe(viewLifecycleOwner) {
-            val roomsData = viewModel.allRoomDetailsState.value
-            val roomsImageData = it
-            if(roomsData != null && roomsImageData != null) {
-                adapter.roomsData = roomsData
-                adapter.roomsImage = roomsImageData
+        viewModel.allRoomDetailsState.observe(viewLifecycleOwner) {
+            Log.d("Browse Rooms", it.toString())
+            it?.let {
+                Log.d("Browse Rooms", it.toString())
+                adapter.roomsData = it
                 adapter.notifyDataSetChanged()
             }
         }

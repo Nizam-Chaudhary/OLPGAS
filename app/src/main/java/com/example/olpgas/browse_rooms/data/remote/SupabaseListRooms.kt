@@ -2,6 +2,7 @@ package com.example.olpgas.browse_rooms.data.remote
 
 import android.util.Log
 import android.util.TimeUtils
+import com.example.olpgas.browse_rooms.data.local.database.BrowseRoomDatabase
 import com.example.olpgas.browse_rooms.data.remote.model.AllRoomDetails
 import com.example.olpgas.browse_rooms.data.remote.model.RoomBookingStatus
 import com.example.olpgas.browse_rooms.domain.util.Constants
@@ -37,7 +38,7 @@ class SupabaseListRooms {
             for(i in ownerIds.indices) {
                 val bucket = SupabaseClient.client.storage.from("RoomPics")
                 val files = bucket.list("${ownerIds[i]}/${roomNames[i]}")
-                bucket.createSignedUrl("${ownerIds[i]}/${roomNames[i]}/${files[0].name}", 60.minutes)
+                bucket.createSignedUrl("${ownerIds[i]}/${roomNames[i]}/${files[0].name}", Duration.INFINITE)
                 val url = bucket.publicUrl("${ownerIds[i]}/${roomNames[i]}/${files[0].name}")
                 urls.add(url)
             }

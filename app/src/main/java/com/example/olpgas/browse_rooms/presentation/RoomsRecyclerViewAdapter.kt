@@ -1,7 +1,6 @@
 package com.example.olpgas.browse_rooms.presentation
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,15 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.olpgas.browse_rooms.data.remote.model.AllRoomDetails
+import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
 import com.example.olpgas.databinding.RawRecyclerViewRoomsListBinding
 import com.example.olpgas.core.util.getCircularProgressDrawable
-import com.google.android.material.chip.Chip
 import java.util.Locale
 
 class RoomsRecyclerViewAdapter(
-    var roomsData: List<AllRoomDetails>,
-    var roomsImage: List<String>,
+    var roomsData: List<AllRoomsDetailsLocal>,
     private val context: Context
 ) : RecyclerView.Adapter<RoomsRecyclerViewAdapter.ViewHolder>() {
 
@@ -41,9 +38,8 @@ class RoomsRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentRoomData = roomsData[position]
-        val currentRoomImage = roomsImage[position]
         Glide.with(context)
-            .load(currentRoomImage)
+            .load(currentRoomData.imageUrl)
             .placeholder(getCircularProgressDrawable(context))
             .transition(DrawableTransitionOptions.withCrossFade())
             .centerCrop()
