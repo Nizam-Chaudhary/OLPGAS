@@ -17,7 +17,6 @@ import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivityLoginBinding
 import com.example.olpgas.main_activity.presentation.MainActivity
-import com.example.olpgas.roomdetails.ui.ViewRoomActivity
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException

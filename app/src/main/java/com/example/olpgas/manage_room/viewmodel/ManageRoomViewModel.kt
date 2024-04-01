@@ -9,8 +9,6 @@ import com.example.olpgas.core.data.remote.SupabaseClient.client
 import com.example.olpgas.manage_room.model.RoomDetails
 import com.example.olpgas.manage_room.model.RoomMaster
 import com.example.olpgas.manage_room.model.WorkState
-import com.example.olpgas.roomdetails.data.model.AllRoomsDetails
-import com.example.olpgas.roomdetails.data.model.FullRoomDetails
 import io.github.jan.supabase.gotrue.auth
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns

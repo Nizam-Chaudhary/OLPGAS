@@ -49,7 +49,7 @@
             android:theme="@style/NoStatusBarTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".roomdetails.ui.RoomDetails"
+            android:name=".view_room_details.presentation.RoomDetailsActivity"
             android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
         <activity

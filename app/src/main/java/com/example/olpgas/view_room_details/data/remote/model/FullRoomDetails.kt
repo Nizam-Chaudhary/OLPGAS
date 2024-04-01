@@ -1,8 +1,5 @@
-package com.example.olpgas.roomdetails.data.model
+package com.example.olpgas.view_room_details.data.remote.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class FullRoomDetails(
     val id: Int,
     val roomName: String,
@@ -20,5 +17,7 @@ data class FullRoomDetails(
     val deposit: Int,
     val rentAmount: Int,
     val description: String,
-    val roomFeatureId: Int
+    val roomFeatureId: Int,
+    val bookingStatus: String,
+    val ratings: Int
 )

@@ -15,7 +15,6 @@ import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivitySignUpBinding
 import com.example.olpgas.main_activity.presentation.MainActivity
-import com.example.olpgas.roomdetails.ui.ViewRoomActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
