@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.domain.use_case.LoginUseCases
+import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.NetworkConnectivityObserver
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.domain.states.TextFieldState
@@ -17,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCases: LoginUseCases,
-    connectivityObserver: NetworkConnectivityObserver
+    connectivityObserver: ConnectivityObserver
 ) : ViewModel() {
 
     private val _emailState:MutableLiveData<TextFieldState> = MutableLiveData(TextFieldState())

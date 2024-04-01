@@ -37,7 +37,6 @@ class BrowseRoomsRepositoryImpl(
                 currentRoomDetails.roomName,
                 currentRoomDetails.roomNumber,
                 currentRoomDetails.description,
-                currentRoomDetails.features,
                 currentRoomDetails.roomFeatureId,
                 currentRoomDetails.rentAmount,
                 currentRoomDetails.deposit,

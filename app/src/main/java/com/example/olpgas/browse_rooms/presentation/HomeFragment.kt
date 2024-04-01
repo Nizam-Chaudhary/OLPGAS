@@ -9,14 +9,23 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgas.R
+import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private val viewModel: BrowseRoomsViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
+    private var isCacheRefreshed = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +41,8 @@ class HomeFragment : Fragment() {
         setRecyclerViewAdapter()
 
         onSwipeRefresh()
+
+        observeNetworkConnection()
     }
 
     private fun setRecyclerViewAdapter() {
@@ -43,9 +54,7 @@ class HomeFragment : Fragment() {
 
         viewModel.onEvent(BrowseRoomsEvent.OnCreate)
         viewModel.allRoomDetailsState.observe(viewLifecycleOwner) {
-            Log.d("Browse Rooms", it.toString())
             it?.let {
-                Log.d("Browse Rooms", it.toString())
                 adapter.roomsData = it
                 adapter.notifyDataSetChanged()
             }
@@ -54,9 +63,24 @@ class HomeFragment : Fragment() {
 
     private fun onSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
-            binding.swipeRefresh.isRefreshing = true
-            viewModel.onEvent(BrowseRoomsEvent.OnRefresh)
+            if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                binding.swipeRefresh.isRefreshing = true
+                viewModel.onEvent(BrowseRoomsEvent.OnRefresh)
+                isCacheRefreshed = true
+            }
             binding.swipeRefresh.isRefreshing = false
+        }
+    }
+
+    private fun observeNetworkConnection() {
+
+        viewModel.connectionStatus.observe(viewLifecycleOwner) {
+            Log.d("Network Connection", it.toString())
+
+            if(it == ConnectivityObserver.State.Available && !isCacheRefreshed) {
+                viewModel.onEvent(BrowseRoomsEvent.OnRefresh)
+                isCacheRefreshed = true
+            }
         }
     }
 }

@@ -9,7 +9,6 @@ data class AllRoomDetails(
     val roomName: String,
     val roomNumber: String,
     val description: String,
-    val features: List<String>,
     val roomFeatureId: Int,
     val rentAmount: Int,
     val deposit: Int,

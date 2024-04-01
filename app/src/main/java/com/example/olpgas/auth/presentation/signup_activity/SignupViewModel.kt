@@ -7,6 +7,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.auth.domain.use_case.SetUpUserUseCase
 import com.example.olpgas.auth.domain.use_case.SignupUseCase
+import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.NetworkConnectivityObserver
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.core.util.domain.states.TextFieldState
@@ -20,7 +21,7 @@ import javax.inject.Inject
 class SignupViewModel @Inject constructor(
     private val signupUseCase: SignupUseCase,
     private val setUpUserUseCase: SetUpUserUseCase,
-    private val connectivityObserver: NetworkConnectivityObserver
+    private val connectivityObserver: ConnectivityObserver
 ) : ViewModel(){
 
     private val _userNameState:MutableLiveData<TextFieldState> = MutableLiveData(TextFieldState())

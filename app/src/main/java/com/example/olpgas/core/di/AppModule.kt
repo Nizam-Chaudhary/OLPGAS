@@ -1,6 +1,7 @@
 package com.example.olpgas.core.di
 
 import android.app.Application
+import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.NetworkConnectivityObserver
 import dagger.Module
 import dagger.Provides
@@ -14,7 +15,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNetworkConnectivity(app: Application) : NetworkConnectivityObserver {
+    fun provideNetworkConnectivity(app: Application) : ConnectivityObserver {
         return NetworkConnectivityObserver(app)
     }
 }

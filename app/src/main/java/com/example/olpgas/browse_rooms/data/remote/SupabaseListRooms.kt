@@ -27,7 +27,7 @@ class SupabaseListRooms {
                     }
                 }.decodeList<AllRoomDetails>()
         }catch (e: Exception) {
-            Log.e(TAG, "Error: ${e.message}", e)
+            Log.e(TAG, "Error: ${e.message}")
             null
         }
     }
@@ -44,7 +44,7 @@ class SupabaseListRooms {
             }
             return urls
         } catch (e: Exception) {
-            Log.e(TAG, "Error: ${e.message}", e)
+            Log.e(TAG, "Error: ${e.message}")
             null
         }
     }

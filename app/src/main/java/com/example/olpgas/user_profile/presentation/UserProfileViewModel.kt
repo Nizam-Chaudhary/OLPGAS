@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.NetworkConnectivityObserver
 import com.example.olpgas.user_profile.data.model.UserProfile
 import com.example.olpgas.user_profile.domain.use_case.UserProfileUsesCases
@@ -15,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UserProfileViewModel @Inject constructor(
     private val userProfileUsesCases: UserProfileUsesCases,
-    private val networkConnectivityObserver: NetworkConnectivityObserver
+    private val networkConnectivityObserver: ConnectivityObserver
 ): ViewModel() {
 
     private val _userProfileState = MutableLiveData(UserProfile())
