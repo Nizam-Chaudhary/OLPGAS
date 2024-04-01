@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
         binding.mainViewPager.apply {
             this.adapter = adapter
             this.currentItem = Constants.FRAGMENT_HOME
-            this.isUserInputEnabled = false
         }
     }
 
