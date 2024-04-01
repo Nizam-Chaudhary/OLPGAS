@@ -54,7 +54,9 @@ class HomeFragment : Fragment() {
 
     private fun onSwipeRefresh() {
         binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = true
             viewModel.onEvent(BrowseRoomsEvent.OnRefresh)
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 }
