@@ -42,7 +42,6 @@ class RoomsRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentRoomData = roomsData[position]
         val currentRoomImage = roomsImage[position]
-        Log.d("Browser", currentRoomImage)
         Glide.with(context)
             .load(currentRoomImage)
             .placeholder(getCircularProgressDrawable(context))

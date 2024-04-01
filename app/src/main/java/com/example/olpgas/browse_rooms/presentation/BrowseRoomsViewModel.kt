@@ -23,12 +23,6 @@ class BrowseRoomsViewModel @Inject constructor(
     private val _allRoomsImageState = MutableLiveData<List<String>?>()
     val allRoomsImageState: LiveData<List<String>?> = _allRoomsImageState
 
-    private val _allOwnerIdState = MutableLiveData<List<String>?>()
-    val allOwnerIdState: LiveData<List<String>?> = _allOwnerIdState
-
-    private val _allRoomNameState = MutableLiveData<List<String>?>()
-    val allRoomNameState: LiveData<List<String>?> = _allRoomNameState
-
     fun onEvent(event: BrowseRoomsEvent) {
         when(event) {
             BrowseRoomsEvent.OnCreate -> {

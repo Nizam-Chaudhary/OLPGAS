@@ -16,7 +16,6 @@ import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.databinding.ActivityMainBinding
 import com.example.olpgas.main_activity.domain.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.runBlocking
 import java.lang.IllegalArgumentException
 
 @AndroidEntryPoint
