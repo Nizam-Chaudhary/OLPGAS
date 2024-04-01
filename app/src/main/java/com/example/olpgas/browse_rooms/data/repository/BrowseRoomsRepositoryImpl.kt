@@ -28,7 +28,6 @@ class BrowseRoomsRepositoryImpl(
         allRoomsDetails: List<AllRoomDetails>,
         allRoomsImages: List<String>
     ) {
-        database.getAllRoomDetailsDao().deleteAll()
         for(i in allRoomsDetails.indices) {
             val currentRoomDetails = allRoomsDetails[i]
             val currentRoomImage = allRoomsImages[i]
