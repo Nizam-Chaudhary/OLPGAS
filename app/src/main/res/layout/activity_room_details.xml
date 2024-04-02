@@ -16,17 +16,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/primary"
-            android:paddingBottom="40dp">
+            android:layout_height="wrap_content" >
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/detailed_room_image_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -51,8 +48,8 @@
                 android:id="@+id/detailed_room_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 android:text="ABC Bungalow"
                 android:textColor="@color/textColor"
                 android:textSize="32sp"
@@ -65,11 +62,9 @@
                 android:id="@+id/detailed_room_location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:drawableLeft="@drawable/ic_location"
-                android:drawablePadding="5dp"
-                android:paddingVertical="5dp"
-                android:paddingStart="10dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 android:text="Bypass Road, Vadodara, Gujarat"
                 android:textColor="@color/secondaryTextColor"
                 android:textSize="16sp"
@@ -83,7 +78,8 @@
                 android:id="@+id/materialDivider"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailed_room_location" />
@@ -95,6 +91,8 @@
                 android:layout_height="wrap_content"
                 android:text="Suitable For"
                 android:textSize="18sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/materialDivider" />
@@ -103,11 +101,11 @@
                 android:id="@+id/details_roomSuitableFor_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="15dp"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/detailed_roomSuitableFor_TV"></com.google.android.material.chip.ChipGroup>
+                app:layout_constraintTop_toBottomOf="@id/detailed_roomSuitableFor_TV"/>
 
 
             <TextView
@@ -117,6 +115,8 @@
                 android:layout_height="wrap_content"
                 android:text="Amenities"
                 android:textSize="18sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/details_roomSuitableFor_group" />
@@ -126,17 +126,18 @@
                 android:id="@+id/detailed_room_amenities_chipGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingStart="15dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/amenities_tv"></com.google.android.material.chip.ChipGroup>
+                app:layout_constraintTop_toBottomOf="@id/amenities_tv"/>
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/materialDivider4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/detailed_room_amenities_chipGroup" />
@@ -147,7 +148,8 @@
                 style="@style/detailed_room_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 android:text="Details"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -158,8 +160,8 @@
                 android:id="@+id/gl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 android:columnCount="2"
                 app:flow_horizontalGap="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -168,18 +170,18 @@
 
                 <TextView
                     android:id="@+id/tv1"
+                    android:paddingVertical="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="7dp"
                     android:text="Price" />
 
                 <TextView
                     android:id="@+id/roomPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
                     android:text="20000/-"
+                    android:paddingVertical="4dp"
+                    android:layout_marginStart="8dp"
                     android:textColor="@color/Orange"
                     android:textStyle="bold" />
 
@@ -187,53 +189,53 @@
                     android:id="@+id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingVertical="4dp"
                     android:layout_alignParentTop="true"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="7dp"
                     android:text="Deposit" />
 
                 <TextView
                     android:id="@+id/room_deposit_tv"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
                     android:text="30000/-"
+                    android:paddingVertical="4dp"
+                    android:layout_marginStart="8dp"
                     android:textColor="@color/Orange"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="7dp"
-                    android:text="Sharable By" />
+                    android:text="Sharable By"
+                    android:paddingVertical="4dp" />
 
                 <TextView
                     android:id="@+id/shareable_tv"
-                    android:paddingHorizontal="10dp"
                     android:text="3 People"
+                    android:paddingVertical="4dp"
                     android:textColor="@color/Orange"
+                    android:layout_marginStart="8dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="7dp"
-                    android:text="Room Type" />
+                    android:text="Room Type"
+                    android:paddingVertical="4dp"/>
 
                 <TextView
                     android:id="@+id/room_type_tv"
-                    android:paddingHorizontal="10dp"
                     android:text="4500 sq.ft."
+                    android:paddingVertical="4dp"
                     android:textColor="@color/Orange"
+                    android:layout_marginStart="8dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="7dp"
-                    android:text="Area" />
+                    android:text="Area"
+                    android:paddingVertical="4dp"/>
 
                 <TextView
                     android:id="@+id/room_area_tv"
-                    android:paddingHorizontal="10dp"
                     android:text="4500 sq.ft."
+                    android:paddingVertical="4dp"
+                    android:layout_marginStart="8dp"
                     android:textColor="@color/Orange"
                     android:textStyle="bold" />
             </GridLayout>
@@ -242,7 +244,8 @@
                 android:id="@+id/material_divider1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/gl" />
@@ -254,6 +257,8 @@
                 android:layout_height="wrap_content"
                 android:text="About Room"
                 android:textSize="18sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/material_divider1" />
@@ -262,9 +267,8 @@
                 android:id="@+id/detailed_room_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="20dp"
                 android:paddingBottom="50dp"
                 android:textColor="@color/secondaryTextColor"

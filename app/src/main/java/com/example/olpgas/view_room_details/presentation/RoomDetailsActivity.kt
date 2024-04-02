@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.Window
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +30,11 @@ class RoomDetailsActivity : AppCompatActivity() {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         setUpData()
 
@@ -60,7 +68,7 @@ class RoomDetailsActivity : AppCompatActivity() {
             binding.shareableTv.text = "${it.shareable} People"
             binding.roomAreaTv.text = it.roomType
             binding.roomAreaTv.text = "${it.roomArea} Sq. Ft."
-            binding.roomDetailsAboutTV.text = it.description
+            binding.detailedRoomAbout.text = it.description
 
             val adapter = RoomImageRecyclerPagerAdapter(it.urls, this)
             binding.detailedRoomImageViewpager.adapter = adapter
