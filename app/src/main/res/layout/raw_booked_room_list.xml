@@ -158,7 +158,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="8000/-"
-                        android:textColor="@color/textColor"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@id/heading_rent_tv"
                         app:layout_constraintTop_toBottomOf="@id/heading_rent_tv" />
@@ -184,7 +184,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Paid"
-                        android:textColor="@color/textColor"
+                        android:textColor="?attr/colorPrimary"
                         app:layout_constraintEnd_toEndOf="@+id/heading_rentStatus_tv"
                         app:layout_constraintStart_toStartOf="@id/heading_rentStatus_tv"
                         app:layout_constraintTop_toBottomOf="@id/heading_rentStatus_tv" />
@@ -207,7 +207,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12/04/2024"
-                        android:textColor="@color/textColor"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@id/heading_next_rent_tv"
                         app:layout_constraintTop_toBottomOf="@id/heading_next_rent_tv" />
@@ -229,7 +229,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="15000/-"
-                        android:textColor="@color/textColor"
+                        android:textColor="?attr/colorPrimary"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@id/heading_deposit_tv"
                         app:layout_constraintTop_toBottomOf="@id/heading_deposit_tv" />
@@ -253,7 +253,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Collected"
-                        android:textColor="@color/textColor"
+                        android:textColor="?attr/colorPrimary"
                         app:layout_constraintEnd_toEndOf="@+id/heading_depositStatus_tv"
                         app:layout_constraintStart_toStartOf="@id/heading_depositStatus_tv"
                         app:layout_constraintTop_toBottomOf="@id/heading_depositStatus_tv" />

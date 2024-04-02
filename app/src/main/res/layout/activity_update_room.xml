@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:paddingStart="10dp"
-                android:text="VP Patel"
+                android:text="ABC"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/RoomNameTV" />
 
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:paddingStart="10dp"
-                android:text="VP Patel"
+                android:text="Civil Road, Valsad, Guajrat"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/RoomAddressTV" />
 
@@ -137,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:text="Amenities"
                 android:textColor="@color/textColor"
@@ -214,7 +214,7 @@
                 android:id="@+id/materialDivider2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/update_chipGroup_Amenities" />
@@ -225,7 +225,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:text="Suitable For"
                 android:textColor="@color/textColor"
@@ -288,7 +288,7 @@
                 android:id="@+id/materialDivider3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/update_chipGroup_suitable_for" />
@@ -509,9 +509,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
-                android:text="Address"
+                android:text="@string/about"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -526,7 +526,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:paddingStart="10dp"
-                android:text="VP Patel"
+                android:text="Nice Room"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/RoomAboutTV" />
 

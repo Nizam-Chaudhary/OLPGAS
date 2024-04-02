@@ -13,7 +13,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:background="@drawable/background">
 
         <androidx.cardview.widget.CardView
@@ -27,8 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardView2"
-            >
+            app:layout_constraintBottom_toTopOf="@id/cardView2">
 
             <ImageView
                 android:id="@+id/iv_profile_pic"
@@ -48,7 +46,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_marginTop="30dp"
-            app:cardCornerRadius="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -59,248 +56,290 @@
                 android:layout_height="match_parent"
                 android:background="@color/primary"
                 android:orientation="vertical"
-                android:paddingHorizontal="25dp"
-                android:paddingTop="50dp">
+                android:paddingTop="20dp">
 
-                <TextView
-                    android:id="@+id/tv_email"
+                <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_email"
-                    android:drawablePadding="24dp"
-                    android:text="email@gmail.com"
-                    android:textSize="20sp"
-                    android:textStyle="normal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/materialDividerEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toTopOf="@id/materialCardView3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_email"
-                    tools:layout_editor_absoluteY="50dp" />
+                    tools:layout_editor_absoluteY="50dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp">
+
+                        <TextView
+                            android:id="@+id/tv_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:drawableLeft="@drawable/ic_email"
+                            android:drawablePadding="24dp"
+                            android:text="email@gmail.com"
+                            android:textSize="20sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/NameTV"
+                            style="@style/userProfile_HeadingTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Name"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_email" />
+
+                        <TextView
+                            android:id="@+id/tv_user_name"
+                            style="@style/userProfile_DataTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="VP Patel"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/NameTV" />
 
 
-                <TextView
-                    android:id="@+id/NameTV"
-                    style="@style/userProfile_HeadingTV"
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Name"
+                    app:cardCornerRadius="20dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toTopOf="@id/materialCardView2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/materialDividerEmail" />
+                    app:layout_constraintStart_toStartOf="parent">
 
-                <TextView
-                    android:id="@+id/tv_user_name"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp">
+
+
+                        <TextView
+                            android:id="@+id/GenderTV"
+                            style="@style/userProfile_HeadingTV"
+                            android:layout_width="50pt"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Gender"
+                            app:layout_constraintEnd_toStartOf="@id/AgeTv"
+                            app:layout_constraintHorizontal_chainStyle="spread_inside"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_gender"
+                            style="@style/userProfile_DataTV"
+                            android:layout_width="50pt"
+                            android:layout_height="wrap_content"
+                            android:text="male"
+                            app:layout_constraintStart_toStartOf="@id/GenderTV"
+                            app:layout_constraintTop_toBottomOf="@id/GenderTV" />
+
+
+                        <ImageButton
+                            android:id="@+id/uGender"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_right_arrow"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_gender"
+                            app:layout_constraintEnd_toEndOf="@id/tv_gender"
+                            app:layout_constraintTop_toTopOf="@+id/tv_gender" />
+
+
+                        <TextView
+                            android:id="@+id/AgeTv"
+                            style="@style/userProfile_HeadingTV"
+                            android:layout_width="50pt"
+                            android:layout_height="wrap_content"
+                            android:text="Age"
+                            app:layout_constraintBottom_toBottomOf="@id/GenderTV"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/GenderTV"
+                            app:layout_constraintTop_toTopOf="@id/GenderTV" />
+
+                        <TextView
+                            android:id="@+id/tv_age"
+                            style="@style/userProfile_DataTV"
+                            android:layout_width="50pt"
+                            android:layout_height="wrap_content"
+                            android:text="16"
+                            app:layout_constraintStart_toStartOf="@id/AgeTv"
+                            app:layout_constraintTop_toBottomOf="@id/AgeTv" />
+
+
+                        <ImageButton
+                            android:id="@+id/uAge"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_right_arrow"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_age"
+                            app:layout_constraintEnd_toEndOf="@id/tv_age"
+                            app:layout_constraintTop_toTopOf="@+id/tv_age" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="VP Patel"
-                    style="@style/userProfile_DataTV"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/NameTV" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/materialDividerName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toTopOf="@id/materialCardView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_user_name"
-                    tools:layout_editor_absoluteY="50dp" />
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp">
+
+                        <TextView
+                            android:id="@+id/PhoneNumberTV"
+                            style="@style/userProfile_HeadingTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:text="Phone Number"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_phone_number"
+                            style="@style/userProfile_DataTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="1234567890"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/PhoneNumberTV" />
+
+                        <ImageButton
+                            android:id="@+id/uPhoneNumber"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_right_arrow"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_phone_number"
+                            app:layout_constraintEnd_toEndOf="@id/tv_phone_number"
+                            app:layout_constraintTop_toTopOf="@+id/tv_phone_number" />
 
 
-                <TextView
-                    android:id="@+id/GenderTV"
-                    style="@style/userProfile_HeadingTV"
-                    android:layout_width="50pt"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Gender"
-                    app:layout_constraintEnd_toStartOf="@id/AgeTv"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="@id/materialDividerName"
-                    app:layout_constraintTop_toBottomOf="@id/materialDividerName" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/tv_gender"
-                    android:layout_width="50pt"
-                    android:layout_height="wrap_content"
-                    android:text="male"
-                    style="@style/userProfile_DataTV"
-                    app:layout_constraintStart_toStartOf="@id/GenderTV"
-                    app:layout_constraintTop_toBottomOf="@id/GenderTV" />
+                </com.google.android.material.card.MaterialCardView>
 
-
-                <ImageButton
-                    android:id="@+id/uGender"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_gender"
-                    app:layout_constraintEnd_toEndOf="@id/tv_gender"
-                    app:layout_constraintTop_toTopOf="@+id/tv_gender" />
-
-
-                <TextView
-                    android:id="@+id/AgeTv"
-                    style="@style/userProfile_HeadingTV"
-                    android:layout_width="50pt"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Age"
-                    app:layout_constraintEnd_toEndOf="@id/materialDividerName"
-                    app:layout_constraintStart_toEndOf="@id/GenderTV"
-                    app:layout_constraintTop_toBottomOf="@id/materialDividerName" />
-
-                <TextView
-                    android:id="@+id/tv_age"
-                    android:layout_width="50pt"
-                    android:layout_height="wrap_content"
-                    style="@style/userProfile_DataTV"
-                    android:text="16"
-                    app:layout_constraintStart_toStartOf="@id/AgeTv"
-                    app:layout_constraintTop_toBottomOf="@id/AgeTv" />
-
-
-                <ImageButton
-                    android:id="@+id/uAge"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_age"
-                    app:layout_constraintEnd_toEndOf="@id/tv_age"
-                    app:layout_constraintTop_toTopOf="@+id/tv_age" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/materialDividerAge"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/materialCardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-
-                    app:layout_constraintTop_toBottomOf="@id/tv_gender" />
-
-                <TextView
-                    android:id="@+id/PhoneNumberTV"
-                    style="@style/userProfile_HeadingTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="Phone Number"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/materialDividerAge" />
-
-                <TextView
-                    android:id="@+id/tv_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/userProfile_DataTV"
-                    android:text="8469156804"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/PhoneNumberTV" />
-
-                <ImageButton
-                    android:id="@+id/uPhoneNumber"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_phone_number"
-                    app:layout_constraintEnd_toEndOf="@id/tv_phone_number"
-                    app:layout_constraintTop_toTopOf="@+id/tv_phone_number" />
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:id="@+id/materialDividerPhoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_phone_number"
-                    tools:layout_editor_absoluteY="50dp" />
-
-
-                <TextView
-                    android:id="@+id/StreetTV"
-                    style="@style/userProfile_HeadingTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="18dp"
-                    android:text="Street Name/No"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/materialDividerPhoneNumber" />
-
-                <TextView
-                    android:id="@+id/tv_street_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/userProfile_DataTV"
-                    android:text="Kosamba Road"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/StreetTV" />
-
-                <ImageButton
-                    android:id="@+id/uAddressStreet"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_street_number"
-                    app:layout_constraintEnd_toEndOf="@id/tv_street_number"
-                    app:layout_constraintTop_toTopOf="@+id/tv_street_number" />
-
-
-                <TextView
-                    android:id="@+id/StateTV"
-                    style="@style/userProfile_HeadingTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="State"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_city" />
-
-                <TextView
-                    android:id="@+id/tv_state"
-                    style="@style/userProfile_DataTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Valsad"
-                    android:layout_marginBottom="24dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardUseCompatPadding="true"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/StateTV" />
-
-
-                <TextView
-                    android:id="@+id/CityTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="City"
-                    style="@style/userProfile_HeadingTV"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_street_number" />
+                    app:layout_constraintStart_toStartOf="parent">
 
-                <TextView
-                    android:id="@+id/tv_city"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/userProfile_DataTV"
-                    android:text="Gujarat"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/CityTV" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp">
+
+
+                        <TextView
+                            android:id="@+id/StreetTV"
+                            style="@style/userProfile_HeadingTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="18dp"
+                            android:text="Street Name/No"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_street_number"
+                            style="@style/userProfile_DataTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Kosamba Road"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/StreetTV" />
+
+                        <ImageButton
+                            android:id="@+id/uAddressStreet"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_right_arrow"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_street_number"
+                            app:layout_constraintEnd_toEndOf="@id/tv_street_number"
+                            app:layout_constraintTop_toTopOf="@+id/tv_street_number" />
+
+
+                        <TextView
+                            android:id="@+id/StateTV"
+                            style="@style/userProfile_HeadingTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="State"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_city" />
+
+                        <TextView
+                            android:id="@+id/tv_state"
+                            style="@style/userProfile_DataTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="24dp"
+                            android:text="Valsad"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/StateTV" />
+
+
+                        <TextView
+                            android:id="@+id/CityTV"
+                            style="@style/userProfile_HeadingTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="City"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_street_number" />
+
+                        <TextView
+                            android:id="@+id/tv_city"
+                            style="@style/userProfile_DataTV"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Gujarat"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/CityTV" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
