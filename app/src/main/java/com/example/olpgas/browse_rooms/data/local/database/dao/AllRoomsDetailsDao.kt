@@ -15,4 +15,7 @@ interface AllRoomsDetailsDao {
 
     @Query("SELECT * FROM AllRoomsDetailsLocal")
     fun getAllRoomDetails() : LiveData<List<AllRoomsDetailsLocal>>
+
+    @Query("SELECT * FROM AllRoomsDetailsLocal WHERE ownerId = :ownerId")
+    fun getAllOwnedRooms(ownerId: String) : LiveData<List<AllRoomsDetailsLocal>>
 }

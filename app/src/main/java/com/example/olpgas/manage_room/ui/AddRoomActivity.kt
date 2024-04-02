@@ -1,40 +1,20 @@
 package com.example.olpgas.manage_room.ui
 
-import android.Manifest
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityAddRoomBinding
-import com.example.olpgas.manage_room.model.RoomDetails
-import com.example.olpgas.manage_room.model.RoomMaster
-import com.example.olpgas.manage_room.model.WorkState
-import com.example.olpgas.manage_room.viewmodel.ManageRoomViewModel
-import com.google.android.material.transition.platform.MaterialContainerTransform
-import java.io.ByteArrayOutputStream
 
 class AddRoomActivity : AppCompatActivity() {
     private val binding: ActivityAddRoomBinding by lazy {
         ActivityAddRoomBinding.inflate(layoutInflater)
     }
 
-    private val manageRoomViewModel by lazy {
+   /* private val manageRoomViewModel by lazy {
         ViewModelProvider(this)[ManageRoomViewModel::class.java]
     }
-
+*/
     private val images = mutableListOf<ByteArray>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -27,8 +27,14 @@ object BrowseRoomsModule {
 
     @Provides
     @Singleton
-    fun provideBrowserRoomRepository(supabaseListRooms: SupabaseListRooms, application: Application) : BrowseRoomsRepository {
-        return BrowseRoomsRepositoryImpl(supabaseListRooms, BrowseRoomDatabase.Companion(application))
+    fun provideBrowseRoomDatabase(application: Application) : BrowseRoomDatabase {
+        return BrowseRoomDatabase.Companion(application)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBrowserRoomRepository(supabaseListRooms: SupabaseListRooms, database: BrowseRoomDatabase) : BrowseRoomsRepository {
+        return BrowseRoomsRepositoryImpl(supabaseListRooms, database)
     }
 
     @Provides

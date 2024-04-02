@@ -9,13 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
 import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityMyRoomBinding
-import com.example.olpgas.manage_room.viewmodel.ManageRoomViewModel
-import com.example.olpgas.browse_rooms.presentation.RoomsRecyclerViewAdapter
 
 
 class MyRoomActivity : AppCompatActivity() {
@@ -23,9 +20,9 @@ class MyRoomActivity : AppCompatActivity() {
         ActivityMyRoomBinding.inflate(layoutInflater)
     }
 
-    private val manageRoomViewModel: ManageRoomViewModel by lazy {
+    /*private val manageRoomViewModel: ManageRoomViewModel by lazy {
         ViewModelProvider(this)[ManageRoomViewModel::class.java]
-    }
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)

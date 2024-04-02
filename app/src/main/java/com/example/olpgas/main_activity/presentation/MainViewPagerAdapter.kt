@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.olpgas.BookingsFragment
 import com.example.olpgas.browse_rooms.presentation.HomeFragment
-import com.example.olpgas.ManageFragment
+import com.example.olpgas.manage_room.presentation.owned_rooms.ManageFragment
 import com.example.olpgas.MoreFragment
 import java.lang.IllegalArgumentException
 
