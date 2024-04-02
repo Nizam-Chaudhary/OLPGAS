@@ -15,7 +15,7 @@ class MainViewModel @Inject constructor(
     private val userLoggedInStatus: UserLoggedInStatus
 ) : ViewModel() {
 
-    private val _isUserLoggedInState = MutableLiveData(true)
+    private val _isUserLoggedInState = MutableLiveData(false)
     val isUserLoggedInState: LiveData<Boolean> = _isUserLoggedInState
 
     init {

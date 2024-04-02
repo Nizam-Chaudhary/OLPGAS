@@ -1,6 +1,7 @@
 package com.example.olpgas.browse_rooms.presentation
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -11,6 +12,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
 import com.example.olpgas.databinding.RawRecyclerViewRoomsListBinding
 import com.example.olpgas.core.util.getCircularProgressDrawable
+import com.example.olpgas.view_room_details.presentation.RoomDetailsActivity
 import java.util.Locale
 
 class RoomsRecyclerViewAdapter(
@@ -54,6 +56,12 @@ class RoomsRecyclerViewAdapter(
         holder.roomPriceTv.text = roomPrice
         holder.roomDepositTv.text = deposit
         holder.roomRatingsTv.text = currentRoomData.ratings.toString()
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, RoomDetailsActivity::class.java)
+            intent.putExtra("id", currentRoomData.id)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = roomsData.size

@@ -57,10 +57,6 @@
             android:exported="false"
             android:theme="@style/NoStatusBarTheme" />
         <activity
-            android:name=".roomdetails.ui.ViewRoomActivity"
-            android:exported="false"
-            android:theme="@style/statusBarTheme" />
-        <activity
             android:name=".auth.presentation.login_activity.LoginActivity"
             android:exported="true"
             android:theme="@style/NoStatusBarTheme" />

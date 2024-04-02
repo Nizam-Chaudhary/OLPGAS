@@ -109,9 +109,6 @@ class SupabaseAuth(
 
     fun isUserLoggedIn() : Boolean {
         authSharedPreferences.getString(Constants.ACCESS_TOKEN, null) ?: return false
-        if(SupabaseClient.client.auth.currentSessionOrNull() != null) {
-            return true
-        }
         return true
     }
 }
