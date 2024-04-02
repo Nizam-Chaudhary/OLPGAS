@@ -17,7 +17,7 @@ data class AllRoomsDetailsLocal(
     val deposit: Int,
     val city: String,
     val state: String,
-    val ratings: Int,
+    val ratings: Float,
     val bookingStatus: String,
     val features: List<String>,
     val imageUrl: String
