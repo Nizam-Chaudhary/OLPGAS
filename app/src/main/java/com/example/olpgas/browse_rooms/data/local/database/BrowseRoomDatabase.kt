@@ -7,13 +7,14 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.olpgas.browse_rooms.data.local.database.dao.AllRoomsDetailsDao
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
-import com.example.olpgas.view_room_details.data.local.database.type_converters.Converters
+import com.example.olpgas.core.util.domain.states.type_converters.Converters
 
 @Database(
     entities = [AllRoomsDetailsLocal::class],
     version = 1,
     exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class BrowseRoomDatabase : RoomDatabase() {
     abstract fun getAllRoomDetailsDao() : AllRoomsDetailsDao
 

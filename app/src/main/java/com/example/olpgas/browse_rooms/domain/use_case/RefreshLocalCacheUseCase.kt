@@ -28,6 +28,7 @@ class RefreshLocalCacheUseCase(
                             item.state,
                             item.ratings,
                             item.bookingStatus,
+                            item.features,
                             imageUrl
                         )
                     )

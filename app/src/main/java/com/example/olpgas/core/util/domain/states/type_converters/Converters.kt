@@ -1,4 +1,4 @@
-package com.example.olpgas.view_room_details.data.local.database.type_converters
+package com.example.olpgas.core.util.domain.states.type_converters
 
 import androidx.room.TypeConverter
 import kotlinx.serialization.json.Json
