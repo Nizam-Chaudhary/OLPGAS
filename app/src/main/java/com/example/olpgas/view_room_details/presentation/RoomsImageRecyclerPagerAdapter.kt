@@ -1,4 +1,4 @@
-package com.example.olpgas.roomdetails.adapter
+package com.example.olpgas.view_room_details.presentation
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -17,12 +17,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class RoomsImageRecyclerPagerAdapter(
-    private val ownerId: String,
-    private val roomName: String,
-    private val files: List<BucketItem>,
+class RoomImageRecyclerPagerAdapter(
+    var imagesUrl: List<String>,
     val context: Context
-) : RecyclerView.Adapter<RoomsImageRecyclerPagerAdapter.ImageViewHolder>() {
+) : RecyclerView.Adapter<RoomImageRecyclerPagerAdapter.ImageViewHolder>() {
     inner class ImageViewHolder(view: ImageRawBinding): ViewHolder(view.root) {
         val imageView = view.imageView
     }
@@ -35,20 +33,14 @@ class RoomsImageRecyclerPagerAdapter(
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val path = "${ownerId}/$roomName/${files[position].name}"
-            val imageByteArray = SupabaseClient.client.storage.from("RoomPics").downloadPublic(path)
-
-            withContext(Dispatchers.Main) {
-                Glide.with(context)
-                    .load(imageByteArray)
-                    .placeholder(getCircularProgressDrawable(context))
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .centerCrop()
-                    .into(holder.imageView)
-            }
-        }
+        val imageUrl = imagesUrl[position]
+        Glide.with(context)
+            .load(imageUrl)
+            .placeholder(getCircularProgressDrawable(context))
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .centerCrop()
+            .into(holder.imageView)
     }
 
-    override fun getItemCount() = files.size
+    override fun getItemCount() = imagesUrl.size
 }

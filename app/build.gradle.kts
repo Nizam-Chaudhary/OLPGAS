@@ -97,5 +97,8 @@ dependencies {
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-ktx:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
+
+    // DotsIndicator
+    implementation("com.tbuonomo:dotsindicator:5.0")
 }
 
