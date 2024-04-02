@@ -7,6 +7,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
 import com.example.olpgas.browse_rooms.domain.use_case.GetAllRoomDetailsFromLocalDBUseCase
+import com.example.olpgas.browse_rooms.domain.use_case.RefreshFullRoomDetailsLocalCacheUseCase
 import com.example.olpgas.browse_rooms.domain.use_case.RefreshLocalCacheUseCase
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.NetworkConnectivityObserver
@@ -18,6 +19,7 @@ import javax.inject.Inject
 class BrowseRoomsViewModel @Inject constructor(
     private val getAllRoomDetailsFromLocalDBUseCase: GetAllRoomDetailsFromLocalDBUseCase,
     private val refreshLocalCacheUseCase: RefreshLocalCacheUseCase,
+    private val refreshFullRoomDetailsLocalCacheUseCase: RefreshFullRoomDetailsLocalCacheUseCase,
     private val connectivityObserver: ConnectivityObserver
 ) : ViewModel() {
 
@@ -31,12 +33,14 @@ class BrowseRoomsViewModel @Inject constructor(
                 viewModelScope.launch {
                     refreshLocalCacheUseCase()
                     allRoomDetailsState = getAllRoomDetailsFromLocalDBUseCase()
+                    refreshFullRoomDetailsLocalCacheUseCase()
                 }
             }
             BrowseRoomsEvent.OnRefresh -> {
                 viewModelScope.launch {
                     refreshLocalCacheUseCase()
                     allRoomDetailsState = getAllRoomDetailsFromLocalDBUseCase()
+                    refreshFullRoomDetailsLocalCacheUseCase()
                 }
             }
         }

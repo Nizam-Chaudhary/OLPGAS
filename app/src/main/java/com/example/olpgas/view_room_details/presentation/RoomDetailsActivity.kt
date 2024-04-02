@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class RoomDetailsActivity : AppCompatActivity() {
 
     private val binding: ActivityRoomDetailsBinding by lazy {

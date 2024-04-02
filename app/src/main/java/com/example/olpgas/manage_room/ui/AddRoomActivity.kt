@@ -40,11 +40,14 @@ class AddRoomActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        setContentView(binding.root)
+    }
+}
 
-        window.sharedElementEnterTransition = buildContainerTransform(true)
+        /*window.sharedElementEnterTransition = buildContainerTransform(true)
         window.sharedElementReturnTransition = buildContainerTransform(false)
 
-        setContentView(binding.root)
+
 
         setUpSpinner()
 
@@ -59,10 +62,10 @@ class AddRoomActivity : AppCompatActivity() {
         addRoom(id, featureId, oldRoomName)
         if(id != null) {
             fetchAndSetData(id)
-        }
-    }
+        }*/
 
-    private fun getImages() {
+
+    /*private fun getImages() {
         getImagesPermission()
     }
 
@@ -528,4 +531,4 @@ class AddRoomActivity : AppCompatActivity() {
         return transform
     }
 
-}
+}*/

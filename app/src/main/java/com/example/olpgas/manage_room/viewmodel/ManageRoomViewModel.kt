@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 
 class ManageRoomViewModel : ViewModel() {
-    private val _myRoomDetails = MutableLiveData<List<AllRoomsDetails>>()
+    /*private val _myRoomDetails = MutableLiveData<List<AllRoomsDetails>>()
     val myRoomDetails: LiveData<List<AllRoomsDetails>> = _myRoomDetails
 
     private val _addRoomStatus = MutableLiveData<WorkState>()
@@ -117,5 +117,5 @@ class ManageRoomViewModel : ViewModel() {
     }
 
     @Serializable
-    data class Id(val id: Int)
+    data class Id(val id: Int)*/
 }

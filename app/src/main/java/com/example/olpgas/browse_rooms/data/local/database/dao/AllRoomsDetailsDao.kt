@@ -15,7 +15,4 @@ interface AllRoomsDetailsDao {
 
     @Query("SELECT * FROM AllRoomsDetailsLocal")
     fun getAllRoomDetails() : LiveData<List<AllRoomsDetailsLocal>>
-
-    @Query("Delete From AllRoomsDetailsLocal")
-    suspend fun deleteAll()
 }

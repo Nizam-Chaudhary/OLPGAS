@@ -8,6 +8,8 @@ import com.example.olpgas.core.data.remote.SupabaseClient
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.storage.storage
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 class SupabaseListRooms {
     companion object {
@@ -28,17 +30,12 @@ class SupabaseListRooms {
         }
     }
 
-    suspend fun getRoomsImageForListing(ownerIds: List<String>, roomNames: List<String>) : List<String>? {
+    suspend fun getRoomsImageForListing(ownerId: String, roomName: String) : String? {
         return try {
-            val urls = mutableListOf<String>()
-            for(i in ownerIds.indices) {
-                val bucket = SupabaseClient.client.storage.from("RoomPics")
-                val files = bucket.list("${ownerIds[i]}/${roomNames[i]}")
-                bucket.createSignedUrl("${ownerIds[i]}/${roomNames[i]}/${files[0].name}", Duration.INFINITE)
-                val url = bucket.publicUrl("${ownerIds[i]}/${roomNames[i]}/${files[0].name}")
-                urls.add(url)
-            }
-            return urls
+            val bucket = SupabaseClient.client.storage.from("RoomPics")
+            val files = bucket.list("${ownerId}/${roomName}")
+            bucket.createSignedUrl("${ownerId}/${roomName}/${files[0].name}", Duration.INFINITE)
+            bucket.publicUrl("${ownerId}/${roomName}/${files[0].name}")
         } catch (e: Exception) {
             Log.e(TAG, "Error: ${e.message}")
             null

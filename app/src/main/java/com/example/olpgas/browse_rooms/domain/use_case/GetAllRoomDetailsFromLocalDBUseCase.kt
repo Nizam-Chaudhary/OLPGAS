@@ -8,6 +8,6 @@ class GetAllRoomDetailsFromLocalDBUseCase(
     private val repository: BrowseRoomsRepository
 ) {
     operator fun invoke() : LiveData<List<AllRoomsDetailsLocal>>{
-        return repository.getAllRoomsDetailsFromLocalDB()
+        return repository.getAllRoomDetailsFromLocalDB()
     }
 }

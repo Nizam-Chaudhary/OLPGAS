@@ -1,7 +1,9 @@
-package com.example.olpgas.view_room_details.data.remote.model
+package com.example.olpgas.view_room_details.data.remote
 
 import android.util.Log
+import com.example.olpgas.browse_rooms.data.remote.SupabaseListRooms
 import com.example.olpgas.core.data.remote.SupabaseClient
+import com.example.olpgas.view_room_details.data.remote.model.FullRoomDetails
 import com.example.olpgas.view_room_details.domain.util.Constants
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.storage.storage
@@ -11,14 +13,10 @@ class SupabaseRoomDetails {
     companion object {
         const val TAG = "Supabase Room Full Details"
     }
-    suspend fun getFullRoomDetails(id: Int) : FullRoomDetails?{
+    suspend fun getAllFullRoomDetails() : List<FullRoomDetails>? {
         return try {
             SupabaseClient.client.postgrest.from(Constants.FULL_ROOM_DETAILS_TABLE)
-                .select() {
-                    filter {
-                        eq(Constants.COL_ID, id)
-                    }
-                }.decodeSingle<FullRoomDetails>()
+                .select().decodeList<FullRoomDetails>()
         }catch (e: Exception) {
             Log.e(TAG, "Error: ${e.message}")
             null
@@ -28,16 +26,16 @@ class SupabaseRoomDetails {
     suspend fun getFullRoomDetailsImages(ownerId: String, roomName: String) : List<String>? {
         return try {
             val urls = mutableListOf<String>()
-            val bucket = SupabaseClient.client.storage.from("RoomPics")
-            val files = bucket.list("$ownerId/$roomName")
+            val bucket = SupabaseClient.client.storage.from(Constants.ROOM_PICS_BUCKET)
+            val files = bucket.list("${ownerId}/${roomName}")
             for(file in files) {
-                bucket.createSignedUrl("$ownerId/$roomName/${file.name}", Duration.INFINITE)
-                val url = bucket.publicUrl("$ownerId/$roomName/$${file.name}")
+                bucket.createSignedUrl("${ownerId}/${roomName}/${file.name}", Duration.INFINITE)
+                val url = bucket.publicUrl("${ownerId}/${roomName}/${file.name}")
                 urls.add(url)
             }
             return urls
-        }catch (e: Exception) {
-            Log.e(TAG, "Error: ${e.message}")
+        } catch (e: Exception) {
+            Log.e(SupabaseListRooms.TAG, "Error: ${e.message}")
             null
         }
     }

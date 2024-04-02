@@ -6,7 +6,9 @@ import com.example.olpgas.browse_rooms.data.remote.SupabaseListRooms
 import com.example.olpgas.browse_rooms.data.repository.BrowseRoomsRepositoryImpl
 import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
 import com.example.olpgas.browse_rooms.domain.use_case.GetAllRoomDetailsFromLocalDBUseCase
+import com.example.olpgas.browse_rooms.domain.use_case.RefreshFullRoomDetailsLocalCacheUseCase
 import com.example.olpgas.browse_rooms.domain.use_case.RefreshLocalCacheUseCase
+import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,5 +41,11 @@ object BrowseRoomsModule {
     @Singleton
     fun provideRefreshLocalCacheUseCase(repository: BrowseRoomsRepository) : RefreshLocalCacheUseCase {
         return RefreshLocalCacheUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRefreshFullRoomDetailsLocalCacheUseCase(repository: ViewRoomDetailsRepository) : RefreshFullRoomDetailsLocalCacheUseCase {
+        return RefreshFullRoomDetailsLocalCacheUseCase(repository)
     }
 }

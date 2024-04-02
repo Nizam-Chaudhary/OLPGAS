@@ -1,9 +1,11 @@
-package com.example.olpgas.view_room_details.data.remote.model
+package com.example.olpgas.view_room_details.data.local.database.entities
 
-import kotlinx.serialization.Serializable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-@Serializable
-data class FullRoomDetails(
+@Entity
+data class FullRoomDetailsLocal(
+    @PrimaryKey
     val id: Int,
     val roomName: String,
     val ownerId: String,
@@ -22,5 +24,6 @@ data class FullRoomDetails(
     val description: String,
     val roomFeatureId: Int,
     val bookingStatus: String,
-    val ratings: Int
+    val ratings: Int,
+    val urls: List<String>
 )

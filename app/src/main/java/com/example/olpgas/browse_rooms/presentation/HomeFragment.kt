@@ -52,7 +52,10 @@ class HomeFragment : Fragment() {
             this.adapter = adapter
         }
 
-        viewModel.onEvent(BrowseRoomsEvent.OnCreate)
+        if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+            viewModel.onEvent(BrowseRoomsEvent.OnCreate)
+            isCacheRefreshed = true
+        }
         viewModel.allRoomDetailsState.observe(viewLifecycleOwner) {
             it?.let {
                 adapter.roomsData = it
