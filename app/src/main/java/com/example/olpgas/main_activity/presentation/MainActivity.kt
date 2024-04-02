@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.widget.ViewPager2
 import com.example.olpgas.R
 import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.databinding.ActivityMainBinding
@@ -53,6 +54,8 @@ class MainActivity : AppCompatActivity() {
         setViewPager(supportFragmentManager, lifecycle)
 
         onBottomNavigationViewItemSelected()
+
+        onViewPageSwipe()
     }
 
     private fun setViewPager(fragmentManager: FragmentManager, lifecycle: Lifecycle) {
@@ -61,6 +64,28 @@ class MainActivity : AppCompatActivity() {
         binding.mainViewPager.apply {
             this.adapter = adapter
             this.currentItem = Constants.FRAGMENT_HOME
+        }
+    }
+
+    private fun onViewPageSwipe() {
+        val onPageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) = Unit
+
+            override fun onPageSelected(position: Int) {
+                binding.bottomNavigationView.selectedItemId = getNavigationItemId(position)
+            }
+
+            override fun onPageScrollStateChanged(state: Int) = Unit
+        }
+        binding.mainViewPager.registerOnPageChangeCallback(onPageChangeCallback)
+    }
+
+    private fun getNavigationItemId(position: Int) : Int {
+        return when(position) {
+            1 -> R.id.bookings
+            2 -> R.id.manage
+            3 -> R.id.more
+            else -> R.id.home
         }
     }
 
