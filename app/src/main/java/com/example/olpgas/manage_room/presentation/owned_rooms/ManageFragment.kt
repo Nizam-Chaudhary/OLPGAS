@@ -29,6 +29,19 @@ class ManageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+//        binding.hideViewBTN.setOnClickListener {
+//            if (binding.hideView.visibility == View.VISIBLE) {
+//                TransitionManager.beginDelayedTransition(binding.card, AutoTransition())
+//                binding.hideView.visibility = View.GONE
+//                binding.visibilityBtn.setImageResource(R.drawable.ic_arrow_up)
+//            } else {
+//                TransitionManager.beginDelayedTransition(binding.card, AutoTransition())
+//                binding.hideView.visibility = View.VISIBLE
+//                binding.visibilityBtn.setImageResource(R.drawable.ic_arrow_down)
+//            }
+//        }
+
         setUpRecyclerViewAdapter()
     }
 
