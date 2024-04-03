@@ -1,4 +1,4 @@
-package com.example.olpgas.manage_room.model
+package com.example.olpgas.manage_room.data.remote.model
 
 import kotlinx.serialization.Serializable
 
@@ -13,4 +13,5 @@ data class RoomDetails(
     val description: String,
     val suitableFor: List<String>,
     val features: List<String>,
+    val ratings: Float
 )

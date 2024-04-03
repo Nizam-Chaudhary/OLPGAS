@@ -1,525 +1,550 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:id="@+id/coordinator_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scroll_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary"
-        android:paddingHorizontal="16dp">
+        android:layout_height="wrap_content">
 
-
-        <TextView
-            android:id="@+id/addTv"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            style="?attr/collapsingToolbarLayoutLargeStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/add_room_details"
-            android:layout_marginTop="40dp"
-            android:textAlignment="center"
-            android:textColor="?attr/colorPrimary"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="20dp"
+            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
+            app:layout_scrollFlags="scroll">
 
-        <ImageView
-            android:id="@+id/icon_house"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_home"
-            app:layout_constraintBottom_toBottomOf="@+id/input_room_name"
-            app:layout_constraintEnd_toStartOf="@id/input_room_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/input_room_name"
-            android:contentDescription="@string/icon_for_txtFiled" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_room_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/room_name"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon_house"
-            app:layout_constraintTop_toBottomOf="@+id/addTv">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="?attr/actionBarSize"
+                app:title="Post Room"
+                android:elevation="0dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_room_number"
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/room_number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_room_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_landmark"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/land_mark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_room_number">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
 
-        <ImageView
-            android:id="@+id/icon_loc"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_location2"
-            app:layout_constraintBottom_toBottomOf="@+id/input_street_number"
-            app:layout_constraintEnd_toStartOf="@id/input_street_number"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/input_street_number"
-            android:contentDescription="@string/icon_for_txtFiled" />
+            <ImageView
+                android:id="@+id/icon_house"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_home_outlined"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/input_room_name"
+                app:layout_constraintEnd_toStartOf="@id/input_room_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/input_room_name"
+                android:contentDescription="@string/icon_for_txtFiled" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_street_number"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/street_no_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon_loc"
-            app:layout_constraintTop_toBottomOf="@id/input_landmark">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_room_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/room_name"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon_house"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-
-        <Spinner
-            android:id="@+id/spinner_state"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/border"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="18dp"
-            android:spinnerMode="dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.526"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_street_number" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_down"
-            app:layout_constraintBottom_toBottomOf="@id/spinner_state"
-            app:layout_constraintEnd_toEndOf="@id/spinner_state"
-            app:layout_constraintTop_toTopOf="@id/spinner_state"
-            android:contentDescription="@string/icon_for_txtFiled" />
-
-        <Spinner
-            android:id="@+id/spinner_city"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/border"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="18dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinner_state" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_down"
-            app:layout_constraintBottom_toBottomOf="@id/spinner_city"
-            app:layout_constraintEnd_toEndOf="@id/spinner_city"
-            app:layout_constraintTop_toTopOf="@id/spinner_city"
-            android:contentDescription="@string/icon_for_txtFiled" />
-
-        <Spinner
-            android:id="@+id/spinner_room_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="7dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinner_city" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/ic_down"
-            app:layout_constraintBottom_toBottomOf="@id/spinner_room_type"
-            app:layout_constraintEnd_toEndOf="@id/spinner_room_type"
-            app:layout_constraintTop_toTopOf="@id/spinner_room_type"
-            android:contentDescription="@string/icon_for_txtFiled" />
-
-
-        <ImageView
-            android:id="@+id/icon_people"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_people"
-            app:layout_constraintBottom_toBottomOf="@+id/input_shareable_by"
-            app:layout_constraintEnd_toStartOf="@id/input_shareable_by"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/input_shareable_by"
-            android:contentDescription="@string/icon_for_txtFiled" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_shareable_by"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="32dp"
-            android:hint="@string/shareable_by_how_many"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon_people"
-            app:layout_constraintTop_toBottomOf="@id/spinner_room_type">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_room_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/room_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_room_name">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
-            android:id="@+id/icon_ruppe"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_ruppe"
-            app:layout_constraintBottom_toBottomOf="@+id/input_rent_amount"
-            app:layout_constraintEnd_toStartOf="@id/input_rent_amount"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/input_rent_amount"
-            android:contentDescription="@string/icon_for_txtFiled" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_rent_amount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="@string/rent_amount"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/icon_ruppe"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintTop_toBottomOf="@id/input_shareable_by">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_landmark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/land_mark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_street_number">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_deposit_amount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="16dp"
-            android:hint="@string/deposit_amount"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_rent_amount">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+
+            <ImageView
+                android:id="@+id/icon_loc"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_location2"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/input_street_number"
+                app:layout_constraintEnd_toStartOf="@id/input_street_number"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/input_street_number"
+                android:contentDescription="@string/icon_for_txtFiled" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_street_number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:hint="@string/street_no_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon_loc"
+                app:layout_constraintTop_toBottomOf="@id/input_room_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Spinner
+                android:id="@+id/spinner_state"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/border"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="18dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.526"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_landmark" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_room_area"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="32dp"
-            android:hint="Room Area in Sq. Ft."
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintStart_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_deposit_amount">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_down"
+                app:layout_constraintBottom_toBottomOf="@id/spinner_state"
+                app:layout_constraintEnd_toEndOf="@id/spinner_state"
+                app:layout_constraintTop_toTopOf="@id/spinner_state"
+                android:contentDescription="@string/icon_for_txtFiled" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <Spinner
+                android:id="@+id/spinner_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/material_divider1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_room_area"
-            tools:layout_editor_absoluteY="616dp" />
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/border"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spinner_state" />
 
 
-        <TextView
-            android:id="@+id/tv_amenities"
-            style="@style/detailed_room_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/amenities"
-            android:layout_marginStart="16dp"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/material_divider1" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup_Amenities"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:paddingStart="48dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_amenities">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_AC"
-                style="@style/chip_Style"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/ac" />
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_down"
+                app:layout_constraintBottom_toBottomOf="@id/spinner_city"
+                app:layout_constraintEnd_toEndOf="@id/spinner_city"
+                app:layout_constraintTop_toTopOf="@id/spinner_city"
+                android:contentDescription="@string/icon_for_txtFiled" />
 
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_washing_machine"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/washing_machine" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_wifi"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/wi_fi" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_fan"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/fans" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_geyser"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/geyser" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_furnished"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/furnished" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/add_amenities_chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="12sp"
-                app:chipIcon="@drawable/ic_add"
-                app:chipMinTouchTargetSize="0dp" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/materialDivider4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chipGroup_Amenities"
-            tools:layout_editor_absoluteY="616dp" />
-
-
-        <TextView
-            android:id="@+id/tv_suitable"
-            style="@style/detailed_room_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:textSize="18sp"
-            android:text="@string/suitable_for"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/materialDivider4" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup_suitable_for"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:paddingStart="48dp"
-            android:paddingEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_suitable">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_students"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/students" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_professionals"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/professionals" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_couples"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/couples" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_solo"
-                style="@style/chip_Style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/solo" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/add_suitable_chip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="12sp"
-                app:chipIcon="@drawable/ic_add"
-                app:chipMinTouchTargetSize="0dp" />
-        </com.google.android.material.chip.ChipGroup>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/material_divider2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/chipGroup_suitable_for" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_about"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginTop="16dp"
-            android:hint="@string/about"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/material_divider2">
-
-            <com.google.android.material.textfield.TextInputEditText
+            <Spinner
+                android:id="@+id/spinner_room_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:background="@drawable/border"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="18dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spinner_city" />
 
-        <LinearLayout
-            android:id="@+id/linear_layout_add_images"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_about">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_down"
+                app:layout_constraintBottom_toBottomOf="@id/spinner_room_type"
+                app:layout_constraintEnd_toEndOf="@id/spinner_room_type"
+                app:layout_constraintTop_toTopOf="@id/spinner_room_type"
+                android:contentDescription="@string/icon_for_txtFiled" />
+
+
+            <ImageView
+                android:id="@+id/icon_people"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_people"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/input_shareable_by"
+                app:layout_constraintEnd_toStartOf="@id/input_shareable_by"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/input_shareable_by"
+                android:contentDescription="@string/icon_for_txtFiled" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_shareable_by"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                android:hint="@string/shareable_by_how_many"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon_people"
+                app:layout_constraintTop_toBottomOf="@id/spinner_room_type">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <ImageView
+                android:id="@+id/icon_ruppe"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_ruppe"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/input_rent_amount"
+                app:layout_constraintEnd_toStartOf="@id/input_rent_amount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/input_rent_amount"
+                android:contentDescription="@string/icon_for_txtFiled" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_rent_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/rent_amount"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon_ruppe"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintTop_toBottomOf="@id/input_shareable_by">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_deposit_amount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/deposit_amount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_rent_amount">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_room_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="16dp"
+                android:hint="Room Area in Sq. Ft."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_deposit_amount">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/material_divider1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_room_area"
+                tools:layout_editor_absoluteY="616dp" />
+
+
+            <TextView
+                android:id="@+id/tv_amenities"
+                style="@style/detailed_room_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/amenities"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/material_divider1" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup_Amenities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:paddingStart="32dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_amenities">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_AC"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ac" />
+
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_washing_machine"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/washing_machine" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_wifi"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wi_fi" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_fan"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fans" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_geyser"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/geyser" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_furnished"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/furnished" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/add_amenities_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="12sp"
+                    app:chipIcon="@drawable/ic_add"
+                    app:chipMinTouchTargetSize="0dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/materialDivider4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chipGroup_Amenities"
+                tools:layout_editor_absoluteY="616dp" />
+
+
+            <TextView
+                android:id="@+id/tv_suitable"
+                style="@style/detailed_room_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="16dp"
+                android:textSize="18sp"
+                android:text="@string/suitable_for"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/materialDivider4" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup_suitable_for"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:paddingStart="32dp"
+                android:paddingEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_suitable">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_students"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/students" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_professionals"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/professionals" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_couples"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/couples" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_solo"
+                    style="@style/chip_Style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/solo" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/add_suitable_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="12sp"
+                    app:chipIcon="@drawable/ic_add"
+                    app:chipMinTouchTargetSize="0dp" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/material_divider2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chipGroup_suitable_for" />
+
+            <ImageView
+                android:id="@+id/icon_description"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_description"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/input_about"
+                app:layout_constraintEnd_toStartOf="@id/input_about"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/input_about"
+                android:contentDescription="@string/icon_for_txtFiled" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_about"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:hint="@string/about"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon_description"
+                app:layout_constraintTop_toBottomOf="@id/material_divider2">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_layout_add_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_about">
+                <Button
+                    android:id="@+id/btn_add_main_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/click_to_add_image"
+                    android:drawableEnd="@drawable/ic_add"
+                    />
+            </LinearLayout>
+
             <Button
-                android:id="@+id/btn_add_main_image"
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/click_to_add_image"
-                android:drawableEnd="@drawable/ic_add"
-                />
-        </LinearLayout>
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linear_layout_add_images" />
 
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:text="@string/submit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear_layout_add_images" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -8,11 +8,11 @@ import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.transition.TransitionInflater
 import androidx.transition.TransitionManager
 import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityMyRoomBinding
+import com.example.olpgas.manage_room.presentation.add_room.AddRoomActivity
 
 
 class MyRoomActivity : AppCompatActivity() {
@@ -34,17 +34,7 @@ class MyRoomActivity : AppCompatActivity() {
             insets
         }
 
-        binding.fabAddRoom.setOnClickListener {
 
-            val transition = TransitionInflater.from(this)
-                .inflateTransition(R.transition.container_transform)
-
-            TransitionManager.beginDelayedTransition(window.decorView as ViewGroup, transition)
-
-            val intent = Intent(this, AddRoomActivity::class.java)
-            val options = ActivityOptions.makeSceneTransitionAnimation(this, binding.fabAddRoom, "shared_element_end_root")
-            startActivity(intent, options.toBundle())
-        }
 
         //setMyRoomDataAdapter()
 

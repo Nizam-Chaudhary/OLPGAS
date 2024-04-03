@@ -8,4 +8,5 @@ sealed class Error {
     data object EmptyField: Error()
     data object InValidAge: Error()
     data object InvalidPhoneNumber: Error()
+    data object NoItemSelected: Error()
 }

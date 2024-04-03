@@ -50,6 +50,7 @@
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="back_online">Back Online</string>
     <string name="searchbar_hint">Search</string>
+    <string name="add_room">Add Room</string>
 
 
     <string-array name="room_type">

@@ -1,4 +1,4 @@
-package com.example.olpgas.manage_room.model
+package com.example.olpgas.manage_room.data.remote.model
 
 import kotlinx.serialization.Serializable
 
@@ -6,12 +6,13 @@ import kotlinx.serialization.Serializable
 data class RoomMaster(
     val id: Int? = null,
     val roomName: String,
-    val ownerId: String? = null,
+    val ownerId: String,
     val roomNumber: String,
     val streetNumber: String,
     val landMark: String,
     val city: String,
     val state: String,
-    val listDate: String? = null,
-    var roomFeatureId: Int? = null
+    val listingDate: String? = null,
+    val roomFeatureId: Int,
+    val bookingStatus: String
 )
