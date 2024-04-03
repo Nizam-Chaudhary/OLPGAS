@@ -55,6 +55,10 @@ class AddRoomActivity : AppCompatActivity() {
         setState()
 
         onRoomNameTextChange()
+        onRoomNumberTextChange()
+        onLandMarkTextChange()
+        onCityItemChange()
+        onRentAmountTextChange()
         onRentAmountTextChange()
         onDepositAmountTextChange()
         onRoomAreaTextChange()
@@ -271,6 +275,49 @@ class AddRoomActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 binding.inputRoomNumber.error = null
                 viewModel.onEvent(AddRoomEvent.EnteredRoomName(s.toString()))
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+
+        })
+    }
+
+
+
+
+    private fun onLandMarkTextChange() {
+        binding.inputLandmark.editText?.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.inputLandmark.error = null
+                viewModel.onEvent(AddRoomEvent.EnteredLandMark(s.toString()))
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+
+        })
+    }
+
+    private fun onCityItemChange() {
+        binding.spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: android.view.View?,
+                position: Int,
+                id: Long
+            ) {
+                // Get selected city
+                val selectedCity = parent?.getItemAtPosition(position).toString()
+
+                viewModel.onEvent(AddRoomEvent.SelectedCity(selectedCity))
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+    }
 
     private fun onRentAmountTextChange() {
         binding.inputRentAmount.editText?.addTextChangedListener(object : TextWatcher {
@@ -286,13 +333,6 @@ class AddRoomActivity : AppCompatActivity() {
         })
     }
 
-    private fun onStreetNumberTextChange() {
-        binding.inputShareableBy.editText?.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.inputShareableBy.error = null
-                viewModel.onEvent(AddRoomEvent.EnteredShareableBy(s.toString()))
     private fun onDepositAmountTextChange() {
         binding.inputDepositAmount.editText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -307,13 +347,6 @@ class AddRoomActivity : AppCompatActivity() {
         })
     }
 
-    private fun onLandMarkTextChange() {
-        binding.inputLandmark.editText?.addTextChangedListener(object: TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.inputLandmark.error = null
-                viewModel.onEvent(AddRoomEvent.EnteredLandMark(s.toString()))
     private fun onRoomAreaTextChange() {
         binding.inputRoomArea.editText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -342,28 +375,6 @@ class AddRoomActivity : AppCompatActivity() {
 
         })
     }
-
-    private fun onCityItemChange() {
-        binding.spinnerCity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: android.view.View?,
-                position: Int,
-                id: Long
-            ) {
-                // Get selected city
-                val selectedCity = parent?.getItemAtPosition(position).toString()
-
-                viewModel.onEvent(AddRoomEvent.SelectedCity(selectedCity))
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-        }
-    }
-
-
 
 
     companion object {
