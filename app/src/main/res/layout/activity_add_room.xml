@@ -350,6 +350,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_AC"
                     style="@style/chip_Style"
+                    android:tag="AC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ac" />
@@ -358,6 +359,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_washing_machine"
                     style="@style/chip_Style"
+                    android:tag="Washing Machine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/washing_machine" />
@@ -365,6 +367,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_wifi"
                     style="@style/chip_Style"
+                    android:tag="Wi-Fi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/wi_fi" />
@@ -372,6 +375,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_fan"
                     style="@style/chip_Style"
+                    android:tag="Fans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fans" />
@@ -379,6 +383,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_geyser"
                     style="@style/chip_Style"
+                    android:tag="Geyser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/geyser" />
@@ -386,6 +391,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_furnished"
                     style="@style/chip_Style"
+                    android:tag="Furnished"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/furnished" />
@@ -439,6 +445,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_students"
                     style="@style/chip_Style"
+                    android:tag="Students"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/students" />
@@ -446,6 +453,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_professionals"
                     style="@style/chip_Style"
+                    android:tag="Professionals"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/professionals" />
@@ -453,6 +461,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_couples"
                     style="@style/chip_Style"
+                    android:tag="Couples"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/couples" />
@@ -460,6 +469,7 @@
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_solo"
                     style="@style/chip_Style"
+                    android:tag="Solo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/solo" />
@@ -534,17 +544,26 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_submit"
+                android:id="@+id/btn_post_room"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="16dp"
-                android:text="@string/submit"
+                android:text="@string/post_room"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/linear_layout_add_images" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/post_progress_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/btn_post_room"
+                app:layout_constraintBottom_toBottomOf="@id/btn_post_room"
+                app:layout_constraintStart_toStartOf="@id/btn_post_room"
+                app:layout_constraintEnd_toEndOf="@id/btn_post_room"
+                />
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

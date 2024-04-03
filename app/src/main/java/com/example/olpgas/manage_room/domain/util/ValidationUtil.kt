@@ -25,6 +25,13 @@ class ValidationUtil {
             return null
         }
 
+        fun validateCity(value: String) : Error? {
+            if(value == "Select Your District") {
+                return Error.NoItemSelected
+            }
+            return null
+        }
+
         fun validateEmptyListByteArray(value: List<ByteArray>) : Error? {
             if(value.isEmpty()) {
                 return Error.NoItemSelected

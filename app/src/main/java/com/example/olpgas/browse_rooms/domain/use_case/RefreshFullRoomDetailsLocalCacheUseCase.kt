@@ -12,7 +12,7 @@ class RefreshFullRoomDetailsLocalCacheUseCase(
         allFullRoomDetails?.let {
             for(item in it) {
                 val fullRoomImages = repository.getAllFullRoomDetailsImages(item.ownerId, item.roomName)
-                fullRoomImages?.let {
+                if(!fullRoomImages.isNullOrEmpty()) {
                     repository.upsert(
                         FullRoomDetailsLocal(
                             item.id,

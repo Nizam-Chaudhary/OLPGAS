@@ -20,5 +20,5 @@ data class AllRoomsDetailsLocal(
     val ratings: Float,
     val bookingStatus: String,
     val features: List<String>,
-    val imageUrl: String
+    val imageUrl: String?
 )

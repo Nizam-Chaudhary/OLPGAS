@@ -18,5 +18,6 @@ data class PostRoomResult(
     val landMarkError: Error? = null,
     val cityError: Error? = null,
     val stateError: Error? = null,
+    val imagesError: Error? = null,
     val result: SimpleResource? = null
 )

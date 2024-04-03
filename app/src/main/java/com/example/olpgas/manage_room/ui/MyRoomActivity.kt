@@ -1,18 +1,11 @@
 package com.example.olpgas.manage_room.ui
 
-import android.app.ActivityOptions
-import android.content.Intent
 import android.os.Bundle
-import android.view.ViewGroup
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.transition.TransitionInflater
-import androidx.transition.TransitionManager
-import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityMyRoomBinding
-import com.example.olpgas.manage_room.presentation.add_room.AddRoomActivity
 
 
 class MyRoomActivity : AppCompatActivity() {

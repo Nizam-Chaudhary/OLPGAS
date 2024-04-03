@@ -1,6 +1,8 @@
 package com.example.olpgas.manage_room.domain.use_case
 
 import android.content.SharedPreferences
+import android.util.Log
+import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
 import com.example.olpgas.core.util.Constants
 import com.example.olpgas.core.util.Resource
 import com.example.olpgas.manage_room.data.remote.model.RoomDetails
@@ -45,7 +47,7 @@ class PostRoomUseCase(
         val roomNumberError = ValidationUtil.validateEmptyField(roomNumber)
         val streetNumberError = ValidationUtil.validateEmptyField(streetNumber)
         val landMarkError = ValidationUtil.validateEmptyField(landMark)
-        val cityError = ValidationUtil.validateEmptyField(city)
+        val cityError = ValidationUtil.validateCity(city)
         val stateError = ValidationUtil.validateEmptyField(state)
         val imagesError = ValidationUtil.validateEmptyListByteArray(images)
 
@@ -69,11 +71,11 @@ class PostRoomUseCase(
                 landMarkError,
                 cityError,
                 stateError,
+                imagesError
             )
         }
 
         val roomDetails = RoomDetails(
-            id = null,
             roomArea,
             shareable,
             roomType,
@@ -84,13 +86,13 @@ class PostRoomUseCase(
             features,
             ratings
         )
+        Log.d("Post Room", roomDetails.toString())
         val roomFeatureId = repository.upsertRoomDetails(roomDetails)
 
         if(roomFeatureId != null) {
             val ownerId = authSharedPreferences.getString(Constants.USER_ID,null)
             ownerId?.let {
                 val roomMaster = RoomMaster(
-                    id = null,
                     roomName,
                     ownerId,
                     roomNumber,
@@ -98,11 +100,11 @@ class PostRoomUseCase(
                     landMark,
                     city,
                     state,
-                    listingDate = null,
                     roomFeatureId,
                     bookingStatus
                 )
-
+                Log.d("Post Room", roomMaster.toString())
+                repository.uploadImages(ownerId, roomName, images)
                 val result = repository.upsertRoomMaster(roomMaster)
                 return PostRoomResult(
                     result = result

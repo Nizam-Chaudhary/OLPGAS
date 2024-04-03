@@ -24,4 +24,8 @@ class ManageRoomRepositoryImpl(
     override suspend fun upsertRoomMaster(roomMaster: RoomMaster): SimpleResource {
         return supabaseManageRoom.upsertRoomMaster(roomMaster)
     }
+
+    override suspend fun uploadImages(ownerId: String, roomName: String, images: List<ByteArray>){
+        supabaseManageRoom.uploadImages(ownerId, roomName, images)
+    }
 }

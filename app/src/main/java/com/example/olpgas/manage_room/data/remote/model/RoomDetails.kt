@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RoomDetails(
-    val id: Int? = null,
     val roomArea: Int,
     val shareable: Int,
     val roomType: String,

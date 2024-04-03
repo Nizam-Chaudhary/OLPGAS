@@ -12,4 +12,6 @@ interface ManageRoomRepository {
     suspend fun upsertRoomDetails(roomDetails: RoomDetails) : Int?
 
     suspend fun upsertRoomMaster(roomMaster: RoomMaster) : SimpleResource
+
+    suspend fun uploadImages(ownerId: String, roomName: String, images: List<ByteArray>)
 }

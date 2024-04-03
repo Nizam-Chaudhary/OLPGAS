@@ -37,7 +37,7 @@
             android:name=".manage_room.ui.UpdateRoom"
             android:exported="false" />
         <activity
-            android:name=".manage_room.presentation.add_room.AddRoomActivity"
+            android:name=".manage_room.presentation.post_room.PostRoomActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity

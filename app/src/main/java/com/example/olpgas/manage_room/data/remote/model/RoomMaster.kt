@@ -4,7 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RoomMaster(
-    val id: Int? = null,
     val roomName: String,
     val ownerId: String,
     val roomNumber: String,
@@ -12,7 +11,6 @@ data class RoomMaster(
     val landMark: String,
     val city: String,
     val state: String,
-    val listingDate: String? = null,
     val roomFeatureId: Int,
     val bookingStatus: String
 )

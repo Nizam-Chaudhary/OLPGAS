@@ -9,6 +9,8 @@ import com.example.olpgas.manage_room.data.remote.model.RoomMaster
 import com.example.olpgas.manage_room.domain.util.Constants
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
+import io.github.jan.supabase.storage.storage
+import kotlinx.serialization.Serializable
 
 class SupabaseManageRoom {
     companion object {
@@ -17,10 +19,11 @@ class SupabaseManageRoom {
     suspend fun upsertRoomDetails(roomDetails: RoomDetails) : Int? {
         return try{
             SupabaseClient.client.postgrest.from(Constants.ROOM_DETAILS_TABLE)
-                .upsert(roomDetails) {
+                .insert(roomDetails) {
                     select(Columns.list(Constants.COL_ID_ROOM_DETAILS))
-                }.decodeSingle<RoomDetails>().id
+                }.decodeSingle<Id>().id
         }catch (e: Exception) {
+            e.printStackTrace()
             Log.e(TAG, "Error: ${e.message}")
             null
         }
@@ -29,9 +32,10 @@ class SupabaseManageRoom {
     suspend fun upsertRoomMaster(roomMaster: RoomMaster) : SimpleResource {
         return try{
             SupabaseClient.client.postgrest.from(Constants.ROOM_MASTER_TABLE)
-                .upsert(roomMaster)
+                .insert(roomMaster)
             Resource.Success(Unit)
         }catch (e: Exception) {
+            e.printStackTrace()
             Log.e(TAG, "Error: ${e.message}")
             SupabaseClient.client.postgrest.from(Constants.ROOM_DETAILS_TABLE)
                 .delete {
@@ -39,7 +43,29 @@ class SupabaseManageRoom {
                         eq(Constants.COL_ID_ROOM_DETAILS, roomMaster.roomFeatureId)
                     }
                 }
+
+            val bucket = SupabaseClient.client.storage.from(Constants.ROOM_PICS_BUCKET)
+            val files = bucket.list()
+            for(file in files) {
+                bucket.delete("${roomMaster.ownerId}/${roomMaster.roomName}/${file.name}")
+            }
             Resource.Error("Error Posting Room Details")
         }
     }
+
+    suspend fun uploadImages(ownerId: String, roomName: String, images: List<ByteArray>){
+        try {
+            val bucket = SupabaseClient.client.storage.from(Constants.ROOM_PICS_BUCKET)
+            for(i in images.indices) {
+                bucket.upload("$ownerId/$roomName/img$i.jpeg", images[i])
+            }
+            Resource.Success(Unit)
+        }catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(TAG, "Error: ${e.message}")
+        }
+    }
+
+    @Serializable
+    data class Id(val id: Int)
 }
