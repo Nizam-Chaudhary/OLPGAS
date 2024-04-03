@@ -54,6 +54,10 @@ class AddRoomActivity : AppCompatActivity() {
         setState()
 
         onRoomNameTextChange()
+        onRentAmountTextChange()
+        onDepositAmountTextChange()
+        onRoomAreaTextChange()
+        onRoomAboutTextChange()
     }
 
     private fun getImages() {
@@ -256,6 +260,65 @@ class AddRoomActivity : AppCompatActivity() {
 
         })
     }
+
+
+    private fun onRentAmountTextChange() {
+        binding.inputRentAmount.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.inputRentAmount.error = null
+                viewModel.onEvent(AddRoomEvent.EnteredRentAmount(s.toString()))
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+
+        })
+    }
+
+    private fun onDepositAmountTextChange() {
+        binding.inputDepositAmount.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.inputDepositAmount.error = null
+                viewModel.onEvent(AddRoomEvent.EnteredDeposit(s.toString()))
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+
+        })
+    }
+
+    private fun onRoomAreaTextChange() {
+        binding.inputRoomArea.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.inputRoomArea.error = null
+                viewModel.onEvent(AddRoomEvent.EnteredRoomArea(s.toString()))
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+
+        })
+    }
+
+
+    private fun onRoomAboutTextChange() {
+        binding.inputAbout.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.inputAbout.error = null
+                viewModel.onEvent(AddRoomEvent.EnteredDescription(s.toString()))
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+
+        })
+    }
+
 
 
 
