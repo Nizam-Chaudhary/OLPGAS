@@ -13,7 +13,6 @@ import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDeta
 import com.example.olpgas.databinding.RawRecyclerViewRoomsListBinding
 import com.example.olpgas.core.util.getCircularProgressDrawable
 import com.example.olpgas.view_room_details.presentation.RoomDetailsActivity
-import com.google.android.material.chip.Chip
 import java.util.Locale
 
 class RoomsRecyclerViewAdapter(
@@ -29,7 +28,6 @@ class RoomsRecyclerViewAdapter(
         val roomDepositTv: TextView = view.depositAmountTv
         val roomRatingsTv = view.ratingsTv
         val roomImage: ImageView = view.roomImage
-        val featuresChipGroup = view.featuresChipGroup
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -63,13 +61,6 @@ class RoomsRecyclerViewAdapter(
             val intent = Intent(context, RoomDetailsActivity::class.java)
             intent.putExtra("id", currentRoomData.id)
             context.startActivity(intent)
-        }
-
-        holder.featuresChipGroup.removeAllViews()
-        for(feature in currentRoomData.features) {
-            val chip = Chip(context)
-            chip.text = feature
-            holder.featuresChipGroup.addView(chip)
         }
     }
 
