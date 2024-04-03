@@ -56,10 +56,11 @@ class AddRoomActivity : AppCompatActivity() {
 
         onRoomNameTextChange()
         onRoomNumberTextChange()
+        onStreetNumberTextChange()
         onLandMarkTextChange()
         onCityItemChange()
         onRentAmountTextChange()
-        onRentAmountTextChange()
+        onShareableByTextChange()
         onDepositAmountTextChange()
         onRoomAreaTextChange()
         onRoomAboutTextChange()
@@ -249,9 +250,9 @@ class AddRoomActivity : AppCompatActivity() {
         binding.inputAbout.editText?.setText(descriptionState?.text)
 
         setUpSpinner()
-        binding.spinnerState.setSelection(stateAdapter.getPosition(stateState))
-        binding.spinnerCity.setSelection(cityAdapter.getPosition(cityState))
-        binding.spinnerRoomType.setSelection(roomTypeAdapter.getPosition(roomTypeState))
+        //binding.spinnerState.setSelection(stateAdapter.getPosition(stateState))
+        //binding.spinnerCity.setSelection(cityAdapter.getPosition(cityState))
+        //binding.spinnerRoomType.setSelection(roomTypeAdapter.getPosition(roomTypeState))
     }
 
     private fun onRoomNameTextChange() {
@@ -282,8 +283,19 @@ class AddRoomActivity : AppCompatActivity() {
         })
     }
 
+    private fun onStreetNumberTextChange() {
+        binding.inputStreetNumber.editText?.addTextChangedListener(object: TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.inputStreetNumber.error = null
+                viewModel.onEvent(AddRoomEvent.EnteredStreetNumber(s.toString()))
+            }
 
+            override fun afterTextChanged(s: Editable?) {}
+
+        })
+    }
 
     private fun onLandMarkTextChange() {
         binding.inputLandmark.editText?.addTextChangedListener(object: TextWatcher {
@@ -317,6 +329,20 @@ class AddRoomActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    private fun onShareableByTextChange() {
+        binding.inputShareableBy.editText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.inputShareableBy.error = null
+                viewModel.onEvent(AddRoomEvent.EnteredShareableBy(s.toString()))
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+
+        })
     }
 
     private fun onRentAmountTextChange() {
