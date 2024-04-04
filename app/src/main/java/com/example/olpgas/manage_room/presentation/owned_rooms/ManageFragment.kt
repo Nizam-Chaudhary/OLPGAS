@@ -38,8 +38,8 @@ class ManageFragment : Fragment() {
 
     private fun setUpRecyclerViewAdapter() {
         viewModel.onEvent(OwnedRoomEvents.OnCreate)
-
-        val adapter = OwnedRoomsRecyclerViewAdapter(emptyList(), requireContext())
+        val activityContext = requireActivity()
+        val adapter = OwnedRoomsRecyclerViewAdapter(emptyList(), requireContext(),activityContext)
         binding.recyclerView.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
             this.adapter = adapter

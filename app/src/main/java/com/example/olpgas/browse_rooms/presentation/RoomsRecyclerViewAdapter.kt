@@ -1,23 +1,26 @@
 package com.example.olpgas.browse_rooms.presentation
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
-import com.example.olpgas.databinding.RawRecyclerViewRoomsListBinding
 import com.example.olpgas.core.util.getCircularProgressDrawable
+import com.example.olpgas.databinding.RawRecyclerViewRoomsListBinding
 import com.example.olpgas.view_room_details.presentation.RoomDetailsActivity
 import java.util.Locale
 
 class RoomsRecyclerViewAdapter(
     var roomsData: List<AllRoomsDetailsLocal>,
-    private val context: Context
+    private val context: Context,
+    private val activity: Activity
 ) : RecyclerView.Adapter<RoomsRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: RawRecyclerViewRoomsListBinding) : RecyclerView.ViewHolder(view.root) {
@@ -50,6 +53,9 @@ class RoomsRecyclerViewAdapter(
         val roomPrice = String.format(Locale.UK, "%,d", currentRoomData.rentAmount) + "/-"
         val deposit = String.format(Locale.UK, "%,d", currentRoomData.deposit) + "/-"
 
+        holder.roomImage.transitionName = "uniqueTransitionName${position}"
+
+
         holder.roomNameTv.text = currentRoomData.roomName
         holder.roomLocationTv.text = currentRoomData.city
         holder.roomDescriptionTv.text = currentRoomData.description
@@ -59,8 +65,14 @@ class RoomsRecyclerViewAdapter(
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, RoomDetailsActivity::class.java)
+
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity,
+                holder.roomImage,
+                holder.roomImage.transitionName
+            )
             intent.putExtra("id", currentRoomData.id)
-            context.startActivity(intent)
+            context.startActivity(intent, options.toBundle())
         }
     }
 

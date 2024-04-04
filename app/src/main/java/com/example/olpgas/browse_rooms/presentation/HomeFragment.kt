@@ -46,7 +46,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setRecyclerViewAdapter() {
-        val adapter = RoomsRecyclerViewAdapter(emptyList(), requireContext())
+        val activityContext = requireActivity()
+
+        val adapter = RoomsRecyclerViewAdapter(emptyList(), requireContext(),activityContext)
         binding.rvListRooms.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
             this.adapter = adapter

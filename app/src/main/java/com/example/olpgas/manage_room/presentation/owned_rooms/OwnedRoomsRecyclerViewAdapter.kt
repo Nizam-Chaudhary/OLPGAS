@@ -1,5 +1,6 @@
 package com.example.olpgas.manage_room.presentation.owned_rooms
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.transition.AutoTransition
@@ -11,6 +12,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -24,7 +26,8 @@ import java.util.Locale
 
 class OwnedRoomsRecyclerViewAdapter(
     var roomsData: List<AllRoomsDetailsLocal>,
-    private val context: Context
+    private val context: Context,
+    private val activity: Activity
 ) : RecyclerView.Adapter<OwnedRoomsRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: RawMangeRoomBinding) : RecyclerView.ViewHolder(view.root) {
@@ -68,6 +71,8 @@ class OwnedRoomsRecyclerViewAdapter(
         val roomPrice = String.format(Locale.UK, "%,d", currentRoomData.rentAmount) + "/-"
         val deposit = String.format(Locale.UK, "%,d", currentRoomData.deposit) + "/-"
 
+        holder.roomImage.transitionName = "uniqueTransitionName${position}"
+
         holder.roomNameTv.text = currentRoomData.roomName
         holder.roomLocationTv.text = currentRoomData.city
         holder.roomDescriptionTv.text = currentRoomData.description
@@ -103,11 +108,11 @@ class OwnedRoomsRecyclerViewAdapter(
         }
 
         holder.detailsBtn.setOnClickListener {
-            onDetailsClick(currentRoomData.id)
+            onDetailsClick(currentRoomData.id, holder.roomImage)
         }
 
         holder.detailsTv.setOnClickListener {
-            onDetailsClick(currentRoomData.id)
+            onDetailsClick(currentRoomData.id, holder.roomImage)
         }
 
         holder.updateBtn.setOnClickListener {
@@ -139,10 +144,13 @@ class OwnedRoomsRecyclerViewAdapter(
     }
 
     private fun onDetailsClick(
-        id: Int
+        id: Int, roomImage: ImageView
     ) {
         val intent = Intent(context, RoomDetailsActivity::class.java)
         intent.putExtra("id", id)
-        context.startActivity(intent)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity, roomImage, roomImage.transitionName
+        )
+        context.startActivity(intent, options.toBundle())
     }
 }
