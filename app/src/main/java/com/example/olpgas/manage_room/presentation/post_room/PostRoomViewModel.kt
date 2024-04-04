@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.olpgas.browse_rooms.data.remote.model.RoomBookingStatus
-import com.example.olpgas.browse_rooms.domain.use_case.RefreshFullRoomDetailsLocalCacheUseCase
 import com.example.olpgas.browse_rooms.domain.use_case.RefreshLocalCacheUseCase
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Resource
@@ -15,7 +14,6 @@ import com.example.olpgas.core.util.domain.states.TextFieldState
 import com.example.olpgas.manage_room.domain.use_case.PostRoomUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 import com.example.olpgas.core.util.Error as Error
 
@@ -23,8 +21,7 @@ import com.example.olpgas.core.util.Error as Error
 class PostRoomViewModel @Inject constructor(
     private val postRoomUseCase: PostRoomUseCase,
     private val refreshLocalCacheUseCase: RefreshLocalCacheUseCase,
-    private val refreshFullRoomDetailsLocalCacheUseCase: RefreshFullRoomDetailsLocalCacheUseCase,
-    private val connectivityObserver: ConnectivityObserver
+    connectivityObserver: ConnectivityObserver
 ) : ViewModel() {
 
     private val _roomNameState: MutableLiveData<TextFieldState> = MutableLiveData(TextFieldState())
@@ -331,7 +328,6 @@ class PostRoomViewModel @Inject constructor(
                 }
                 is Resource.Success -> {
                     refreshLocalCacheUseCase()
-                    refreshFullRoomDetailsLocalCacheUseCase()
                     _postRoomState.value = PostRoomState.Success
                 }
                 null -> Unit

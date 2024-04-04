@@ -6,7 +6,6 @@ import com.example.olpgas.view_room_details.data.remote.SupabaseRoomDetails
 import com.example.olpgas.view_room_details.data.repository.ViewRoomDetailsRepositoryImpl
 import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
 import com.example.olpgas.view_room_details.domain.use_case.GetFullRoomDetailsFromLocalDBUseCase
-import com.example.olpgas.browse_rooms.domain.use_case.RefreshFullRoomDetailsLocalCacheUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

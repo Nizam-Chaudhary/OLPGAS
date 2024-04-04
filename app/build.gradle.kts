@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.olpgas"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -56,6 +56,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("com.google.android.gms:play-services-pal:20.2.0")
+    implementation("androidx.hilt:hilt-work:1.2.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -91,6 +92,8 @@ dependencies {
     //Dagger - Hilt
     val hiltVersion = 2.51
     implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation("androidx.hilt:hilt-work:1.2.0")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     // Room
@@ -100,5 +103,8 @@ dependencies {
 
     // DotsIndicator
     implementation("com.tbuonomo:dotsindicator:5.0")
+
+    // WorkManager
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 }
 

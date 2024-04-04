@@ -3,19 +3,21 @@ package com.example.olpgas.browse_rooms.domain.use_case
 import android.app.Application
 import androidx.work.BackoffPolicy
 import androidx.work.Constraints
-import androidx.work.ExistingWorkPolicy
+import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.example.olpgas.browse_rooms.domain.workers.RefreshLocalCacheWorker
 import java.time.Duration
+import java.util.concurrent.TimeUnit
 
-class RefreshLocalCacheUseCase(
+class GetLocalCacheUseCase(
     private val application: Application
 ) {
     operator fun invoke(){
         val refreshCacheRequest =
-            OneTimeWorkRequestBuilder<RefreshLocalCacheWorker>()
+            PeriodicWorkRequestBuilder<RefreshLocalCacheWorker>(
+            1, TimeUnit.HOURS)
                 .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, Duration.ofSeconds(10))
                 .setConstraints(
                     Constraints(
@@ -23,11 +25,11 @@ class RefreshLocalCacheUseCase(
                         requiresStorageNotLow = true
                     )
                 )
-                .build()
+            .build()
 
-        WorkManager.getInstance(application).enqueueUniqueWork(
-            "RefreshLocalCache",
-            ExistingWorkPolicy.KEEP,
+        WorkManager.getInstance(application).enqueueUniquePeriodicWork(
+            "GetLocalCache",
+            ExistingPeriodicWorkPolicy.KEEP,
             refreshCacheRequest
         )
     }

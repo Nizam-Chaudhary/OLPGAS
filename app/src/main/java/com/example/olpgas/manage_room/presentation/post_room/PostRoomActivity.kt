@@ -31,7 +31,7 @@ import com.example.olpgas.R
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
 import com.example.olpgas.core.util.getCircularProgressDrawable
-import com.example.olpgas.databinding.ActivityAddRoomBinding
+import com.example.olpgas.databinding.ActivityPostRoomBinding
 import com.example.olpgas.databinding.RawAddChipBinding
 import com.example.olpgas.databinding.RawChipBinding
 import com.google.android.material.chip.Chip
@@ -43,8 +43,8 @@ import java.io.ByteArrayOutputStream
 
 @AndroidEntryPoint
 class PostRoomActivity : AppCompatActivity() {
-    private val binding: ActivityAddRoomBinding by lazy {
-        ActivityAddRoomBinding.inflate(layoutInflater)
+    private val binding: ActivityPostRoomBinding by lazy {
+        ActivityPostRoomBinding.inflate(layoutInflater)
     }
 
     private val viewModel: PostRoomViewModel by viewModels()
