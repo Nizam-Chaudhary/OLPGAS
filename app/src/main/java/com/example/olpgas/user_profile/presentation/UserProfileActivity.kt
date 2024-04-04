@@ -120,7 +120,7 @@ class UserProfileActivity : AppCompatActivity() {
     }
 
     private fun onProfileImageClick() {
-        binding.ivProfilePic.setOnClickListener {
+        binding.ivProfilePicBtn.setOnClickListener {
             getImagePermission()
         }
     }
