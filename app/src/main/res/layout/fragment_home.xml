@@ -51,6 +51,37 @@
         android:layout_height="match_parent"
         android:hint="@string/searchbar_hint"
         app:layout_anchor="@id/search_bar">
-        <!-- Search suggestions/results go here (ScrollView, RecyclerView, etc.). -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layoutDirection="rtl"
+                android:text="City"
+                app:chipIcon="@drawable/ic_arrow_down" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layoutDirection="rtl"
+                android:text="MaxRent"
+                app:chipIcon="@drawable/ic_arrow_down" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layoutDirection="rtl"
+                android:text="MinRent"
+                app:chipIcon="@drawable/ic_arrow_down" />
+        </LinearLayout>
+
     </com.google.android.material.search.SearchView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
