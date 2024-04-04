@@ -41,10 +41,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".manage_room.ui.MyRoomActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".view_room_details.presentation.RoomDetailsActivity"
             android:exported="false" />
         <activity
