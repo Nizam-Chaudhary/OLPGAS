@@ -20,8 +20,8 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
 ) : CoroutineWorker(context,params) {
     override suspend fun doWork(): Result {
         return try {
-            cacheBrowseRoomDetails()
             cacheFullRoomDetails()
+            cacheBrowseRoomDetails()
 
             Result.success()
         }catch (e: Exception) {
@@ -35,7 +35,7 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
 
         allRoomsDetails?.let {
             for(item in it) {
-                val imageUrl = browseRoomsRepository.getRoomsImageForListing(item.ownerId, item.roomName)
+                val imageUrl = browseRoomsRepository.getRoomsImageForListing(item.ownerId, item.id)
                 if(imageUrl != null) {
                     browseRoomsRepository.upsert(
                         AllRoomsDetailsLocal(
@@ -65,7 +65,7 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
 
         allFullRoomDetails?.let {
             for(item in it) {
-                val fullRoomImages = viewRoomDetailsRepository.getAllFullRoomDetailsImages(item.ownerId, item.roomName)
+                val fullRoomImages = viewRoomDetailsRepository.getAllFullRoomDetailsImages(item.ownerId, item.id)
                 if(!fullRoomImages.isNullOrEmpty()) {
                     viewRoomDetailsRepository.upsert(
                         FullRoomDetailsLocal(

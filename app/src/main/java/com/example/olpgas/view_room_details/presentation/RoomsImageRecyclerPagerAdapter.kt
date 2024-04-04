@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RoomImageRecyclerPagerAdapter(
-    var imagesUrl: List<String>,
+    private var imagesUrl: List<String>,
     val context: Context
 ) : RecyclerView.Adapter<RoomImageRecyclerPagerAdapter.ImageViewHolder>() {
     inner class ImageViewHolder(view: ImageRawBinding): ViewHolder(view.root) {

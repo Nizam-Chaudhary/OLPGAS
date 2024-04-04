@@ -23,14 +23,13 @@ class SupabaseRoomDetails {
         }
     }
 
-    suspend fun getFullRoomDetailsImages(ownerId: String, roomName: String) : List<String>? {
+    suspend fun getFullRoomDetailsImages(ownerId: String, id: Int) : List<String>? {
         return try {
             val urls = mutableListOf<String>()
             val bucket = SupabaseClient.client.storage.from(Constants.ROOM_PICS_BUCKET)
-            val files = bucket.list("${ownerId}/${roomName}")
+            val files = bucket.list("${ownerId}/${id}")
             for(file in files) {
-                bucket.createSignedUrl("${ownerId}/${roomName}/${file.name}", Duration.INFINITE)
-                val url = bucket.publicUrl("${ownerId}/${roomName}/${file.name}")
+                val url = bucket.publicUrl("${ownerId}/${id}/${file.name}")
                 urls.add(url)
             }
             return urls

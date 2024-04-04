@@ -34,7 +34,7 @@
             android:name=".manage_room.ui.BookedRoomActivity"
             android:exported="false" />
         <activity
-            android:name=".manage_room.ui.UpdateRoomActivity"
+            android:name=".manage_room.presentation.update_room.UpdateRoomActivity"
             android:exported="false" />
         <activity
             android:name=".manage_room.presentation.post_room.PostRoomActivity"

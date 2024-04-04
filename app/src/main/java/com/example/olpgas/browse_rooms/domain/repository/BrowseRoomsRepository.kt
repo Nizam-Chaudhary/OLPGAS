@@ -7,9 +7,11 @@ import com.example.olpgas.browse_rooms.data.remote.model.AllRoomDetails
 interface BrowseRoomsRepository {
     suspend fun getRoomsForListing() : List<AllRoomDetails>?
 
-    suspend fun getRoomsImageForListing(ownerId: String, roomName: String) : String?
+    suspend fun getRoomsImageForListing(ownerId: String, id: Int) : String?
 
     suspend fun upsert(allRoomsDetails: AllRoomsDetailsLocal)
 
     fun getAllRoomDetailsFromLocalDB() : LiveData<List<AllRoomsDetailsLocal>>
+
+    suspend fun deleteAllFromLocal()
 }

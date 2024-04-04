@@ -20,7 +20,7 @@ import com.example.olpgas.R
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
 import com.example.olpgas.core.util.getCircularProgressDrawable
 import com.example.olpgas.databinding.RawMangeRoomBinding
-import com.example.olpgas.manage_room.ui.UpdateRoomActivity
+import com.example.olpgas.manage_room.presentation.update_room.UpdateRoomActivity
 import com.example.olpgas.view_room_details.presentation.RoomDetailsActivity
 import java.util.Locale
 
@@ -116,11 +116,11 @@ class OwnedRoomsRecyclerViewAdapter(
         }
 
         holder.updateBtn.setOnClickListener {
-            onUpdateClick()
+            onUpdateClick(currentRoomData.id)
         }
 
         holder.updateTv.setOnClickListener {
-            onUpdateClick()
+            onUpdateClick(currentRoomData.id)
         }
 
         holder.historyBtn.setOnClickListener {
@@ -134,8 +134,9 @@ class OwnedRoomsRecyclerViewAdapter(
 
     override fun getItemCount() = roomsData.size
 
-    private fun onUpdateClick() {
+    private fun onUpdateClick(id: Int) {
         val intent = Intent(context, UpdateRoomActivity::class.java)
+        intent.putExtra("id", id)
         context.startActivity(intent)
     }
 

@@ -25,8 +25,12 @@ class ViewRoomDetailsRepositoryImpl(
 
     override suspend fun getAllFullRoomDetailsImages(
         ownerIds: String,
-        roomNames: String
+        id: Int
     ): List<String>? {
-        return supabaseRoomDetails.getFullRoomDetailsImages(ownerIds, roomNames)
+        return supabaseRoomDetails.getFullRoomDetailsImages(ownerIds, id)
+    }
+
+    override suspend fun deleteAllFromLocal() {
+        database.getFullRoomDetailsDao().deleteAll()
     }
 }

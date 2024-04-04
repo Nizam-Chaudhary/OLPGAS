@@ -8,6 +8,7 @@ import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
 import com.example.olpgas.browse_rooms.domain.use_case.GetAllRoomDetailsFromLocalDBUseCase
 import com.example.olpgas.browse_rooms.domain.use_case.GetLocalCacheUseCase
 import com.example.olpgas.browse_rooms.domain.use_case.RefreshLocalCacheUseCase
+import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,7 +53,7 @@ object BrowseRoomsModule {
 
     @Provides
     @Singleton
-    fun provideRefreshLocalCacheUseCase(application: Application) : RefreshLocalCacheUseCase {
-        return RefreshLocalCacheUseCase(application)
+    fun provideRefreshLocalCacheUseCase(browseRoomsRepository: BrowseRoomsRepository, viewRoomDetailsRepository: ViewRoomDetailsRepository) : RefreshLocalCacheUseCase {
+        return RefreshLocalCacheUseCase(browseRoomsRepository, viewRoomDetailsRepository)
     }
 }

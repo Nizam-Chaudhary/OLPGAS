@@ -30,12 +30,11 @@ class SupabaseListRooms {
         }
     }
 
-    suspend fun getRoomsImageForListing(ownerId: String, roomName: String) : String? {
+    suspend fun getRoomsImageForListing(ownerId: String, id: Int) : String? {
         return try {
             val bucket = SupabaseClient.client.storage.from("RoomPics")
-            val files = bucket.list("${ownerId}/${roomName}")
-            bucket.createSignedUrl("${ownerId}/${roomName}/${files[0].name}", Duration.INFINITE)
-            bucket.publicUrl("${ownerId}/${roomName}/${files[0].name}")
+            val files = bucket.list("${ownerId}/${id}")
+            bucket.publicUrl("${ownerId}/${id}/${files[0].name}")
         } catch (e: Exception) {
             Log.e(TAG, "Error: ${e.message}")
             null

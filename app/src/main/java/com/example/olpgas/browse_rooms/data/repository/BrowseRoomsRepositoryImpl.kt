@@ -6,7 +6,6 @@ import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDeta
 import com.example.olpgas.browse_rooms.data.remote.SupabaseListRooms
 import com.example.olpgas.browse_rooms.data.remote.model.AllRoomDetails
 import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
-import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal as AllRoomDetailsLocal
 
 class BrowseRoomsRepositoryImpl(
     private val supabaseListRooms: SupabaseListRooms,
@@ -16,8 +15,12 @@ class BrowseRoomsRepositoryImpl(
         return supabaseListRooms.getRoomsForListing()
     }
 
-    override suspend fun getRoomsImageForListing(ownerId: String, roomName: String): String? {
-        return supabaseListRooms.getRoomsImageForListing(ownerId, roomName)
+    override suspend fun deleteAllFromLocal() {
+        database.getAllRoomDetailsDao().deleteAll()
+    }
+
+    override suspend fun getRoomsImageForListing(ownerId: String, id: Int): String? {
+        return supabaseListRooms.getRoomsImageForListing(ownerId, id)
     }
 
     override fun getAllRoomDetailsFromLocalDB() : LiveData<List<AllRoomsDetailsLocal>> {

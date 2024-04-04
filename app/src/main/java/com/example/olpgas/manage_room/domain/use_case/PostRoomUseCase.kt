@@ -2,9 +2,9 @@ package com.example.olpgas.manage_room.domain.use_case
 
 import android.content.SharedPreferences
 import android.util.Log
-import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
 import com.example.olpgas.core.util.Constants
 import com.example.olpgas.core.util.Resource
+import com.example.olpgas.core.util.SimpleResource
 import com.example.olpgas.manage_room.data.remote.model.RoomDetails
 import com.example.olpgas.manage_room.data.remote.model.RoomMaster
 import com.example.olpgas.manage_room.domain.model.PostRoomResult
@@ -87,7 +87,7 @@ class PostRoomUseCase(
             ratings
         )
         Log.d("Post Room", roomDetails.toString())
-        val roomFeatureId = repository.upsertRoomDetails(roomDetails)
+        val roomFeatureId = repository.insertRoomDetails(roomDetails)
 
         if(roomFeatureId != null) {
             val ownerId = authSharedPreferences.getString(Constants.USER_ID,null)
@@ -103,12 +103,14 @@ class PostRoomUseCase(
                     roomFeatureId,
                     bookingStatus
                 )
+                val id = repository.insertRoomMaster(roomMaster)
                 Log.d("Post Room", roomMaster.toString())
-                repository.uploadImages(ownerId, roomName, images)
-                val result = repository.upsertRoomMaster(roomMaster)
-                return PostRoomResult(
-                    result = result
-                )
+                if(id != null) {
+                    repository.uploadImages(ownerId, id, images)
+                    return PostRoomResult(
+                        result = Resource.Success(Unit)
+                    )
+                }
             }
         }
         return PostRoomResult(
