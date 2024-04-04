@@ -1,15 +1,11 @@
 package com.example.olpgas.manage_room.ui
 
 import android.os.Bundle
-import android.transition.AutoTransition
-import android.transition.TransitionManager
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.olpgas.R
 import com.example.olpgas.databinding.ActivityBookedRoomBinding
 
-class BookedRoom : AppCompatActivity() {
+class BookedRoomActivity : AppCompatActivity() {
 
     private val binding: ActivityBookedRoomBinding by lazy {
         ActivityBookedRoomBinding.inflate(layoutInflater)

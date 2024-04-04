@@ -16,7 +16,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.transition.platform.MaterialContainerTransform
 
-class UpdateRoom : AppCompatActivity() {
+class UpdateRoomActivity : AppCompatActivity() {
 
     private val binding: ActivityUpdateRoomBinding by lazy {
         ActivityUpdateRoomBinding.inflate(layoutInflater)

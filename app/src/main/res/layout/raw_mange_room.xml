@@ -68,14 +68,6 @@
                 android:layout_marginTop="12dp"
                 android:background="?attr/dividerHorizontal" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/features_chip_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="12dp">
-
-            </com.google.android.material.chip.ChipGroup>
         </LinearLayout>
 
 
@@ -146,95 +138,78 @@
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/controlLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hideViewBtn">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/hideViewBtn"
+            <ImageButton
+                android:id="@+id/history_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:src="@drawable/ic_history"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/history_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="History"
+                app:layout_constraintEnd_toEndOf="@+id/history_btn"
+                app:layout_constraintStart_toStartOf="@+id/history_btn"
+                app:layout_constraintTop_toBottomOf="@+id/history_btn" />
+
+            <ImageButton
+                android:id="@+id/details_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:text="More"
-                android:textColor="@color/textColor"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:padding="10dp"
+                android:src="@drawable/ic_home"
+                app:layout_constraintBottom_toBottomOf="@id/history_btn"
+                app:layout_constraintEnd_toStartOf="@id/update_btn"
+                app:layout_constraintStart_toEndOf="@id/history_btn"
+                app:layout_constraintTop_toTopOf="@id/history_btn" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/hideView"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/details_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Details"
+                app:layout_constraintEnd_toEndOf="@+id/details_btn"
+                app:layout_constraintStart_toStartOf="@id/details_btn"
+                app:layout_constraintTop_toBottomOf="@+id/details_btn" />
+
+            <ImageButton
+                android:id="@+id/update_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:src="@drawable/ic_edit"
+                app:layout_constraintBottom_toBottomOf="@id/details_btn"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/hideViewBtn">
+                app:layout_constraintTop_toTopOf="@id/details_btn" />
 
-
-                <ImageButton
-                    android:id="@+id/history"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:background="@android:color/transparent"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_history"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="History"
-                    app:layout_constraintEnd_toEndOf="@+id/history"
-                    app:layout_constraintStart_toStartOf="@+id/history"
-                    app:layout_constraintTop_toBottomOf="@+id/history" />
-
-                <ImageButton
-                    android:id="@+id/details"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_home"
-                    app:layout_constraintBottom_toBottomOf="@id/history"
-                    app:layout_constraintEnd_toStartOf="@id/update"
-                    app:layout_constraintStart_toEndOf="@id/history"
-                    app:layout_constraintTop_toTopOf="@id/history" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Details"
-                    app:layout_constraintEnd_toEndOf="@+id/details"
-                    app:layout_constraintStart_toStartOf="@id/details"
-                    app:layout_constraintTop_toBottomOf="@+id/details" />
-
-                <ImageButton
-                    android:id="@+id/update"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="30dp"
-                    android:background="@android:color/transparent"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_edit"
-                    app:layout_constraintBottom_toBottomOf="@id/details"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/details" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Update"
-                    app:layout_constraintEnd_toEndOf="@+id/update"
-                    app:layout_constraintStart_toStartOf="@id/update"
-                    app:layout_constraintTop_toBottomOf="@+id/update" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <TextView
+                android:id="@+id/update_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"
+                app:layout_constraintEnd_toEndOf="@+id/update_btn"
+                app:layout_constraintStart_toStartOf="@id/update_btn"
+                app:layout_constraintTop_toBottomOf="@+id/update_btn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </LinearLayout>
-
 </com.google.android.material.card.MaterialCardView>

@@ -31,10 +31,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".manage_room.ui.BookedRoom"
+            android:name=".manage_room.ui.BookedRoomActivity"
             android:exported="false" />
         <activity
-            android:name=".manage_room.ui.UpdateRoom"
+            android:name=".manage_room.ui.UpdateRoomActivity"
             android:exported="false" />
         <activity
             android:name=".manage_room.presentation.post_room.PostRoomActivity"
