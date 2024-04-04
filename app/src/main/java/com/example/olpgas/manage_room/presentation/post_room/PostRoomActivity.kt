@@ -3,20 +3,16 @@ package com.example.olpgas.manage_room.presentation.post_room
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.Image
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import android.view.animation.Animation
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -25,17 +21,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.allViews
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.olpgas.R
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
-import com.example.olpgas.core.util.getCircularProgressDrawable
 import com.example.olpgas.databinding.ActivityPostRoomBinding
 import com.example.olpgas.databinding.RawAddChipBinding
 import com.example.olpgas.databinding.RawChipBinding
 import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,7 +52,6 @@ class PostRoomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
         ViewCompat.setOnApplyWindowInsetsListener(binding.coordinatorLayout) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
