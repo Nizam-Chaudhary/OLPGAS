@@ -513,6 +513,7 @@ class PostRoomActivity : AppCompatActivity() {
                 is PostRoomState.Success -> {
                     onBackPressedDispatcher.onBackPressed()
                     finish()
+                    overridePendingTransition(0, R.anim.slide_down)
                 }
                 is PostRoomState.Error -> {
                     Toast.makeText(this, "Error Uploading", Toast.LENGTH_SHORT).show()
@@ -524,6 +525,11 @@ class PostRoomActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(0, R.anim.slide_down)
     }
 
     private fun checkValidationError() {

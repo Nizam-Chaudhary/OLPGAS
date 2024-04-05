@@ -1,6 +1,5 @@
 package com.example.olpgas.manage_room.presentation.owned_rooms
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -54,12 +53,9 @@ class ManageFragment : Fragment() {
         binding.addRoomFab.setOnClickListener {
 
             val intent = Intent(requireContext(), PostRoomActivity::class.java)
-            val options = ActivityOptions.makeSceneTransitionAnimation(
-                requireActivity(),
-                view?.findViewById(R.id.add_room_fab),
-                "fab_transition"
-            )
-            startActivity(intent, options.toBundle())
+            startActivity(intent)
+            requireActivity().overridePendingTransition(R.anim.slide_up, 0)
+
         }
     }
 }
