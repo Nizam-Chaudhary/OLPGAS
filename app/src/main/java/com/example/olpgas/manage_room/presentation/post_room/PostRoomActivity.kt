@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -501,14 +502,13 @@ class PostRoomActivity : AppCompatActivity() {
     }
 
     private fun observePostRoomState() {
+        val view = View.inflate(this, R.layout.raw_room_upload_progress, null)
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle("Posting Room")
+            .setCancelable(false)
+            .setView(view)
+            .create()
         viewModel.postRoomState.observe(this) {
-            val view = View.inflate(this, R.layout.raw_room_upload_progress, null)
-
-            val dialog = MaterialAlertDialogBuilder(this)
-                .setTitle("Posting Room")
-                .setCancelable(false)
-                .setView(view)
-
             when(it) {
                 is PostRoomState.Success -> {
                     onBackPressedDispatcher.onBackPressed()
@@ -517,11 +517,16 @@ class PostRoomActivity : AppCompatActivity() {
                 }
                 is PostRoomState.Error -> {
                     Toast.makeText(this, "Error Uploading", Toast.LENGTH_SHORT).show()
+                    dialog.setCancelable(true)
+                    dialog.dismiss()
                 }
-                is PostRoomState.IsLoading -> {
-                    if(it.isLoading) {
-                       dialog.show()
-                    }
+                PostRoomState.IsLoading -> {
+                    dialog.show()
+                }
+
+                PostRoomState.Nothing -> {
+                    dialog.setCancelable(true)
+                    dialog.dismiss()
                 }
             }
         }

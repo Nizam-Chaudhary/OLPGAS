@@ -405,79 +405,81 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
         viewModel.onEvent(UpdateRoomEvent.OnCreate(id))
 
         viewModel.allRoomDetailsState.observe(this) {
-            binding.updateRoomNameTv.text = it.roomName
-            binding.updateRoomAddressTV.text = "${it.streetNumber}, ${it.landMark}, ${it.city},${it.state}"
+            if(it != null) {
+                binding.updateRoomNameTv.text = it.roomName
+                binding.updateRoomAddressTV.text = "${it.streetNumber}, ${it.landMark}, ${it.city},${it.state}"
 
-            binding.updateRoomRent.text = "${it.rentAmount}/-"
-            binding.updateDepositRent.text = "${it.deposit}/-"
-            binding.updateRoomSharableBy.text = "${it.shareable} People"
-            binding.updateRoomType.text = it.roomType
-            binding.updateRoomArea.text = "${it.roomArea} Sq. Ft."
-            binding.updateRoomAboutTv.text = it.description
+                binding.updateRoomRent.text = "${it.rentAmount}/-"
+                binding.updateDepositRent.text = "${it.deposit}/-"
+                binding.updateRoomSharableBy.text = "${it.shareable} People"
+                binding.updateRoomType.text = it.roomType
+                binding.updateRoomArea.text = "${it.roomArea} Sq. Ft."
+                binding.updateRoomAboutTv.text = it.description
 
-            binding.updateChipGroupAmenities.removeAllViews()
-            binding.updateChipGroupSuitableFor.removeAllViews()
-            for(amenity in it.features) {
-                val chip = View.inflate(this, R.layout.raw_update_room_chip, null)
-                val chipBinding = RawUpdateRoomChipBinding.bind(chip)
+                binding.updateChipGroupAmenities.removeAllViews()
+                binding.updateChipGroupSuitableFor.removeAllViews()
+                for(amenity in it.features) {
+                    val chip = View.inflate(this, R.layout.raw_update_room_chip, null)
+                    val chipBinding = RawUpdateRoomChipBinding.bind(chip)
 
-                chipBinding.rawChip.text = amenity
-                chipBinding.rawChip.tag = amenity
+                    chipBinding.rawChip.text = amenity
+                    chipBinding.rawChip.tag = amenity
 
-                binding.updateChipGroupAmenities.addView(chipBinding.rawChip)
-                binding.updateChipGroupAmenities.findViewWithTag<Chip>(amenity).setOnClickListener {
-                    if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
-                        if(viewModel.allRoomDetailsState.value?.features?.size == 1) {
-                            Toast.makeText(this, "cannot remove last amenity", Toast.LENGTH_SHORT).show()
+                    binding.updateChipGroupAmenities.addView(chipBinding.rawChip)
+                    binding.updateChipGroupAmenities.findViewWithTag<Chip>(amenity).setOnClickListener {
+                        if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                            if(viewModel.allRoomDetailsState.value?.features?.size == 1) {
+                                Toast.makeText(this, "cannot remove last amenity", Toast.LENGTH_SHORT).show()
+                            } else {
+                                MaterialAlertDialogBuilder(this)
+                                    .setTitle("Remove Amenity")
+                                    .setMessage("do you want to remove $amenity")
+                                    .setPositiveButton("Yes") {_,_ ->
+                                        viewModel.onEvent(UpdateRoomEvent.RemoveAmenity(amenity))
+                                    }
+                                    .setNegativeButton("Cancel", null)
+                                    .show()
+                            }
                         } else {
-                            MaterialAlertDialogBuilder(this)
-                                .setTitle("Remove Amenity")
-                                .setMessage("do you want to remove $amenity")
-                                .setPositiveButton("Yes") {_,_ ->
-                                    viewModel.onEvent(UpdateRoomEvent.RemoveAmenity(amenity))
-                                }
-                                .setNegativeButton("Cancel", null)
-                                .show()
+                            NetworkUnavailableDialog(this).networkUnavailable
                         }
-                    } else {
-                        NetworkUnavailableDialog(this).networkUnavailable
                     }
                 }
-            }
-            for(suitableFor in it.suitableFor) {
-                val chip = View.inflate(this, R.layout.raw_update_room_chip, null)
-                val chipBinding = RawUpdateRoomChipBinding.bind(chip)
+                for(suitableFor in it.suitableFor) {
+                    val chip = View.inflate(this, R.layout.raw_update_room_chip, null)
+                    val chipBinding = RawUpdateRoomChipBinding.bind(chip)
 
-                chipBinding.rawChip.text = suitableFor
-                chipBinding.rawChip.tag = suitableFor
+                    chipBinding.rawChip.text = suitableFor
+                    chipBinding.rawChip.tag = suitableFor
 
-                binding.updateChipGroupSuitableFor.addView(chipBinding.rawChip)
-                binding.updateChipGroupSuitableFor.findViewWithTag<Chip>(suitableFor).setOnClickListener {
-                    if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
-                        if(viewModel.allRoomDetailsState.value?.suitableFor?.size == 1) {
-                            Toast.makeText(this, "cannot remove last suitable for", Toast.LENGTH_SHORT).show()
+                    binding.updateChipGroupSuitableFor.addView(chipBinding.rawChip)
+                    binding.updateChipGroupSuitableFor.findViewWithTag<Chip>(suitableFor).setOnClickListener {
+                        if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                            if(viewModel.allRoomDetailsState.value?.suitableFor?.size == 1) {
+                                Toast.makeText(this, "cannot remove last suitable for", Toast.LENGTH_SHORT).show()
+                            } else {
+                                MaterialAlertDialogBuilder(this)
+                                    .setTitle("Remove Suitable For")
+                                    .setMessage("do you want to remove $suitableFor")
+                                    .setPositiveButton("Yes") {_,_ ->
+                                        viewModel.onEvent(UpdateRoomEvent.RemoveSuitableFor(suitableFor))
+                                    }
+                                    .setNegativeButton("Cancel", null)
+                                    .show()
+                            }
+
                         } else {
-                            MaterialAlertDialogBuilder(this)
-                                .setTitle("Remove Suitable For")
-                                .setMessage("do you want to remove $suitableFor")
-                                .setPositiveButton("Yes") {_,_ ->
-                                    viewModel.onEvent(UpdateRoomEvent.RemoveSuitableFor(suitableFor))
-                                }
-                                .setNegativeButton("Cancel", null)
-                                .show()
+                            NetworkUnavailableDialog(this).networkUnavailable
                         }
-
-                    } else {
-                        NetworkUnavailableDialog(this).networkUnavailable
                     }
                 }
-            }
-            binding.updateChipGroupAmenities.addView(binding.updateAddAmenities)
-            binding.updateChipGroupSuitableFor.addView(binding.updateAddSuitableFor)
+                binding.updateChipGroupAmenities.addView(binding.updateAddAmenities)
+                binding.updateChipGroupSuitableFor.addView(binding.updateAddSuitableFor)
 
-            adapter = AddRemoveImageViewPagerAdapter(this, it.urls)
-            adapter.onItemClickListener = this
-            binding.updateRoomImageViewpager.adapter = adapter
+                adapter = AddRemoveImageViewPagerAdapter(this, it.urls)
+                adapter.onItemClickListener = this
+                binding.updateRoomImageViewpager.adapter = adapter
+            }
         }
     }
 
@@ -608,7 +610,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                         val input = updateRoomDetails.editText?.text.toString()
                         if(input == "CONFIRM") {
                             viewModel.onEvent(UpdateRoomEvent.OnRemoveRoom)
-                            onBackPressedDispatcher.onBackPressed()
+                            finish()
                         }
                     }
                     .setNegativeButton("Cancel", null)

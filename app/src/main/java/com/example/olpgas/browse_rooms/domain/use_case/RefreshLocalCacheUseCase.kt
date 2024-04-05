@@ -14,67 +14,73 @@ class RefreshLocalCacheUseCase(
         val allRoomsDetails = browseRoomsRepository.getRoomsForListing()
         val allFullRoomDetails = viewRoomDetailsRepository.getAllFullRoomDetails()
 
-        if(allRoomsDetails != null && allFullRoomDetails != null) {
-            for(i in allRoomsDetails.indices) {
-                val fullRoomImages = viewRoomDetailsRepository.getAllFullRoomDetailsImages(allFullRoomDetails[i].ownerId, allFullRoomDetails[i].id)
-                if(!fullRoomImages.isNullOrEmpty()) {
-                    viewRoomDetailsRepository.upsert(
-                        FullRoomDetailsLocal(
-                            allFullRoomDetails[i].id,
-                            allFullRoomDetails[i].roomName,
-                            allFullRoomDetails[i].ownerId,
-                            allFullRoomDetails[i].roomNumber,
-                            allFullRoomDetails[i].streetNumber,
-                            allFullRoomDetails[i].landMark,
-                            allFullRoomDetails[i].city,
-                            allFullRoomDetails[i].state,
-                            allFullRoomDetails[i].roomArea,
-                            allFullRoomDetails[i].shareable,
-                            allFullRoomDetails[i].roomType,
-                            allFullRoomDetails[i].features,
-                            allFullRoomDetails[i].suitableFor,
-                            allFullRoomDetails[i].deposit,
-                            allFullRoomDetails[i].rentAmount,
-                            allFullRoomDetails[i].description,
-                            allFullRoomDetails[i].roomFeatureId,
-                            allFullRoomDetails[i].bookingStatus,
-                            allFullRoomDetails[i].ratings,
-                            fullRoomImages
+        try {
+            if(allRoomsDetails != null && allFullRoomDetails != null) {
+                for(item in allFullRoomDetails) {
+                    val fullRoomImages = viewRoomDetailsRepository.getAllFullRoomDetailsImages(item.ownerId, item.id)
+                    if(!fullRoomImages.isNullOrEmpty()) {
+                        viewRoomDetailsRepository.upsert(
+                            FullRoomDetailsLocal(
+                                item.id,
+                                item.roomName,
+                                item.ownerId,
+                                item.roomNumber,
+                                item.streetNumber,
+                                item.landMark,
+                                item.city,
+                                item.state,
+                                item.roomArea,
+                                item.shareable,
+                                item.roomType,
+                                item.features,
+                                item.suitableFor,
+                                item.deposit,
+                                item.rentAmount,
+                                item.description,
+                                item.roomFeatureId,
+                                item.bookingStatus,
+                                item.ratings,
+                                fullRoomImages
+                            )
                         )
-                    )
+                    }
                 }
 
-                val imageUrl = browseRoomsRepository.getRoomsImageForListing(allRoomsDetails[i].ownerId, allRoomsDetails[i].id)
-                if(imageUrl != null) {
-                    browseRoomsRepository.upsert(
-                        AllRoomsDetailsLocal(
-                            allRoomsDetails[i].id,
-                            allRoomsDetails[i].ownerId,
-                            allRoomsDetails[i].roomName,
-                            allRoomsDetails[i].roomNumber,
-                            allRoomsDetails[i].description,
-                            allRoomsDetails[i].roomFeatureId,
-                            allRoomsDetails[i].rentAmount,
-                            allRoomsDetails[i].deposit,
-                            allRoomsDetails[i].city,
-                            allRoomsDetails[i].state,
-                            allRoomsDetails[i].ratings,
-                            allRoomsDetails[i].bookingStatus,
-                            imageUrl
+                for(item in allRoomsDetails) {
+                    val imageUrl = browseRoomsRepository.getRoomsImageForListing(item.ownerId, item.id)
+                    if(imageUrl != null) {
+                        browseRoomsRepository.upsert(
+                            AllRoomsDetailsLocal(
+                                item.id,
+                                item.ownerId,
+                                item.roomName,
+                                item.roomNumber,
+                                item.description,
+                                item.roomFeatureId,
+                                item.rentAmount,
+                                item.deposit,
+                                item.city,
+                                item.state,
+                                item.ratings,
+                                item.bookingStatus,
+                                imageUrl
+                            )
                         )
-                    )
+                    }
                 }
             }
-        }
 
-        val localRoomIds = browseRoomsRepository.getAllRoomIdsFromLocal()
-        val remoteRoomIds = browseRoomsRepository.getAllRoomIds()
+            val localRoomIds = browseRoomsRepository.getAllRoomIdsFromLocal()
+            val remoteRoomIds = browseRoomsRepository.getAllRoomIds()
 
-        for(localId in localRoomIds) {
-            if (remoteRoomIds != null && !remoteRoomIds.contains(SupabaseManageRoom.Id(localId))) {
-                browseRoomsRepository.delete(localId)
-                viewRoomDetailsRepository.delete(localId)
+            for(localId in localRoomIds) {
+                if (remoteRoomIds != null && !remoteRoomIds.contains(SupabaseManageRoom.Id(localId))) {
+                    browseRoomsRepository.delete(localId)
+                    viewRoomDetailsRepository.delete(localId)
+                }
             }
+        }catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

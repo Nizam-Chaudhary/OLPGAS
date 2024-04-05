@@ -196,8 +196,6 @@ class PostRoomViewModel @Inject constructor(
 
     private fun postRoom() {
         viewModelScope.launch {
-            _postRoomState.value = PostRoomState.IsLoading(isLoading = true)
-
             _roomNameState.value = roomNameState.value?.copy(
                 error = null
             )
@@ -225,6 +223,12 @@ class PostRoomViewModel @Inject constructor(
             _landMarkState.value = landMarkState.value?.copy(
                 error = null
             )
+            _cityErrorState.value = null
+            _featuresErrorState.value = null
+            _imagesErrorState.value = null
+            _stateErrorState.value = null
+            _roomTypeErrorState.value = null
+            _suitableForErrorState.value = null
 
             val result = postRoomUseCase(
                 toInt(roomAreaState.value?.text!!),
@@ -323,17 +327,18 @@ class PostRoomViewModel @Inject constructor(
             if(result.imagesError != null) {
                 _imagesErrorState.value = result.imagesError
             }
+            _postRoomState.value = PostRoomState.IsLoading
 
             when(result.result) {
                 is Resource.Error -> {
                     _postRoomState.value = PostRoomState.Error(result.result.uiText.toString())
+
                 }
                 is Resource.Success -> {
                     refreshLocalCacheUseCase()
-                    _postRoomState.value = PostRoomState.IsLoading(isLoading = true)
                     _postRoomState.value = PostRoomState.Success
                 }
-                null -> Unit
+                null -> _postRoomState.value = PostRoomState.Nothing
             }
         }
     }
