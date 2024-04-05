@@ -31,6 +31,7 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
     }
 
     private suspend fun cacheBrowseRoomDetails() {
+        browseRoomsRepository.deleteAllFromLocal()
         val allRoomsDetails = browseRoomsRepository.getRoomsForListing()
 
         allRoomsDetails?.let {
@@ -61,6 +62,7 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
     }
 
     private suspend fun cacheFullRoomDetails() {
+        viewRoomDetailsRepository.deleteAllFromLocal()
         val allFullRoomDetails = viewRoomDetailsRepository.getAllFullRoomDetails()
 
         allFullRoomDetails?.let {

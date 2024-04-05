@@ -64,6 +64,8 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
 
         observeNetworkConnection()
 
+        onRemoveRoomBtnClick()
+
         val imageButtons = mutableListOf(
             binding.updateRoomNameBtn,
             binding.updateRoomAddressBtn,
@@ -480,6 +482,34 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                 byteArrayOutputStream.close()
             } catch (e: Exception) {
                 e.printStackTrace()
+            }
+        }
+    }
+
+    private fun onRemoveRoomBtnClick() {
+        binding.removeRoomBtn.setOnClickListener {
+            if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                val singleTextFiled = View.inflate(this, R.layout.raw_update_room_input_field, null)
+                val updateRoomDetailsBinding = RawUpdateRoomInputFieldBinding.bind(singleTextFiled)
+                val updateRoomDetails = updateRoomDetailsBinding.updateRoomDataTxtField
+
+                updateRoomDetails.hint = "Type CONFIRM"
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Remove Room")
+                    .setMessage("Type CONFIRM to remove room")
+                    .setCancelable(false)
+                    .setView(singleTextFiled)
+                    .setPositiveButton("Remove") {_,_ ->
+                        val input = updateRoomDetails.editText?.text.toString()
+                        if(input == "CONFIRM") {
+                            viewModel.onEvent(UpdateRoomEvent.OnRemoveRoom)
+                            onBackPressedDispatcher.onBackPressed()
+                        }
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .show()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
             }
         }
     }

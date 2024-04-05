@@ -33,4 +33,6 @@ sealed class UpdateRoomEvent{
     data class OnUpdateDescription(
         val description: String
     ) : UpdateRoomEvent()
+
+    data object OnRemoveRoom : UpdateRoomEvent()
 }

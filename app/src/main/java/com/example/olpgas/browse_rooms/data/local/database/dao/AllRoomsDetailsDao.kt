@@ -2,6 +2,7 @@ package com.example.olpgas.browse_rooms.data.local.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
@@ -52,4 +53,7 @@ interface AllRoomsDetailsDao {
         id: Int,
         description: String
     )
+
+    @Query("DELETE FROM AllRoomsDetailsLocal WHERE id = :id")
+    suspend fun removeRoom(id: Int)
 }

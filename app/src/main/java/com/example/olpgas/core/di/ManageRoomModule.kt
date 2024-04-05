@@ -1,5 +1,6 @@
 package com.example.olpgas.core.di
 
+import android.app.Application
 import android.content.SharedPreferences
 import com.example.olpgas.browse_rooms.data.local.database.BrowseRoomDatabase
 import com.example.olpgas.core.util.ConnectivityObserver
@@ -8,6 +9,7 @@ import com.example.olpgas.manage_room.data.repository.ManageRoomRepositoryImpl
 import com.example.olpgas.manage_room.domain.repository.ManageRoomRepository
 import com.example.olpgas.manage_room.domain.use_case.GetAllOwnedRoomsUseCase
 import com.example.olpgas.manage_room.domain.use_case.PostRoomUseCase
+import com.example.olpgas.manage_room.domain.use_case.update_room.RemoveRoomUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateAddressUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateDepositUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateDescriptionUseCase
@@ -56,6 +58,14 @@ object ManageRoomModule {
 
     @Provides
     @Singleton
+    fun provideRemoveRoomUseCase(
+        application: Application
+    ) : RemoveRoomUseCase {
+        return RemoveRoomUseCase(application)
+    }
+
+    @Provides
+    @Singleton
     fun providePostRoomUseCase(
         repository: ManageRoomRepository,
         authSharedPreferences: SharedPreferences
@@ -66,6 +76,7 @@ object ManageRoomModule {
     @Provides
     @Singleton
     fun provideUpdateRoomUseCases(
+        application: Application,
         manageRoomRepository: ManageRoomRepository,
         connectivityObserver: ConnectivityObserver,
         getFullRoomDetailsFromLocalDBUseCase: GetFullRoomDetailsFromLocalDBUseCase
@@ -79,6 +90,7 @@ object ManageRoomModule {
             UpdateRoomNameUseCase(manageRoomRepository),
             UpdateRoomTypeUseCase(manageRoomRepository),
             UpdateShareableByUseCase(manageRoomRepository),
+            RemoveRoomUseCase(application),
             connectivityObserver,
             getFullRoomDetailsFromLocalDBUseCase
         )

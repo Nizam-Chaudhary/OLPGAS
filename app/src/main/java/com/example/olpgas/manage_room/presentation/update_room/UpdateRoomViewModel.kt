@@ -36,6 +36,7 @@ class UpdateRoomViewModel @Inject constructor(
             is UpdateRoomEvent.OnUpdateRoomArea -> updateRoomArea(event.roomArea)
             is UpdateRoomEvent.OnUpdateRoomType -> updateRoomType(event.roomType)
             is UpdateRoomEvent.OnUpdateShareableBy -> updateShareableBy(event.shareableBy)
+            UpdateRoomEvent.OnRemoveRoom -> removeRoom()
         }
     }
 
@@ -124,6 +125,17 @@ class UpdateRoomViewModel @Inject constructor(
             val id = allRoomDetailsState.value?.id
             if(id != null) {
                 updateRoomUseCases.updateDescriptionUseCase(id, description)
+            }
+        }
+    }
+
+    private fun removeRoom() {
+        viewModelScope.launch {
+            val id = allRoomDetailsState.value?.id
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+
+            if(id != null && roomFeatureId != null) {
+                updateRoomUseCases.removeRoomUseCase(id, roomFeatureId)
             }
         }
     }

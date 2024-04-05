@@ -224,6 +224,30 @@ class SupabaseManageRoom {
         }
     }
 
+    suspend fun removeRoom(
+       id: Int,
+       roomFeatureId: Int
+    ) {
+        try {
+            SupabaseClient.client.postgrest.from(Constants.ROOM_DETAILS_TABLE)
+                .delete() {
+                    filter {
+                        eq(Constants.COL_ID_ROOM_DETAILS, roomFeatureId)
+                    }
+                }
+
+            SupabaseClient.client.postgrest.from(Constants.ROOM_MASTER_TABLE)
+                .delete() {
+                    filter {
+                        eq(Constants.COL_ID_ROOM_MASTER, id)
+                    }
+                }
+        } catch(e: Exception) {
+            e.printStackTrace()
+            Log.e(TAG, "Error: ${e.message}")
+        }
+    }
+
     @Serializable
     data class Id(val id: Int)
 }
