@@ -42,8 +42,6 @@ class MoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        //binding.moreUserName.text = viewModel.userProfileState.value?.userName
         setState()
 
         onProfileBtn()
