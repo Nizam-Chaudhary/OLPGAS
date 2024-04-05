@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
-            android:text="Change"
+            android:text="@string/change"
             android:textSize="16sp"
             android:textColor="?attr/colorPrimary"
             app:iconTint="?attr/colorPrimary"
@@ -67,7 +67,7 @@
                     android:layout_marginTop="12dp"
                     android:drawableLeft="@drawable/ic_email"
                     android:drawablePadding="24dp"
-                    android:text="email@gmail.com"
+                    android:text="@string/email_gmail_com"
                     android:textSize="20sp"
                     android:textStyle="normal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="12dp"
-                    android:text="Name"
+                    android:text="@string/name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_email" />
@@ -94,7 +94,7 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="12dp"
-                    android:text="VP Patel"
+                    android:text="@string/name"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -128,7 +128,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:layout_marginHorizontal="16dp"
-                            android:text="Gender"
+                            android:text="@string/gender"
                             app:layout_constraintEnd_toStartOf="@id/AgeTv"
                             app:layout_constraintHorizontal_chainStyle="spread_inside"
                             app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +140,7 @@
                             android:layout_width="50pt"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="male"
+                            android:text="@string/gender"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@id/GenderTV"
                             app:layout_constraintTop_toBottomOf="@id/GenderTV" />
@@ -154,6 +154,7 @@
                             android:src="@drawable/ic_right_arrow"
                             app:layout_constraintBottom_toBottomOf="@id/tv_gender"
                             app:layout_constraintEnd_toEndOf="@id/tv_gender"
+                            android:contentDescription="@string/ImageButton"
                             app:layout_constraintTop_toTopOf="@+id/tv_gender" />
 
 
@@ -163,7 +164,7 @@
                             android:layout_width="50pt"
                             android:layout_marginHorizontal="16dp"
                             android:layout_height="wrap_content"
-                            android:text="Age"
+                            android:text="@string/age"
                             app:layout_constraintBottom_toBottomOf="@id/GenderTV"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/GenderTV"
@@ -176,7 +177,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="12dp"
-                            android:text="16"
+                            android:text="@string/age"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@id/AgeTv"
                             app:layout_constraintTop_toBottomOf="@id/AgeTv" />
@@ -190,6 +191,7 @@
                             android:src="@drawable/ic_right_arrow"
                             app:layout_constraintBottom_toBottomOf="@id/tv_age"
                             app:layout_constraintEnd_toEndOf="@id/tv_age"
+                            android:contentDescription="@string/ImageButton"
                             app:layout_constraintTop_toTopOf="@+id/tv_age" />
 
 
@@ -219,7 +221,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:layout_marginHorizontal="16dp"
-                            android:text="Phone Number"
+                            android:text="@string/phone_number"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -229,7 +231,7 @@
                             style="@style/userProfile_DataTV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="1234567890"
+                            android:text="@string/phone_number"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="12dp"
                             android:layout_marginHorizontal="16dp"
@@ -246,6 +248,7 @@
                             android:src="@drawable/ic_right_arrow"
                             app:layout_constraintBottom_toBottomOf="@id/tv_phone_number"
                             app:layout_constraintEnd_toEndOf="@id/tv_phone_number"
+                            android:contentDescription="@string/ImageButton"
                             app:layout_constraintTop_toTopOf="@+id/tv_phone_number" />
 
 
@@ -276,7 +279,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:layout_marginHorizontal="16dp"
-                            android:text="Street Name/No"
+                            android:text="@string/street_name_no"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -288,7 +291,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginHorizontal="16dp"
-                            android:text="Kosamba Road"
+                            android:text="@string/street_name_no"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/StreetTV" />
 
@@ -310,7 +313,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:layout_marginHorizontal="16dp"
-                            android:text="State"
+                            android:text="@string/state"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_city" />
@@ -323,7 +326,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginHorizontal="16dp"
                             android:layout_marginBottom="12dp"
-                            android:text="Valsad"
+                            android:text="@string/state"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/StateTV" />
@@ -336,7 +339,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
                             android:layout_marginHorizontal="16dp"
-                            android:text="City"
+                            android:text="@string/city"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_street_number" />
@@ -348,7 +351,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginHorizontal="16dp"
-                            android:text="Gujarat"
+                            android:text="@string/city"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/CityTV" />

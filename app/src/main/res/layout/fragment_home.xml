@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layoutDirection="rtl"
-                android:text="City"
+                android:text="@string/city"
                 app:chipIcon="@drawable/ic_arrow_down" />
 
             <com.google.android.material.chip.Chip
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layoutDirection="rtl"
-                android:text="MaxRent"
+                android:text="@string/max_rent"
                 app:chipIcon="@drawable/ic_arrow_down" />
 
             <com.google.android.material.chip.Chip
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layoutDirection="rtl"
-                android:text="MinRent"
+                android:text="@string/min_rent"
                 app:chipIcon="@drawable/ic_arrow_down" />
         </LinearLayout>
 

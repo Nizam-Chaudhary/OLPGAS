@@ -28,7 +28,8 @@
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toBottomOf="@id/update_userProfile_spinner_state"
         app:layout_constraintEnd_toEndOf="@id/update_userProfile_spinner_state"
-        app:layout_constraintTop_toTopOf="@id/update_userProfile_spinner_state" />
+        app:layout_constraintTop_toTopOf="@id/update_userProfile_spinner_state"
+        android:contentDescription="@string/imageview" />
 
     <Spinner
         android:id="@+id/update_userProfileSpinner_city"
@@ -52,7 +53,8 @@
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toBottomOf="@id/update_userProfileSpinner_city"
         app:layout_constraintEnd_toEndOf="@id/update_userProfileSpinner_city"
-        app:layout_constraintTop_toTopOf="@id/update_userProfileSpinner_city" />
+        app:layout_constraintTop_toTopOf="@id/update_userProfileSpinner_city"
+        android:contentDescription="@string/imageview" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

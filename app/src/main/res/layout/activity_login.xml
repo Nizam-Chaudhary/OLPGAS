@@ -35,7 +35,8 @@
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/ImageButton" />
 
         </androidx.cardview.widget.CardView>
 
@@ -76,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="32dp"
-                    android:hint="Email"
+                    android:hint="@string/Email"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.666"
                     app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="16dp"
-                    android:hint="Password"
+                    android:hint="@string/Password"
                     app:endIconMode="password_toggle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +117,7 @@
                     android:layout_marginTop="32dp"
                     android:backgroundTint="@color/nonePrimary"
                     android:paddingVertical="16dp"
-                    android:text="Sign In"
+                    android:text="@string/SignUp"
                     android:textColor="@color/primary"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -146,7 +147,7 @@
                     android:layout_marginHorizontal="24dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginBottom="80dp"
-                    android:backgroundTint="@color/backgroundColor"
+                    android:backgroundTint="@color/RoomRawBackgroundColor"
                     android:drawableLeft="@drawable/ic_google"
                     android:paddingVertical="16dp"
                     android:text="@string/SignInGoogle"

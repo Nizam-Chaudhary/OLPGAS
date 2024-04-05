@@ -24,20 +24,20 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:checked="true"
-            android:text="Male" />
+            android:text="@string/male" />
 
         <RadioButton
             android:id="@+id/rd_female"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:text="Female" />
+            android:text="@string/female" />
 
         <RadioButton
             android:id="@+id/rd_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Other" />
+            android:text="@string/other" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
