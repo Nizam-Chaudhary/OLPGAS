@@ -1,9 +1,12 @@
-package com.example.olpgas.bookings_history.data.remote.model
+package com.example.olpgas.bookings_history.data.local.database.entity
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.serialization.Serializable
 
-@Serializable
-data class RoomBooking(
+@Entity
+data class RoomBookingLocal(
+    @PrimaryKey
     val id: Int? = null,
     val roomId: Int,
     val userId: String? = null,
@@ -12,5 +15,5 @@ data class RoomBooking(
     val paymentDueDate: String,
     val nextPaymentDate: String,
     val totalStayingPersons: Int,
-    val paymentStatus: String? = null
+    val paymentStatus: String
 )

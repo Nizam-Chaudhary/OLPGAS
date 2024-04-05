@@ -1,6 +1,7 @@
 package com.example.olpgas.core.di
 
 import android.app.Application
+import com.example.olpgas.bookings_history.domain.repository.RoomBookingRepository
 import com.example.olpgas.browse_rooms.data.local.database.BrowseRoomDatabase
 import com.example.olpgas.browse_rooms.data.remote.SupabaseListRooms
 import com.example.olpgas.browse_rooms.data.repository.BrowseRoomsRepositoryImpl
@@ -53,7 +54,11 @@ object BrowseRoomsModule {
 
     @Provides
     @Singleton
-    fun provideRefreshLocalCacheUseCase(browseRoomsRepository: BrowseRoomsRepository, viewRoomDetailsRepository: ViewRoomDetailsRepository) : RefreshLocalCacheUseCase {
-        return RefreshLocalCacheUseCase(browseRoomsRepository, viewRoomDetailsRepository)
+    fun provideRefreshLocalCacheUseCase(
+        browseRoomsRepository: BrowseRoomsRepository,
+        viewRoomDetailsRepository: ViewRoomDetailsRepository,
+        roomBookingRepository: RoomBookingRepository
+    ) : RefreshLocalCacheUseCase {
+        return RefreshLocalCacheUseCase(browseRoomsRepository, viewRoomDetailsRepository, roomBookingRepository)
     }
 }

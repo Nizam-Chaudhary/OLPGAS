@@ -90,4 +90,5 @@ interface FullRoomDetailsDao {
     suspend fun updateSuitableFor(
         id: Int, suitableFor: List<String>
     )
+
 }

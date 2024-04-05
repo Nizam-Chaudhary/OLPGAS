@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
+import com.example.olpgas.bookings_history.data.local.database.entity.RoomBookingLocal
+import com.example.olpgas.bookings_history.domain.repository.RoomBookingRepository
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
 import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
 import com.example.olpgas.manage_room.data.remote.SupabaseManageRoom
@@ -16,6 +18,7 @@ import dagger.assisted.AssistedInject
 class RefreshLocalCacheWorker @AssistedInject constructor(
     private val browseRoomsRepository: BrowseRoomsRepository,
     private val viewRoomDetailsRepository: ViewRoomDetailsRepository,
+    private val roomBookingRepository: RoomBookingRepository,
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
 ) : CoroutineWorker(context,params) {
@@ -78,6 +81,25 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
                             )
                         )
                     }
+                }
+            }
+
+            val allRoomBookings = roomBookingRepository.getAllBookings()
+            if(allRoomBookings != null) {
+                for(item in allRoomBookings) {
+                    roomBookingRepository.upsert(
+                        RoomBookingLocal(
+                            item.id,
+                            item.roomId,
+                            item.userId,
+                            item.ownerId,
+                            item.bookingDate,
+                            item.paymentDueDate,
+                            item.nextPaymentDate,
+                            item.totalStayingPersons,
+                            item.paymentStatus!!
+                        )
+                    )
                 }
             }
 

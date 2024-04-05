@@ -2,6 +2,7 @@ package com.example.olpgas.view_room_details.data.repository
 
 import androidx.lifecycle.LiveData
 import com.example.olpgas.bookings_history.data.remote.model.RoomBooking
+import com.example.olpgas.browse_rooms.data.remote.model.RoomBookingStatus
 import com.example.olpgas.view_room_details.data.local.database.FullRoomDetailsDatabase
 import com.example.olpgas.view_room_details.data.local.database.entities.FullRoomDetailsLocal
 import com.example.olpgas.view_room_details.data.remote.SupabaseBookRoom
@@ -37,7 +38,11 @@ class ViewRoomDetailsRepositoryImpl(
         database.getFullRoomDetailsDao().delete(id)
     }
 
-    override suspend fun bookRoom(booking: RoomBooking) {
-        supabaseBookRoom.bookRoom(booking)
+    override suspend fun bookRoom(
+        booking: RoomBooking,
+        roomBookingStatus: RoomBookingStatus,
+        totalOccupiedBy: Int
+    ) {
+        supabaseBookRoom.bookRoom(booking, roomBookingStatus, totalOccupiedBy)
     }
 }

@@ -47,8 +47,6 @@ class PostRoomActivity : AppCompatActivity() {
 
     private val viewModel: PostRoomViewModel by viewModels()
 
-    private val images = mutableListOf<ByteArray>()
-
     private val selectedImages = mutableListOf<String>()
 
     private lateinit var stateAdapter: ArrayAdapter<CharSequence>

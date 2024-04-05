@@ -21,11 +21,7 @@ class SupabaseListRooms {
     suspend fun getRoomsForListing() : List<AllRoomDetails>? {
         return try {
             SupabaseClient.client.postgrest.from(Constants.LIST_ROOM_DETAIL_TABLE)
-                .select() {
-                    filter {
-                        neq(Constants.COL_BOOKING_STATUS, RoomBookingStatus.CompletelyBooked.value)
-                    }
-                }.decodeList<AllRoomDetails>()
+                .select().decodeList<AllRoomDetails>()
         }catch (e: Exception) {
             Log.e(TAG, "Error: ${e.message}")
             null
