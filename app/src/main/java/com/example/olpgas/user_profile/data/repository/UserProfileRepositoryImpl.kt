@@ -16,6 +16,10 @@ class UserProfileRepositoryImpl(
         return supabaseUserProfile.getUserProfile()
     }
 
+    override suspend fun getUserName() : String? {
+        return userProfileSharedPreferences.getUserName()
+    }
+
     override suspend fun getUserProfileFromLocal(): UserProfile {
         return userProfileSharedPreferences.getUserProfile()
     }

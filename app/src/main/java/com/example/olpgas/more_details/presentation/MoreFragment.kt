@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.olpgas.R
 import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.databinding.FragmentMoreBinding
@@ -36,12 +38,30 @@ class MoreFragment : Fragment() {
 
 
         //binding.moreUserName.text = viewModel.userProfileState.value?.userName
+        setState()
 
         onProfileBtn()
 
         onThemeBtn()
 
         onSignOutClick()
+    }
+
+    private fun setState() {
+        viewModel.onEvent(MoreEvent.OnCreate)
+        viewModel.userNameState.observe(viewLifecycleOwner) {
+            if(!it.isNullOrEmpty()) {
+                binding.moreUserName.text = it
+            }
+        }
+
+        viewModel.userProfileImageState.observe(viewLifecycleOwner) {
+            if(it.isNotEmpty()) {
+                Glide.with(requireContext())
+                    .load(it)
+                    .into(binding.moreProfile)
+            }
+        }
     }
 
     private fun onThemeBtn() {
@@ -86,7 +106,7 @@ class MoreFragment : Fragment() {
                 .setPositiveButton("Yes") {_,_ ->
                     viewModel.onEvent(MoreEvent.SignOut)
                     startActivity(Intent(requireContext(), LoginActivity::class.java))
-                    activity?.finish()
+                    requireActivity().finish()
                 }
                 .setNegativeButton("No", null)
                 .show()

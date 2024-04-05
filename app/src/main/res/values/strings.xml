@@ -55,6 +55,7 @@
     <string name="dark_theme">Dark Theme</string>
     <string name="system_theme">System Default Theme</string>
     <string name="address">Address</string>
+    <string name="welcome_user">Welcome,</string>
     <string name="toolbarimageview">ToolBarImageView</string>
     <string name="room_area_in_sq_ft">Room Area in Sq. Ft.</string>
     <string name="ImageButton">ImageButton</string>

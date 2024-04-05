@@ -35,6 +35,10 @@ class UserProfileSharedPreferences(
         )
     }
 
+    fun getUserName() : String? {
+        return userProfileSharedPreferences.getString(USER_NAME_KEY, null)
+    }
+
     fun updateGender(gender: String) {
         userProfileSharedPreferences.edit()
             .putString(GENDER_KEY, gender)
