@@ -27,6 +27,7 @@ import com.example.olpgas.core.util.Error
 import com.example.olpgas.databinding.ActivityPostRoomBinding
 import com.example.olpgas.databinding.RawAddChipBinding
 import com.example.olpgas.databinding.RawChipBinding
+import com.example.olpgas.view_room_details.presentation.RoomImageRecyclerPagerAdapter
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.progressindicator.CircularProgressIndicator
@@ -43,6 +44,8 @@ class PostRoomActivity : AppCompatActivity() {
 
     private val images = mutableListOf<ByteArray>()
 
+    private val selectedImages = mutableListOf<String>()
+
     private lateinit var stateAdapter: ArrayAdapter<CharSequence>
     private lateinit var cityAdapter: ArrayAdapter<String>
     private lateinit var roomTypeAdapter: ArrayAdapter<String>
@@ -57,6 +60,8 @@ class PostRoomActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
 
         viewModel.onEvent(PostRoomEvent.OnCreate)
 
@@ -88,10 +93,12 @@ class PostRoomActivity : AppCompatActivity() {
     private fun picImages() {
         val intentGallery = Intent(Intent.ACTION_PICK)
         intentGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intentGallery.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(intentGallery, GALLERY_REQUEST_CODE)
     }
 
     private fun getImagesPermission() {
+
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(
                     this,
@@ -140,13 +147,22 @@ class PostRoomActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
             val selectedImageUri = data?.data ?: return // Handle cancelled selection
             try {
                 val imageByteArray = getByteArrayFromImageUri(selectedImageUri)
 
                 if(imageByteArray != null) {
+                    selectedImages.add(selectedImageUri.toString())
                     viewModel.onEvent(PostRoomEvent.AddedImage(imageByteArray))
+
+                    // Update ViewPager2 adapter
+                    binding.postRoomViewPager.visibility = View.VISIBLE
+                    binding.postRemoveImage.visibility = View.VISIBLE
+                    val adapter = RoomImageRecyclerPagerAdapter(selectedImages, this)
+                    binding.postRoomViewPager.adapter = adapter
+
 
                     Toast.makeText(this, "Image Selected Successfully", Toast.LENGTH_SHORT).show()
                     if(images.size >= 5) {
