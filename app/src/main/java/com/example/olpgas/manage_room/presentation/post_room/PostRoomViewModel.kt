@@ -196,6 +196,7 @@ class PostRoomViewModel @Inject constructor(
 
     private fun postRoom() {
         viewModelScope.launch {
+            _postRoomState.value = PostRoomState.IsLoading
             _roomNameState.value = roomNameState.value?.copy(
                 error = null
             )
@@ -327,7 +328,6 @@ class PostRoomViewModel @Inject constructor(
             if(result.imagesError != null) {
                 _imagesErrorState.value = result.imagesError
             }
-            _postRoomState.value = PostRoomState.IsLoading
 
             when(result.result) {
                 is Resource.Error -> {

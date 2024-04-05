@@ -531,6 +531,7 @@ class PostRoomActivity : AppCompatActivity() {
         viewModel.postRoomState.observe(this) {
             when(it) {
                 is PostRoomState.Success -> {
+                    dialog.dismiss()
                     onBackPressedDispatcher.onBackPressed()
                     finish()
                     overridePendingTransition(0, R.anim.slide_down)

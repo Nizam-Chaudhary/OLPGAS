@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.olpgas.BookingsFragment
 import com.example.olpgas.browse_rooms.presentation.HomeFragment
 import com.example.olpgas.manage_room.presentation.owned_rooms.ManageFragment
-import com.example.olpgas.MoreFragment
+import com.example.olpgas.more_details.presentation.MoreFragment
 import java.lang.IllegalArgumentException
 
 class MainViewPagerAdapter(

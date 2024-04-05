@@ -70,4 +70,9 @@ class UserProfileRepositoryImpl(
     override suspend fun setUpUserWithGoogle() {
         supabaseUserProfile.setUpUserWithGoogle()
     }
+
+    override suspend fun clearUserProfileFromLocal() {
+        userProfileSharedPreferences.clearUserProfile()
+        userProfileImageLocalStorage.deleteProfileImageFromInternalStorage()
+    }
 }

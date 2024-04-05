@@ -36,4 +36,6 @@ interface UserProfileRepository {
     )
 
     suspend fun setUpUserWithGoogle()
+
+    suspend fun clearUserProfileFromLocal()
 }

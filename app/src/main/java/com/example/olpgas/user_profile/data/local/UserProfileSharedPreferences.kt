@@ -65,6 +65,10 @@ class UserProfileSharedPreferences(
             .apply()
     }
 
+    fun clearUserProfile() {
+        userProfileSharedPreferences.edit().clear().apply()
+    }
+
     companion object {
         const val USER_ID_KEY = "userId"
         const val USER_NAME_KEY = "userName"

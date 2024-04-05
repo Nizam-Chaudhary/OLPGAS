@@ -1,4 +1,4 @@
-package com.example.olpgas
+package com.example.olpgas.more_details.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,16 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.olpgas.R
+import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.databinding.FragmentMoreBinding
 import com.example.olpgas.databinding.RawThemeBinding
 import com.example.olpgas.user_profile.presentation.UserProfileActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MoreFragment : Fragment() {
 
     private lateinit var binding: FragmentMoreBinding
 
-//    private val viewModel: UserProfileViewModel by viewModels()
+    private val viewModel: MoreViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,20 +35,13 @@ class MoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-//        binding.moreUserName.text = viewModel.userProfileState.value?.userName
+        //binding.moreUserName.text = viewModel.userProfileState.value?.userName
 
         onProfileBtn()
 
         onThemeBtn()
 
-        onSignOutBtn()
-
-    }
-
-    private fun onSignOutBtn() {
-        binding.moreSignOut.setOnClickListener {
-
-        }
+        onSignOutClick()
     }
 
     private fun onThemeBtn() {
@@ -57,13 +55,11 @@ class MoreFragment : Fragment() {
                 .setView(view)
                 .setPositiveButton("Apply") { _, _ ->
                     val checkedRadioButtonId = rawThemeBinding.rdgTheme.checkedRadioButtonId
-                    val gender = when(checkedRadioButtonId) {
+                    val theme = when(checkedRadioButtonId) {
                         R.id.rd_light -> "Light"
-                        R.id.rd_dark-> "Dark"
+                        R.id.rd_dark -> "Dark"
                         else -> "Sysytem"
                     }
-
-
                 }
                 .setNegativeButton("Cancel") { _, _ -> }
                 .show()
@@ -80,6 +76,21 @@ class MoreFragment : Fragment() {
             )
         }
 
+    }
+
+    private fun onSignOutClick() {
+        binding.moreSignOut.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Sign out")
+                .setMessage("Do you want to sign out")
+                .setPositiveButton("Yes") {_,_ ->
+                    viewModel.onEvent(MoreEvent.SignOut)
+                    startActivity(Intent(requireContext(), LoginActivity::class.java))
+                    activity?.finish()
+                }
+                .setNegativeButton("No", null)
+                .show()
+        }
     }
 
 //    private fun setTheme() {
