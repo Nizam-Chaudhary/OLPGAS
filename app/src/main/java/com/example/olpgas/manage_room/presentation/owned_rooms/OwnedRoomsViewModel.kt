@@ -23,12 +23,6 @@ class OwnedRoomsViewModel @Inject constructor(
             OwnedRoomEvents.OnCreate -> {
                 allRoomDetailsState = getAllOwnedRoomsUseCase()
             }
-
-            is OwnedRoomEvents.OnRemoveRoomClick -> {
-                viewModelScope.launch {
-                    removeRoomUseCase(event.id, event.roomFeatureId)
-                }
-            }
         }
     }
 }

@@ -28,7 +28,6 @@ class OwnedRoomsRecyclerViewAdapter(
     var roomsData: List<AllRoomsDetailsLocal>,
     private val context: Context,
     private val activity: Activity,
-    var onItemClickListener: OwnedRoomsRecyclerViewAdapter.OnItemClickListener? = null
 ) : RecyclerView.Adapter<OwnedRoomsRecyclerViewAdapter.ViewHolder>() {
 
     class ViewHolder(view: RawMangeRoomBinding) : RecyclerView.ViewHolder(view.root) {
@@ -50,10 +49,6 @@ class OwnedRoomsRecyclerViewAdapter(
 
         val historyBtn = view.historyBtn
         val historyTv = view.historyTv
-    }
-
-    interface OnItemClickListener {
-        fun removeRoomItemClick(id: Int, roomFeatureId: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -129,11 +124,11 @@ class OwnedRoomsRecyclerViewAdapter(
         }
 
         holder.historyBtn.setOnClickListener {
-            onRemoveRoomClick(currentRoomData.id, currentRoomData.roomFeatureId)
+
         }
 
         holder.historyTv.setOnClickListener {
-            onRemoveRoomClick(currentRoomData.id, currentRoomData.roomFeatureId)
+
         }
     }
 
@@ -145,8 +140,8 @@ class OwnedRoomsRecyclerViewAdapter(
         context.startActivity(intent)
     }
 
-    private fun onRemoveRoomClick(id: Int, roomFeatureId: Int) {
-        onItemClickListener?.removeRoomItemClick(id, roomFeatureId)
+    private fun onHistoryClick() {
+
     }
 
     private fun onDetailsClick(

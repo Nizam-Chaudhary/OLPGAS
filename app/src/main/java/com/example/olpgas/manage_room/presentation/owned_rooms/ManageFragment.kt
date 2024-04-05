@@ -15,7 +15,7 @@ import com.example.olpgas.manage_room.presentation.post_room.PostRoomActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ManageFragment : Fragment(), OwnedRoomsRecyclerViewAdapter.OnItemClickListener {
+class ManageFragment : Fragment() {
     private lateinit var binding: FragmentManageBinding
 
     private val viewModel: OwnedRoomsViewModel by viewModels()
@@ -40,7 +40,6 @@ class ManageFragment : Fragment(), OwnedRoomsRecyclerViewAdapter.OnItemClickList
         viewModel.onEvent(OwnedRoomEvents.OnCreate)
         val activityContext = requireActivity()
         val adapter = OwnedRoomsRecyclerViewAdapter(emptyList(), requireContext(),activityContext)
-        adapter.onItemClickListener = this
         binding.recyclerView.apply {
             this.layoutManager = LinearLayoutManager(requireContext())
             this.adapter = adapter
@@ -55,9 +54,5 @@ class ManageFragment : Fragment(), OwnedRoomsRecyclerViewAdapter.OnItemClickList
         binding.addRoomFab.setOnClickListener {
             startActivity(Intent(requireContext(), PostRoomActivity::class.java))
         }
-    }
-
-    override fun removeRoomItemClick(id: Int, roomFeatureId: Int) {
-        viewModel.onEvent(OwnedRoomEvents.OnRemoveRoomClick(id, roomFeatureId))
     }
 }
