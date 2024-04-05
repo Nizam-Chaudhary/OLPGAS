@@ -30,8 +30,6 @@ import com.example.olpgas.databinding.RawChipBinding
 import com.example.olpgas.view_room_details.presentation.RoomImageRecyclerPagerAdapter
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.progressindicator.CircularProgressIndicator
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
 
@@ -499,11 +497,12 @@ class PostRoomActivity : AppCompatActivity() {
                     .show()
             }
         }
+
     }
 
     private fun observePostRoomState() {
         viewModel.postRoomState.observe(this) {
-            val view = CircularProgressIndicator(this)
+            val view = View.inflate(this, R.layout.raw_room_upload_progress, null)
 
             val dialog = MaterialAlertDialogBuilder(this)
                 .setTitle("Posting Room")
@@ -513,9 +512,10 @@ class PostRoomActivity : AppCompatActivity() {
             when(it) {
                 is PostRoomState.Success -> {
                     onBackPressedDispatcher.onBackPressed()
+                    finish()
                 }
                 is PostRoomState.Error -> {
-                    Toast.makeText(this, "Error posting room", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error Uploading", Toast.LENGTH_SHORT).show()
                 }
                 is PostRoomState.IsLoading -> {
                     if(it.isLoading) {
