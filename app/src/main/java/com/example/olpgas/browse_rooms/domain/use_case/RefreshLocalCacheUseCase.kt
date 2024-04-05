@@ -11,61 +11,55 @@ class RefreshLocalCacheUseCase(
     private val viewRoomDetailsRepository: ViewRoomDetailsRepository
 ) {
     suspend operator fun invoke(){
+        val allRoomsDetails = browseRoomsRepository.getRoomsForListing()
         val allFullRoomDetails = viewRoomDetailsRepository.getAllFullRoomDetails()
 
-        allFullRoomDetails?.let {
-            for(item in it) {
-                val fullRoomImages = viewRoomDetailsRepository.getAllFullRoomDetailsImages(item.ownerId, item.id)
+        if(allRoomsDetails != null && allFullRoomDetails != null) {
+            for(i in allRoomsDetails.indices) {
+                val fullRoomImages = viewRoomDetailsRepository.getAllFullRoomDetailsImages(allFullRoomDetails[i].ownerId, allFullRoomDetails[i].id)
                 if(!fullRoomImages.isNullOrEmpty()) {
                     viewRoomDetailsRepository.upsert(
                         FullRoomDetailsLocal(
-                            item.id,
-                            item.roomName,
-                            item.ownerId,
-                            item.roomNumber,
-                            item.streetNumber,
-                            item.landMark,
-                            item.city,
-                            item.state,
-                            item.roomArea,
-                            item.shareable,
-                            item.roomType,
-                            item.features,
-                            item.suitableFor,
-                            item.deposit,
-                            item.rentAmount,
-                            item.description,
-                            item.roomFeatureId,
-                            item.bookingStatus,
-                            item.ratings,
+                            allFullRoomDetails[i].id,
+                            allFullRoomDetails[i].roomName,
+                            allFullRoomDetails[i].ownerId,
+                            allFullRoomDetails[i].roomNumber,
+                            allFullRoomDetails[i].streetNumber,
+                            allFullRoomDetails[i].landMark,
+                            allFullRoomDetails[i].city,
+                            allFullRoomDetails[i].state,
+                            allFullRoomDetails[i].roomArea,
+                            allFullRoomDetails[i].shareable,
+                            allFullRoomDetails[i].roomType,
+                            allFullRoomDetails[i].features,
+                            allFullRoomDetails[i].suitableFor,
+                            allFullRoomDetails[i].deposit,
+                            allFullRoomDetails[i].rentAmount,
+                            allFullRoomDetails[i].description,
+                            allFullRoomDetails[i].roomFeatureId,
+                            allFullRoomDetails[i].bookingStatus,
+                            allFullRoomDetails[i].ratings,
                             fullRoomImages
                         )
                     )
                 }
-            }
-        }
 
-        val allRoomsDetails = browseRoomsRepository.getRoomsForListing()
-
-
-        allRoomsDetails?.let {
-            for(item in it) {
-                val imageUrl = browseRoomsRepository.getRoomsImageForListing(item.ownerId, item.id)
+                val imageUrl = browseRoomsRepository.getRoomsImageForListing(allRoomsDetails[i].ownerId, allRoomsDetails[i].id)
                 if(imageUrl != null) {
                     browseRoomsRepository.upsert(
                         AllRoomsDetailsLocal(
-                            item.id,
-                            item.ownerId,
-                            item.roomName,
-                            item.roomNumber,
-                            item.description,
-                            item.roomFeatureId,
-                            item.rentAmount,
-                            item.deposit,
-                            item.city,
-                            item.state,
-                            item.ratings,
-                            item.bookingStatus,
+                            allRoomsDetails[i].id,
+                            allRoomsDetails[i].ownerId,
+                            allRoomsDetails[i].roomName,
+                            allRoomsDetails[i].roomNumber,
+                            allRoomsDetails[i].description,
+                            allRoomsDetails[i].roomFeatureId,
+                            allRoomsDetails[i].rentAmount,
+                            allRoomsDetails[i].deposit,
+                            allRoomsDetails[i].city,
+                            allRoomsDetails[i].state,
+                            allRoomsDetails[i].ratings,
+                            allRoomsDetails[i].bookingStatus,
                             imageUrl
                         )
                     )
