@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.olpgas.R
 import com.example.olpgas.databinding.FragmentManageBinding
 import com.example.olpgas.manage_room.presentation.post_room.PostRoomActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +35,21 @@ class ManageFragment : Fragment() {
         setUpRecyclerViewAdapter()
 
         onAddRoomFabClick()
+
+        onScroll()
+    }
+
+    private fun onScroll() {
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0 && binding.addRoomFab.visibility == FloatingActionButton.VISIBLE) {
+                    binding.addRoomFab.hide()
+                } else if (dy < 0 && binding.addRoomFab.visibility != FloatingActionButton.VISIBLE) {
+                    binding.addRoomFab.show()
+                }
+            }
+        })
     }
 
     private fun setUpRecyclerViewAdapter() {
