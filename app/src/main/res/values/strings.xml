@@ -51,6 +51,9 @@
     <string name="back_online">Back Online</string>
     <string name="searchbar_hint">Search</string>
     <string name="add_room">Add Room</string>
+    <string name="light_theme">Light</string>
+    <string name="dark_theme">Dark</string>
+    <string name="system_theme">System Default</string>
 
 
     <string-array name="room_type">
