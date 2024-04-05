@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.olpgas.bookings_history.data.local.database.RoomBookingDatabase
 import com.example.olpgas.bookings_history.data.local.database.entity.RoomBookingLocal
 import com.example.olpgas.bookings_history.data.remote.SupabaseBookings
-import com.example.olpgas.bookings_history.data.remote.model.RoomBooking
+import com.example.olpgas.bookings_history.data.remote.model.BookingView
 import com.example.olpgas.bookings_history.domain.repository.RoomBookingRepository
 
 class RoomBookingRepositoryImpl(
@@ -15,11 +15,15 @@ class RoomBookingRepositoryImpl(
         database.getRoomBookingDao().upsert(roomBooking)
     }
 
-    override suspend fun getAllBookings(): List<RoomBooking>? {
+    override suspend fun getAllBookings(): List<BookingView>? {
         return supabaseBookings.getAllBookings()
     }
 
     override suspend fun getAllRoomBookingsUserFromLocal(userId: String) : LiveData<List<RoomBookingLocal>> {
         return database.getRoomBookingDao().getAllRoomBookingsUser(userId)
+    }
+
+    override suspend fun getRoomsImageForListing(ownerId: String, id: Int): String? {
+        return supabaseBookings.getRoomsImageForListing(ownerId, id)
     }
 }

@@ -86,20 +86,31 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
 
             val allRoomBookings = roomBookingRepository.getAllBookings()
             if(allRoomBookings != null) {
-                for(item in allRoomBookings) {
-                    roomBookingRepository.upsert(
-                        RoomBookingLocal(
-                            item.id,
-                            item.roomId,
-                            item.userId,
-                            item.ownerId,
-                            item.bookingDate,
-                            item.paymentDueDate,
-                            item.nextPaymentDate,
-                            item.totalStayingPersons,
-                            item.paymentStatus!!
+                for (item in allRoomBookings) {
+                    val imageUrl =
+                        roomBookingRepository.getRoomsImageForListing(item.ownerId, item.roomId)
+                    if (imageUrl != null) {
+                        roomBookingRepository.upsert(
+                            RoomBookingLocal(
+                                item.id,
+                                item.bookingDate,
+                                item.nextPaymentDate,
+                                item.ownerId,
+                                item.paymentDueDate,
+                                item.paymentStatus,
+                                item.roomId,
+                                item.totalStayingPersons,
+                                item.userId,
+                                item.roomName,
+                                item.city,
+                                item.rentAmount,
+                                item.deposit,
+                                item.occupiedBy,
+                                item.shareable,
+                                imageUrl
+                            )
                         )
-                    )
+                    }
                 }
             }
 

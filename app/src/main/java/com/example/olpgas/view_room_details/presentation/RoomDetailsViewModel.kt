@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.olpgas.bookings_history.data.remote.model.RoomBooking
-import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
+import com.example.olpgas.view_room_details.data.remote.model.RoomBooking
 import com.example.olpgas.browse_rooms.data.remote.model.RoomBookingStatus
 import com.example.olpgas.browse_rooms.domain.use_case.RefreshLocalCacheUseCase
 import com.example.olpgas.core.util.ConnectivityObserver

@@ -1,4 +1,4 @@
-package com.example.olpgas.bookings_history.data.remote.model
+package com.example.olpgas.view_room_details.data.remote.model
 
 import kotlinx.serialization.Serializable
 

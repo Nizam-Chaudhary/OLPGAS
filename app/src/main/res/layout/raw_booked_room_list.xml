@@ -23,7 +23,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/booked_room_image_raw"
                 android:layout_width="match_parent"
-                android:layout_height="194dp"
+                android:layout_height="200dp"
                 android:background="@android:color/transparent"
                 android:scaleType="centerCrop"
                 app:backgroundTint="@color/material_on_surface_emphasis_medium"
