@@ -12,7 +12,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:hint="Land Mark"
+        android:hint="@string/land_mark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,7 +31,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:hint="Street No/Name"
+        android:hint="@string/street_name_no"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/update_input_landmark">
@@ -65,7 +65,8 @@
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toBottomOf="@id/update_spinner_state"
         app:layout_constraintEnd_toEndOf="@id/update_spinner_state"
-        app:layout_constraintTop_toTopOf="@id/update_spinner_state" />
+        app:layout_constraintTop_toTopOf="@id/update_spinner_state"
+        android:contentDescription="@string/imageview" />
 
     <Spinner
         android:id="@+id/update_spinner_city"
@@ -89,7 +90,8 @@
         android:src="@drawable/ic_down"
         app:layout_constraintBottom_toBottomOf="@id/update_spinner_city"
         app:layout_constraintEnd_toEndOf="@id/update_spinner_city"
-        app:layout_constraintTop_toTopOf="@id/update_spinner_city" />
+        app:layout_constraintTop_toTopOf="@id/update_spinner_city"
+        android:contentDescription="@string/imageview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

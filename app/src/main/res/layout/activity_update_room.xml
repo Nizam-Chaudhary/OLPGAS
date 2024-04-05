@@ -66,6 +66,7 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/update_room_name_tv"
                 app:layout_constraintEnd_toEndOf="@id/update_room_name_tv"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@+id/update_room_name_tv" />
 
             <TextView
@@ -101,6 +102,7 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/update_room_addressTV"
                 app:layout_constraintEnd_toEndOf="@id/update_room_addressTV"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@+id/update_room_addressTV" />
 
 
@@ -119,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
-                android:text="Amenities"
+                android:text="@string/amenities"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -141,7 +143,7 @@
                     android:id="@+id/update_addAmenities"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add"
+                    android:text="@string/add"
                     app:chipIcon="@drawable/ic_add"/>
 
             </com.google.android.material.chip.ChipGroup>
@@ -163,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
-                android:text="Suitable For"
+                android:text="@string/suitable_for"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -185,7 +187,7 @@
                     android:id="@+id/update_addSuitableFor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add"
+                    android:text="@string/add"
                     app:chipIcon="@drawable/ic_add" />
 
             </com.google.android.material.chip.ChipGroup>
@@ -206,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
-                android:text="Details"
+                android:text="@string/Deposit"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -221,7 +223,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:paddingVertical="5dp"
-                android:text="Rent"
+                android:text="@string/rent"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -234,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:paddingVertical="5dp"
-                android:text="8000/-"
+                android:text="@string/rent"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/roomRentTv"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -249,6 +251,7 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/updateRoomRent"
                 app:layout_constraintEnd_toEndOf="@id/updateRoomRent"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@+id/updateRoomRent" />
 
             <TextView
@@ -258,7 +261,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:paddingVertical="5dp"
-                android:text="Deposit"
+                android:text="@string/Deposit"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -271,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:paddingVertical="5dp"
-                android:text="15000/-"
+                android:text="@string/Deposit"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/updateRoomDepositTV"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -286,6 +289,7 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/updateDepositRent"
                 app:layout_constraintEnd_toEndOf="@id/updateDepositRent"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@+id/updateDepositRent" />
 
             <TextView
@@ -295,7 +299,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:paddingVertical="5dp"
-                android:text="Sharable By"
+                android:text="@string/shareable_by"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -308,7 +312,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:paddingVertical="5dp"
-                android:text="2"
+                android:text="@string/shareable_by"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/updateRoomSharableByTV"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -323,6 +327,7 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/updateRoomSharableBy"
                 app:layout_constraintEnd_toEndOf="@id/updateRoomSharableBy"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@+id/updateRoomSharableBy" />
 
 
@@ -333,7 +338,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:paddingVertical="5dp"
-                android:text="Room Type"
+                android:text="@string/room_type"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -346,7 +351,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:paddingVertical="5dp"
-                android:text="Double Room"
+                android:text="@string/room_type"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/updateRoomTypeTV"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -361,6 +366,7 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/updateRoomType"
                 app:layout_constraintEnd_toEndOf="@id/updateRoomType"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@+id/updateRoomType" />
 
             <TextView
@@ -370,7 +376,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:paddingVertical="5dp"
-                android:text="Room Area"
+                android:text="@string/area"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -383,7 +389,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:paddingVertical="5dp"
-                android:text="1000 Sq. Ft."
+                android:text="@string/area"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/updateRoomAreaTV"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -398,6 +404,7 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/updateRoomArea"
                 app:layout_constraintEnd_toEndOf="@id/updateRoomArea"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@+id/updateRoomArea" />
 
 
@@ -432,7 +439,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
-                android:text="Nice Room"
+                android:text="@string/about_room"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/RoomAboutTV" />
 
@@ -444,13 +451,14 @@
                 android:src="@drawable/ic_right_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/update_room_about_tv"
                 app:layout_constraintEnd_toEndOf="@id/update_room_about_tv"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@+id/update_room_about_tv" />
 
             <Button
                 android:id="@+id/remove_room_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Remove Room"
+                android:text="@string/remove_room"
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/update_room_about_tv"

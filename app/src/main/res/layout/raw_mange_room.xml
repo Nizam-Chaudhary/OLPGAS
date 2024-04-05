@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
-                android:text="ABC"
+                android:text="@string/room_name"
                 android:textColor="@color/textColor" />
 
             <TextView
@@ -48,7 +48,7 @@
                 android:drawableLeft="@drawable/ic_location"
                 android:drawablePadding="4dp"
                 android:singleLine="true"
-                android:text="Location"
+                android:text="@string/location"
                 android:textColor="@color/secondaryTextColor" />
 
             <TextView
@@ -58,7 +58,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="12dp"
                 android:maxLines="2"
-                android:text="Nice view"
+                android:text="@string/about_room"
                 android:textColor="@color/secondaryTextColor" />
 
             <View
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Rent:"
+                android:text="@string/rent_"
                 android:textColor="@color/textColor"
                 android:textSize="14sp" />
 
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="10,000/-"
+                android:text="@string/rent_"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="14sp" />
 
@@ -105,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:gravity="center"
-                android:text="Deposit:"
+                android:text="@string/deposit_"
                 android:textColor="@color/textColor"
                 android:textSize="14sp" />
 
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:text="20,000/-"
+                android:text="@string/deposit_"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="14sp" />
 
@@ -125,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="12dp"
+                android:contentDescription="@string/ImageButton"
                 android:src="@drawable/ic_star" />
 
             <TextView
@@ -158,13 +159,14 @@
                 android:padding="10dp"
                 android:src="@drawable/ic_history"
                 app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/history_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="History"
+                android:text="@string/history"
                 app:layout_constraintEnd_toEndOf="@+id/history_btn"
                 app:layout_constraintStart_toStartOf="@+id/history_btn"
                 app:layout_constraintTop_toBottomOf="@+id/history_btn" />
@@ -179,13 +181,14 @@
                 app:layout_constraintBottom_toBottomOf="@id/history_btn"
                 app:layout_constraintEnd_toStartOf="@id/update_btn"
                 app:layout_constraintStart_toEndOf="@id/history_btn"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@id/history_btn" />
 
             <TextView
                 android:id="@+id/details_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Details"
+                android:text="@string/Details"
                 app:layout_constraintEnd_toEndOf="@+id/details_btn"
                 app:layout_constraintStart_toStartOf="@id/details_btn"
                 app:layout_constraintTop_toBottomOf="@+id/details_btn" />
@@ -200,13 +203,14 @@
                 android:src="@drawable/ic_edit"
                 app:layout_constraintBottom_toBottomOf="@id/details_btn"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:contentDescription="@string/ImageButton"
                 app:layout_constraintTop_toTopOf="@id/details_btn" />
 
             <TextView
                 android:id="@+id/update_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update"
+                android:text="@string/update"
                 app:layout_constraintEnd_toEndOf="@+id/update_btn"
                 app:layout_constraintStart_toStartOf="@id/update_btn"
                 app:layout_constraintTop_toBottomOf="@+id/update_btn" />

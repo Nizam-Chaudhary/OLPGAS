@@ -21,7 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/background"/>
+                android:src="@drawable/background"
+                android:contentDescription="@string/toolbarimageview" />
 
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -309,7 +310,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginStart="64dp"
                 android:layout_marginEnd="16dp"
-                android:hint="Room Area in Sq. Ft."
+                android:hint="@string/room_area_in_sq_ft"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -574,7 +575,8 @@
                     android:src="@android:drawable/ic_menu_close_clear_cancel"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@id/post_room_viewPager"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/ImageButton" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
