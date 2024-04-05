@@ -21,6 +21,9 @@
         android:theme="@style/NoStatusBarTheme"
         tools:targetApi="31">
         <activity
+            android:name=".BookRoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".main_activity.presentation.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Starting">
@@ -46,7 +49,7 @@
         <activity
             android:name=".user_profile.presentation.UserProfileActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".auth.presentation.login_activity.LoginActivity"
             android:exported="true"
@@ -55,11 +58,13 @@
             android:name=".auth.presentation.signup_activity.SignUpActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
             tools:node="merge">
+
             <!-- If you are using androidx.startup to initialize other components -->
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"
@@ -67,4 +72,5 @@
                 tools:node="remove" />
         </provider>
     </application>
+
 </manifest>

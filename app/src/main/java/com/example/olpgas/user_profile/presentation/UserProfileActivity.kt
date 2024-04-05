@@ -20,7 +20,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.olpgas.R
-import com.example.olpgas.auth.presentation.login_activity.LoginEvent
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
 import com.example.olpgas.core.util.NetworkUnavailableDialog
@@ -126,7 +125,7 @@ class UserProfileActivity : AppCompatActivity() {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 getImagePermission()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
     }
@@ -238,7 +237,7 @@ class UserProfileActivity : AppCompatActivity() {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 updateGender()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
 
@@ -246,7 +245,7 @@ class UserProfileActivity : AppCompatActivity() {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 updateGender()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
     }
@@ -291,14 +290,14 @@ class UserProfileActivity : AppCompatActivity() {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 updateAge()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
         binding.tvAge.setOnClickListener {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 updateAge()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
     }
@@ -357,14 +356,14 @@ class UserProfileActivity : AppCompatActivity() {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 updatePhoneNumber()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
         binding.tvPhoneNumber.setOnClickListener {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 updatePhoneNumber()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
     }
@@ -418,14 +417,14 @@ class UserProfileActivity : AppCompatActivity() {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 updateAddress()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
         binding.tvStreetNumber.setOnClickListener {
             if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                 updateAddress()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
     }

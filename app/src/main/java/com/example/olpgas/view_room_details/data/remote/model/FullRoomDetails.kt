@@ -22,5 +22,6 @@ data class FullRoomDetails(
     val description: String,
     val roomFeatureId: Int,
     val bookingStatus: String,
-    val ratings: Float
+    val ratings: Float,
+    val occupiedBy: Int
 )

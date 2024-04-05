@@ -1,14 +1,17 @@
 package com.example.olpgas.view_room_details.data.repository
 
 import androidx.lifecycle.LiveData
+import com.example.olpgas.bookings_history.data.remote.model.RoomBooking
 import com.example.olpgas.view_room_details.data.local.database.FullRoomDetailsDatabase
 import com.example.olpgas.view_room_details.data.local.database.entities.FullRoomDetailsLocal
+import com.example.olpgas.view_room_details.data.remote.SupabaseBookRoom
 import com.example.olpgas.view_room_details.data.remote.SupabaseRoomDetails
 import com.example.olpgas.view_room_details.data.remote.model.FullRoomDetails
 import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
 
 class ViewRoomDetailsRepositoryImpl(
     private val supabaseRoomDetails: SupabaseRoomDetails,
+    private val supabaseBookRoom: SupabaseBookRoom,
     private val database: FullRoomDetailsDatabase
 ) : ViewRoomDetailsRepository {
     override suspend fun upsert(fullRoomDetailsLocal: FullRoomDetailsLocal) {
@@ -32,5 +35,9 @@ class ViewRoomDetailsRepositoryImpl(
 
     override suspend fun delete(id: Int) {
         database.getFullRoomDetailsDao().delete(id)
+    }
+
+    override suspend fun bookRoom(booking: RoomBooking) {
+        supabaseBookRoom.bookRoom(booking)
     }
 }

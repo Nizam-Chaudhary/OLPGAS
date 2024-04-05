@@ -26,12 +26,9 @@ import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.NetworkUnavailableDialog
 import com.example.olpgas.databinding.ActivityUpdateRoomBinding
 import com.example.olpgas.databinding.RawAddChipBinding
-import com.example.olpgas.databinding.RawChipBinding
 import com.example.olpgas.databinding.RawUpdateRoomChipBinding
 import com.example.olpgas.databinding.RawUpdateRoomInputFieldBinding
 import com.example.olpgas.manage_room.presentation.AddRemoveImageViewPagerAdapter
-import com.example.olpgas.manage_room.presentation.post_room.ChipField
-import com.example.olpgas.manage_room.presentation.post_room.PostRoomEvent
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
@@ -131,7 +128,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
 
                                 }.show()
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
 
@@ -157,7 +154,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                                 .setNegativeButton("Cancel", null)
                                 .show()
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
 
                     }
@@ -183,7 +180,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
 
                                 }.show()
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
 
@@ -206,7 +203,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
 
                                 }.show()
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
 
@@ -230,7 +227,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
 
                                 }.show()
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
 
@@ -254,7 +251,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
 
                                 }.show()
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
 
@@ -277,7 +274,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
 
                                 }.show()
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
 
@@ -393,7 +390,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
 
                                 }.show()
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
                 }
@@ -441,7 +438,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                                     .show()
                             }
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
                 }
@@ -469,7 +466,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                             }
 
                         } else {
-                            NetworkUnavailableDialog(this).networkUnavailable
+                            NetworkUnavailableDialog(this).show
                         }
                     }
                 }
@@ -616,7 +613,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                     .setNegativeButton("Cancel", null)
                     .show()
             } else {
-                NetworkUnavailableDialog(this).networkUnavailable
+                NetworkUnavailableDialog(this).show
             }
         }
     }

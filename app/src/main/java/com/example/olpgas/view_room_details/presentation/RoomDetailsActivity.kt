@@ -1,14 +1,20 @@
 package com.example.olpgas.view_room_details.presentation
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.Window
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.olpgas.R
+import com.example.olpgas.core.util.ConnectivityObserver
+import com.example.olpgas.core.util.NetworkUnavailableDialog
 import com.example.olpgas.databinding.ActivityRoomDetailsBinding
+import com.example.olpgas.databinding.RawBookRoomBinding
 import com.google.android.material.chip.Chip
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
@@ -39,6 +45,10 @@ class RoomDetailsActivity : AppCompatActivity() {
         setUpData()
 
         setPageTransformerToViewPager()
+
+        onBookRoomButtonClick()
+
+        observeConnection()
     }
 
     private fun setUpData() {
@@ -68,11 +78,32 @@ class RoomDetailsActivity : AppCompatActivity() {
             binding.shareableTv.text = "${it.shareable} People"
             binding.roomAreaTv.text = it.roomType
             binding.roomAreaTv.text = "${it.roomArea} Sq. Ft."
+            binding.roomTypeTv.text = "${it.roomType}"
             binding.detailedRoomAbout.text = it.description
 
             val adapter = RoomImageRecyclerPagerAdapter(it.urls, this)
             binding.detailedRoomImageViewpager.adapter = adapter
             binding.wormDotsIndicator.attachTo(binding.detailedRoomImageViewpager)
+        }
+    }
+
+    private fun onBookRoomButtonClick() {
+        binding.BookRoomBtn.setOnClickListener {
+            if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                val view = View.inflate(this, R.layout.raw_book_room, null)
+                val viewBinding = RawBookRoomBinding.bind(view)
+
+                MaterialAlertDialogBuilder(this)
+
+            } else {
+                NetworkUnavailableDialog(this).show
+            }
+        }
+    }
+
+    private fun observeConnection() {
+        viewModel.connectionStatus.observe(this) {
+            Log.d("Network Connection", it.toString())
         }
     }
 

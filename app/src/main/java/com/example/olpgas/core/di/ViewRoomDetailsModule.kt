@@ -2,6 +2,7 @@ package com.example.olpgas.core.di
 
 import android.app.Application
 import com.example.olpgas.view_room_details.data.local.database.FullRoomDetailsDatabase
+import com.example.olpgas.view_room_details.data.remote.SupabaseBookRoom
 import com.example.olpgas.view_room_details.data.remote.SupabaseRoomDetails
 import com.example.olpgas.view_room_details.data.repository.ViewRoomDetailsRepositoryImpl
 import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
@@ -30,11 +31,19 @@ object ViewRoomDetailsModule {
 
     @Provides
     @Singleton
+    fun provideSupabaseBookRoom() : SupabaseBookRoom {
+        return SupabaseBookRoom()
+    }
+
+
+    @Provides
+    @Singleton
     fun provideViewRoomDetailsRepository(
         supabaseRoomDetails: SupabaseRoomDetails,
+        supabaseBookRoom: SupabaseBookRoom,
         fullRoomDetailsDatabase: FullRoomDetailsDatabase
     ) : ViewRoomDetailsRepository {
-        return ViewRoomDetailsRepositoryImpl(supabaseRoomDetails, fullRoomDetailsDatabase)
+        return ViewRoomDetailsRepositoryImpl(supabaseRoomDetails,supabaseBookRoom, fullRoomDetailsDatabase)
     }
 
     @Provides
