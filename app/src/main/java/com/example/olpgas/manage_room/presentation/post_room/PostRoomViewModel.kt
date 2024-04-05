@@ -196,6 +196,8 @@ class PostRoomViewModel @Inject constructor(
 
     private fun postRoom() {
         viewModelScope.launch {
+            _postRoomState.value = PostRoomState.IsLoading(isLoading = true)
+
             _roomNameState.value = roomNameState.value?.copy(
                 error = null
             )
@@ -328,6 +330,7 @@ class PostRoomViewModel @Inject constructor(
                 }
                 is Resource.Success -> {
                     refreshLocalCacheUseCase()
+                    _postRoomState.value = PostRoomState.IsLoading(isLoading = true)
                     _postRoomState.value = PostRoomState.Success
                 }
                 null -> Unit
