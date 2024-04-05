@@ -116,11 +116,11 @@ class OwnedRoomsRecyclerViewAdapter(
         }
 
         holder.updateBtn.setOnClickListener {
-            onUpdateClick(currentRoomData.id)
+            onUpdateClick(currentRoomData.id, holder.roomImage)
         }
 
         holder.updateTv.setOnClickListener {
-            onUpdateClick(currentRoomData.id)
+            onUpdateClick(currentRoomData.id, holder.roomImage)
         }
 
         holder.historyBtn.setOnClickListener {
@@ -134,10 +134,13 @@ class OwnedRoomsRecyclerViewAdapter(
 
     override fun getItemCount() = roomsData.size
 
-    private fun onUpdateClick(id: Int) {
+    private fun onUpdateClick(id: Int, roomImage: ImageView) {
         val intent = Intent(context, UpdateRoomActivity::class.java)
         intent.putExtra("id", id)
-        context.startActivity(intent)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity, roomImage, roomImage.transitionName
+        )
+        context.startActivity(intent, options.toBundle())
     }
 
     private fun onHistoryClick() {
