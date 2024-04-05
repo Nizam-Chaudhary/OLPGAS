@@ -24,8 +24,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.example.olpgas.R
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
@@ -49,6 +51,7 @@ class PostRoomActivity : AppCompatActivity() {
 
     private val selectedImages = mutableListOf<String>()
 
+    private lateinit var adapter:RoomImageRecyclerPagerAdapter
     private lateinit var stateAdapter: ArrayAdapter<CharSequence>
     private lateinit var cityAdapter: ArrayAdapter<String>
     private lateinit var roomTypeAdapter: ArrayAdapter<String>
@@ -91,6 +94,25 @@ class PostRoomActivity : AppCompatActivity() {
         setOnChipCheckChange()
 
         onAddImageButtonClick()
+        onRemoveImageButtonClick()
+    }
+
+    private fun onRemoveImageButtonClick() {
+        binding.postRemoveImage.setOnClickListener {
+            val currentItem = binding.postRoomViewPager.currentItem
+            if (currentItem != RecyclerView.NO_POSITION) {
+                // Remove the image URL from the list of selected images
+                val removedImageUrl = selectedImages.removeAt(currentItem).toUri()
+                // Notify the adapter that the dataset has changed
+                adapter.notifyDataSetChanged()
+
+                // Hide ViewPager and remove button if selectedImages is empty
+                if (selectedImages.isEmpty()) {
+                    binding.postRoomViewPager.visibility = View.GONE
+                    binding.postRemoveImage.visibility = View.GONE
+                }
+            }
+        }
     }
 
     private fun picImages() {
@@ -193,7 +215,7 @@ class PostRoomActivity : AppCompatActivity() {
                 viewModel.onEvent(PostRoomEvent.AddedImage(imageByteArray))
 
                 // Update ViewPager2 adapter
-                val adapter = RoomImageRecyclerPagerAdapter(selectedImages, this)
+                adapter = RoomImageRecyclerPagerAdapter(selectedImages, this)
                 binding.postRoomViewPager.adapter = adapter
 
                 // Show ViewPager2 and remove image button
