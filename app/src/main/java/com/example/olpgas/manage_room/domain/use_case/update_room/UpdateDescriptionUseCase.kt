@@ -7,9 +7,10 @@ class UpdateDescriptionUseCase(
 ) {
     suspend operator fun invoke(
         id: Int,
+        roomFeatureId: Int,
         description: String
     ) {
-        manageRoomRepository.updateDescription(id, description)
+        manageRoomRepository.updateDescription(roomFeatureId, description)
         manageRoomRepository.updateDescriptionAllRoomDetails(id, description)
         manageRoomRepository.updateDescriptionFullRoomDetails(id, description)
     }

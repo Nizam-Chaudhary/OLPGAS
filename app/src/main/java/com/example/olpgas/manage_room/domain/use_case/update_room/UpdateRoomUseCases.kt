@@ -12,6 +12,8 @@ data class UpdateRoomUseCases(
     val updateRoomNameUseCase: UpdateRoomNameUseCase,
     val updateRoomTypeUseCase: UpdateRoomTypeUseCase,
     val updateShareableByUseCase: UpdateShareableByUseCase,
+    val updateAmenityUseCase: UpdateAmenityUseCase,
+    val updateSuitableForUseCase: UpdateSuitableForUseCase,
     val removeRoomUseCase: RemoveRoomUseCase,
     val connectivityObserver: ConnectivityObserver,
     val getFullRoomDetailsFromLocalDBUseCase: GetFullRoomDetailsFromLocalDBUseCase

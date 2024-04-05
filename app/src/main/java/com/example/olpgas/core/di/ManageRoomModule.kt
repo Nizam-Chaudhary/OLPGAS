@@ -11,6 +11,7 @@ import com.example.olpgas.manage_room.domain.use_case.GetAllOwnedRoomsUseCase
 import com.example.olpgas.manage_room.domain.use_case.PostRoomUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.RemoveRoomUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateAddressUseCase
+import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateAmenityUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateDepositUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateDescriptionUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateRentUseCase
@@ -19,6 +20,7 @@ import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateRoomName
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateRoomTypeUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateRoomUseCases
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateShareableByUseCase
+import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateSuitableForUseCase
 import com.example.olpgas.view_room_details.data.local.database.FullRoomDetailsDatabase
 import com.example.olpgas.view_room_details.domain.use_case.GetFullRoomDetailsFromLocalDBUseCase
 import dagger.Module
@@ -90,6 +92,8 @@ object ManageRoomModule {
             UpdateRoomNameUseCase(manageRoomRepository),
             UpdateRoomTypeUseCase(manageRoomRepository),
             UpdateShareableByUseCase(manageRoomRepository),
+            UpdateAmenityUseCase(manageRoomRepository),
+            UpdateSuitableForUseCase(manageRoomRepository),
             RemoveRoomUseCase(application),
             connectivityObserver,
             getFullRoomDetailsFromLocalDBUseCase

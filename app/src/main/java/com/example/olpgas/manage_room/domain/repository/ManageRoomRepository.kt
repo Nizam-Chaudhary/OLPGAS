@@ -123,4 +123,26 @@ interface ManageRoomRepository {
     suspend fun removeRoomFullRoomDetails(
         id: Int
     )
+
+    //Update Amenity
+    suspend fun updateAmenity(
+        roomFeatureId: Int,
+        amenity: List<String>
+    )
+
+    suspend fun updateAmenityFullRoomDetails(
+        id: Int,
+        amenity: List<String>
+    )
+
+    //Update SuitableFor
+    suspend fun updateSuitableFor(
+        roomFeatureId: Int,
+        suitableFor: List<String>
+    )
+
+    suspend fun updateSuitableForFullRoomDetails(
+        id: Int,
+        suitableFor: List<String>
+    )
 }

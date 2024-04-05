@@ -7,9 +7,10 @@ class UpdateRoomTypeUseCase(
 ) {
     suspend operator fun invoke(
         id: Int,
+        roomFeatureId: Int,
         roomType: String
     ) {
-        manageRoomRepository.updateRoomType(id, roomType)
+        manageRoomRepository.updateRoomType(roomFeatureId, roomType)
         manageRoomRepository.updateRoomTypeFullRoomDetails(id, roomType)
     }
 }

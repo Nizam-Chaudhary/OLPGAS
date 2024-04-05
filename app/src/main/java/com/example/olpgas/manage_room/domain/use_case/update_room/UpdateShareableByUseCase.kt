@@ -8,9 +8,10 @@ class UpdateShareableByUseCase (
 ) {
     suspend operator fun invoke(
         id: Int,
+        roomFeatureId: Int,
         shareableBy: Int
     ) {
-        manageRoomRepository.updateShareableBy(id, shareableBy)
+        manageRoomRepository.updateShareableBy(roomFeatureId, shareableBy)
         manageRoomRepository.updateShareableByFullRoomDetails(id, shareableBy)
     }
 }

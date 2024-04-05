@@ -218,6 +218,7 @@ class SupabaseManageRoom {
                         eq(Constants.COL_ID_ROOM_DETAILS, id)
                     }
                 }
+            Log.d("Update Description", "update success")
         } catch(e: Exception) {
             e.printStackTrace()
             Log.e(TAG, "Error: ${e.message}")
@@ -243,6 +244,42 @@ class SupabaseManageRoom {
                     }
                 }
         } catch(e: Exception) {
+            e.printStackTrace()
+            Log.e(TAG, "Error: ${e.message}")
+        }
+    }
+
+    suspend fun updateAmenity(
+        roomFeatureId: Int, amenity: List<String>
+    ) {
+        try {
+            SupabaseClient.client.postgrest.from(Constants.ROOM_DETAILS_TABLE)
+                .update({
+                    set(Constants.COL_FEATURES, amenity)
+                }) {
+                    filter {
+                        eq(Constants.COL_ID_ROOM_DETAILS, roomFeatureId)
+                    }
+                }
+        }catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(TAG, "Error: ${e.message}")
+        }
+    }
+
+    suspend fun updateSuitableFor(
+        roomFeatureId: Int, suitableFor: List<String>
+    ) {
+        try {
+            SupabaseClient.client.postgrest.from(Constants.ROOM_DETAILS_TABLE)
+                .update({
+                    set(Constants.COL_SUITABLE_FOR, suitableFor)
+                }) {
+                    filter {
+                        eq(Constants.COL_ID_ROOM_DETAILS, roomFeatureId)
+                    }
+                }
+        }catch (e: Exception) {
             e.printStackTrace()
             Log.e(TAG, "Error: ${e.message}")
         }

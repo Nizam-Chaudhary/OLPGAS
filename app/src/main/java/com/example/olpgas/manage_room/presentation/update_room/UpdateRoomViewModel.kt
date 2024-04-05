@@ -1,5 +1,6 @@
 package com.example.olpgas.manage_room.presentation.update_room
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -37,6 +38,10 @@ class UpdateRoomViewModel @Inject constructor(
             is UpdateRoomEvent.OnUpdateRoomType -> updateRoomType(event.roomType)
             is UpdateRoomEvent.OnUpdateShareableBy -> updateShareableBy(event.shareableBy)
             UpdateRoomEvent.OnRemoveRoom -> removeRoom()
+            is UpdateRoomEvent.AddAmenity -> addAmenity(event.amenity)
+            is UpdateRoomEvent.AddSuitableFor -> addSuitableFor(event.suitableFor)
+            is UpdateRoomEvent.RemoveAmenity -> removeAmenity(event.amenity)
+            is UpdateRoomEvent.RemoveSuitableFor -> removeSuitableFor(event.suitableFor)
         }
     }
 
@@ -68,8 +73,9 @@ class UpdateRoomViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             val id = allRoomDetailsState.value?.id
-            if(id != null) {
-                updateRoomUseCases.updateRentUseCase(id, rent)
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+            if(id != null && roomFeatureId != null) {
+                updateRoomUseCases.updateRentUseCase(id, roomFeatureId, rent)
             }
         }
     }
@@ -79,8 +85,9 @@ class UpdateRoomViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             val id = allRoomDetailsState.value?.id
-            if(id != null) {
-                updateRoomUseCases.updateDepositUseCase(id, deposit)
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+            if(id != null && roomFeatureId != null) {
+                updateRoomUseCases.updateDepositUseCase(id, roomFeatureId, deposit)
             }
         }
     }
@@ -90,8 +97,9 @@ class UpdateRoomViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             val id = allRoomDetailsState.value?.id
-            if(id != null) {
-                updateRoomUseCases.updateShareableByUseCase(id, shareable)
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+            if(id != null && roomFeatureId != null) {
+                updateRoomUseCases.updateShareableByUseCase(id, roomFeatureId, shareable)
             }
         }
     }
@@ -101,8 +109,9 @@ class UpdateRoomViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             val id = allRoomDetailsState.value?.id
-            if(id != null) {
-                updateRoomUseCases.updateRoomTypeUseCase(id, roomType)
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+            if(id != null && roomFeatureId != null) {
+                updateRoomUseCases.updateRoomTypeUseCase(id, roomFeatureId, roomType)
             }
         }
     }
@@ -112,8 +121,9 @@ class UpdateRoomViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             val id = allRoomDetailsState.value?.id
-            if(id != null) {
-                updateRoomUseCases.updateRoomAreaUseCase(id, roomArea)
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+            if(id != null && roomFeatureId != null) {
+                updateRoomUseCases.updateRoomAreaUseCase(id, roomFeatureId, roomArea)
             }
         }
     }
@@ -123,8 +133,10 @@ class UpdateRoomViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             val id = allRoomDetailsState.value?.id
-            if(id != null) {
-                updateRoomUseCases.updateDescriptionUseCase(id, description)
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+            if(id != null && roomFeatureId != null) {
+                Log.d("Update Description", "ID : $id")
+                updateRoomUseCases.updateDescriptionUseCase(id, roomFeatureId, description)
             }
         }
     }
@@ -136,6 +148,94 @@ class UpdateRoomViewModel @Inject constructor(
 
             if(id != null && roomFeatureId != null) {
                 updateRoomUseCases.removeRoomUseCase(id, roomFeatureId)
+            }
+        }
+    }
+
+    private fun addAmenity(
+        amenity: String
+    ) {
+        viewModelScope.launch {
+            val id = allRoomDetailsState.value?.id
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+
+            val newAmenities = mutableListOf<String>()
+            val oldAmenities = allRoomDetailsState.value?.features
+            oldAmenities?.let {
+                for(oldAmenity in oldAmenities) {
+                    newAmenities.add(oldAmenity)
+                }
+                newAmenities.add(amenity)
+
+                if(id != null && roomFeatureId != null) {
+                    updateRoomUseCases.updateAmenityUseCase(id, roomFeatureId, newAmenities)
+                }
+            }
+        }
+    }
+
+    private fun removeAmenity(
+        amenity: String
+    ) {
+        viewModelScope.launch {
+            val id = allRoomDetailsState.value?.id
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+
+            val newAmenities = mutableListOf<String>()
+            val oldAmenities = allRoomDetailsState.value?.features
+            oldAmenities?.let {
+                for(oldAmenity in oldAmenities) {
+                    newAmenities.add(oldAmenity)
+                }
+                newAmenities.remove(amenity)
+
+                if(id != null && roomFeatureId != null) {
+                    updateRoomUseCases.updateAmenityUseCase(id, roomFeatureId, newAmenities)
+                }
+            }
+        }
+    }
+
+    private fun addSuitableFor(
+        suitableFor: String
+    ) {
+        viewModelScope.launch {
+            val id = allRoomDetailsState.value?.id
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+
+            val newSuitableFors = mutableListOf<String>()
+            val oldSuitableFors = allRoomDetailsState.value?.suitableFor
+            oldSuitableFors?.let {
+                for(oldSuitableFor in oldSuitableFors) {
+                    newSuitableFors.add(oldSuitableFor)
+                }
+                newSuitableFors.add(suitableFor)
+
+                if(id != null && roomFeatureId != null) {
+                    updateRoomUseCases.updateAmenityUseCase(id, roomFeatureId, newSuitableFors)
+                }
+            }
+        }
+    }
+
+    private fun removeSuitableFor(
+        suitableFor: String
+    ) {
+        viewModelScope.launch {
+            val id = allRoomDetailsState.value?.id
+            val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+
+            val newSuitableFors = mutableListOf<String>()
+            val oldSuitableFors = allRoomDetailsState.value?.suitableFor
+            oldSuitableFors?.let {
+                for(oldSuitableFor in oldSuitableFors) {
+                    newSuitableFors.add(oldSuitableFor)
+                }
+                newSuitableFors.remove(suitableFor)
+
+                if(id != null && roomFeatureId != null) {
+                    updateRoomUseCases.updateAmenityUseCase(id, roomFeatureId, newSuitableFors)
+                }
             }
         }
     }

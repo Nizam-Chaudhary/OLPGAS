@@ -35,4 +35,10 @@ sealed class UpdateRoomEvent{
     ) : UpdateRoomEvent()
 
     data object OnRemoveRoom : UpdateRoomEvent()
+
+    data class AddAmenity(val amenity: String) : UpdateRoomEvent()
+    data class RemoveAmenity(val amenity: String) : UpdateRoomEvent()
+
+    data class AddSuitableFor(val suitableFor: String) : UpdateRoomEvent()
+    data class RemoveSuitableFor(val suitableFor: String) : UpdateRoomEvent()
 }

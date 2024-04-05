@@ -249,7 +249,6 @@ class PostRoomActivity : AppCompatActivity() {
         val roomNumberState = viewModel.roomNumberState.value
         val streetNumberState = viewModel.streetNumberState.value
         val landMarkState = viewModel.landMarkState.value
-        val cityState = viewModel.cityState.value
         val stateState = viewModel.stateState.value
         val roomTypeState = viewModel.roomTypeState.value
         val shareableByState = viewModel.shareableState.value

@@ -16,5 +16,4 @@ data class AllRoomDetails(
     val state: String,
     val ratings: Float,
     val bookingStatus: String,
-    val features: List<String>
 )

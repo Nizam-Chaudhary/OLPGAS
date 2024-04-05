@@ -25,6 +25,7 @@ import com.example.olpgas.R
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.NetworkUnavailableDialog
 import com.example.olpgas.databinding.ActivityUpdateRoomBinding
+import com.example.olpgas.databinding.RawUpdateRoomChipBinding
 import com.example.olpgas.databinding.RawUpdateRoomInputFieldBinding
 import com.example.olpgas.manage_room.presentation.AddRemoveImageViewPagerAdapter
 import com.google.android.material.chip.Chip
@@ -407,16 +408,22 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
             binding.updateChipGroupAmenities.removeAllViews()
             binding.updateChipGroupSuitableFor.removeAllViews()
             for(amenity in it.features) {
-                val chip = Chip(this)
-                chip.text = amenity
-                chip.tag = amenity
-                binding.updateChipGroupSuitableFor.addView(chip)
+                val chip = View.inflate(this, R.layout.raw_update_room_chip, null)
+                val chipBinding = RawUpdateRoomChipBinding.bind(chip)
+
+                chipBinding.rawChip.text = amenity
+                chipBinding.rawChip.tag = amenity
+
+                binding.updateChipGroupAmenities.addView(chipBinding.root)
             }
             for(suitableFor in it.suitableFor) {
-                val chip = Chip(this)
-                chip.text = suitableFor
-                chip.tag = suitableFor
-                binding.updateChipGroupAmenities.addView(chip)
+                val chip = View.inflate(this, R.layout.raw_update_room_chip, null)
+                val chipBinding = RawUpdateRoomChipBinding.bind(chip)
+
+                chipBinding.rawChip.text = suitableFor
+                chipBinding.rawChip.tag = suitableFor
+
+                binding.updateChipGroupAmenities.addView(chipBinding.root)
             }
             binding.updateChipGroupAmenities.addView(binding.updateAddAmenities)
             binding.updateChipGroupSuitableFor.addView(binding.updateAddSuitableFor)
@@ -567,6 +574,52 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
     private fun observeNetworkConnection() {
         viewModel.connectionStatus.observe(this) {
             Log.d("Network Connection", it.toString())
+        }
+    }
+
+    private fun onAmenityChipClick() {
+        val amenities = viewModel.allRoomDetailsState.value?.features
+        amenities?.let {
+            for(i in amenities.indices) {
+                binding.updateChipGroupAmenities.findViewWithTag<Chip>(amenities[i]).setOnClickListener {
+
+                    if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                        MaterialAlertDialogBuilder(this)
+                            .setTitle("Remove Amenity")
+                            .setMessage("do you want to remove ${amenities[i]}")
+                            .setPositiveButton("Yes") {_,_ ->
+                                viewModel.onEvent(UpdateRoomEvent.RemoveAmenity(amenities[i]))
+                            }
+                            .setNegativeButton("Cancel", null)
+
+                    } else {
+                        NetworkUnavailableDialog(this).networkUnavailable
+                    }
+                }
+            }
+        }
+    }
+
+    private fun onSuitableForChipClick() {
+        val suitableFors = viewModel.allRoomDetailsState.value?.suitableFor
+        suitableFors?.let {
+            for(i in suitableFors.indices) {
+                binding.updateChipGroupSuitableFor.findViewWithTag<Chip>(suitableFors[i]).setOnClickListener {
+
+                    if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                        MaterialAlertDialogBuilder(this)
+                            .setTitle("Remove Suitable For")
+                            .setMessage("do you want to remove ${suitableFors[i]}")
+                            .setPositiveButton("Yes") {_,_ ->
+                                viewModel.onEvent(UpdateRoomEvent.RemoveSuitableFor(suitableFors[i]))
+                            }
+                            .setNegativeButton("Cancel", null)
+
+                    } else {
+                        NetworkUnavailableDialog(this).networkUnavailable
+                    }
+                }
+            }
         }
     }
 

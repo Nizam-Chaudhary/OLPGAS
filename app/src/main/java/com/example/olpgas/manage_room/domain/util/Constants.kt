@@ -21,4 +21,6 @@ object Constants {
     const val COL_ROOM_TYPE = "roomType"
     const val COL_ROOM_AREA = "roomArea"
     const val COL_ROOM_DESCRIPTION = "description"
+    const val COL_FEATURES = "features"
+    const val COL_SUITABLE_FOR = "suitableFor"
 }

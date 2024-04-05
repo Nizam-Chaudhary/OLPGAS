@@ -144,4 +144,20 @@ class ManageRoomRepositoryImpl(
     override suspend fun removeRoomFullRoomDetails(id: Int) {
         fullRoomDetailsDatabase.getFullRoomDetailsDao().removeRoom(id)
     }
+
+    override suspend fun updateAmenity(roomFeatureId: Int, amenity: List<String>) {
+        supabaseManageRoom.updateAmenity(roomFeatureId, amenity)
+    }
+
+    override suspend fun updateAmenityFullRoomDetails(id: Int, amenity: List<String>) {
+        fullRoomDetailsDatabase.getFullRoomDetailsDao().updateAmenity(id, amenity)
+    }
+
+    override suspend fun updateSuitableFor(roomFeatureId: Int, suitableFor: List<String>) {
+        supabaseManageRoom.updateSuitableFor(roomFeatureId, suitableFor)
+    }
+
+    override suspend fun updateSuitableForFullRoomDetails(id: Int, suitableFor: List<String>) {
+        fullRoomDetailsDatabase.getFullRoomDetailsDao().updateSuitableFor(id, suitableFor)
+    }
 }

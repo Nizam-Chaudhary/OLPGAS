@@ -7,9 +7,10 @@ class UpdateDepositUseCase (
 ) {
     suspend operator fun invoke(
         id: Int,
+        roomFeatureId: Int,
         deposit: Int
     ) {
-        manageRoomRepository.updateDeposit(id, deposit)
+        manageRoomRepository.updateDeposit(roomFeatureId, deposit)
         manageRoomRepository.updateDepositAllRoomDetails(id, deposit)
         manageRoomRepository.updateDepositFullRoomDetails(id, deposit)
     }
