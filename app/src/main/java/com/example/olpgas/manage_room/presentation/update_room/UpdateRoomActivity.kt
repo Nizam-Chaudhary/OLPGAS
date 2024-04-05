@@ -100,6 +100,16 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                             )
                             updateRoomType.adapter = roomTypeAdapter
 
+                            for (i in 0 until roomTypeAdapter.count) {
+                                if (roomTypeAdapter.getItem(i)
+                                        .toString() == viewModel.allRoomDetailsState.value?.roomType
+                                ) {
+                                    updateRoomType.setSelection(i)
+                                    break
+                                }
+                            }
+
+
                             MaterialAlertDialogBuilder(this).setView(updateRoomTypeView)
                                 .setTitle("Update Room Type").setPositiveButton("Update") { _, _ ->
 
@@ -119,6 +129,8 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                         if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                             updateRoomDetails.hint = "Room Name"
                             updateRoomDetails.editText?.inputType = InputType.TYPE_CLASS_TEXT
+
+                            updateRoomDetails.editText?.setText(viewModel.allRoomDetailsState.value?.roomName)
 
                             MaterialAlertDialogBuilder(this)
                                 .setView(singleTextFiled)
@@ -144,6 +156,8 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                             updateRoomDetails.hint = "Room Rent"
                             updateRoomDetails.editText?.inputType = InputType.TYPE_CLASS_NUMBER
 
+                            updateRoomDetails.editText?.setText(viewModel.allRoomDetailsState.value?.rentAmount.toString())
+
                             MaterialAlertDialogBuilder(this).setView(singleTextFiled)
                                 .setTitle("Update Room Rent")
                                 .setPositiveButton("Update") { _, _ ->
@@ -167,6 +181,8 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                             updateRoomDetails.hint = "Room Deposit"
                             updateRoomDetails.editText?.inputType = InputType.TYPE_CLASS_NUMBER
 
+                            updateRoomDetails.editText?.setText(viewModel.allRoomDetailsState.value?.description.toString())
+
                             val dialog = MaterialAlertDialogBuilder(this).setView(singleTextFiled)
                                 .setTitle("Update Room Deposit").setPositiveButton("Update") { _, _ ->
                                     val deposit = updateRoomDetails.editText?.text.toString()
@@ -184,6 +200,9 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                     }
 
                     binding.updateRoomSharableByBtn.id -> {
+
+                        updateRoomDetails.editText?.setText(viewModel.allRoomDetailsState.value?.shareable.toString())
+
                         if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                             updateRoomDetails.hint = "Room Sharable By"
                             updateRoomDetails.editText?.inputType = InputType.TYPE_CLASS_NUMBER
@@ -205,6 +224,9 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                     }
 
                     binding.updateRoomAreaBtn.id -> {
+
+                        updateRoomDetails.editText?.setText(viewModel.allRoomDetailsState.value?.roomArea.toString())
+
                         if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                             updateRoomDetails.hint = "Room Area"
                             updateRoomDetails.editText?.inputType = InputType.TYPE_CLASS_NUMBER
@@ -230,6 +252,8 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                             updateRoomDetails.hint = "Room About"
                             updateRoomDetails.editText?.inputType = InputType.TYPE_CLASS_TEXT
 
+                            updateRoomDetails.editText?.setText(viewModel.allRoomDetailsState.value?.description.toString())
+
                             val dialog = MaterialAlertDialogBuilder(this).setView(singleTextFiled)
                                 .setTitle("Update Room About").setPositiveButton("Update") { _, _ ->
                                     val about = updateRoomDetails.editText?.text.toString()
@@ -250,14 +274,20 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                         if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
                             val updateRoomAddressView =
                                 View.inflate(this, R.layout.raw_update_room_address, null)
+
                             val updateRoomLandMark =
                                 updateRoomAddressView.findViewById<TextInputLayout>(R.id.update_input_landmark)
+
+                            updateRoomLandMark.editText?.setText(viewModel.allRoomDetailsState.value?.landMark.toString())
 
                             val updateRoomStreet =
                                 updateRoomAddressView.findViewById<TextInputLayout>(R.id.update_input_street_number)
 
+                            updateRoomStreet.editText?.setText(viewModel.allRoomDetailsState.value?.streetNumber.toString())
+
                             val updateRoomState =
                                 updateRoomAddressView.findViewById<Spinner>(R.id.update_spinner_state)
+
 
                             val updateRoomCity =
                                 updateRoomAddressView.findViewById<Spinner>(R.id.update_spinner_city)
@@ -273,6 +303,16 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                             val cityAdapter = ArrayAdapter<String>(
                                 this, android.R.layout.simple_spinner_item
                             )
+
+                            for (i in 0 until stateAdapter.count) {
+                                if (stateAdapter.getItem(i)
+                                        .toString() == viewModel.allRoomDetailsState.value?.state
+                                ) {
+                                    updateRoomState.setSelection(i)
+                                    break
+                                }
+                            }
+
                             cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                             updateRoomCity.adapter = cityAdapter
 
@@ -300,10 +340,20 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                                         )
                                         val citiesArray = resources.getStringArray(citiesArrayId)
                                         cityAdapter.addAll(citiesArray.toList())
+
+
+
+                                        if (updateRoomCity.selectedItemPosition == -1) {
+                                            for (i in 0 until cityAdapter.count) {
+                                                if (cityAdapter.getItem(i) == viewModel.allRoomDetailsState.value?.city) {
+                                                    updateRoomCity.setSelection(i)
+                                                    break
+                                                }
+                                            }
+                                        }
                                     }
 
                                     override fun onNothingSelected(parent: AdapterView<*>?) {
-
                                     }
                                 }
 

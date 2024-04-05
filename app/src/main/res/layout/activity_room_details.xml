@@ -171,7 +171,7 @@
                 <TextView
                     android:id="@+id/tv1"
                     android:paddingVertical="4dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:text="Price" />
 
@@ -187,7 +187,7 @@
 
                 <TextView
                     android:id="@+id/tv2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:paddingVertical="4dp"
                     android:layout_alignParentTop="true"
@@ -276,45 +276,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/room_details_aboutTV" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/BookRoomBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#4BE351"
+                android:text="Book Room"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/detailed_room_about" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_expand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:icon="@drawable/ic_expand_more"
-        android:backgroundTint="?attr/colorPrimary"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_edit_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="normal"
-        android:backgroundTint="?attr/colorPrimary"
-        android:src="@drawable/ic_edit"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@id/fab_expand"
-        app:layout_constraintEnd_toEndOf="@id/fab_expand"
-        android:visibility="gone"
-        />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_delete_room"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:fabSize="normal"
-        android:backgroundTint="?attr/colorPrimary"
-        android:src="@drawable/ic_remove"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@id/fab_edit_room"
-        app:layout_constraintEnd_toEndOf="@id/fab_edit_room"
-        android:visibility="gone"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>
