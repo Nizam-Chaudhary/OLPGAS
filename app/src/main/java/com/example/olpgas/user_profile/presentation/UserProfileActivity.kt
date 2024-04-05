@@ -20,8 +20,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.olpgas.R
+import com.example.olpgas.auth.presentation.login_activity.LoginEvent
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
+import com.example.olpgas.core.util.NetworkUnavailableDialog
 import com.example.olpgas.databinding.ActivityUserProfileBinding
 import com.example.olpgas.databinding.RawUpdateAddressBinding
 import com.example.olpgas.databinding.RawUpdateAgeBinding
@@ -121,7 +123,11 @@ class UserProfileActivity : AppCompatActivity() {
 
     private fun onProfileImageClick() {
         binding.ivProfilePicBtn.setOnClickListener {
-            getImagePermission()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                getImagePermission()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
     }
 
@@ -229,11 +235,19 @@ class UserProfileActivity : AppCompatActivity() {
 
     private fun onGenderUpdateClick() {
         binding.uGender.setOnClickListener {
-            updateGender()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                updateGender()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
 
         binding.tvGender.setOnClickListener {
-            updateGender()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                updateGender()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
     }
 
@@ -274,10 +288,18 @@ class UserProfileActivity : AppCompatActivity() {
 
     private fun onAgeUpdateClick() {
         binding.uAge.setOnClickListener {
-            updateAge()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                updateAge()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
         binding.tvAge.setOnClickListener {
-            updateAge()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                updateAge()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
     }
 
@@ -332,10 +354,18 @@ class UserProfileActivity : AppCompatActivity() {
 
     private fun onPhoneNumberUpdateClick() {
         binding.uPhoneNumber.setOnClickListener {
-            updatePhoneNumber()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                updatePhoneNumber()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
         binding.tvPhoneNumber.setOnClickListener {
-            updatePhoneNumber()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                updatePhoneNumber()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
     }
 
@@ -385,10 +415,18 @@ class UserProfileActivity : AppCompatActivity() {
 
     private fun onAddressUpdateClick() {
         binding.uAddressStreet.setOnClickListener {
-            updateAddress()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                updateAddress()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
         binding.tvStreetNumber.setOnClickListener {
-            updateAddress()
+            if (viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                updateAddress()
+            } else {
+                NetworkUnavailableDialog(this).networkUnavailable
+            }
         }
     }
 

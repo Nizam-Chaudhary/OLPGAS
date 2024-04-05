@@ -131,7 +131,7 @@ class MoreFragment : Fragment() {
         binding.moreSignOut.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Sign out")
-                .setMessage("Do you want to sign out")
+                .setMessage("Do you want to sign out?")
                 .setPositiveButton("Yes") {_,_ ->
                     viewModel.onEvent(MoreEvent.SignOut)
                     startActivity(Intent(requireContext(), LoginActivity::class.java))
