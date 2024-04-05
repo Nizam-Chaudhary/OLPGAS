@@ -1,25 +1,21 @@
 package com.example.olpgas
 
-import android.app.UiModeManager
-import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.olpgas.databinding.FragmentMoreBinding
+import com.example.olpgas.databinding.RawThemeBinding
 import com.example.olpgas.user_profile.presentation.UserProfileActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class MoreFragment : Fragment() {
 
     private lateinit var binding: FragmentMoreBinding
+
+//    private val viewModel: UserProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,80 +30,54 @@ class MoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.userProfileBTN.setOnClickListener {
-            startActivity(
-                Intent(
-                    requireContext(),
-                    UserProfileActivity::class.java
-                )
-            )
+//        binding.moreUserName.text = viewModel.userProfileState.value?.userName
+
+        onProfileBtn()
+
+        onThemeBtn()
+
+        onSignOutBtn()
+
+    }
+
+    private fun onSignOutBtn() {
+        binding.moreSignOut.setOnClickListener {
+
         }
+    }
 
+    private fun onThemeBtn() {
         binding.themeBTN.setOnClickListener {
+            val view = View.inflate(requireContext(), R.layout.raw_theme, null)
 
-//            val sharedPreferences = SharedPreferences(requireContext())
-            val light = RadioButton(context)
-            val dark = RadioButton(context)
-            val system = RadioButton(context)
-
-
-//            light.id = 1
-//            dark.id = 2
-//            system.id = 3
-//
-
-            light.setText(R.string.light_theme)
-            dark.setText(R.string.dark_theme)
-            system.setText(R.string.system_theme)
-
-//            when (sharedPreferences.getUiMode()) {
-//                "light" -> light.isChecked = true
-//                "dark" -> dark.isChecked = true
-//                "system" -> system.isChecked = true
-//            }
-
-            val radioGroup = RadioGroup(requireContext())
-            //byNameAsc.isChecked = true
-
-            radioGroup.addView(light)
-            radioGroup.addView(dark)
-            radioGroup.addView(system)
-
-            val linearLayout = LinearLayout(requireContext())
-            linearLayout.addView(radioGroup)
-            linearLayout.setPadding(40, 10, 40, 10)
+            val rawThemeBinding = RawThemeBinding.bind(view)
 
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Theme")
-                .setView(linearLayout)
-                .setMessage("Select Theme Mode.")
+                .setView(view)
                 .setPositiveButton("Apply") { _, _ ->
-                    println(radioGroup.checkedRadioButtonId.toString())
-                    when (radioGroup.checkedRadioButtonId) {
-                        1 -> {
-//                            sharedPreferencesAmplifted.setUiMode("light")
-//                            setTheme()
-                        }
-
-                        2 -> {
-//                            sharedPreferencesAmplifted.setUiMode("dark")
-//                            setTheme()
-                        }
-
-                        3 -> {
-//                            sharedPreferencesAmplifted.setUiMode("system")
-//                            setTheme()
-                        }
-
+                    val checkedRadioButtonId = rawThemeBinding.rdgTheme.checkedRadioButtonId
+                    val gender = when(checkedRadioButtonId) {
+                        R.id.rd_light -> "Light"
+                        R.id.rd_dark-> "Dark"
+                        else -> "Sysytem"
                     }
+
+
                 }
                 .setNegativeButton("Cancel") { _, _ -> }
                 .show()
 
         }
+    }
 
-        binding.moreSignOut.setOnClickListener {
-
+    private fun onProfileBtn() {
+        binding.userProfileBTN.setOnClickListener {
+            startActivity(
+                Intent(
+                    requireContext(), UserProfileActivity::class.java
+                )
+            )
         }
 
     }
