@@ -492,11 +492,11 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                 val singleTextFiled = View.inflate(this, R.layout.raw_update_room_input_field, null)
                 val updateRoomDetailsBinding = RawUpdateRoomInputFieldBinding.bind(singleTextFiled)
                 val updateRoomDetails = updateRoomDetailsBinding.updateRoomDataTxtField
+                updateRoomDetails.editText?.inputType = InputType.TYPE_CLASS_TEXT
 
                 updateRoomDetails.hint = "Type CONFIRM"
                 MaterialAlertDialogBuilder(this)
                     .setTitle("Remove Room")
-                    .setMessage("Type CONFIRM to remove room")
                     .setCancelable(false)
                     .setView(singleTextFiled)
                     .setPositiveButton("Remove") {_,_ ->
