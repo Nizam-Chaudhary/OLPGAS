@@ -31,8 +31,10 @@ import com.example.olpgas.view_room_details.presentation.RoomImageRecyclerPagerA
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.ByteArrayOutputStream
+
 
 @AndroidEntryPoint
 class PostRoomActivity : AppCompatActivity() {
@@ -149,33 +151,48 @@ class PostRoomActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK) {
-            val selectedImageUri = data?.data ?: return // Handle cancelled selection
-            try {
-                val imageByteArray = getByteArrayFromImageUri(selectedImageUri)
-
-                if(imageByteArray != null) {
-                    selectedImages.add(selectedImageUri.toString())
-                    viewModel.onEvent(PostRoomEvent.AddedImage(imageByteArray))
-
-                    // Update ViewPager2 adapter
-                    binding.postRoomViewPager.visibility = View.VISIBLE
-                    binding.postRemoveImage.visibility = View.VISIBLE
-                    val adapter = RoomImageRecyclerPagerAdapter(selectedImages, this)
-                    binding.postRoomViewPager.adapter = adapter
-
-
-                    Toast.makeText(this, "Image Selected Successfully", Toast.LENGTH_SHORT).show()
-                    if(images.size >= 5) {
-                        binding.btnAddMainImage.isEnabled = false
-                    }
+            // Handle single image selection
+            if (data?.clipData == null) {
+                val selectedImageUri = data?.data
+                handleSelectedImage(selectedImageUri)
+            } else {
+                // Handle multiple image selection
+                for (i in 0 until data.clipData!!.itemCount) {
+                    val selectedImageUri = data.clipData!!.getItemAt(i).uri
+                    handleSelectedImage(selectedImageUri)
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    // Function to handle selected image
+    private fun handleSelectedImage(selectedImageUri: Uri?) {
+        try {
+            val imageByteArray = selectedImageUri?.let { getByteArrayFromImageUri(it) }
+
+            if (imageByteArray != null) {
+                // Add selected image URI to the list
+                selectedImages.add(selectedImageUri.toString())
+                viewModel.onEvent(PostRoomEvent.AddedImage(imageByteArray))
+
+                // Update ViewPager2 adapter
+                val adapter = RoomImageRecyclerPagerAdapter(selectedImages, this)
+                binding.postRoomViewPager.adapter = adapter
+
+                // Show ViewPager2 and remove image button
+                binding.postRoomViewPager.visibility = View.VISIBLE
+                binding.postRemoveImage.visibility = View.VISIBLE
+
+                // Disable add main image button if the maximum number of images is reached
+                if (selectedImages.size >= 5) {
+                    binding.btnAddMainImage.isEnabled = false
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     private fun setUpSpinner() {
 
@@ -473,6 +490,7 @@ class PostRoomActivity : AppCompatActivity() {
                 viewModel.onEvent(PostRoomEvent.OnSubmit)
 
                 checkValidationError()
+
             } else {
                 MaterialAlertDialogBuilder(this)
                     .setTitle("Connection error")
