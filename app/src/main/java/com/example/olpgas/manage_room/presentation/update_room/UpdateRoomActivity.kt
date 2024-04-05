@@ -25,9 +25,13 @@ import com.example.olpgas.R
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.NetworkUnavailableDialog
 import com.example.olpgas.databinding.ActivityUpdateRoomBinding
+import com.example.olpgas.databinding.RawAddChipBinding
+import com.example.olpgas.databinding.RawChipBinding
 import com.example.olpgas.databinding.RawUpdateRoomChipBinding
 import com.example.olpgas.databinding.RawUpdateRoomInputFieldBinding
 import com.example.olpgas.manage_room.presentation.AddRemoveImageViewPagerAdapter
+import com.example.olpgas.manage_room.presentation.post_room.ChipField
+import com.example.olpgas.manage_room.presentation.post_room.PostRoomEvent
 import com.google.android.material.chip.Chip
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
@@ -66,6 +70,10 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
         observeNetworkConnection()
 
         onRemoveRoomBtnClick()
+
+        onAddAmenityClick()
+
+        onAddSuitableForClick()
 
         val imageButtons = mutableListOf(
             binding.updateRoomNameBtn,
@@ -414,7 +422,25 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                 chipBinding.rawChip.text = amenity
                 chipBinding.rawChip.tag = amenity
 
-                binding.updateChipGroupAmenities.addView(chipBinding.root)
+                binding.updateChipGroupAmenities.addView(chipBinding.rawChip)
+                binding.updateChipGroupAmenities.findViewWithTag<Chip>(amenity).setOnClickListener {
+                    if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                        if(viewModel.allRoomDetailsState.value?.features?.size == 1) {
+                            Toast.makeText(this, "cannot remove last amenity", Toast.LENGTH_SHORT).show()
+                        } else {
+                            MaterialAlertDialogBuilder(this)
+                                .setTitle("Remove Amenity")
+                                .setMessage("do you want to remove $amenity")
+                                .setPositiveButton("Yes") {_,_ ->
+                                    viewModel.onEvent(UpdateRoomEvent.RemoveAmenity(amenity))
+                                }
+                                .setNegativeButton("Cancel", null)
+                                .show()
+                        }
+                    } else {
+                        NetworkUnavailableDialog(this).networkUnavailable
+                    }
+                }
             }
             for(suitableFor in it.suitableFor) {
                 val chip = View.inflate(this, R.layout.raw_update_room_chip, null)
@@ -423,7 +449,26 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
                 chipBinding.rawChip.text = suitableFor
                 chipBinding.rawChip.tag = suitableFor
 
-                binding.updateChipGroupAmenities.addView(chipBinding.root)
+                binding.updateChipGroupSuitableFor.addView(chipBinding.rawChip)
+                binding.updateChipGroupSuitableFor.findViewWithTag<Chip>(suitableFor).setOnClickListener {
+                    if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+                        if(viewModel.allRoomDetailsState.value?.suitableFor?.size == 1) {
+                            Toast.makeText(this, "cannot remove last suitable for", Toast.LENGTH_SHORT).show()
+                        } else {
+                            MaterialAlertDialogBuilder(this)
+                                .setTitle("Remove Suitable For")
+                                .setMessage("do you want to remove $suitableFor")
+                                .setPositiveButton("Yes") {_,_ ->
+                                    viewModel.onEvent(UpdateRoomEvent.RemoveSuitableFor(suitableFor))
+                                }
+                                .setNegativeButton("Cancel", null)
+                                .show()
+                        }
+
+                    } else {
+                        NetworkUnavailableDialog(this).networkUnavailable
+                    }
+                }
             }
             binding.updateChipGroupAmenities.addView(binding.updateAddAmenities)
             binding.updateChipGroupSuitableFor.addView(binding.updateAddSuitableFor)
@@ -577,49 +622,59 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
         }
     }
 
-    private fun onAmenityChipClick() {
-        val amenities = viewModel.allRoomDetailsState.value?.features
-        amenities?.let {
-            for(i in amenities.indices) {
-                binding.updateChipGroupAmenities.findViewWithTag<Chip>(amenities[i]).setOnClickListener {
+    private fun onAddAmenityClick() {
+        binding.updateAddAmenities.setOnClickListener {
+            val addChipView = View.inflate(this, R.layout.raw_add_chip, null)
+            val addChipBinding = RawAddChipBinding.bind(addChipView)
+            addChipBinding.txtFieldAddChip.hint = "Amenity"
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Add Amenity")
+                .setView(addChipBinding.root)
+                .setPositiveButton("Add") {_,_ ->
+                    val amenity = addChipBinding.txtFieldAddChip.editText?.text.toString()
 
-                    if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
-                        MaterialAlertDialogBuilder(this)
-                            .setTitle("Remove Amenity")
-                            .setMessage("do you want to remove ${amenities[i]}")
-                            .setPositiveButton("Yes") {_,_ ->
-                                viewModel.onEvent(UpdateRoomEvent.RemoveAmenity(amenities[i]))
-                            }
-                            .setNegativeButton("Cancel", null)
+                    val contains = viewModel.allRoomDetailsState.value?.features?.contains(amenity)
+                    if(contains != null && contains) {
+                        Toast.makeText(this, "Already Present", Toast.LENGTH_SHORT).show()
+                        return@setPositiveButton
+                    }
 
+                    if(amenity.isNotEmpty()){
+                        viewModel.onEvent(UpdateRoomEvent.AddAmenity(amenity))
                     } else {
-                        NetworkUnavailableDialog(this).networkUnavailable
+                        Toast.makeText(this, "Please enter amenity", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
+                .setNegativeButton("Cancel", null)
+                .show()
         }
     }
 
-    private fun onSuitableForChipClick() {
-        val suitableFors = viewModel.allRoomDetailsState.value?.suitableFor
-        suitableFors?.let {
-            for(i in suitableFors.indices) {
-                binding.updateChipGroupSuitableFor.findViewWithTag<Chip>(suitableFors[i]).setOnClickListener {
+    private fun onAddSuitableForClick() {
+        binding.updateAddSuitableFor.setOnClickListener {
+            val addChipView = View.inflate(this, R.layout.raw_add_chip, null)
+            val addChipBinding = RawAddChipBinding.bind(addChipView)
+            addChipBinding.txtFieldAddChip.hint = "Suitable for"
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Add suitable for")
+                .setView(addChipBinding.root)
+                .setPositiveButton("Add") {_,_ ->
+                    val suitableFor = addChipBinding.txtFieldAddChip.editText?.text.toString()
 
-                    if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
-                        MaterialAlertDialogBuilder(this)
-                            .setTitle("Remove Suitable For")
-                            .setMessage("do you want to remove ${suitableFors[i]}")
-                            .setPositiveButton("Yes") {_,_ ->
-                                viewModel.onEvent(UpdateRoomEvent.RemoveSuitableFor(suitableFors[i]))
-                            }
-                            .setNegativeButton("Cancel", null)
+                    val contains = viewModel.allRoomDetailsState.value?.suitableFor?.contains(suitableFor)
+                    if(contains != null && contains) {
+                        Toast.makeText(this, "Already Present", Toast.LENGTH_SHORT).show()
+                        return@setPositiveButton
+                    }
 
+                    if(suitableFor.isNotEmpty()){
+                        viewModel.onEvent(UpdateRoomEvent.AddSuitableFor(suitableFor))
                     } else {
-                        NetworkUnavailableDialog(this).networkUnavailable
+                        Toast.makeText(this, "Please enter suitable for", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
+                .setNegativeButton("Cancel", null)
+                .show()
         }
     }
 

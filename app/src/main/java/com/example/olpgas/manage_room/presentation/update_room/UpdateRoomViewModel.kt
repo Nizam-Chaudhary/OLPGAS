@@ -212,7 +212,7 @@ class UpdateRoomViewModel @Inject constructor(
                 newSuitableFors.add(suitableFor)
 
                 if(id != null && roomFeatureId != null) {
-                    updateRoomUseCases.updateAmenityUseCase(id, roomFeatureId, newSuitableFors)
+                    updateRoomUseCases.updateSuitableForUseCase(id, roomFeatureId, newSuitableFors)
                 }
             }
         }
@@ -234,7 +234,7 @@ class UpdateRoomViewModel @Inject constructor(
                 newSuitableFors.remove(suitableFor)
 
                 if(id != null && roomFeatureId != null) {
-                    updateRoomUseCases.updateAmenityUseCase(id, roomFeatureId, newSuitableFors)
+                    updateRoomUseCases.updateSuitableForUseCase(id, roomFeatureId, newSuitableFors)
                 }
             }
         }
