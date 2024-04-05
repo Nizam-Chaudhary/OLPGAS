@@ -17,11 +17,11 @@
             android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlwaysCollapsed">
 
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="150dp"-->
-<!--                android:scaleType="centerCrop"-->
-<!--                android:src="@drawable/background"/>-->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background"/>
 
 
             <com.google.android.material.appbar.MaterialToolbar

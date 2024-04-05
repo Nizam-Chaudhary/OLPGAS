@@ -1,5 +1,6 @@
 package com.example.olpgas.manage_room.presentation.owned_rooms
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.olpgas.R
-import com.example.olpgas.browse_rooms.presentation.RoomsRecyclerViewAdapter
 import com.example.olpgas.databinding.FragmentManageBinding
 import com.example.olpgas.manage_room.presentation.post_room.PostRoomActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +52,14 @@ class ManageFragment : Fragment() {
 
     private fun onAddRoomFabClick() {
         binding.addRoomFab.setOnClickListener {
-            startActivity(Intent(requireContext(), PostRoomActivity::class.java))
+
+            val intent = Intent(requireContext(), PostRoomActivity::class.java)
+            val options = ActivityOptions.makeSceneTransitionAnimation(
+                requireActivity(),
+                view?.findViewById(R.id.add_room_fab),
+                "fab_transition"
+            )
+            startActivity(intent, options.toBundle())
         }
     }
 }
