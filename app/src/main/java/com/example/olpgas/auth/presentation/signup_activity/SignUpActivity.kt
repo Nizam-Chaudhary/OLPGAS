@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import com.example.olpgas.R
 import com.example.olpgas.auth.presentation.login_activity.LoginActivity
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.core.util.Error
@@ -157,6 +158,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun onLoginClick() {
         binding.btnLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+            overridePendingTransition(R.anim.slide_left, R.anim.slide_left)
             finish()
         }
     }
