@@ -30,7 +30,7 @@ class ViewRoomDetailsRepositoryImpl(
         return supabaseRoomDetails.getFullRoomDetailsImages(ownerIds, id)
     }
 
-    override suspend fun deleteAllFromLocal() {
-        database.getFullRoomDetailsDao().deleteAll()
+    override suspend fun delete(id: Int) {
+        database.getFullRoomDetailsDao().delete(id)
     }
 }

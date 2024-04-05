@@ -12,7 +12,7 @@ import com.example.olpgas.databinding.ImageRawBinding
 
 class AddRemoveImageViewPagerAdapter(
     private val context: Context,
-    private val images: List<String>,
+    private val images: List<Any>,
     var onItemClickListener: OnItemClickListener? = null
     ) : RecyclerView.Adapter<AddRemoveImageViewPagerAdapter.MyViewHolder>() {
     class MyViewHolder(view: ImageRawBinding) : RecyclerView.ViewHolder(view.root) {

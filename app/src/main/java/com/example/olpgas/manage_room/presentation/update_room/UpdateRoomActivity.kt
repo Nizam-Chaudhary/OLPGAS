@@ -50,6 +50,8 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
         intent.getIntExtra("id",0)
     }
 
+    private lateinit var adapter: AddRemoveImageViewPagerAdapter
+
     private val viewModel: UpdateRoomViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -473,7 +475,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
             binding.updateChipGroupAmenities.addView(binding.updateAddAmenities)
             binding.updateChipGroupSuitableFor.addView(binding.updateAddSuitableFor)
 
-            val adapter = AddRemoveImageViewPagerAdapter(this, it.urls)
+            adapter = AddRemoveImageViewPagerAdapter(this, it.urls)
             adapter.onItemClickListener = this
             binding.updateRoomImageViewpager.adapter = adapter
         }
@@ -486,7 +488,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
     }
 
     override fun onAddImageItemClick() {
-        Toast.makeText(this, "Add Image", Toast.LENGTH_SHORT).show()
+        getImagesPermission()
     }
 
     override fun onRemoveImageItemClick(position: Int) {
@@ -552,6 +554,7 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
             val selectedImageUri = data?.data ?: return // Handle cancelled selection
             try {
                 val imageByteArray = getByteArrayFromImageUri(selectedImageUri)
+                TODO()
 
                 if(imageByteArray != null) {
                     Toast.makeText(this, "Image Selected Successfully", Toast.LENGTH_SHORT).show()

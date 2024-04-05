@@ -2,6 +2,7 @@ package com.example.olpgas.browse_rooms.domain.use_case
 
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
 import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
+import com.example.olpgas.manage_room.data.remote.SupabaseManageRoom
 import com.example.olpgas.view_room_details.data.local.database.entities.FullRoomDetailsLocal
 import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
 
@@ -10,8 +11,6 @@ class RefreshLocalCacheUseCase(
     private val viewRoomDetailsRepository: ViewRoomDetailsRepository
 ) {
     suspend operator fun invoke(){
-        browseRoomsRepository.deleteAllFromLocal()
-        viewRoomDetailsRepository.deleteAllFromLocal()
         val allFullRoomDetails = viewRoomDetailsRepository.getAllFullRoomDetails()
 
         allFullRoomDetails?.let {
@@ -71,6 +70,16 @@ class RefreshLocalCacheUseCase(
                         )
                     )
                 }
+            }
+        }
+
+        val localRoomIds = browseRoomsRepository.getAllRoomIdsFromLocal()
+        val remoteRoomIds = browseRoomsRepository.getAllRoomIds()
+
+        for(localId in localRoomIds) {
+            if (remoteRoomIds != null && !remoteRoomIds.contains(SupabaseManageRoom.Id(localId))) {
+                browseRoomsRepository.delete(localId)
+                viewRoomDetailsRepository.delete(localId)
             }
         }
     }

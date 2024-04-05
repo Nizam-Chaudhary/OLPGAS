@@ -21,8 +21,8 @@ interface FullRoomDetailsDao {
     @Query("SELECT * FROM FullRoomDetailsLocal WHERE id = :id ")
     fun getFullRoomDetails(id: Int) : LiveData<FullRoomDetailsLocal>
 
-    @Query("DELETE FROM FullRoomDetailsLocal")
-    suspend fun deleteAll()
+    @Query("DELETE FROM FullRoomDetailsLocal where id = :id")
+    suspend fun delete(id: Int)
 
     @Query("UPDATE FullRoomDetailsLocal SET roomName = :newRoomName WHERE id = :id")
     suspend fun updateRoomName(id: Int, newRoomName: String)

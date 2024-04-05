@@ -14,5 +14,5 @@ interface ViewRoomDetailsRepository {
 
     suspend fun getAllFullRoomDetailsImages(ownerIds: String, id: Int) : List<String>?
 
-    suspend fun deleteAllFromLocal()
+    suspend fun delete(id: Int)
 }

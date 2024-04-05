@@ -20,8 +20,11 @@ interface AllRoomsDetailsDao {
     @Query("SELECT * FROM AllRoomsDetailsLocal WHERE ownerId = :ownerId")
     fun getAllOwnedRooms(ownerId: String) : LiveData<List<AllRoomsDetailsLocal>>
 
-    @Query("DELETE FROM AllRoomsDetailsLocal")
-    suspend fun deleteAll()
+    @Query("DELETE FROM AllRoomsDetailsLocal where id = :id")
+    suspend fun delete(id: Int)
+
+    @Query("Select id from AllRoomsDetailsLocal")
+    suspend fun getAllRoomIds() : List<Int>
 
     @Query("UPDATE AllRoomsDetailsLocal SET roomName = :newRoomName WHERE id = :id")
     suspend fun updateRoomName(id: Int, newRoomName: String)

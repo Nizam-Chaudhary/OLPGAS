@@ -6,6 +6,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
 import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
+import com.example.olpgas.manage_room.data.remote.SupabaseManageRoom
 import com.example.olpgas.view_room_details.data.local.database.entities.FullRoomDetailsLocal
 import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
 import dagger.assisted.Assisted
@@ -23,6 +24,15 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
             cacheFullRoomDetails()
             cacheBrowseRoomDetails()
 
+            val localRoomIds = browseRoomsRepository.getAllRoomIdsFromLocal()
+            val remoteRoomIds = browseRoomsRepository.getAllRoomIds()
+
+            for(localId in localRoomIds) {
+                if (remoteRoomIds != null && !remoteRoomIds.contains(SupabaseManageRoom.Id(localId))) {
+                    browseRoomsRepository.delete(localId)
+                    viewRoomDetailsRepository.delete(localId)
+                }
+            }
             Result.success()
         }catch (e: Exception) {
             e.printStackTrace()
@@ -31,7 +41,6 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
     }
 
     private suspend fun cacheBrowseRoomDetails() {
-        browseRoomsRepository.deleteAllFromLocal()
         val allRoomsDetails = browseRoomsRepository.getRoomsForListing()
 
         allRoomsDetails?.let {
@@ -61,7 +70,6 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
     }
 
     private suspend fun cacheFullRoomDetails() {
-        viewRoomDetailsRepository.deleteAllFromLocal()
         val allFullRoomDetails = viewRoomDetailsRepository.getAllFullRoomDetails()
 
         allFullRoomDetails?.let {
