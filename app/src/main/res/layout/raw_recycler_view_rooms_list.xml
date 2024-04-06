@@ -123,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="12dp"
+                android:visibility="gone"
                 android:contentDescription="@string/ImageButton"
                 android:src="@drawable/ic_star" />
 
@@ -132,6 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="4.5"
+                android:visibility="gone"
                 android:textAlignment="viewEnd" />
 
         </LinearLayout>

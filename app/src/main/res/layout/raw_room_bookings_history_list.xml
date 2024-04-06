@@ -97,7 +97,7 @@
                     android:id="@+id/heading_sharedBy_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/shared_by"
+                    android:text="@string/booking_for"
                     android:textColor="@color/textColor"
                     android:textSize="16sp"
                     android:textStyle="bold"

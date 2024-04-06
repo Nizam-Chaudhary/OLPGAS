@@ -12,7 +12,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_behavior="@string/searchbar_scrolling_view_behavior"
-            android:paddingTop="70dp"
             android:clipToPadding="true"
             tools:context=".browse_rooms.presentation.HomeFragment">
 
@@ -34,7 +33,7 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.google.android.material.appbar.AppBarLayout
+    <!--<com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:statusBarForeground="?attr/colorSurface">
@@ -82,6 +81,6 @@
                 app:chipIcon="@drawable/ic_arrow_down" />
         </LinearLayout>
 
-    </com.google.android.material.search.SearchView>
+    </com.google.android.material.search.SearchView>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

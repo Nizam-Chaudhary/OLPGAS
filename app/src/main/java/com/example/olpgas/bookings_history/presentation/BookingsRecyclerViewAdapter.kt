@@ -23,7 +23,7 @@ class BookingsRecyclerViewAdapter(
     var roomsData: List<RoomBookingLocal>,
     private val context: Context,
 )  : RecyclerView.Adapter<BookingsRecyclerViewAdapter.ViewHolder>(){
-    class ViewHolder(view: RawRoomBookingsHistoryListBinding) : RecyclerView.ViewHolder(view.root) {
+    class ViewHolder(view: RawBookedRoomListBinding) : RecyclerView.ViewHolder(view.root) {
         val roomName = view.bookedRoomName
         val imageView = view.bookedRoomImageRaw
         val location = view.bookedRoomLocation
@@ -34,11 +34,10 @@ class BookingsRecyclerViewAdapter(
         val nextRentDate = view.bookedRoomNextRentTv
         val deposit = view.bookedRoomDepositTv
         val depositStatus = view.bookedRoomDepositStatusChip
-        val bookerName = view.roomBookerName
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(RawRoomBookingsHistoryListBinding.inflate(LayoutInflater.from(context), parent, false))
+        return ViewHolder(RawBookedRoomListBinding.inflate(LayoutInflater.from(context), parent, false))
     }
 
     override fun getItemCount() = roomsData.size
@@ -48,14 +47,13 @@ class BookingsRecyclerViewAdapter(
 
         holder.roomName.text = currentData.roomName
         holder.bookingDate.text = currentData.bookingDate
-        holder.rent.text = ((currentData.rentAmount / currentData.shareableBy) * currentData.occupiedBy).toString()
-        holder.occupiedBy.text = currentData.occupiedBy.toString() + " Person"
-        holder.deposit.text  = ((currentData.deposit / currentData.shareableBy) * currentData.occupiedBy).toString()
+        holder.rent.text = ((currentData.rentAmount / currentData.shareableBy) * currentData.totalStayingPersons).toString() + "/-"
+        holder.occupiedBy.text = currentData.totalStayingPersons.toString() + " Person"
+        holder.deposit.text  = ((currentData.deposit / currentData.shareableBy) * currentData.totalStayingPersons).toString() + "/-"
         holder.rentStatus.text = currentData.paymentStatus
         holder.nextRentDate.text = currentData.nextPaymentDate
         holder.depositStatus.text = currentData.paymentStatus
         holder.location.text = currentData.city
-        holder.bookerName.text = currentData.payerName
 
         Glide.with(context)
             .load(currentData.imageUrl)

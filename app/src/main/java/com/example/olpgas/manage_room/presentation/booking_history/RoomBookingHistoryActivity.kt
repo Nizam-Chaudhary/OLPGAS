@@ -41,7 +41,7 @@ class RoomBookingHistoryActivity : AppCompatActivity() {
     private fun setAdapter() {
         viewModel.onEvent(RoomBookingEvent.OnCreate)
 
-        val adapter = BookingsRecyclerViewAdapter(emptyList(), this)
+        val adapter = RoomBookingsRecyclerViewAdapter(emptyList(), this)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
 

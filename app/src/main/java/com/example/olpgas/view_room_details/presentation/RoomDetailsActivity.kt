@@ -115,6 +115,10 @@ class RoomDetailsActivity : AppCompatActivity() {
                     viewBinding.occupancySpinner.adapter = adapter
                 }
 
+                if(occupiedBy == shareable) {
+                    Toast.makeText(this, "Room completely booked", Toast.LENGTH_SHORT).show()
+                }
+
                 MaterialAlertDialogBuilder(this)
                     .setTitle("Book Room")
                     .setMessage("Book Room for persons")
