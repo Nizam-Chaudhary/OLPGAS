@@ -86,6 +86,7 @@ class RoomDetailsActivity : AppCompatActivity() {
             binding.roomAreaTv.text = "${it.roomArea} Sq. Ft."
             binding.roomTypeTv.text = "${it.roomType}"
             binding.detailedRoomAbout.text = it.description
+            binding.contactDetailsTv.text = it.phoneNumber
 
             val adapter = RoomImageRecyclerPagerAdapter(it.urls, this)
             binding.detailedRoomImageViewpager.adapter = adapter

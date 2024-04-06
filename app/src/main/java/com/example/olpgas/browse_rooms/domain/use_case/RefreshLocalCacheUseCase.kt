@@ -44,6 +44,7 @@ class RefreshLocalCacheUseCase(
                                 item.bookingStatus,
                                 item.ratings,
                                 item.occupiedBy,
+                                item.phoneNumber,
                                 fullRoomImages
                             )
                         )

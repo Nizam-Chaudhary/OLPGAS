@@ -54,6 +54,7 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
                                 item.bookingStatus,
                                 item.ratings,
                                 item.occupiedBy,
+                                item.phoneNumber,
                                 fullRoomImages
                             )
                         )

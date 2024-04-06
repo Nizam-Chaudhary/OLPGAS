@@ -26,5 +26,6 @@ data class FullRoomDetailsLocal(
     val bookingStatus: String,
     val ratings: Float,
     val occupiedBy: Int,
+    val phoneNumber: String,
     val urls: List<String>
 )
