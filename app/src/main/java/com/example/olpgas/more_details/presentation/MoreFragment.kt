@@ -60,12 +60,18 @@ class MoreFragment : Fragment() {
         }
 
         viewModel.userProfileImageState.observe(viewLifecycleOwner) {
-            if(it.isNotEmpty()) {
+            if(it != null) {
                 Glide.with(requireContext())
                     .load(it)
                     .into(binding.moreProfile)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        setState()
     }
 
     private fun onThemeBtn() {
