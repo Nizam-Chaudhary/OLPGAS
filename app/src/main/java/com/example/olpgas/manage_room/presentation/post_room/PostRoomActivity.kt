@@ -103,6 +103,7 @@ class PostRoomActivity : AppCompatActivity() {
             if (currentItem != RecyclerView.NO_POSITION) {
                 // Remove the image URL from the list of selected images
                 val removedImageUrl = selectedImages.removeAt(currentItem).toUri()
+                viewModel.onEvent(PostRoomEvent.RemovedImage(currentItem))
                 // Notify the adapter that the dataset has changed
                 adapter.notifyDataSetChanged()
 

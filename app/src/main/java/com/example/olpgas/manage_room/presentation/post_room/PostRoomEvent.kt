@@ -32,6 +32,7 @@ sealed class PostRoomEvent {
             return image.contentHashCode()
         }
     }
+    data class RemovedImage(val position: Int): PostRoomEvent()
 
     data object OnSubmit: PostRoomEvent()
 }

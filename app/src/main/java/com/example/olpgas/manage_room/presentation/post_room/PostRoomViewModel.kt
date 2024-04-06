@@ -131,6 +131,9 @@ class PostRoomViewModel @Inject constructor(
             is PostRoomEvent.AddedImage -> {
                 _imagesState.value?.add(event.image)
             }
+            is PostRoomEvent.RemovedImage -> {
+                _imagesState.value?.removeAt(event.position)
+            }
             is PostRoomEvent.AddedSuitableFor -> {
                 _suitableForState.value?.add(event.suitableFor)
             }
