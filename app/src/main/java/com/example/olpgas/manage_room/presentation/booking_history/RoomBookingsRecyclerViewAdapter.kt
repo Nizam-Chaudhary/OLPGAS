@@ -1,4 +1,4 @@
-package com.example.olpgas.bookings_history.presentation
+package com.example.olpgas.manage_room.presentation.booking_history
 
 import android.app.Activity
 import android.content.Context
@@ -18,10 +18,10 @@ import com.example.olpgas.core.util.getCircularProgressDrawable
 import com.example.olpgas.databinding.RawBookedRoomListBinding
 import com.example.olpgas.view_room_details.presentation.RoomDetailsActivity
 
-class BookingsRecyclerViewAdapter(
+class RoomBookingsRecyclerViewAdapter(
     var roomsData: List<RoomBookingLocal>,
     private val context: Context,
-)  : RecyclerView.Adapter<BookingsRecyclerViewAdapter.ViewHolder>(){
+)  : RecyclerView.Adapter<RoomBookingsRecyclerViewAdapter.ViewHolder>(){
     class ViewHolder(view: RawBookedRoomListBinding) : RecyclerView.ViewHolder(view.root) {
         val roomName = view.bookedRoomName
         val imageView = view.bookedRoomImageRaw
@@ -33,6 +33,8 @@ class BookingsRecyclerViewAdapter(
         val nextRentDate = view.bookedRoomNextRentTv
         val deposit = view.bookedRoomDepositTv
         val depositStatus = view.bookedRoomDepositStatusChip
+        val card = view.card
+        val materialDivider = view.materialDivider
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

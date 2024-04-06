@@ -20,6 +20,7 @@ import com.example.olpgas.R
 import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
 import com.example.olpgas.core.util.getCircularProgressDrawable
 import com.example.olpgas.databinding.RawMangeRoomBinding
+import com.example.olpgas.manage_room.presentation.booking_history.RoomBookingHistoryActivity
 import com.example.olpgas.manage_room.presentation.update_room.UpdateRoomActivity
 import com.example.olpgas.view_room_details.presentation.RoomDetailsActivity
 import java.util.Locale
@@ -124,11 +125,11 @@ class OwnedRoomsRecyclerViewAdapter(
         }
 
         holder.historyBtn.setOnClickListener {
-
+            onHistoryClick(holder.roomImage)
         }
 
         holder.historyTv.setOnClickListener {
-
+            onHistoryClick(holder.roomImage)
         }
     }
 
@@ -143,8 +144,12 @@ class OwnedRoomsRecyclerViewAdapter(
         context.startActivity(intent, options.toBundle())
     }
 
-    private fun onHistoryClick() {
-
+    private fun onHistoryClick(roomImage: ImageView) {
+        val intent = Intent(context, RoomBookingHistoryActivity::class.java)
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity, roomImage, roomImage.transitionName
+        )
+        context.startActivity(intent, options.toBundle())
     }
 
     private fun onDetailsClick(

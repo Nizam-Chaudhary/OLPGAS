@@ -9,5 +9,7 @@ interface RoomBookingRepository {
     suspend fun getAllBookings() : List<BookingView>?
     suspend fun getAllRoomBookingsUserFromLocal(userId: String) : LiveData<List<RoomBookingLocal>>
 
+    suspend fun getAllRoomBookingsUserFromLocalForOwner(userId: String) : LiveData<List<RoomBookingLocal>>
+
     suspend fun getRoomsImageForListing(ownerId: String, id: Int) : String?
 }

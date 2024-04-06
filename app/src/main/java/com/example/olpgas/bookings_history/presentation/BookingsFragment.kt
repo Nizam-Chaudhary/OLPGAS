@@ -41,6 +41,12 @@ class BookingsFragment : Fragment() {
         viewModel.allBookings.observe(viewLifecycleOwner) {
             adapter.roomsData = it
             adapter.notifyDataSetChanged()
+
+            if(it.isEmpty()) {
+                binding.noBookings.visibility = View.VISIBLE
+            } else {
+                binding.noBookings.visibility = View.GONE
+            }
         }
     }
 }

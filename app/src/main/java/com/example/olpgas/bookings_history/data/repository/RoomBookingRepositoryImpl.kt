@@ -26,4 +26,8 @@ class RoomBookingRepositoryImpl(
     override suspend fun getRoomsImageForListing(ownerId: String, id: Int): String? {
         return supabaseBookings.getRoomsImageForListing(ownerId, id)
     }
+
+    override suspend fun getAllRoomBookingsUserFromLocalForOwner(userId: String): LiveData<List<RoomBookingLocal>> {
+        return database.getRoomBookingDao().getAllRoomBookingsUserForOwner(userId)
+    }
 }

@@ -11,6 +11,7 @@ import com.example.olpgas.manage_room.data.remote.SupabaseManageRoom
 import com.example.olpgas.manage_room.data.repository.ManageRoomRepositoryImpl
 import com.example.olpgas.manage_room.domain.repository.ManageRoomRepository
 import com.example.olpgas.manage_room.domain.use_case.GetAllOwnedRoomsUseCase
+import com.example.olpgas.manage_room.domain.use_case.GetBookingsDataForOwnerUseCase
 import com.example.olpgas.manage_room.domain.use_case.PostRoomUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.AddImageUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.RemoveImageUseCase
@@ -26,6 +27,7 @@ import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateRoomType
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateRoomUseCases
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateShareableByUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateSuitableForUseCase
+import com.example.olpgas.user_profile.data.local.UserProfileSharedPreferences
 import com.example.olpgas.view_room_details.data.local.database.FullRoomDetailsDatabase
 import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
 import com.example.olpgas.view_room_details.domain.use_case.GetFullRoomDetailsFromLocalDBUseCase
@@ -110,5 +112,14 @@ object ManageRoomModule {
             connectivityObserver,
             getFullRoomDetailsFromLocalDBUseCase
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetBookingsDataForOwnerUseCase(
+        repository: RoomBookingRepository,
+        userProfileSharedPreferences: UserProfileSharedPreferences
+    ) : GetBookingsDataForOwnerUseCase {
+        return GetBookingsDataForOwnerUseCase(repository, userProfileSharedPreferences)
     }
 }

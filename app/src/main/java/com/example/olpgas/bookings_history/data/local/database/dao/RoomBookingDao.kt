@@ -13,4 +13,7 @@ interface RoomBookingDao {
 
     @Query("SELECT * FROM RoomBookingLocal Where userId = :userId")
     fun getAllRoomBookingsUser(userId: String) : LiveData<List<RoomBookingLocal>>
+
+    @Query("SELECT * FROM RoomBookingLocal Where ownerId = :userId")
+    fun getAllRoomBookingsUserForOwner(userId: String) : LiveData<List<RoomBookingLocal>>
 }

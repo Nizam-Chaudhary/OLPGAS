@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".manage_room.ui.BookedRoomActivity"
+            android:name=".manage_room.presentation.booking_history.RoomBookingHistoryActivity"
             android:exported="false" />
         <activity
             android:name=".manage_room.presentation.update_room.UpdateRoomActivity"
