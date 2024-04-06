@@ -17,7 +17,7 @@ class SupabaseBookRoom {
            SupabaseClient.client.postgrest.from("BookMaster")
                .insert(booking)
 
-           SupabaseClient.client.postgrest.from("RoomMaster")
+           /*SupabaseClient.client.postgrest.from("RoomMaster")
                .update({
                    set("bookingStatus", roomBookingStatus.value)
                }) {
@@ -33,7 +33,7 @@ class SupabaseBookRoom {
                    filter {
                        eq("id", booking.roomId)
                    }
-               }
+               }*/
        }catch (e: Exception) {
            e.printStackTrace()
            Log.e(TAG, "Error Booking Room")

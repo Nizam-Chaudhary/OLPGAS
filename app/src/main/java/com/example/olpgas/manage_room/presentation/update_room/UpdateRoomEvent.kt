@@ -41,4 +41,21 @@ sealed class UpdateRoomEvent{
 
     data class AddSuitableFor(val suitableFor: String) : UpdateRoomEvent()
     data class RemoveSuitableFor(val suitableFor: String) : UpdateRoomEvent()
+
+    data class RemoveImage(val position: Int) : UpdateRoomEvent()
+
+    data class AddImage(val image: ByteArray) : UpdateRoomEvent() {
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as AddImage
+
+            return image.contentEquals(other.image)
+        }
+
+        override fun hashCode(): Int {
+            return image.contentHashCode()
+        }
+    }
 }

@@ -1,17 +1,10 @@
 package com.example.olpgas.view_room_details.data.local.database.dao
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import com.example.olpgas.browse_rooms.data.local.database.entities.AllRoomsDetailsLocal
-import com.example.olpgas.core.data.remote.SupabaseClient
-import com.example.olpgas.manage_room.data.remote.SupabaseManageRoom
-import com.example.olpgas.manage_room.domain.util.Constants
 import com.example.olpgas.view_room_details.data.local.database.entities.FullRoomDetailsLocal
-import io.github.jan.supabase.postgrest.postgrest
 
 @Dao
 interface FullRoomDetailsDao {
@@ -91,4 +84,6 @@ interface FullRoomDetailsDao {
         id: Int, suitableFor: List<String>
     )
 
+    @Query("UPDATE FullRoomDetailsLocal SET  urls = :imageUrls WHERE id = :id")
+    suspend fun updateImagesUrl(id: Int, imageUrls: List<String>)
 }

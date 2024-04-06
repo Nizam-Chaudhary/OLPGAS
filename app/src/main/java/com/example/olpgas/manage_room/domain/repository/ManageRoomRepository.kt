@@ -145,4 +145,12 @@ interface ManageRoomRepository {
         id: Int,
         suitableFor: List<String>
     )
+
+    suspend fun removeImage(
+        ownerId: String,
+        id: Int,
+        fileName: String
+    )
+
+    suspend fun updateImagesUrl(id: Int, imageUrls: List<String>)
 }

@@ -1,5 +1,6 @@
 package com.example.olpgas.manage_room.domain.use_case.update_room
 
+import com.example.olpgas.browse_rooms.domain.use_case.RefreshLocalCacheUseCase
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.view_room_details.domain.use_case.GetFullRoomDetailsFromLocalDBUseCase
 
@@ -15,6 +16,8 @@ data class UpdateRoomUseCases(
     val updateAmenityUseCase: UpdateAmenityUseCase,
     val updateSuitableForUseCase: UpdateSuitableForUseCase,
     val removeRoomUseCase: RemoveRoomUseCase,
+    val removeImageUseCase: RemoveImageUseCase,
+    val refreshLocalCacheUseCase: RefreshLocalCacheUseCase,
     val connectivityObserver: ConnectivityObserver,
     val getFullRoomDetailsFromLocalDBUseCase: GetFullRoomDetailsFromLocalDBUseCase
 )

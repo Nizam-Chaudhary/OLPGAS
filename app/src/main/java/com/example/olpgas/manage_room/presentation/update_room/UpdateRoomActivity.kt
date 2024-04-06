@@ -491,7 +491,28 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
     }
 
     override fun onRemoveImageItemClick(position: Int) {
-        Toast.makeText(this, "Remove Image", Toast.LENGTH_SHORT).show()
+        if(viewModel.connectionStatus.value == ConnectivityObserver.State.Available) {
+            if(viewModel.allRoomDetailsState.value?.urls?.size == 1) {
+                Toast.makeText(this, "cannot remove last image", Toast.LENGTH_SHORT).show()
+            } else {
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Remove Image")
+                    .setMessage("Do you want to remove image?")
+                    .setPositiveButton("Yes") {_,_ ->
+                        viewModel.onEvent(UpdateRoomEvent.RemoveImage(position))
+                        val images = mutableListOf<String>()
+                        for(image in viewModel.allRoomDetailsState.value?.urls!!) {
+                            images.add(image)
+                        }
+                        images.removeAt(position)
+                        adapter.images = images
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .show()
+            }
+        } else {
+            NetworkUnavailableDialog(this).show
+        }
     }
 
     private fun picImages() {

@@ -59,4 +59,6 @@ interface AllRoomsDetailsDao {
 
     @Query("DELETE FROM AllRoomsDetailsLocal WHERE id = :id")
     suspend fun removeRoom(id: Int)
+
+
 }

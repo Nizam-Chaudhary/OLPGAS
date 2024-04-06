@@ -2,13 +2,17 @@ package com.example.olpgas.core.di
 
 import android.app.Application
 import android.content.SharedPreferences
+import com.example.olpgas.bookings_history.domain.repository.RoomBookingRepository
 import com.example.olpgas.browse_rooms.data.local.database.BrowseRoomDatabase
+import com.example.olpgas.browse_rooms.domain.repository.BrowseRoomsRepository
+import com.example.olpgas.browse_rooms.domain.use_case.RefreshLocalCacheUseCase
 import com.example.olpgas.core.util.ConnectivityObserver
 import com.example.olpgas.manage_room.data.remote.SupabaseManageRoom
 import com.example.olpgas.manage_room.data.repository.ManageRoomRepositoryImpl
 import com.example.olpgas.manage_room.domain.repository.ManageRoomRepository
 import com.example.olpgas.manage_room.domain.use_case.GetAllOwnedRoomsUseCase
 import com.example.olpgas.manage_room.domain.use_case.PostRoomUseCase
+import com.example.olpgas.manage_room.domain.use_case.update_room.RemoveImageUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.RemoveRoomUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateAddressUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateAmenityUseCase
@@ -22,6 +26,7 @@ import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateRoomUseC
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateShareableByUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateSuitableForUseCase
 import com.example.olpgas.view_room_details.data.local.database.FullRoomDetailsDatabase
+import com.example.olpgas.view_room_details.domain.repository.ViewRoomDetailsRepository
 import com.example.olpgas.view_room_details.domain.use_case.GetFullRoomDetailsFromLocalDBUseCase
 import dagger.Module
 import dagger.Provides
@@ -81,6 +86,9 @@ object ManageRoomModule {
         application: Application,
         manageRoomRepository: ManageRoomRepository,
         connectivityObserver: ConnectivityObserver,
+        browseRoomsRepository: BrowseRoomsRepository,
+        viewRoomsRepository: ViewRoomDetailsRepository,
+        roomBookingRepository: RoomBookingRepository,
         getFullRoomDetailsFromLocalDBUseCase: GetFullRoomDetailsFromLocalDBUseCase
     ) : UpdateRoomUseCases{
         return UpdateRoomUseCases(
@@ -95,6 +103,8 @@ object ManageRoomModule {
             UpdateAmenityUseCase(manageRoomRepository),
             UpdateSuitableForUseCase(manageRoomRepository),
             RemoveRoomUseCase(application),
+            RemoveImageUseCase(manageRoomRepository),
+            RefreshLocalCacheUseCase(browseRoomsRepository, viewRoomsRepository, roomBookingRepository),
             connectivityObserver,
             getFullRoomDetailsFromLocalDBUseCase
         )

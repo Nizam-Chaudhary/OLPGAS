@@ -160,4 +160,16 @@ class ManageRoomRepositoryImpl(
     override suspend fun updateSuitableForFullRoomDetails(id: Int, suitableFor: List<String>) {
         fullRoomDetailsDatabase.getFullRoomDetailsDao().updateSuitableFor(id, suitableFor)
     }
+
+    override suspend fun removeImage(
+        ownerId: String,
+        id: Int,
+        fileName: String
+    ) {
+        supabaseManageRoom.removeImage(ownerId, id, fileName)
+    }
+
+    override suspend fun updateImagesUrl(id: Int, imageUrls: List<String>) {
+        fullRoomDetailsDatabase.getFullRoomDetailsDao().updateImagesUrl(id, imageUrls)
+    }
 }

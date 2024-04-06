@@ -287,6 +287,21 @@ class SupabaseManageRoom {
         }
     }
 
+    suspend fun removeImage(
+        ownerId: String,
+        id: Int,
+        fileName: String
+    ) {
+        try {
+            val bucket = SupabaseClient.client.storage.from(Constants.ROOM_PICS_BUCKET)
+
+            bucket.delete("$ownerId/$id/$fileName")
+        }catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(TAG, "Error: ${e.message}")
+        }
+    }
+
     @Serializable
     data class Id(val id: Int)
 }
