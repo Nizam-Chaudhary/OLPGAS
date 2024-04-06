@@ -240,6 +240,30 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:text="@string/booking_status"
+                    android:paddingVertical="4dp"/>
+
+                <TextView
+                    android:id="@+id/booking_status_tv"
+                    android:text="@string/area"
+                    android:paddingVertical="4dp"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/Orange"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:text="Occupancy Left"
+                    android:paddingVertical="4dp"/>
+
+                <TextView
+                    android:id="@+id/occupancy_left_tv"
+                    android:text="@string/area"
+                    android:paddingVertical="4dp"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/Orange"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:text="@string/contact_details"
                     android:paddingVertical="4dp"/>
 

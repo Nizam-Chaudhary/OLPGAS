@@ -14,7 +14,7 @@ interface AllRoomsDetailsDao {
     @Upsert
     suspend fun upsert(allRoomsDetails: AllRoomsDetailsLocal)
 
-    @Query("SELECT * FROM AllRoomsDetailsLocal where not bookingStatus = 'Completely Booked'")
+    @Query("SELECT * FROM AllRoomsDetailsLocal")
     fun getAllRoomDetails() : LiveData<List<AllRoomsDetailsLocal>>
 
     @Query("SELECT * FROM AllRoomsDetailsLocal WHERE ownerId = :ownerId")

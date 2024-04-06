@@ -87,6 +87,12 @@ class RoomDetailsActivity : AppCompatActivity() {
             binding.roomTypeTv.text = "${it.roomType}"
             binding.detailedRoomAbout.text = it.description
             binding.contactDetailsTv.text = it.phoneNumber
+            binding.bookingStatusTv.text = it.bookingStatus
+            val shareable = viewModel.allRoomDetailsState.value?.shareable
+            val occupiedBy = viewModel.allRoomDetailsState.value?.occupiedBy
+            if(shareable != null && occupiedBy != null) {
+                binding.occupancyLeftTv.text = (shareable - occupiedBy).toString() + " Person"
+            }
 
             val adapter = RoomImageRecyclerPagerAdapter(it.urls, this)
             binding.detailedRoomImageViewpager.adapter = adapter
@@ -116,7 +122,7 @@ class RoomDetailsActivity : AppCompatActivity() {
                     .setPositiveButton("Book") {_,_ ->
                         val todayDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
-                        Toast.makeText(this, todayDate, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Room Booked", Toast.LENGTH_SHORT).show()
                         viewModel.onEvent(RoomDetailsEvent.BookRoom(viewBinding.occupancySpinner.selectedItem.toString().toInt(), todayDate))
                     }
                     .setNegativeButton("Cancel", null)

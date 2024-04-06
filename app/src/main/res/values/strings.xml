@@ -103,6 +103,7 @@
     <string name="other">Other</string>
     <string name="imageview">ImageView</string>
     <string name="contact_details">Contact Details</string>
+    <string name="booking_status">Booking Status</string>
 
 
     <string-array name="room_type">

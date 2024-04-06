@@ -19,6 +19,7 @@ class BookingsRecyclerViewAdapter(
     private val context: Context,
 )  : RecyclerView.Adapter<BookingsRecyclerViewAdapter.ViewHolder>(){
     class ViewHolder(view: RawBookedRoomListBinding) : RecyclerView.ViewHolder(view.root) {
+        val roomName = view.bookedRoomName
         val imageView = view.bookedRoomImageRaw
         val location = view.bookedRoomLocation
         val occupiedBy = view.bookedRoomSharedBy
@@ -28,8 +29,6 @@ class BookingsRecyclerViewAdapter(
         val nextRentDate = view.bookedRoomNextRentTv
         val deposit = view.bookedRoomDepositTv
         val depositStatus = view.bookedRoomDepositStatusChip
-        val visibilityBtn = view.visibilityBtn
-        val hideView = view.hideView
         val card = view.card
         val materialDivider = view.materialDivider
     }
@@ -43,29 +42,15 @@ class BookingsRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentData = roomsData[position]
 
+        holder.roomName.text = currentData.roomName
         holder.bookingDate.text = currentData.bookingDate
         holder.rent.text = ((currentData.rentAmount / currentData.shareableBy) * currentData.occupiedBy).toString()
-        holder.occupiedBy.text = currentData.occupiedBy.toString()
-        holder.deposit.text  = currentData.deposit.toString()
+        holder.occupiedBy.text = currentData.occupiedBy.toString() + " Person"
+        holder.deposit.text  = ((currentData.deposit / currentData.shareableBy) * currentData.occupiedBy).toString()
         holder.rentStatus.text = currentData.paymentStatus
         holder.nextRentDate.text = currentData.nextPaymentDate
         holder.depositStatus.text = currentData.paymentStatus
         holder.location.text = currentData.city
-
-
-        holder.visibilityBtn.setOnClickListener {
-            if (holder.hideView.visibility == View.VISIBLE) {
-                TransitionManager.beginDelayedTransition(holder.card, AutoTransition())
-                holder.materialDivider.visibility = View.GONE
-                holder.hideView.visibility = View.GONE
-                holder.visibilityBtn.setImageResource(R.drawable.ic_arrow_up)
-            } else {
-                TransitionManager.beginDelayedTransition(holder.card, AutoTransition())
-                holder.materialDivider.visibility = View.VISIBLE
-                holder.hideView.visibility = View.VISIBLE
-                holder.visibilityBtn.setImageResource(R.drawable.ic_arrow_down)
-            }
-        }
 
 
         Glide.with(context)
