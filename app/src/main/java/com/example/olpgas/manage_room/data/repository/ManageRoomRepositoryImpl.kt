@@ -172,4 +172,8 @@ class ManageRoomRepositoryImpl(
     override suspend fun updateImagesUrl(id: Int, imageUrls: List<String>) {
         fullRoomDetailsDatabase.getFullRoomDetailsDao().updateImagesUrl(id, imageUrls)
     }
+
+    override suspend fun addImage(ownerId: String, id: Int, imageByteArray: ByteArray) {
+        supabaseManageRoom.addImage(ownerId, id, imageByteArray)
+    }
 }

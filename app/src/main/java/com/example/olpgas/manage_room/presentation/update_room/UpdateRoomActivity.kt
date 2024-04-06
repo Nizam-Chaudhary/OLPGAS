@@ -574,10 +574,10 @@ class UpdateRoomActivity : AppCompatActivity(), AddRemoveImageViewPagerAdapter.O
             val selectedImageUri = data?.data ?: return // Handle cancelled selection
             try {
                 val imageByteArray = getByteArrayFromImageUri(selectedImageUri)
-                TODO()
 
                 if(imageByteArray != null) {
                     Toast.makeText(this, "Image Selected Successfully", Toast.LENGTH_SHORT).show()
+                    viewModel.onEvent(UpdateRoomEvent.AddImage(imageByteArray))
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

@@ -17,6 +17,7 @@ data class UpdateRoomUseCases(
     val updateSuitableForUseCase: UpdateSuitableForUseCase,
     val removeRoomUseCase: RemoveRoomUseCase,
     val removeImageUseCase: RemoveImageUseCase,
+    val addImageUseCase: AddImageUseCase,
     val refreshLocalCacheUseCase: RefreshLocalCacheUseCase,
     val connectivityObserver: ConnectivityObserver,
     val getFullRoomDetailsFromLocalDBUseCase: GetFullRoomDetailsFromLocalDBUseCase

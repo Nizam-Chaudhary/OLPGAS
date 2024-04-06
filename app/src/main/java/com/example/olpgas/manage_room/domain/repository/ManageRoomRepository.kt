@@ -154,4 +154,10 @@ interface ManageRoomRepository {
     )
 
     suspend fun updateImagesUrl(id: Int, imageUrls: List<String>)
+
+    suspend fun addImage(
+        ownerId: String,
+        id: Int,
+        imageByteArray: ByteArray
+    )
 }

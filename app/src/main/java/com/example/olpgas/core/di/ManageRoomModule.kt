@@ -12,6 +12,7 @@ import com.example.olpgas.manage_room.data.repository.ManageRoomRepositoryImpl
 import com.example.olpgas.manage_room.domain.repository.ManageRoomRepository
 import com.example.olpgas.manage_room.domain.use_case.GetAllOwnedRoomsUseCase
 import com.example.olpgas.manage_room.domain.use_case.PostRoomUseCase
+import com.example.olpgas.manage_room.domain.use_case.update_room.AddImageUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.RemoveImageUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.RemoveRoomUseCase
 import com.example.olpgas.manage_room.domain.use_case.update_room.UpdateAddressUseCase
@@ -104,6 +105,7 @@ object ManageRoomModule {
             UpdateSuitableForUseCase(manageRoomRepository),
             RemoveRoomUseCase(application),
             RemoveImageUseCase(manageRoomRepository),
+            AddImageUseCase(manageRoomRepository),
             RefreshLocalCacheUseCase(browseRoomsRepository, viewRoomsRepository, roomBookingRepository),
             connectivityObserver,
             getFullRoomDetailsFromLocalDBUseCase

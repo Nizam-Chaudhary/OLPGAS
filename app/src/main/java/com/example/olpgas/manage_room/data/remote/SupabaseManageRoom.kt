@@ -10,6 +10,7 @@ import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.postgrest.query.Columns
 import io.github.jan.supabase.storage.storage
 import kotlinx.serialization.Serializable
+import java.util.UUID
 import kotlin.time.Duration
 
 class SupabaseManageRoom {
@@ -303,6 +304,22 @@ class SupabaseManageRoom {
             val bucket = SupabaseClient.client.storage.from(Constants.ROOM_PICS_BUCKET)
 
             bucket.delete("$ownerId/$id/$fileName")
+        }catch (e: Exception) {
+            e.printStackTrace()
+            Log.e(TAG, "Error: ${e.message}")
+        }
+    }
+
+    suspend fun addImage(
+        ownerId: String,
+        id: Int,
+        imageByteArray: ByteArray
+    ) {
+        try {
+            val bucket = SupabaseClient.client.storage.from(Constants.ROOM_PICS_BUCKET)
+
+            val randomString = UUID.randomUUID().toString().replace("-", "").substring(0, 10)
+            bucket.upload("$ownerId/$id/$randomString.jpeg", imageByteArray)
         }catch (e: Exception) {
             e.printStackTrace()
             Log.e(TAG, "Error: ${e.message}")

@@ -42,9 +42,21 @@ class UpdateRoomViewModel @Inject constructor(
             is UpdateRoomEvent.AddSuitableFor -> addSuitableFor(event.suitableFor)
             is UpdateRoomEvent.RemoveAmenity -> removeAmenity(event.amenity)
             is UpdateRoomEvent.RemoveSuitableFor -> removeSuitableFor(event.suitableFor)
-            is UpdateRoomEvent.AddImage -> {}
+            is UpdateRoomEvent.AddImage -> addImage(event.image)
             is UpdateRoomEvent.RemoveImage -> {
                 removeImage(event.position)
+            }
+        }
+    }
+
+    private fun addImage(imageByteArray: ByteArray) {
+        viewModelScope.launch {
+            val id = allRoomDetailsState.value?.id
+            val ownerId = allRoomDetailsState.value?.ownerId
+
+            if(id != null && ownerId != null) {
+                updateRoomUseCases.addImageUseCase(ownerId, id, imageByteArray)
+                updateRoomUseCases.refreshLocalCacheUseCase()
             }
         }
     }
@@ -56,8 +68,10 @@ class UpdateRoomViewModel @Inject constructor(
             val url = allRoomDetailsState.value?.urls?.get(position)
             val imageName = url?.substring(url.lastIndexOf("/") + 1)
 
-            updateRoomUseCases.removeImageUseCase(ownerId!!, id!!, imageName!!)
-            updateRoomUseCases.refreshLocalCacheUseCase()
+            if(id != null && ownerId != null && imageName != null) {
+                updateRoomUseCases.removeImageUseCase(ownerId!!, id!!, imageName!!)
+                updateRoomUseCases.refreshLocalCacheUseCase()
+            }
         }
     }
 
