@@ -227,7 +227,8 @@ class SupabaseManageRoom {
 
     suspend fun removeRoom(
        id: Int,
-       roomFeatureId: Int
+       roomFeatureId: Int,
+       ownerId: String
     ) {
         try {
             SupabaseClient.client.postgrest.from(Constants.ROOM_DETAILS_TABLE)
@@ -243,12 +244,18 @@ class SupabaseManageRoom {
                         eq(Constants.COL_ID_ROOM_MASTER, id)
                     }
                 }
+
+            val bucket = SupabaseClient.client.storage.from(Constants.ROOM_PICS_BUCKET)
+            val files = bucket.list("$ownerId/$id/")
+            for(file in files) {
+                bucket.delete("$ownerId/$id/${file.name}")
+            }
+
         } catch(e: Exception) {
             e.printStackTrace()
             Log.e(TAG, "Error: ${e.message}")
         }
     }
-
 
 
     suspend fun updateAmenity(

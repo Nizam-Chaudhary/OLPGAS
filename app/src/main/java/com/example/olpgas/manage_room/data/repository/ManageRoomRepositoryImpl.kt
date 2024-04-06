@@ -133,8 +133,8 @@ class ManageRoomRepositoryImpl(
         fullRoomDetailsDatabase.getFullRoomDetailsDao().updateDescription(id, description)
     }
 
-    override suspend fun removeRoom(id: Int, roomFeatureId: Int) {
-        supabaseManageRoom.removeRoom(id, roomFeatureId)
+    override suspend fun removeRoom(id: Int, roomFeatureId: Int, ownerId: String) {
+        supabaseManageRoom.removeRoom(id, roomFeatureId, ownerId)
     }
 
     override suspend fun removeRoomAllRoomDetails(id: Int) {

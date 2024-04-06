@@ -15,11 +15,12 @@ class RemoveRoomUseCase(
     private val application: Application
 ) {
     suspend operator fun invoke(
-        id: Int, roomFeatureId: Int
+        id: Int, roomFeatureId: Int, ownerId: String
     ) {
         val dataBuilder = Data.Builder()
         dataBuilder.putInt("id", id)
         dataBuilder.putInt("roomFeatureId", roomFeatureId)
+        dataBuilder.putString("ownerId", ownerId)
         val inputData = dataBuilder.build()
 
         val removeRoomRequest =

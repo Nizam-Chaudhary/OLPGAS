@@ -113,7 +113,8 @@ interface ManageRoomRepository {
     //Remove Room
     suspend fun removeRoom(
         id: Int,
-        roomFeatureId: Int
+        roomFeatureId: Int,
+        ownerId: String
     )
 
     suspend fun removeRoomAllRoomDetails(

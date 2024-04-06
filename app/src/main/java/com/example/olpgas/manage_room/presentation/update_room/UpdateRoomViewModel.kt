@@ -161,9 +161,10 @@ class UpdateRoomViewModel @Inject constructor(
         viewModelScope.launch {
             val id = allRoomDetailsState.value?.id
             val roomFeatureId = allRoomDetailsState.value?.roomFeatureId
+            val ownerId = allRoomDetailsState.value?.ownerId
 
-            if(id != null && roomFeatureId != null) {
-                updateRoomUseCases.removeRoomUseCase(id, roomFeatureId)
+            if(id != null && roomFeatureId != null && ownerId != null) {
+                updateRoomUseCases.removeRoomUseCase(id, roomFeatureId, ownerId)
             }
         }
     }

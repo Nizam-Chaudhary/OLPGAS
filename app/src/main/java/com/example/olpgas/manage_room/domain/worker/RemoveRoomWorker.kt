@@ -18,8 +18,9 @@ class RemoveRoomWorker @AssistedInject constructor(
         return try {
             val id = inputData.getInt("id", 0)
             val roomFeatureId = inputData.getInt("roomFeatureId", 0)
+            val ownerId = inputData.getString("ownerId")
 
-            manageRoomRepository.removeRoom(id, roomFeatureId)
+            if(ownerId != null) manageRoomRepository.removeRoom(id, roomFeatureId, ownerId)
             manageRoomRepository.removeRoomAllRoomDetails(id)
             manageRoomRepository.removeRoomFullRoomDetails(id)
 
