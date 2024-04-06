@@ -19,4 +19,5 @@ data class BookingView(
     val deposit: Int,
     val occupiedBy: Int,
     val shareable: Int,
+    val userName: String
 )

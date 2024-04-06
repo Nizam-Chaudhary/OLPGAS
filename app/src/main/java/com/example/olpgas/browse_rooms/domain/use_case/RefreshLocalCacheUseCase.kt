@@ -97,6 +97,7 @@ class RefreshLocalCacheUseCase(
                                 item.deposit,
                                 item.occupiedBy,
                                 item.shareable,
+                                item.userName,
                                 imageUrl
                             )
                         )

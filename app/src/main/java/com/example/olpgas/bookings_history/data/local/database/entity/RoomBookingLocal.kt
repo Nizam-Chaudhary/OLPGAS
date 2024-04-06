@@ -23,5 +23,6 @@ data class RoomBookingLocal(
     val deposit: Int,
     val occupiedBy: Int,
     val shareableBy: Int,
+    val payerName: String,
     val imageUrl: String
 )

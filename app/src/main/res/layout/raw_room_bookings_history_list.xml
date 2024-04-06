@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/booked_room_image_raw"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                app:backgroundTint="@color/material_on_surface_emphasis_medium"
+                app:backgroundTintMode="add" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:id="@+id/booked_room_name"
+                    style="?attr/textAppearanceHeadline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/room_name"
+                    android:textColor="@color/textColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/booked_room_location"
+                    style="?attr/textAppearanceSubtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:drawableLeft="@drawable/ic_location"
+
+                    android:drawablePadding="5dp"
+                    android:singleLine="true"
+                    android:text="@string/location"
+                    android:textColor="@color/secondaryTextColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/booked_room_name" />
+
+
+                <TextView
+                    android:id="@+id/heading_bookedDate_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/booked_date"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="64dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/booked_room_booking_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/booked_date"
+                    android:textColor="@color/secondaryTextColor"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/heading_bookedDate_tv"
+                    app:layout_constraintStart_toStartOf="@+id/heading_bookedDate_tv"
+                    app:layout_constraintTop_toBottomOf="@id/heading_bookedDate_tv" />
+
+
+                <TextView
+                    android:id="@+id/heading_sharedBy_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/shared_by"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="@+id/heading_bookedDate_tv"
+                    app:layout_constraintStart_toStartOf="@+id/heading_bookedDate_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/booked_room_booking_date"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+
+                <TextView
+                    android:id="@+id/booked_room_sharedBy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/shareable_by"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/secondaryTextColor"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/heading_sharedBy_tv"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/heading_sharedBy_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/heading_sharedBy_tv" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/materialDivider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintTop_toBottomOf="@+id/room_booker_name"
+                    tools:layout_editor_absoluteX="16dp" />
+
+                <TextView
+                    android:id="@+id/heading_rent_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/rent"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/materialDivider" />
+
+                <TextView
+                    android:id="@+id/heading_booked_"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Rent Payer Name"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/booked_room_location"
+                    app:layout_constraintTop_toBottomOf="@+id/booked_room_location" />
+
+                <TextView
+                    android:id="@+id/booked_room_rent_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/rent"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/heading_rent_tv"
+                    app:layout_constraintTop_toBottomOf="@id/heading_rent_tv" />
+
+
+                <TextView
+                    android:id="@+id/room_booker_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rent"
+                    android:layout_marginTop="4dp"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/heading_rent_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/heading_booked_" />
+
+                <TextView
+                    android:id="@+id/heading_rentStatus_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:text="@string/rent_status"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/heading_rent_tv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/heading_sharedBy_tv"
+                    app:layout_constraintTop_toTopOf="@id/heading_rent_tv" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/booked_room_rentStatus_chip"
+                    style="@style/Widget.Material3.Chip.Assist.Elevated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/paid"
+                    android:textColor="?attr/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="@+id/heading_rentStatus_tv"
+                    app:layout_constraintStart_toStartOf="@id/heading_rentStatus_tv"
+                    app:layout_constraintTop_toBottomOf="@id/heading_rentStatus_tv" />
+
+
+                <TextView
+                    android:id="@+id/heading_next_rent_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/next_rent_date"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/booked_room_rent_tv" />
+
+                <TextView
+                    android:id="@+id/booked_room_next_rent_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/next_rent_date"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/heading_next_rent_tv"
+                    app:layout_constraintTop_toBottomOf="@id/heading_next_rent_tv" />
+
+                <TextView
+                    android:id="@+id/heading_deposit_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/Deposit"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/booked_room_next_rent_tv" />
+
+                <TextView
+                    android:id="@+id/booked_room_deposit_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/Deposit"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/heading_deposit_tv"
+                    app:layout_constraintTop_toBottomOf="@id/heading_deposit_tv" />
+
+                <TextView
+                    android:id="@+id/heading_depositStatus_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/deposit_status"
+                    android:textColor="@color/textColor"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/heading_rentStatus_tv"
+                    app:layout_constraintStart_toStartOf="@+id/heading_rentStatus_tv"
+                    app:layout_constraintTop_toBottomOf="@+id/booked_room_rentStatus_chip" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/booked_room_depositStatus_chip"
+                    style="@style/Widget.Material3.Chip.Assist.Elevated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/collected"
+                    android:textColor="?attr/colorPrimary"
+                    app:layout_constraintEnd_toEndOf="@+id/heading_depositStatus_tv"
+                    app:layout_constraintStart_toStartOf="@id/heading_depositStatus_tv"
+                    app:layout_constraintTop_toBottomOf="@id/heading_depositStatus_tv" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -108,6 +108,7 @@ class RefreshLocalCacheWorker @AssistedInject constructor(
                                 item.deposit,
                                 item.occupiedBy,
                                 item.shareable,
+                                item.userName,
                                 imageUrl
                             )
                         )

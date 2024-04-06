@@ -16,13 +16,14 @@ import com.example.olpgas.R
 import com.example.olpgas.bookings_history.data.local.database.entity.RoomBookingLocal
 import com.example.olpgas.core.util.getCircularProgressDrawable
 import com.example.olpgas.databinding.RawBookedRoomListBinding
+import com.example.olpgas.databinding.RawRoomBookingsHistoryListBinding
 import com.example.olpgas.view_room_details.presentation.RoomDetailsActivity
 
 class BookingsRecyclerViewAdapter(
     var roomsData: List<RoomBookingLocal>,
     private val context: Context,
 )  : RecyclerView.Adapter<BookingsRecyclerViewAdapter.ViewHolder>(){
-    class ViewHolder(view: RawBookedRoomListBinding) : RecyclerView.ViewHolder(view.root) {
+    class ViewHolder(view: RawRoomBookingsHistoryListBinding) : RecyclerView.ViewHolder(view.root) {
         val roomName = view.bookedRoomName
         val imageView = view.bookedRoomImageRaw
         val location = view.bookedRoomLocation
@@ -33,10 +34,11 @@ class BookingsRecyclerViewAdapter(
         val nextRentDate = view.bookedRoomNextRentTv
         val deposit = view.bookedRoomDepositTv
         val depositStatus = view.bookedRoomDepositStatusChip
+        val bookerName = view.roomBookerName
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(RawBookedRoomListBinding.inflate(LayoutInflater.from(context), parent, false))
+        return ViewHolder(RawRoomBookingsHistoryListBinding.inflate(LayoutInflater.from(context), parent, false))
     }
 
     override fun getItemCount() = roomsData.size
@@ -53,7 +55,7 @@ class BookingsRecyclerViewAdapter(
         holder.nextRentDate.text = currentData.nextPaymentDate
         holder.depositStatus.text = currentData.paymentStatus
         holder.location.text = currentData.city
-
+        holder.bookerName.text = currentData.payerName
 
         Glide.with(context)
             .load(currentData.imageUrl)
