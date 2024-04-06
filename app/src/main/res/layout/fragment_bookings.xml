@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="48dp"
         android:gravity="center"
         android:text="@string/no_bookings"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
